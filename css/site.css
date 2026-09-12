@@ -766,7 +766,7 @@ a.project-card:focus-visible .project-card-media img {
 
   animation:
     uncle-mike-transition-shell
-    850ms
+    1400ms
     ease-out
     both;
 }
@@ -775,7 +775,7 @@ a.project-card:focus-visible .project-card-media img {
 .site-transition-line {
   animation:
     uncle-mike-transition-text
-    850ms
+    1400ms
     cubic-bezier(
       0.18,
       0.82,
@@ -786,17 +786,22 @@ a.project-card:focus-visible .project-card-media img {
 }
 
 
+/*
+  The phrase hits quickly, then hangs around
+  long enough to actually read the stupid thing.
+*/
+
 @keyframes uncle-mike-transition-shell {
 
   0% {
     opacity: 0;
   }
 
-  10% {
+  7% {
     opacity: 1;
   }
 
-  80% {
+  88% {
     opacity: 1;
   }
 
@@ -817,11 +822,11 @@ a.project-card:focus-visible .project-card-media img {
       scale(0.9);
   }
 
-  12% {
+  8% {
     opacity: 1;
   }
 
-  28% {
+  20% {
     opacity: 1;
 
     transform:
@@ -829,13 +834,13 @@ a.project-card:focus-visible .project-card-media img {
       scale(1.035);
   }
 
-  40% {
+  29% {
     transform:
       translateY(0)
       scale(1);
   }
 
-  78% {
+  88% {
     opacity: 1;
 
     transform:
@@ -1032,8 +1037,8 @@ a.project-card:focus-visible .project-card-media img {
 
 
   /*
-    Keep transition text above Safari's
-    bottom browser controls.
+    Keep Uncle Mike's bullshit above
+    Safari's bottom browser controls.
   */
 
   .site-text-transition {
