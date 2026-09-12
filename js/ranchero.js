@@ -26,6 +26,10 @@ function renderRancheroPage() {
     <section class="page-section">
       <div class="wrap">
 
+        <p class="eyebrow">
+          Where It Started
+        </p>
+
         <div class="project-gallery">
 
           <figure class="project-card">
@@ -66,6 +70,44 @@ function renderRancheroPage() {
     <section class="page-section">
       <div class="wrap">
 
+        <p class="eyebrow">
+          Milestone
+        </p>
+
+        <h2>
+          First Start.
+        </h2>
+
+        <div class="project-video">
+
+          <video
+            controls
+            playsinline
+            preload="metadata"
+          >
+            <source
+              src="./F9AC6E05-FA72-4201-BD5B-95C505A22D97.mp4"
+              type="video/mp4"
+            >
+
+            Your browser does not support video playback.
+          </video>
+
+          <div class="project-card-body">
+            <p>
+              First startup.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="page-section">
+      <div class="wrap">
+
         <div class="project-detail-grid">
 
           <div class="project-detail-card">
@@ -80,8 +122,8 @@ function renderRancheroPage() {
 
             <p>
               This is the permanent home for the Ranchero project.
-              New work, photos, changes and updates get added here
-              without turning the main site into one enormous page.
+              New work, photos, changes and milestones get added here
+              as the build moves forward.
             </p>
 
           </div>
