@@ -71,7 +71,7 @@ function renderRancheroPage() {
       <div class="wrap">
 
         <p class="eyebrow">
-          Milestone
+          Build Journal
         </p>
 
         <h2>
@@ -89,13 +89,47 @@ function renderRancheroPage() {
               src="./F9AC6E05-FA72-4201-BD5B-95C505A22D97.mp4"
               type="video/mp4"
             >
-
-            Your browser does not support video playback.
           </video>
 
           <div class="project-card-body">
             <p>
               First startup.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Build Journal
+        </p>
+
+        <h2>
+          Fix The Door.
+        </h2>
+
+        <div class="project-video">
+
+          <video
+            controls
+            playsinline
+            preload="metadata"
+          >
+            <source
+              src="./DFEBEA2B-3680-4F0D-9244-994217A7FDDB.mov"
+              type="video/quicktime"
+            >
+          </video>
+
+          <div class="project-card-body">
+            <p>
+              One problem at a time.
             </p>
           </div>
 
@@ -121,9 +155,9 @@ function renderRancheroPage() {
             </h2>
 
             <p>
-              This is the permanent home for the Ranchero project.
-              New work, photos, changes and milestones get added here
-              as the build moves forward.
+              This is the permanent home for the Ranchero.
+              Every repair, first, failure, improvement and
+              questionable decision gets added as the project moves forward.
             </p>
 
           </div>
@@ -140,8 +174,8 @@ function renderRancheroPage() {
             </h2>
 
             <p>
-              The project changes. This page changes with it.
-              The rest of the site doesn't have to.
+              It doesn't have to be finished to be worth showing.
+              The process is the project.
             </p>
 
           </div>
