@@ -26,35 +26,36 @@ function renderRancheroPage() {
     <section class="page-section">
       <div class="wrap">
 
-        <div class="project-detail-grid">
+        <div class="project-gallery">
 
-          <div class="project-detail-card">
-            <p class="eyebrow">The Project</p>
+          <figure class="project-card">
+            <div class="project-card-media">
+              <img
+                src="./20260825_111600.jpeg"
+                alt="1965 Ford Ranchero"
+              >
+            </div>
 
-            <h2>
-              The day it came home.
-            </h2>
-
-            <p>
-              This page is where the Ranchero gets to actually live:
-              the story, the work, the photos, the changes, and everything
-              that happens as the project moves forward.
-            </p>
-          </div>
+            <figcaption class="project-card-body">
+              <h3>Bringing It Back</h3>
+              <p>1965 Ford Ranchero</p>
+            </figcaption>
+          </figure>
 
 
-          <div class="project-detail-card">
-            <p class="eyebrow">Status</p>
+          <figure class="project-card">
+            <div class="project-card-media">
+              <img
+                src="./20260825_110401.jpeg"
+                alt="1965 Ford Ranchero when it came home"
+              >
+            </div>
 
-            <h2>
-              Bringing it back.
-            </h2>
-
-            <p>
-              Instead of dumping every Ranchero update onto the homepage,
-              this page becomes the permanent home for the project.
-            </p>
-          </div>
+            <figcaption class="project-card-body">
+              <h3>The Day It Came Home</h3>
+              <p>Where this one started</p>
+            </figcaption>
+          </figure>
 
         </div>
 
@@ -65,22 +66,42 @@ function renderRancheroPage() {
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Project Media
-        </p>
+        <div class="project-detail-grid">
 
-        <div class="project-gallery">
+          <div class="project-detail-card">
 
-          <div class="project-media-placeholder">
-            Ranchero photo
+            <p class="eyebrow">
+              The Project
+            </p>
+
+            <h2>
+              Not Finished.
+            </h2>
+
+            <p>
+              This is the permanent home for the Ranchero project.
+              New work, photos, changes and updates get added here
+              without turning the main site into one enormous page.
+            </p>
+
           </div>
 
-          <div class="project-media-placeholder">
-            Ranchero photo
-          </div>
 
-          <div class="project-media-placeholder">
-            Ranchero video
+          <div class="project-detail-card">
+
+            <p class="eyebrow">
+              Status
+            </p>
+
+            <h2>
+              Bringing It Back.
+            </h2>
+
+            <p>
+              The project changes. This page changes with it.
+              The rest of the site doesn't have to.
+            </p>
+
           </div>
 
         </div>
