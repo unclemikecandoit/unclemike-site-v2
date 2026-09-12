@@ -1,5 +1,6 @@
 function renderBuildPage() {
-  const page = document.getElementById("page-content");
+  const page =
+    document.getElementById("page-content");
 
   if (!page) return;
 
@@ -19,13 +20,15 @@ function renderBuildPage() {
         </p>
 
         <h1>
-          Cars. Engines. Fabrication.
+          Built To Work.
         </h1>
 
         <p class="home-hero-copy">
-          Mechanical work, custom projects, repairs, fabrication,
-          electrical work and anything else that gets solved
-          with tools in your hands.
+          <strong>
+            Cars. Engines. Fabrication.
+          </strong>
+          <br>
+          Every project is better with me figuring it out.
         </p>
 
       </div>
@@ -54,9 +57,7 @@ function renderBuildPage() {
         <div class="project-grid">
 
 
-          <!-- ===============================================
-               1965 FORD RANCHERO
-               =============================================== -->
+          <!-- 1965 FORD RANCHERO -->
 
           <a
             class="project-card"
@@ -100,9 +101,7 @@ function renderBuildPage() {
 
 
 
-          <!-- ===============================================
-               1972 CHEVY C10
-               =============================================== -->
+          <!-- 1972 CHEVY C10 -->
 
           <a
             class="project-card"
@@ -174,10 +173,6 @@ function renderBuildPage() {
         <div class="project-grid">
 
 
-          <!-- ===============================================
-               1975 CHEVY K10
-               =============================================== -->
-
           <article class="project-card project-card-static">
 
             <div class="project-card-body">
@@ -201,10 +196,6 @@ function renderBuildPage() {
           </article>
 
 
-
-          <!-- ===============================================
-               SUPER DUTY
-               =============================================== -->
 
           <article class="project-card project-card-static">
 
@@ -230,10 +221,6 @@ function renderBuildPage() {
 
 
 
-          <!-- ===============================================
-               EMD LOCOMOTIVE
-               =============================================== -->
-
           <article class="project-card project-card-static">
 
             <div class="project-card-body">
@@ -255,10 +242,6 @@ function renderBuildPage() {
           </article>
 
 
-
-          <!-- ===============================================
-               LEARNING THE TRADE
-               =============================================== -->
 
           <article class="project-card project-card-static">
 
