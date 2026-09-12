@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -15,7 +17,11 @@
     content="Unfucking a 1972 Chevy C10 death trap. Fixing loose rear-end hardware, correcting a bad lowering job, fabricating airbag mounts, sorting vacuum leaks, rebuilding the carburetor, fixing wiring and making the truck safe and usable."
   >
 
-  <link rel="stylesheet" href="../../css/site.css">
+  <link
+    rel="stylesheet"
+    href="../../css/site.css"
+  >
+
 
   <style>
 
@@ -43,11 +49,13 @@
       font-size: clamp(2.5rem, 8vw, 6rem);
       line-height: 0.95;
       letter-spacing: -0.04em;
+
       text-transform: uppercase;
     }
 
     .project-intro {
       max-width: 760px;
+
       margin: 0;
 
       color: #d6c49e;
@@ -99,6 +107,7 @@
 
     .story-copy {
       max-width: 780px;
+
       margin-bottom: 34px;
     }
 
@@ -121,191 +130,12 @@
 
 
     /* =========================================================
-       VIDEO CARDS
-       ========================================================= */
-
-    .video-card {
-      max-width: 680px;
-
-      background: #11100d;
-      border: 1px solid var(--line);
-
-      overflow: hidden;
-    }
-
-    .video-frame {
-      position: relative;
-
-      width: 100%;
-
-      background: #050504;
-
-      overflow: hidden;
-    }
-
-    .video-frame video {
-      display: block;
-
-      width: 100%;
-      height: auto;
-
-      background: #050504;
-    }
-
-
-    /* =========================================================
-       CUSTOM VIDEO COVER
-       ========================================================= */
-
-    .video-cover {
-      position: absolute;
-      inset: 0;
-
-      display: flex;
-      align-items: flex-end;
-
-      padding: 28px;
-
-      cursor: pointer;
-
-      background:
-        linear-gradient(
-          to bottom,
-          rgba(0, 0, 0, 0.02) 25%,
-          rgba(0, 0, 0, 0.18) 55%,
-          rgba(0, 0, 0, 0.82) 100%
-        );
-
-      transition:
-        opacity 180ms ease,
-        visibility 180ms ease;
-    }
-
-    .video-cover.is-hidden {
-      opacity: 0;
-      visibility: hidden;
-
-      pointer-events: none;
-    }
-
-    .video-cover-content {
-      width: 100%;
-    }
-
-    .video-cover-kicker {
-      display: block;
-
-      margin-bottom: 10px;
-
-      color: rgba(255, 255, 255, 0.75);
-
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.65rem;
-      font-weight: 900;
-
-      letter-spacing: 0.18em;
-      text-transform: uppercase;
-    }
-
-    .video-cover-title {
-      display: block;
-
-      max-width: 590px;
-
-      color: #fff;
-
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: clamp(1.7rem, 5vw, 3.6rem);
-      font-weight: 900;
-
-      line-height: 0.95;
-      letter-spacing: -0.045em;
-      text-transform: uppercase;
-
-      text-shadow:
-        0 2px 4px rgba(0, 0, 0, 0.45),
-        0 5px 20px rgba(0, 0, 0, 0.75);
-    }
-
-
-    /* =========================================================
-       CUSTOM PLAY BUTTON
-       ========================================================= */
-
-    .video-play {
-      position: absolute;
-
-      top: 50%;
-      left: 50%;
-
-      width: 74px;
-      height: 74px;
-
-      display: grid;
-      place-items: center;
-
-      transform: translate(-50%, -50%);
-
-      border: 2px solid rgba(255, 255, 255, 0.9);
-      border-radius: 50%;
-
-      background: rgba(0, 0, 0, 0.38);
-
-      backdrop-filter: blur(5px);
-
-      box-shadow:
-        0 6px 25px rgba(0, 0, 0, 0.35);
-    }
-
-    .video-play::before {
-      content: "";
-
-      width: 0;
-      height: 0;
-
-      margin-left: 5px;
-
-      border-top: 10px solid transparent;
-      border-bottom: 10px solid transparent;
-      border-left: 16px solid #fff;
-    }
-
-
-    /* =========================================================
-       VIDEO DESCRIPTION
-       ========================================================= */
-
-    .video-card-body {
-      padding: 22px;
-    }
-
-    .video-card-body .eyebrow {
-      margin-bottom: 8px;
-    }
-
-    .video-card-body h3 {
-      margin-bottom: 12px;
-
-      font-size: clamp(1.8rem, 4vw, 2.8rem);
-    }
-
-    .video-card-body p {
-      margin: 0;
-
-      color: #d6c49e;
-
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 0.9rem;
-      line-height: 1.55;
-    }
-
-
-    /* =========================================================
        WORK LIST
        ========================================================= */
 
     .work-list {
       display: grid;
+
       grid-template-columns: repeat(2, minmax(0, 1fr));
 
       gap: 12px;
@@ -341,6 +171,7 @@
 
     .personality-grid {
       display: grid;
+
       grid-template-columns:
         minmax(0, 0.8fr)
         minmax(0, 1.2fr);
@@ -408,6 +239,10 @@
       font-weight: 800;
 
       letter-spacing: 0.12em;
+
+      transition:
+        background 150ms ease,
+        color 150ms ease;
     }
 
     .back-link:hover {
@@ -441,8 +276,10 @@
 
       .video-card {
         max-width: 560px;
+
         margin-inline: auto;
       }
+
     }
 
 
@@ -468,25 +305,6 @@
         margin-bottom: 75px;
       }
 
-      .video-cover {
-        padding: 20px;
-      }
-
-      .video-cover-title {
-        font-size: clamp(1.6rem, 8vw, 2.7rem);
-      }
-
-      .video-play {
-        width: 62px;
-        height: 62px;
-      }
-
-      .video-play::before {
-        border-top-width: 8px;
-        border-bottom-width: 8px;
-        border-left-width: 13px;
-      }
-
       .personality-block {
         padding: 65px 0;
       }
@@ -494,9 +312,11 @@
       .project-end {
         padding: 70px 0;
       }
+
     }
 
   </style>
+
 </head>
 
 
@@ -504,40 +324,10 @@
 
 
   <!-- =======================================================
-       HEADER
+       SHARED SITE HEADER
        ======================================================= -->
 
-  <header class="site-header">
-
-    <div class="wrap nav-wrap">
-
-      <a class="site-logo" href="../../">
-        Uncle Mike Can Do It
-      </a>
-
-      <nav class="site-nav">
-
-        <a href="../../make/">
-          Make
-        </a>
-
-        <a href="../">
-          Build
-        </a>
-
-        <a href="../../figure-it-out/">
-          Figure It Out
-        </a>
-
-        <a href="../../about/">
-          About
-        </a>
-
-      </nav>
-
-    </div>
-
-  </header>
+  <div id="site-header"></div>
 
 
 
@@ -565,9 +355,12 @@
         </div>
 
         <p class="project-intro">
+
           Somebody had already “built” this truck.
+
           My job was to make sure it stopped trying to kill
           its owner—or anybody else on the road.
+
         </p>
 
 
@@ -648,6 +441,8 @@
                   type="video/quicktime"
                 >
 
+                Your browser does not support the video tag.
+
               </video>
 
 
@@ -659,6 +454,7 @@
               >
 
                 <div class="video-play"></div>
+
 
                 <div class="video-cover-content">
 
@@ -759,6 +555,8 @@
                   type="video/mp4"
                 >
 
+                Your browser does not support the video tag.
+
               </video>
 
 
@@ -770,6 +568,7 @@
               >
 
                 <div class="video-play"></div>
+
 
                 <div class="video-cover-content">
 
@@ -887,6 +686,8 @@
                   type="video/mp4"
                 >
 
+                Your browser does not support the video tag.
+
               </video>
 
 
@@ -898,6 +699,7 @@
               >
 
                 <div class="video-play"></div>
+
 
                 <div class="video-cover-content">
 
@@ -987,6 +789,8 @@
                 type="video/mp4"
               >
 
+              Your browser does not support the video tag.
+
             </video>
 
 
@@ -998,6 +802,7 @@
             >
 
               <div class="video-play"></div>
+
 
               <div class="video-cover-content">
 
@@ -1054,15 +859,21 @@
         </h2>
 
         <p>
+
           The point wasn't to turn somebody else's truck into
-          my truck. It was to understand what was wrong, fix
-          the dangerous shit, correct the bad decisions where
-          they mattered, stay conscious of the owner's budget
-          and leave the truck safer and more useful than I
-          found it.
+          my truck.
+
+          It was to understand what was wrong, fix the dangerous
+          shit, correct the bad decisions where they mattered,
+          stay conscious of the owner's budget and leave the truck
+          safer and more useful than I found it.
+
         </p>
 
-        <a class="back-link" href="../">
+        <a
+          class="back-link"
+          href="../"
+        >
           ← Back to Build
         </a>
 
@@ -1076,94 +887,110 @@
 
 
   <!-- =======================================================
-       FOOTER
+       SHARED SITE FOOTER
        ======================================================= -->
 
-  <footer class="site-footer">
-
-    <div class="wrap footer-wrap">
-
-      <span>
-        Uncle Mike Can Do It
-      </span>
-
-      <a
-        href="https://www.instagram.com/unclemikecandoit/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Instagram
-      </a>
-
-    </div>
-
-  </footer>
+  <div id="site-footer"></div>
 
 
 
   <!-- =======================================================
-       CUSTOM VIDEO COVER BEHAVIOR
+       SHARED SITE COMPONENTS
+       ======================================================= -->
+
+  <script src="../../js/components.js"></script>
+
+
+
+  <!-- =======================================================
+       SHARED VIDEO COVER BEHAVIOR
        ======================================================= -->
 
   <script>
 
-    document.querySelectorAll(".video-frame").forEach((frame) => {
+    document
+      .querySelectorAll(".video-frame")
+      .forEach((frame) => {
 
-      const video = frame.querySelector("video");
-      const cover = frame.querySelector(".video-cover");
+        const video =
+          frame.querySelector("video");
 
-      if (!video || !cover) return;
-
-
-      function playVideo() {
-
-        cover.classList.add("is-hidden");
-
-        video.play().catch(() => {
-          cover.classList.remove("is-hidden");
-        });
-
-      }
+        const cover =
+          frame.querySelector(".video-cover");
 
 
-      cover.addEventListener("click", playVideo);
+        if (!video || !cover) {
+          return;
+        }
 
 
-      cover.addEventListener("keydown", (event) => {
+        function playVideo() {
 
-        if (
-          event.key === "Enter" ||
-          event.key === " "
-        ) {
+          cover.classList.add("is-hidden");
 
-          event.preventDefault();
 
-          playVideo();
+          video
+            .play()
+            .catch(() => {
+
+              cover.classList.remove("is-hidden");
+
+            });
 
         }
 
+
+        cover.addEventListener(
+          "click",
+          playVideo
+        );
+
+
+        cover.addEventListener(
+          "keydown",
+          (event) => {
+
+            if (
+              event.key === "Enter" ||
+              event.key === " "
+            ) {
+
+              event.preventDefault();
+
+              playVideo();
+
+            }
+
+          }
+        );
+
+
+        video.addEventListener(
+          "play",
+          () => {
+
+            cover.classList.add("is-hidden");
+
+          }
+        );
+
+
+        video.addEventListener(
+          "ended",
+          () => {
+
+            video.currentTime = 0;
+
+            cover.classList.remove("is-hidden");
+
+          }
+        );
+
       });
-
-
-      video.addEventListener("play", () => {
-
-        cover.classList.add("is-hidden");
-
-      });
-
-
-      video.addEventListener("ended", () => {
-
-        video.currentTime = 0;
-
-        cover.classList.remove("is-hidden");
-
-      });
-
-    });
 
   </script>
 
 
 </body>
+
 </html>
