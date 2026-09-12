@@ -1,27 +1,44 @@
-function renderSiteHeader() {
-  const header = document.getElementById("site-header");
-  if (!header) return;
+function getSiteRoot() {
+  const path = window.location.pathname;
 
   /*
-    Figure out how deep the current page is so the shared header
-    works from the homepage, category pages, and project pages.
-  */
-  const path = window.location.pathname;
-  let root = "./";
+    GitHub Pages project site:
+    /unclemike-site-v2/
 
-  if (path.includes("/build/ranchero/") || path.includes("/build/C10/")) {
-    root = "../../";
-  } else if (
+    We calculate the path back to the repo root depending
+    on how deep the current page is.
+  */
+
+  if (
+    path.includes("/build/ranchero/") ||
+    path.includes("/build/C10/")
+  ) {
+    return "../../";
+  }
+
+  if (
     path.includes("/build/") ||
     path.includes("/make/") ||
     path.includes("/figure-it-out/") ||
     path.includes("/about/")
   ) {
-    root = "../";
+    return "../";
   }
 
-  header.innerHTML = `
+  return "./";
+}
+
+
+function renderSiteHeader() {
+  const headerMount = document.getElementById("site-header");
+
+  if (!headerMount) return;
+
+  const root = getSiteRoot();
+
+  headerMount.innerHTML = `
     <header class="site-header">
+
       <div class="wrap nav-wrap">
 
         <a
@@ -30,47 +47,85 @@ function renderSiteHeader() {
           aria-label="Uncle Mike Can Do It — Home"
         >
           <img
-            src="${root}uncle-mike-can-do-it-logo.png"
+            src="${root}5DC2AA26-E6DE-4633-9476-78BF6FE3118C.png"
             alt="Uncle Mike Can Do It"
           >
         </a>
 
-        <nav class="site-nav" aria-label="Main navigation">
 
-          <a class="nav-button" href="${root}make/">
+        <nav
+          class="site-nav"
+          aria-label="Main navigation"
+        >
+
+          <a
+            class="nav-button"
+            href="${root}make/"
+          >
             <span>Make</span>
           </a>
 
-          <a class="nav-button" href="${root}build/">
+
+          <a
+            class="nav-button"
+            href="${root}build/"
+          >
             <span>Build</span>
           </a>
 
-          <a class="nav-button nav-button-wide" href="${root}figure-it-out/">
-            <span>Figure It<br>Out</span>
+
+          <a
+            class="nav-button nav-button-wide"
+            href="${root}figure-it-out/"
+          >
+            <span>
+              Figure It<br>
+              Out
+            </span>
           </a>
 
-          <a class="nav-button" href="${root}about/">
+
+          <a
+            class="nav-button"
+            href="${root}about/"
+          >
             <span>About</span>
           </a>
 
         </nav>
 
       </div>
+
     </header>
   `;
 }
 
 
 function renderSiteFooter() {
-  const footer = document.getElementById("site-footer");
-  if (!footer) return;
+  const footerMount = document.getElementById("site-footer");
 
-  footer.innerHTML = `
+  if (!footerMount) return;
+
+  const root = getSiteRoot();
+
+  footerMount.innerHTML = `
     <footer class="site-footer">
+
       <div class="wrap footer-wrap">
-        <span>Uncle Mike Can Do It</span>
-        <span>Built · Fixed · Designed · Figured Out</span>
+
+        <a
+          href="${root}"
+          style="text-decoration:none;"
+        >
+          Uncle Mike Can Do It
+        </a>
+
+        <span>
+          Built · Fixed · Designed · Figured Out
+        </span>
+
       </div>
+
     </footer>
   `;
 }
