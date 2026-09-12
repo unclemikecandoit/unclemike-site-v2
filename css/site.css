@@ -17,8 +17,10 @@ html {
 
 body {
   margin: 0;
+
   background: var(--ink);
   color: var(--paper);
+
   font-family: Georgia, "Times New Roman", serif;
   line-height: 1.5;
 }
@@ -54,6 +56,7 @@ select {
 
   background: rgba(11, 11, 9, 0.92);
   border-bottom: 1px solid var(--line);
+
   backdrop-filter: blur(12px);
 }
 
@@ -81,6 +84,7 @@ select {
 .site-nav {
   display: flex;
   align-items: center;
+
   gap: 22px;
 }
 
@@ -159,6 +163,15 @@ h3 {
 
 .home-hero-inner {
   max-width: 960px;
+}
+
+.home-logo {
+  width: min(100%, 900px);
+  height: auto;
+
+  margin: 0 auto 38px;
+
+  object-fit: contain;
 }
 
 .home-hero h1 {
@@ -313,7 +326,7 @@ h3 {
   letter-spacing: 0.08em;
 }
 
-/* ---------- MOBILE ---------- */
+/* ---------- TABLET ---------- */
 
 @media (max-width: 800px) {
   .category-grid,
@@ -326,7 +339,17 @@ h3 {
   }
 }
 
+/* ---------- MOBILE ---------- */
+
 @media (max-width: 560px) {
+  .nav-wrap {
+    gap: 14px;
+  }
+
+  .site-logo {
+    font-size: 0.68rem;
+  }
+
   .site-nav {
     gap: 12px;
   }
@@ -341,7 +364,18 @@ h3 {
 
   .home-hero {
     min-height: auto;
-    padding: 80px 0;
+
+    padding: 60px 0 80px;
+  }
+
+  .home-logo {
+    width: 100%;
+
+    margin-bottom: 28px;
+  }
+
+  .home-hero-copy {
+    font-size: 1rem;
   }
 
   .footer-wrap {
