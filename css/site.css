@@ -301,6 +301,74 @@ h3 {
   letter-spacing: 0.08em;
 }
 
+/* ---------- PROJECT DETAIL PAGES ---------- */
+
+.project-detail-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+}
+
+.project-detail-card {
+  padding: 28px;
+
+  background: #11100d;
+  border: 1px solid var(--line);
+}
+
+.project-detail-card h2 {
+  margin-bottom: 18px;
+
+  font-size: clamp(2rem, 5vw, 4rem);
+}
+
+.project-detail-card p:last-child {
+  margin-bottom: 0;
+
+  color: #d1bf99;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.project-gallery {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 14px;
+}
+
+.project-media-placeholder {
+  min-height: 360px;
+
+  display: grid;
+  place-items: center;
+
+  background: #050504;
+  border: 1px solid var(--line);
+
+  color: rgba(234, 215, 173, 0.35);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 0.72rem;
+  font-weight: 800;
+
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.project-gallery img,
+.project-gallery video {
+  width: 100%;
+  height: 100%;
+
+  min-height: 360px;
+
+  object-fit: cover;
+
+  border: 1px solid var(--line);
+}
+
 /* ---------- FOOTER ---------- */
 
 .site-footer {
@@ -330,7 +398,9 @@ h3 {
 
 @media (max-width: 800px) {
   .category-grid,
-  .project-grid {
+  .project-grid,
+  .project-detail-grid,
+  .project-gallery {
     grid-template-columns: 1fr;
   }
 
@@ -376,6 +446,12 @@ h3 {
 
   .home-hero-copy {
     font-size: 1rem;
+  }
+
+  .project-media-placeholder,
+  .project-gallery img,
+  .project-gallery video {
+    min-height: 260px;
   }
 
   .footer-wrap {
