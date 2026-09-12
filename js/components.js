@@ -3,7 +3,8 @@ function getSiteRoot() {
 
   if (
     path.includes("/build/ranchero/") ||
-    path.includes("/build/C10/")
+    path.includes("/build/C10/") ||
+    path.includes("/make/crooked-gate/")
   ) {
     return "../../";
   }
