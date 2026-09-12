@@ -18,8 +18,9 @@
   <link rel="stylesheet" href="../../css/site.css">
 
   <style>
+
     /* =========================================================
-       1972 C10 PROJECT PAGE
+       1972 C10
        ========================================================= */
 
     .project-hero {
@@ -56,7 +57,9 @@
     }
 
 
-    /* ---------- HERO IMAGE ---------- */
+    /* =========================================================
+       HERO IMAGE
+       ========================================================= */
 
     .hero-image-wrap {
       margin-top: 48px;
@@ -78,7 +81,9 @@
     }
 
 
-    /* ---------- STORY ---------- */
+    /* =========================================================
+       STORY
+       ========================================================= */
 
     .story-section {
       padding: 40px 0 100px;
@@ -115,7 +120,9 @@
     }
 
 
-    /* ---------- VIDEO ---------- */
+    /* =========================================================
+       VIDEO CARDS
+       ========================================================= */
 
     .video-card {
       max-width: 680px;
@@ -127,6 +134,8 @@
     }
 
     .video-frame {
+      position: relative;
+
       width: 100%;
 
       background: #050504;
@@ -142,6 +151,129 @@
 
       background: #050504;
     }
+
+
+    /* =========================================================
+       CUSTOM VIDEO COVER
+       ========================================================= */
+
+    .video-cover {
+      position: absolute;
+      inset: 0;
+
+      display: flex;
+      align-items: flex-end;
+
+      padding: 28px;
+
+      cursor: pointer;
+
+      background:
+        linear-gradient(
+          to bottom,
+          rgba(0, 0, 0, 0.02) 25%,
+          rgba(0, 0, 0, 0.18) 55%,
+          rgba(0, 0, 0, 0.82) 100%
+        );
+
+      transition:
+        opacity 180ms ease,
+        visibility 180ms ease;
+    }
+
+    .video-cover.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+
+      pointer-events: none;
+    }
+
+    .video-cover-content {
+      width: 100%;
+    }
+
+    .video-cover-kicker {
+      display: block;
+
+      margin-bottom: 10px;
+
+      color: rgba(255, 255, 255, 0.75);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.65rem;
+      font-weight: 900;
+
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .video-cover-title {
+      display: block;
+
+      max-width: 590px;
+
+      color: #fff;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.7rem, 5vw, 3.6rem);
+      font-weight: 900;
+
+      line-height: 0.95;
+      letter-spacing: -0.045em;
+      text-transform: uppercase;
+
+      text-shadow:
+        0 2px 4px rgba(0, 0, 0, 0.45),
+        0 5px 20px rgba(0, 0, 0, 0.75);
+    }
+
+
+    /* =========================================================
+       CUSTOM PLAY BUTTON
+       ========================================================= */
+
+    .video-play {
+      position: absolute;
+
+      top: 50%;
+      left: 50%;
+
+      width: 74px;
+      height: 74px;
+
+      display: grid;
+      place-items: center;
+
+      transform: translate(-50%, -50%);
+
+      border: 2px solid rgba(255, 255, 255, 0.9);
+      border-radius: 50%;
+
+      background: rgba(0, 0, 0, 0.38);
+
+      backdrop-filter: blur(5px);
+
+      box-shadow:
+        0 6px 25px rgba(0, 0, 0, 0.35);
+    }
+
+    .video-play::before {
+      content: "";
+
+      width: 0;
+      height: 0;
+
+      margin-left: 5px;
+
+      border-top: 10px solid transparent;
+      border-bottom: 10px solid transparent;
+      border-left: 16px solid #fff;
+    }
+
+
+    /* =========================================================
+       VIDEO DESCRIPTION
+       ========================================================= */
 
     .video-card-body {
       padding: 22px;
@@ -168,7 +300,9 @@
     }
 
 
-    /* ---------- WORK LIST ---------- */
+    /* =========================================================
+       WORK LIST
+       ========================================================= */
 
     .work-list {
       display: grid;
@@ -194,7 +328,9 @@
     }
 
 
-    /* ---------- PERSONALITY BREAK ---------- */
+    /* =========================================================
+       MIKE BEING MIKE
+       ========================================================= */
 
     .personality-block {
       padding: 70px 0;
@@ -205,9 +341,12 @@
 
     .personality-grid {
       display: grid;
-      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr);
+      grid-template-columns:
+        minmax(0, 0.8fr)
+        minmax(0, 1.2fr);
 
       gap: 50px;
+
       align-items: center;
     }
 
@@ -225,7 +364,9 @@
     }
 
 
-    /* ---------- END ---------- */
+    /* =========================================================
+       END
+       ========================================================= */
 
     .project-end {
       padding: 100px 0;
@@ -275,9 +416,12 @@
     }
 
 
-    /* ---------- MOBILE ---------- */
+    /* =========================================================
+       MOBILE
+       ========================================================= */
 
     @media (max-width: 800px) {
+
       .project-hero {
         padding: 70px 0 60px;
       }
@@ -301,7 +445,9 @@
       }
     }
 
+
     @media (max-width: 560px) {
+
       .project-hero {
         padding: 60px 0 50px;
       }
@@ -322,6 +468,25 @@
         margin-bottom: 75px;
       }
 
+      .video-cover {
+        padding: 20px;
+      }
+
+      .video-cover-title {
+        font-size: clamp(1.6rem, 8vw, 2.7rem);
+      }
+
+      .video-play {
+        width: 62px;
+        height: 62px;
+      }
+
+      .video-play::before {
+        border-top-width: 8px;
+        border-bottom-width: 8px;
+        border-left-width: 13px;
+      }
+
       .personality-block {
         padding: 65px 0;
       }
@@ -330,6 +495,7 @@
         padding: 70px 0;
       }
     }
+
   </style>
 </head>
 
@@ -446,8 +612,8 @@
             </h2>
 
             <p>
-              The truck had already been modified before it came
-              to me.
+              The truck had already been modified before it
+              came to me.
             </p>
 
             <p>
@@ -482,9 +648,31 @@
                   type="video/quicktime"
                 >
 
-                Your browser does not support the video tag.
-
               </video>
+
+
+              <div
+                class="video-cover"
+                role="button"
+                tabindex="0"
+                aria-label="Play loose rear hardware video"
+              >
+
+                <div class="video-play"></div>
+
+                <div class="video-cover-content">
+
+                  <span class="video-cover-kicker">
+                    Previous Work
+                  </span>
+
+                  <span class="video-cover-title">
+                    Well, That's Not Supposed To Be Loose.
+                  </span>
+
+                </div>
+
+              </div>
 
             </div>
 
@@ -571,9 +759,31 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support the video tag.
-
               </video>
+
+
+              <div
+                class="video-cover"
+                role="button"
+                tabindex="0"
+                aria-label="Play airbag fabrication video"
+              >
+
+                <div class="video-play"></div>
+
+                <div class="video-cover-content">
+
+                  <span class="video-cover-kicker">
+                    Fabrication · Suspension
+                  </span>
+
+                  <span class="video-cover-title">
+                    When Lowering It Goes Wrong.
+                  </span>
+
+                </div>
+
+              </div>
 
             </div>
 
@@ -677,9 +887,31 @@
                   type="video/mp4"
                 >
 
-                Your browser does not support the video tag.
-
               </video>
+
+
+              <div
+                class="video-cover"
+                role="button"
+                tabindex="0"
+                aria-label="Play wrapping it up video"
+              >
+
+                <div class="video-play"></div>
+
+                <div class="video-cover-content">
+
+                  <span class="video-cover-kicker">
+                    Mechanical · Fuel · Electrical
+                  </span>
+
+                  <span class="video-cover-title">
+                    Unfucking Everything Else.
+                  </span>
+
+                </div>
+
+              </div>
 
             </div>
 
@@ -755,9 +987,27 @@
                 type="video/mp4"
               >
 
-              Your browser does not support the video tag.
-
             </video>
+
+
+            <div
+              class="video-cover video-cover-minimal"
+              role="button"
+              tabindex="0"
+              aria-label="Play Mike being Mike video"
+            >
+
+              <div class="video-play"></div>
+
+              <div class="video-cover-content">
+
+                <span class="video-cover-kicker">
+                  Mike Being Mike
+                </span>
+
+              </div>
+
+            </div>
 
           </div>
 
@@ -848,6 +1098,71 @@
     </div>
 
   </footer>
+
+
+
+  <!-- =======================================================
+       CUSTOM VIDEO COVER BEHAVIOR
+       ======================================================= -->
+
+  <script>
+
+    document.querySelectorAll(".video-frame").forEach((frame) => {
+
+      const video = frame.querySelector("video");
+      const cover = frame.querySelector(".video-cover");
+
+      if (!video || !cover) return;
+
+
+      function playVideo() {
+
+        cover.classList.add("is-hidden");
+
+        video.play().catch(() => {
+          cover.classList.remove("is-hidden");
+        });
+
+      }
+
+
+      cover.addEventListener("click", playVideo);
+
+
+      cover.addEventListener("keydown", (event) => {
+
+        if (
+          event.key === "Enter" ||
+          event.key === " "
+        ) {
+
+          event.preventDefault();
+
+          playVideo();
+
+        }
+
+      });
+
+
+      video.addEventListener("play", () => {
+
+        cover.classList.add("is-hidden");
+
+      });
+
+
+      video.addEventListener("ended", () => {
+
+        video.currentTime = 0;
+
+        cover.classList.remove("is-hidden");
+
+      });
+
+    });
+
+  </script>
 
 
 </body>
