@@ -127,52 +127,262 @@ function renderSiteFooter() {
 
 
 /* =========================================================
-   UNCLE MIKE TRANSITION
+   UNCLE MIKE RESPONSE BANK
    ========================================================= */
 
 const UNCLE_MIKE_TRANSITION_LINES = [
+
   {
-    text: "DOLLAR DOLLAR BILLS Y’ALL",
+    text: "FUCK AROUND. FIND OUT.",
     style: "wide"
   },
+
   {
-    text: "HOLD MY WRENCH",
+    text: "THAT LOOKED EXPENSIVE.",
+    style: "wide"
+  },
+
+  {
+    text: "GIMME A MINUTE.",
     style: "normal"
   },
+
   {
-    text: "WELL, FUCK.",
-    style: "short"
-  },
-  {
-    text: "I CAN FIX THAT",
+    text: "THERE’S YOUR PROBLEM.",
     style: "normal"
   },
+
   {
-    text: "SEEMS UNRELATED.<br>IT ISN’T.",
+    text: "WELL THAT AIN’T RIGHT.",
+    style: "wide"
+  },
+
+  {
+    text: "I KNOW A GUY…<br>THE GUY IS ME.",
     style: "stacked"
   },
+
   {
-    text: "FUCK IT, I CAN MAKE THAT",
+    text: "WE’RE GONNA NEED A BIGGER HAMMER.",
     style: "wide"
   },
+
   {
-    text: "PROBABLY FINE",
-    style: "normal"
-  },
-  {
-    text: "PATTERN RECOGNIZED",
-    style: "normal"
-  },
-  {
-    text: "THIS SEEMS EXPENSIVE",
+    text: "TECHNICALLY, IT WORKS.",
     style: "wide"
   },
+
   {
-    text: "WHAT COULD GO WRONG?",
+    text: "GOOD ENOUGH FOR WHO IT’S FOR.",
+    style: "wide"
+  },
+
+  {
+    text: "THAT’S A TOMORROW PROBLEM.",
+    style: "wide"
+  },
+
+  {
+    text: "YOU SAW NOTHING.",
+    style: "normal"
+  },
+
+  {
+    text: "JUST FUCKING SEND IT.",
+    style: "wide"
+  },
+
+  {
+    text: "HAVE YOU TRIED HITTING IT?",
+    style: "wide"
+  },
+
+  {
+    text: "CAN’T BE STUCK IF IT’S LIQUID.",
+    style: "wide"
+  },
+
+  {
+    text: "THIS IS WHY WE CAN’T HAVE NICE THINGS.",
+    style: "wide"
+  },
+
+  {
+    text: "THAT SOUNDED EXPENSIVE.",
+    style: "wide"
+  },
+
+  {
+    text: "LET HIM COOK.",
+    style: "normal"
+  },
+
+  {
+    text: "FOR LEGAL REASONS,<br>THAT’S A JOKE.",
+    style: "stacked"
+  },
+
+  {
+    text: "DON’T MAKE IT WEIRD.",
+    style: "normal"
+  },
+
+  {
+    text: "MOVING ON.",
+    style: "short"
+  },
+
+  {
+    text: "MY SAFEWORD IS<br>“PINEAPPLE JUICE.”",
+    style: "stacked"
+  },
+
+  {
+    text: "AUTISM HAS ENTERED THE CHAT.",
+    style: "wide"
+  },
+
+  {
+    text: "HYPERFIXATION ACTIVATED.",
+    style: "wide"
+  },
+
+  {
+    text: "WE’LL DO IT LIVE.",
+    style: "normal"
+  },
+
+  {
+    text: "WAIT TILL YOU SEE THIS SHIT.",
     style: "wide"
   }
+
 ];
 
+
+
+/* =========================================================
+   SHUFFLED DECK
+
+   Every phrase is shown once before anything repeats.
+   The remaining deck survives page navigation for the
+   duration of the browser session.
+   ========================================================= */
+
+const UNCLE_MIKE_DECK_KEY =
+  "uncleMikeTransitionDeckV1";
+
+
+function shuffleArray(array) {
+  const shuffled = [...array];
+
+  for (
+    let i = shuffled.length - 1;
+    i > 0;
+    i--
+  ) {
+    const j =
+      Math.floor(
+        Math.random() * (i + 1)
+      );
+
+    [
+      shuffled[i],
+      shuffled[j]
+    ] = [
+      shuffled[j],
+      shuffled[i]
+    ];
+  }
+
+  return shuffled;
+}
+
+
+function makeFreshTransitionDeck() {
+  return shuffleArray(
+    UNCLE_MIKE_TRANSITION_LINES.map(
+      (_, index) => index
+    )
+  );
+}
+
+
+function getTransitionDeck() {
+  try {
+    const saved =
+      sessionStorage.getItem(
+        UNCLE_MIKE_DECK_KEY
+      );
+
+    if (saved) {
+      const parsed =
+        JSON.parse(saved);
+
+      if (
+        Array.isArray(parsed) &&
+        parsed.length > 0 &&
+        parsed.every(
+          (index) =>
+            Number.isInteger(index) &&
+            index >= 0 &&
+            index <
+              UNCLE_MIKE_TRANSITION_LINES.length
+        )
+      ) {
+        return parsed;
+      }
+    }
+  }
+
+  catch {
+    /* If storage is unavailable, just use a fresh deck. */
+  }
+
+  return makeFreshTransitionDeck();
+}
+
+
+function saveTransitionDeck(deck) {
+  try {
+    sessionStorage.setItem(
+      UNCLE_MIKE_DECK_KEY,
+      JSON.stringify(deck)
+    );
+  }
+
+  catch {
+    /* Navigation still works if storage is unavailable. */
+  }
+}
+
+
+function getNextTransitionLine() {
+  let deck =
+    getTransitionDeck();
+
+  if (deck.length === 0) {
+    deck =
+      makeFreshTransitionDeck();
+  }
+
+  const nextIndex =
+    deck.shift();
+
+  saveTransitionDeck(deck);
+
+  return (
+    UNCLE_MIKE_TRANSITION_LINES[
+      nextIndex
+    ]
+  );
+}
+
+
+
+/* =========================================================
+   CREATE TRANSITION
+   ========================================================= */
 
 function createSiteTransition() {
   if (
@@ -342,12 +552,7 @@ function initSiteLinkTransitions() {
 
 
       const choice =
-        UNCLE_MIKE_TRANSITION_LINES[
-          Math.floor(
-            Math.random() *
-            UNCLE_MIKE_TRANSITION_LINES.length
-          )
-        ];
+        getNextTransitionLine();
 
 
       line.innerHTML =
@@ -373,7 +578,7 @@ function initSiteLinkTransitions() {
           window.location.href =
             destination.href;
         },
-        850
+        1400
       );
 
     }
