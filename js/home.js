@@ -7,13 +7,15 @@ function renderHomePage() {
     <section class="home-hero">
       <div class="wrap home-hero-inner">
 
+        <img
+          class="home-logo"
+          src="./5DC2AA26-E6DE-4633-9476-78BF6FE3118C.png"
+          alt="Uncle Mike Can Do It"
+        >
+
         <p class="eyebrow">
           Built · Fixed · Designed · Figured Out
         </p>
-
-        <h1>
-          I Make Your Stuff Even Cooler.
-        </h1>
 
         <p class="home-hero-copy">
           Cars, engines, design, merch, branding, repairs,
@@ -40,13 +42,9 @@ function renderHomePage() {
                 ${area.number}
               </span>
 
-              <h3>
-                ${area.title}
-              </h3>
+              <h3>${area.title}</h3>
 
-              <p>
-                ${area.description}
-              </p>
+              <p>${area.description}</p>
 
             </a>
           `).join("")}
@@ -77,13 +75,9 @@ function renderHomePage() {
 
               <div class="project-card-body">
 
-                <h3>
-                  ${project.title}
-                </h3>
+                <h3>${project.title}</h3>
 
-                <p>
-                  ${project.category}
-                </p>
+                <p>${project.category}</p>
 
               </div>
 
