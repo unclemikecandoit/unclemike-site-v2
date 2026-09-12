@@ -43,33 +43,39 @@ function renderMakePage() {
           Crooked Gate Seasonings.
         </h2>
 
-        <div class="project-detail-card">
+        <a
+          class="project-card"
+          href="./crooked-gate/"
+          aria-label="View the Crooked Gate Seasonings case study"
+        >
 
-          <p class="eyebrow">
-            Brand · Web Design · E-Commerce
-          </p>
+          <div class="project-card-body">
 
-          <h3>
-            From Seasonings To A Storefront.
-          </h3>
+            <p class="eyebrow">
+              Brand · Web Design · E-Commerce
+            </p>
 
-          <p>
-            Crooked Gate started with the product.
-            Then came everything the customer actually sees
-            and interacts with.
-          </p>
+            <h3>
+              From Seasonings To A Storefront.
+            </h3>
 
-          <p>
-            Product presentation, brand structure,
-            recipes, responsive web design,
-            cart functionality, shipping logic
-            and Square checkout.
-          </p>
+            <p>
+              Product presentation, brand structure,
+              recipes, responsive web design,
+              cart functionality, shipping logic
+              and Square checkout.
+            </p>
 
-          <p>
-            Not just making a website look good.
-            Making the whole thing work.
-          </p>
+            <span class="project-card-link">
+              View Case Study →
+            </span>
+
+          </div>
+
+        </a>
+
+
+        <div style="margin-top:18px;">
 
           <a
             class="project-card-link"
