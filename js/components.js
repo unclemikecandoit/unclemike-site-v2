@@ -32,13 +32,10 @@ function renderSiteHeader() {
 
   if (!headerMount) return;
 
-  const root =
-    getSiteRoot();
+  const root = getSiteRoot();
 
   headerMount.innerHTML = `
-
     <header class="site-header">
-
       <div class="wrap nav-wrap">
 
         <a
@@ -56,7 +53,6 @@ function renderSiteHeader() {
           class="site-nav"
           aria-label="Main navigation"
         >
-
           <a
             class="nav-button"
             href="${root}make/"
@@ -87,13 +83,10 @@ function renderSiteHeader() {
           >
             <span>About</span>
           </a>
-
         </nav>
 
       </div>
-
     </header>
-
   `;
 }
 
@@ -109,13 +102,10 @@ function renderSiteFooter() {
 
   if (!footerMount) return;
 
-  const root =
-    getSiteRoot();
+  const root = getSiteRoot();
 
   footerMount.innerHTML = `
-
     <footer class="site-footer">
-
       <div class="wrap footer-wrap">
 
         <a
@@ -130,38 +120,77 @@ function renderSiteFooter() {
         </span>
 
       </div>
-
     </footer>
-
   `;
 }
 
 
 
 /* =========================================================
-   SKULL TRANSITION
+   UNCLE MIKE TRANSITION
    ========================================================= */
 
-function createSkullTransition() {
+const UNCLE_MIKE_TRANSITION_LINES = [
+  {
+    text: "DOLLAR DOLLAR BILLS Y’ALL",
+    style: "wide"
+  },
+  {
+    text: "HOLD MY WRENCH",
+    style: "normal"
+  },
+  {
+    text: "WELL, FUCK.",
+    style: "short"
+  },
+  {
+    text: "I CAN FIX THAT",
+    style: "normal"
+  },
+  {
+    text: "SEEMS UNRELATED.<br>IT ISN’T.",
+    style: "stacked"
+  },
+  {
+    text: "FUCK IT, I CAN MAKE THAT",
+    style: "wide"
+  },
+  {
+    text: "PROBABLY FINE",
+    style: "normal"
+  },
+  {
+    text: "PATTERN RECOGNIZED",
+    style: "normal"
+  },
+  {
+    text: "THIS SEEMS EXPENSIVE",
+    style: "wide"
+  },
+  {
+    text: "WHAT COULD GO WRONG?",
+    style: "wide"
+  }
+];
+
+
+function createSiteTransition() {
   if (
     document.getElementById(
-      "site-skull-transition"
+      "site-text-transition"
     )
   ) {
     return;
   }
 
-  const root =
-    getSiteRoot();
-
   const transition =
     document.createElement("div");
 
   transition.id =
-    "site-skull-transition";
+    "site-text-transition";
 
   transition.className =
-    "site-skull-transition";
+    "site-text-transition";
 
   transition.setAttribute(
     "aria-hidden",
@@ -169,28 +198,9 @@ function createSkullTransition() {
   );
 
   transition.innerHTML = `
-
-    <div class="site-skull-stage">
-
-      <img
-        class="site-skull site-skull-idle"
-        src="${root}uncle-mike-skull-idle.png"
-        alt=""
-      >
-
-      <img
-        class="site-skull site-skull-laugh"
-        src="${root}uncle-mike-skull-laugh.png"
-        alt=""
-      >
-
-      <span class="skull-spark skull-spark-1"></span>
-      <span class="skull-spark skull-spark-2"></span>
-      <span class="skull-spark skull-spark-3"></span>
-      <span class="skull-spark skull-spark-4"></span>
-
+    <div class="site-text-transition-inner">
+      <div class="site-transition-line"></div>
     </div>
-
   `;
 
   document.body.appendChild(
@@ -207,10 +217,17 @@ function createSkullTransition() {
 function initSiteLinkTransitions() {
   const transition =
     document.getElementById(
-      "site-skull-transition"
+      "site-text-transition"
     );
 
   if (!transition) return;
+
+  const line =
+    transition.querySelector(
+      ".site-transition-line"
+    );
+
+  if (!line) return;
 
   const reducedMotion =
     window.matchMedia(
@@ -218,6 +235,7 @@ function initSiteLinkTransitions() {
     ).matches;
 
   let transitionRunning = false;
+
 
   document.addEventListener(
     "click",
@@ -227,6 +245,7 @@ function initSiteLinkTransitions() {
         event.target.closest("a[href]");
 
       if (!link) return;
+
 
       if (
         event.defaultPrevented ||
@@ -239,11 +258,13 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       if (
         link.hasAttribute("download")
       ) {
         return;
       }
+
 
       if (
         link.target &&
@@ -252,7 +273,9 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       let destination;
+
 
       try {
         destination =
@@ -266,6 +289,7 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       if (
         destination.protocol !== "http:" &&
         destination.protocol !== "https:"
@@ -273,12 +297,14 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       if (
         destination.origin !==
         window.location.origin
       ) {
         return;
       }
+
 
       if (
         destination.pathname ===
@@ -290,6 +316,7 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       if (
         destination.href ===
         window.location.href
@@ -297,18 +324,38 @@ function initSiteLinkTransitions() {
         return;
       }
 
+
       if (reducedMotion) {
         return;
       }
+
 
       if (transitionRunning) {
         event.preventDefault();
         return;
       }
 
+
       event.preventDefault();
 
       transitionRunning = true;
+
+
+      const choice =
+        UNCLE_MIKE_TRANSITION_LINES[
+          Math.floor(
+            Math.random() *
+            UNCLE_MIKE_TRANSITION_LINES.length
+          )
+        ];
+
+
+      line.innerHTML =
+        choice.text;
+
+      line.className =
+        `site-transition-line is-${choice.style}`;
+
 
       transition.classList.remove(
         "is-active"
@@ -320,12 +367,13 @@ function initSiteLinkTransitions() {
         "is-active"
       );
 
+
       window.setTimeout(
         () => {
           window.location.href =
             destination.href;
         },
-        760
+        850
       );
 
     }
@@ -348,9 +396,11 @@ function initScrollReveal() {
     return;
   }
 
+
   document.documentElement.classList.add(
     "has-reveal-motion"
   );
+
 
   const selector = [
     ".category-card",
@@ -360,17 +410,15 @@ function initScrollReveal() {
     ".project-media-placeholder"
   ].join(", ");
 
+
   const observer =
     new IntersectionObserver(
-
       (entries) => {
 
         entries.forEach(
           (entry) => {
 
-            if (
-              !entry.isIntersecting
-            ) {
+            if (!entry.isIntersecting) {
               return;
             }
 
@@ -386,14 +434,13 @@ function initScrollReveal() {
         );
 
       },
-
       {
         threshold: 0.12,
         rootMargin:
           "0px 0px -25px 0px"
       }
-
     );
+
 
   function registerRevealElements(
     root = document
@@ -417,11 +464,11 @@ function initScrollReveal() {
       );
     }
 
-    if (
-      !root.querySelectorAll
-    ) {
+
+    if (!root.querySelectorAll) {
       return;
     }
+
 
     root
       .querySelectorAll(selector)
@@ -449,9 +496,11 @@ function initScrollReveal() {
       );
   }
 
+
   registerRevealElements(
     document
   );
+
 
   const mutationObserver =
     new MutationObserver(
@@ -482,6 +531,7 @@ function initScrollReveal() {
       }
     );
 
+
   mutationObserver.observe(
     document.body,
     {
@@ -501,7 +551,7 @@ renderSiteHeader();
 
 renderSiteFooter();
 
-createSkullTransition();
+createSiteTransition();
 
 initSiteLinkTransitions();
 
