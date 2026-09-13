@@ -3,7 +3,6 @@
 
   if (!page) return;
 
-
   page.innerHTML = `
 
     <!-- =====================================================
@@ -50,7 +49,6 @@
           Ideas That Became Real Things.
         </h2>
 
-
         <div class="project-grid">
 
 
@@ -70,7 +68,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -115,7 +112,6 @@
 
             </div>
 
-
             <div class="project-card-body">
 
               <p class="eyebrow">
@@ -153,7 +149,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -202,7 +197,6 @@
           Hawk Rods went through a pile of directions
           before the identity started feeling right.
         </p>
-
 
         <div
           class="project-gallery"
@@ -261,7 +255,6 @@
           unless I made them.
         </p>
 
-
         <div
           class="project-grid"
           style="margin-top:32px;"
@@ -283,7 +276,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -321,7 +313,6 @@
 
             </div>
 
-
             <div class="project-card-body">
 
               <p class="eyebrow">
@@ -357,7 +348,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -395,7 +385,6 @@
 
             </div>
 
-
             <div class="project-card-body">
 
               <p class="eyebrow">
@@ -431,7 +420,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -469,7 +457,6 @@
               >
 
             </div>
-
 
             <div class="project-card-body">
 
@@ -510,90 +497,29 @@
         </p>
 
         <h2>
-          Different Medium. Same Problem.
+          Different Medium.<br>
+          Same Problem.
         </h2>
 
+        <div
+          class="project-detail-card"
+          style="margin-top:42px;"
+        >
 
-        <div class="project-detail-grid">
-
-
-          <div class="project-detail-card">
-
-            <p class="eyebrow">
-              Brand
-            </p>
-
-            <h3>
-              Make It Recognizable.
-            </h3>
-
-            <p>
-              Names, logos, visual systems
-              and the thousand little decisions
-              that make something feel like itself.
-            </p>
-
-          </div>
-
-
-
-          <div class="project-detail-card">
-
-            <p class="eyebrow">
-              Graphic
-            </p>
-
-            <h3>
-              Make It Say Something.
-            </h3>
-
-            <p>
-              Apparel, decals, badges and artwork
-              built around an idea worth looking at.
-            </p>
-
-          </div>
-
-
-
-          <div class="project-detail-card">
-
-            <p class="eyebrow">
-              Digital
-            </p>
-
-            <h3>
-              Make It Work.
-            </h3>
-
-            <p>
-              Websites and interfaces that have
-              an actual job beyond sitting there
-              looking expensive.
-            </p>
-
-          </div>
-
-
-
-          <div class="project-detail-card">
-
-            <p class="eyebrow">
-              Physical
-            </p>
-
-            <h3>
-              Make It Real.
-            </h3>
-
-            <p>
-              Sometimes the solution eventually
-              requires a saw, welder or pile of
-              material on the floor.
-            </p>
-
-          </div>
-
+          <p
+            style="
+              margin:0;
+              color:#d6c49e;
+              font-family:Arial, Helvetica, sans-serif;
+              font-size:clamp(1.05rem, 2.5vw, 1.35rem);
+              line-height:1.65;
+            "
+          >
+            Brand. Graphics. Websites. Fabrication.
+            Different tools, same process:
+            see what it could be, figure out what it takes,
+            and make the damn thing real.
+          </p>
 
         </div>
 
@@ -603,42 +529,38 @@
 
 
     <!-- =====================================================
-         PROCESS
+         PROCESS / CLOSE
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:35px;"
+    >
       <div class="wrap">
 
         <p class="eyebrow">
           The Process
         </p>
 
-        <h2>
-          See It. Make It Real.
+        <h2 style="margin-bottom:24px;">
+          See It.<br>
+          Make It Real.
         </h2>
 
-        <div class="project-detail-card">
-
-          <p>
-            A lot of this starts the same way:
-          </p>
-
-          <p>
-            <strong>
-              “I have an idea.”
-            </strong>
-          </p>
-
-          <p>
-            Cool.
-          </p>
-
-          <p>
-            Now let's figure out what the hell
-            it actually is.
-          </p>
-
-        </div>
+        <p
+          style="
+            max-width:720px;
+            margin:0;
+            color:#d6c49e;
+            font-size:clamp(1.15rem, 3vw, 1.6rem);
+            line-height:1.55;
+          "
+        >
+          Most of it starts with the same sentence:
+          <strong style="color:var(--paper-2);">
+            “I have an idea.”
+          </strong>
+        </p>
 
       </div>
     </section>
