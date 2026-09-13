@@ -676,22 +676,23 @@ a.project-card:focus-visible .project-card-media img {
 
 .site-text-transition {
   position: fixed;
-
-  left: 0;
-  right: 0;
-
-  bottom:
-    max(
-      28px,
-      env(safe-area-inset-bottom)
-    );
+  inset: 0;
 
   z-index: 1000;
 
   display: flex;
   justify-content: center;
+  align-items: flex-end;
 
-  padding: 0 18px;
+  padding:
+    24px
+    18px
+    max(
+      28px,
+      env(safe-area-inset-bottom)
+    );
+
+  background: rgba(0, 0, 0, 0.58);
 
   opacity: 0;
   visibility: hidden;
@@ -699,17 +700,187 @@ a.project-card:focus-visible .project-card-media img {
   pointer-events: none;
 }
 
+
+/* =========================================================
+   WESTERN BADGE SHELL
+   ========================================================= */
+
 .site-text-transition-inner {
-  width: min(100%, 980px);
+  position: relative;
+
+  width: min(100%, 820px);
+  min-height: 190px;
 
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
+
+  padding: 42px 68px;
 
   text-align: center;
+
+  background: var(--paper);
+
+  clip-path: polygon(
+    19% 0%,
+    81% 0%,
+
+    87% 7%,
+    90% 13%,
+
+    97% 17%,
+    100% 29%,
+
+    96% 40%,
+    96% 60%,
+
+    100% 71%,
+    97% 83%,
+
+    90% 87%,
+    87% 93%,
+
+    81% 100%,
+    19% 100%,
+
+    13% 93%,
+    10% 87%,
+
+    3% 83%,
+    0% 71%,
+
+    4% 60%,
+    4% 40%,
+
+    0% 29%,
+    3% 17%,
+
+    10% 13%,
+    13% 7%
+  );
+
+  filter:
+    drop-shadow(
+      0 14px 28px
+      rgba(0, 0, 0, 0.55)
+    );
 }
 
+
+/* BLACK INNER BADGE */
+
+.site-text-transition-inner::before {
+  content: "";
+
+  position: absolute;
+  inset: 4px;
+
+  z-index: 0;
+
+  background: var(--ink);
+
+  clip-path: polygon(
+    19% 0%,
+    81% 0%,
+
+    87% 7%,
+    90% 13%,
+
+    97% 17%,
+    100% 29%,
+
+    96% 40%,
+    96% 60%,
+
+    100% 71%,
+    97% 83%,
+
+    90% 87%,
+    87% 93%,
+
+    81% 100%,
+    19% 100%,
+
+    13% 93%,
+    10% 87%,
+
+    3% 83%,
+    0% 71%,
+
+    4% 60%,
+    4% 40%,
+
+    0% 29%,
+    3% 17%,
+
+    10% 13%,
+    13% 7%
+  );
+}
+
+
+/* DECORATIVE INNER LINE */
+
+.site-text-transition-inner::after {
+  content: "";
+
+  position: absolute;
+  inset: 14px;
+
+  z-index: 1;
+
+  border: 1px solid rgba(234, 215, 173, 0.78);
+
+  clip-path: polygon(
+    19% 0%,
+    81% 0%,
+
+    87% 7%,
+    90% 13%,
+
+    97% 17%,
+    100% 29%,
+
+    96% 40%,
+    96% 60%,
+
+    100% 71%,
+    97% 83%,
+
+    90% 87%,
+    87% 93%,
+
+    81% 100%,
+    19% 100%,
+
+    13% 93%,
+    10% 87%,
+
+    3% 83%,
+    0% 71%,
+
+    4% 60%,
+    4% 40%,
+
+    0% 29%,
+    3% 17%,
+
+    10% 13%,
+    13% 7%
+  );
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   TRANSITION PHRASE
+   ========================================================= */
+
 .site-transition-line {
+  position: relative;
+  z-index: 2;
+
   max-width: 100%;
 
   color: var(--paper-2);
@@ -721,10 +892,10 @@ a.project-card:focus-visible .project-card-media img {
     Georgia,
     serif;
 
-  font-size: clamp(2.1rem, 7vw, 5.6rem);
+  font-size: clamp(2rem, 6vw, 4.7rem);
   font-weight: 900;
 
-  line-height: 0.86;
+  line-height: 0.88;
 
   letter-spacing: -0.055em;
 
@@ -734,7 +905,7 @@ a.project-card:focus-visible .project-card-media img {
     0 3px 0 rgba(0, 0, 0, 0.85),
     0 8px 22px rgba(0, 0, 0, 0.78);
 
-  transform-origin: center bottom;
+  transform-origin: center center;
 }
 
 
@@ -743,22 +914,22 @@ a.project-card:focus-visible .project-card-media img {
    ========================================================= */
 
 .site-transition-line.is-wide {
-  font-size: clamp(1.75rem, 6vw, 4.8rem);
-  letter-spacing: -0.06em;
+  font-size: clamp(1.65rem, 5vw, 4rem);
+  letter-spacing: -0.055em;
 }
 
 .site-transition-line.is-short {
-  font-size: clamp(3rem, 10vw, 7rem);
+  font-size: clamp(2.8rem, 8vw, 6rem);
 }
 
 .site-transition-line.is-stacked {
-  font-size: clamp(2.2rem, 7.5vw, 5.4rem);
+  font-size: clamp(2rem, 6vw, 4.6rem);
   line-height: 0.82;
 }
 
 
 /* =========================================================
-   ACTIVE TEXT ANIMATION
+   ACTIVE BADGE ANIMATION
    ========================================================= */
 
 .site-text-transition.is-active {
@@ -768,6 +939,20 @@ a.project-card:focus-visible .project-card-media img {
     uncle-mike-transition-shell
     1400ms
     ease-out
+    both;
+}
+
+.site-text-transition.is-active
+.site-text-transition-inner {
+  animation:
+    uncle-mike-transition-badge
+    1400ms
+    cubic-bezier(
+      0.18,
+      0.82,
+      0.2,
+      1
+    )
     both;
 }
 
@@ -787,8 +972,9 @@ a.project-card:focus-visible .project-card-media img {
 
 
 /*
-  The phrase hits quickly, then hangs around
-  long enough to actually read the stupid thing.
+  Fade the whole overlay in,
+  hold it long enough to read,
+  then get out.
 */
 
 @keyframes uncle-mike-transition-shell {
@@ -812,29 +998,73 @@ a.project-card:focus-visible .project-card-media img {
 }
 
 
+/*
+  Badge itself arrives like a title card.
+*/
+
+@keyframes uncle-mike-transition-badge {
+
+  0% {
+    transform:
+      translateY(30px)
+      scale(0.92);
+  }
+
+  18% {
+    transform:
+      translateY(-3px)
+      scale(1.018);
+  }
+
+  28% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  88% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  100% {
+    transform:
+      translateY(5px)
+      scale(0.985);
+  }
+
+}
+
+
+/*
+  Phrase gets a little independent punch
+  inside the badge.
+*/
+
 @keyframes uncle-mike-transition-text {
 
   0% {
     opacity: 0;
 
     transform:
-      translateY(24px)
-      scale(0.9);
+      translateY(12px)
+      scale(0.93);
   }
 
-  8% {
+  9% {
     opacity: 1;
   }
 
-  20% {
+  21% {
     opacity: 1;
 
     transform:
-      translateY(-2px)
-      scale(1.035);
+      translateY(-1px)
+      scale(1.025);
   }
 
-  29% {
+  30% {
     transform:
       translateY(0)
       scale(1);
@@ -852,8 +1082,8 @@ a.project-card:focus-visible .project-card-media img {
     opacity: 0;
 
     transform:
-      translateY(4px)
-      scale(0.98);
+      translateY(2px)
+      scale(0.99);
   }
 
 }
@@ -1036,13 +1266,14 @@ a.project-card:focus-visible .project-card-media img {
   }
 
 
-  /*
-    Keep Uncle Mike's bullshit above
-    Safari's bottom browser controls.
-  */
+  /* ---------------------------------------------------------
+     MOBILE NAVIGATION BADGE
+     --------------------------------------------------------- */
 
   .site-text-transition {
-    bottom:
+    padding:
+      16px
+      10px
       max(
         72px,
         calc(
@@ -1050,25 +1281,33 @@ a.project-card:focus-visible .project-card-media img {
           + 54px
         )
       );
+  }
 
-    padding: 0 12px;
+  .site-text-transition-inner {
+    width: 100%;
+    min-height: 150px;
+
+    padding:
+      34px
+      34px;
   }
 
   .site-transition-line {
-    font-size: clamp(1.85rem, 9vw, 3.8rem);
+    font-size: clamp(1.65rem, 8vw, 3rem);
     line-height: 0.88;
   }
 
   .site-transition-line.is-wide {
-    font-size: clamp(1.45rem, 7vw, 3rem);
+    font-size: clamp(1.25rem, 6.4vw, 2.4rem);
   }
 
   .site-transition-line.is-short {
-    font-size: clamp(2.8rem, 13vw, 5.2rem);
+    font-size: clamp(2.35rem, 11vw, 4.4rem);
   }
 
   .site-transition-line.is-stacked {
-    font-size: clamp(2rem, 9.5vw, 4rem);
+    font-size: clamp(1.65rem, 8vw, 3rem);
+    line-height: 0.82;
   }
 
 
