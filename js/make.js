@@ -1,10 +1,14 @@
-function renderMakePage() {
-  const page =
-    document.getElementById("page-content");
+(() => {
+  const page = document.getElementById("page-content");
 
   if (!page) return;
 
+
   page.innerHTML = `
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
@@ -19,72 +23,158 @@ function renderMakePage() {
 
         <p class="home-hero-copy">
           <strong>
-            Brands. Websites. Graphics. Merch.
+            Brands. Graphics. Websites. Merch.
           </strong>
           <br>
-          If it doesn't exist yet,
-          that's usually the interesting part.
+          If it doesn't exist yet, that's usually
+          the interesting part.
         </p>
 
       </div>
     </section>
 
 
-    <!-- CROOKED GATE -->
+
+    <!-- =====================================================
+         FEATURED WORK
+         ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          Featured Project
+          Featured Work
         </p>
 
         <h2>
-          Crooked Gate Seasonings.
+          Ideas That Became Real Things.
         </h2>
 
-        <a
-          class="project-card"
-          href="./crooked-gate/"
-          aria-label="View the Crooked Gate Seasonings case study"
-        >
 
-          <div class="project-card-body">
-
-            <p class="eyebrow">
-              Brand · Web Design · E-Commerce
-            </p>
-
-            <h3>
-              From Seasonings To A Storefront.
-            </h3>
-
-            <p>
-              Product presentation, brand structure,
-              recipes, responsive web design,
-              cart functionality, shipping logic
-              and Square checkout.
-            </p>
-
-            <span class="project-card-link">
-              View Case Study →
-            </span>
-
-          </div>
-
-        </a>
+        <div class="project-grid">
 
 
-        <div style="margin-top:18px;">
+          <!-- CROOKED GATE -->
 
           <a
-            class="project-card-link"
-            href="https://crookedgate.co"
-            target="_blank"
-            rel="noopener noreferrer"
+            class="project-card"
+            href="./crooked-gate/"
           >
-            View Live Site →
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_6537.jpeg"
+                alt="Crooked Gate Seasonings physical retail display"
+                loading="lazy"
+              >
+
+            </div>
+
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Brand · Web · E-Commerce · Fabrication
+              </p>
+
+              <h3>
+                Crooked Gate Seasonings.
+              </h3>
+
+              <p>
+                Started with seasonings.
+                Ended with a complete brand,
+                storefront, checkout system
+                and physical display.
+              </p>
+
+              <span class="project-card-link">
+                View Case Study →
+              </span>
+
+            </div>
+
           </a>
+
+
+
+          <!-- HAWK RODS -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./hawk_orange.png"
+                alt="Hawk Rods Engines logo"
+                loading="lazy"
+              >
+
+            </div>
+
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Logo · Identity · Automotive
+              </p>
+
+              <h3>
+                Hawk Rods Engines.
+              </h3>
+
+              <p>
+                Classic-engine branding built around
+                the attitude of old speed-shop decals
+                instead of another generic repair-shop logo.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- COOL ARROW -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_5037.jpeg"
+                alt="Cool Arrow Clothing Company logo"
+                loading="lazy"
+              >
+
+            </div>
+
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Identity · Apparel
+              </p>
+
+              <h3>
+                Cool Arrow Clothing Co.
+              </h3>
+
+              <p>
+                A compact Western identity designed
+                to work like a badge, label or mark
+                instead of just a line of text.
+              </p>
+
+            </div>
+
+          </article>
+
 
         </div>
 
@@ -92,7 +182,67 @@ function renderMakePage() {
     </section>
 
 
-    <!-- DESIGN WORK -->
+
+    <!-- =====================================================
+         HAWK PROCESS
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Iteration
+        </p>
+
+        <h2>
+          Don't Stop At The First Good Idea.
+        </h2>
+
+        <p class="home-hero-copy">
+          Hawk Rods went through a pile of directions
+          before the identity started feeling right.
+        </p>
+
+
+        <div
+          class="project-gallery"
+          style="margin-top:32px;"
+        >
+
+          <img
+            src="./3C10AA31-2167-4BF4-89AE-7A69D4ADD559.png"
+            alt="Hawk Rods Engines logo concept exploration"
+            loading="lazy"
+          >
+
+          <img
+            src="./88F80DA4-1B45-4B68-8C45-AE4C3523DC6F.png"
+            alt="Hawk Rods Engines alternate logo concepts"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6433.jpeg"
+            alt="Hawk Rods Engines black and red logo"
+            loading="lazy"
+          >
+
+          <img
+            src="./hawk_orange.png"
+            alt="Hawk Rods Engines orange logo"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         GRAPHIC / MERCH WORK
+         ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
@@ -102,63 +252,43 @@ function renderMakePage() {
         </p>
 
         <h2>
-          Ideas With Somewhere To Go.
+          Say It Louder.
         </h2>
 
-        <div class="project-grid">
+        <p class="home-hero-copy">
+          Shirts, stickers, badges and graphics
+          that probably weren't going to exist
+          unless I made them.
+        </p>
 
+
+        <div
+          class="project-grid"
+          style="margin-top:32px;"
+        >
+
+
+          <!-- HYPERFIXATION -->
 
           <article
             class="project-card project-card-static"
           >
-            <div class="project-card-body">
 
-              <p class="eyebrow">
-                Apparel · Identity
-              </p>
+            <div class="project-card-media">
 
-              <h3>
-                Hard Luck Made Me.
-              </h3>
-
-              <p>
-                A badge that became more than
-                one design.
-              </p>
+              <img
+                src="./20260825_211443_CC274B.jpeg"
+                alt="Hyperfixation is a hell of a drug graphic"
+                loading="lazy"
+              >
 
             </div>
-          </article>
 
 
-          <article
-            class="project-card project-card-static"
-          >
             <div class="project-card-body">
 
               <p class="eyebrow">
-                Apparel · Graphic Design
-              </p>
-
-              <h3>
-                Pattern Recognition.
-              </h3>
-
-              <p>
-                Because apparently noticing everything
-                needed merchandise.
-              </p>
-
-            </div>
-          </article>
-
-
-          <article
-            class="project-card project-card-static"
-          >
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Apparel · Graphic Design
+                Graphic
               </p>
 
               <h3>
@@ -166,77 +296,198 @@ function renderMakePage() {
               </h3>
 
               <p>
-                One idea.
-                Entirely too much commitment.
+                Is a hell of a drug.
               </p>
 
             </div>
+
           </article>
 
+
+
+          <!-- WEAPONIZED AUTISM -->
 
           <article
             class="project-card project-card-static"
           >
+
+            <div class="project-card-media">
+
+              <img
+                src="./798724608_1857385768968858_803891406562748042_n.webp"
+                alt="Weaponized Autism Western badge graphic"
+                loading="lazy"
+              >
+
+            </div>
+
+
             <div class="project-card-body">
 
               <p class="eyebrow">
-                Apparel · Graphic Design
+                Badge · Merch
               </p>
 
               <h3>
-                Prove What?
+                Weaponized Autism.
               </h3>
 
               <p>
-                Some designs are a statement.
-                Some are a response.
+                Subtle was never really the assignment.
               </p>
 
             </div>
+
           </article>
 
+
+
+          <!-- GET AFTER IT -->
 
           <article
             class="project-card project-card-static"
           >
+
+            <div class="project-card-media">
+
+              <img
+                src="./313E6457-7E0A-4140-A83C-07DC035833ED.png"
+                alt="Get After It Western badge graphic"
+                loading="lazy"
+              >
+
+            </div>
+
+
             <div class="project-card-body">
 
               <p class="eyebrow">
-                Apparel · Railroad
+                Badge · Merch
               </p>
 
               <h3>
-                Machinists.
+                Get After It.
               </h3>
 
               <p>
-                Pistol whipping locomotives
-                since somebody had to fix them.
+                No twelve-paragraph motivational speech required.
               </p>
 
             </div>
+
           </article>
 
+
+
+          <!-- UNFORTUNATELY FOR YOU -->
 
           <article
             class="project-card project-card-static"
           >
+
+            <div class="project-card-media">
+
+              <img
+                src="./017A9939-0A81-485B-95D1-A03433A4558B.png"
+                alt="Unfortunately For You skull graphic"
+                loading="lazy"
+              >
+
+            </div>
+
+
             <div class="project-card-body">
 
               <p class="eyebrow">
-                Logo · Automotive
+                Graphic · Merch
               </p>
 
               <h3>
-                Hawk Rods Engines.
+                Unfortunately For You.
               </h3>
 
               <p>
-                Old-school engine shop identity
-                built around a 1970s decal feel.
+                Pattern recognition with consequences.
               </p>
 
             </div>
+
+          </article>
+
+
+
+          <!-- COOL STORY -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_6333.jpeg"
+                alt="Cool Story skull graphic"
+                loading="lazy"
+              >
+
+            </div>
+
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Graphic · Merch
+              </p>
+
+              <h3>
+                Cool Story.
+              </h3>
+
+              <p>
+                Unfortunately, I remember exactly
+                what you said six months ago.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- REPEATER DEFEATER -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./8E682D27-E568-4D6D-AF51-86E817F5C41F.png"
+                alt="The Repeater Defeater railroad graphic"
+                loading="lazy"
+              >
+
+            </div>
+
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Railroad · Graphic
+              </p>
+
+              <h3>
+                The Repeater Defeater.
+              </h3>
+
+              <p>
+                Sometimes the joke gets way too
+                much production value.
+              </p>
+
+            </div>
+
           </article>
 
 
@@ -246,7 +497,114 @@ function renderMakePage() {
     </section>
 
 
-    <!-- PHILOSOPHY -->
+
+    <!-- =====================================================
+         THE RANGE
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          The Range
+        </p>
+
+        <h2>
+          Different Medium. Same Problem.
+        </h2>
+
+
+        <div class="project-detail-grid">
+
+
+          <div class="project-detail-card">
+
+            <p class="eyebrow">
+              Brand
+            </p>
+
+            <h3>
+              Make It Recognizable.
+            </h3>
+
+            <p>
+              Names, logos, visual systems
+              and the thousand little decisions
+              that make something feel like itself.
+            </p>
+
+          </div>
+
+
+
+          <div class="project-detail-card">
+
+            <p class="eyebrow">
+              Graphic
+            </p>
+
+            <h3>
+              Make It Say Something.
+            </h3>
+
+            <p>
+              Apparel, decals, badges and artwork
+              built around an idea worth looking at.
+            </p>
+
+          </div>
+
+
+
+          <div class="project-detail-card">
+
+            <p class="eyebrow">
+              Digital
+            </p>
+
+            <h3>
+              Make It Work.
+            </h3>
+
+            <p>
+              Websites and interfaces that have
+              an actual job beyond sitting there
+              looking expensive.
+            </p>
+
+          </div>
+
+
+
+          <div class="project-detail-card">
+
+            <p class="eyebrow">
+              Physical
+            </p>
+
+            <h3>
+              Make It Real.
+            </h3>
+
+            <p>
+              Sometimes the solution eventually
+              requires a saw, welder or pile of
+              material on the floor.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         PROCESS
+         ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
@@ -259,32 +617,31 @@ function renderMakePage() {
           See It. Make It Real.
         </h2>
 
-        <p class="home-hero-copy">
+        <div class="project-detail-card">
 
-          A lot of this starts the same way:
+          <p>
+            A lot of this starts the same way:
+          </p>
 
-          <br><br>
+          <p>
+            <strong>
+              “I have an idea.”
+            </strong>
+          </p>
 
-          <strong>
-            “I have an idea.”
-          </strong>
+          <p>
+            Cool.
+          </p>
 
-          <br>
+          <p>
+            Now let's figure out what the hell
+            it actually is.
+          </p>
 
-          Cool.
-
-          <br>
-
-          Now let's figure out
-          what the hell it actually is.
-
-        </p>
+        </div>
 
       </div>
     </section>
 
   `;
-}
-
-
-renderMakePage();
+})();
