@@ -94,6 +94,379 @@ function renderSiteHeader() {
 
 
 /* =========================================================
+   SHARED BOTTOM NAVIGATION
+   ========================================================= */
+
+function getBottomNavigation() {
+  const path =
+    window.location.pathname;
+
+  const root =
+    getSiteRoot();
+
+
+  const isMake =
+    path.includes("/make/");
+
+  const isBuild =
+    path.includes("/build/");
+
+  const isFigure =
+    path.includes("/figure-it-out/");
+
+  const isAbout =
+    path.includes("/about/");
+
+
+  const isMakeProject =
+    path.includes("/make/crooked-gate/");
+
+  const isBuildProject =
+    path.includes("/build/ranchero/") ||
+    path.includes("/build/C10/");
+
+
+  const isHome =
+    !isMake &&
+    !isBuild &&
+    !isFigure &&
+    !isAbout;
+
+
+  /*
+   * Home doesn't need a shared return bar.
+   */
+  if (isHome) {
+    return "";
+  }
+
+
+  let parentLink = "";
+
+
+  if (isMakeProject) {
+    parentLink = `
+      <a
+        class="site-bottom-link site-bottom-parent"
+        href="${root}make/"
+      >
+        ← Make
+      </a>
+    `;
+  }
+
+
+  if (isBuildProject) {
+    parentLink = `
+      <a
+        class="site-bottom-link site-bottom-parent"
+        href="${root}build/"
+      >
+        ← Build
+      </a>
+    `;
+  }
+
+
+  const homeLink = `
+    <a
+      class="site-bottom-link"
+      href="${root}"
+    >
+      ← Home
+    </a>
+  `;
+
+
+  const aboutLink =
+    isAbout
+      ? ""
+      : `
+        <a
+          class="site-bottom-link site-bottom-about"
+          href="${root}about/"
+        >
+          About Mike →
+        </a>
+      `;
+
+
+  return `
+    <section class="site-bottom-navigation">
+
+      <div class="wrap">
+
+        <p class="site-bottom-eyebrow">
+          Keep Looking
+        </p>
+
+        <nav
+          class="site-bottom-links"
+          aria-label="Page navigation"
+        >
+
+          ${parentLink}
+
+          ${homeLink}
+
+          ${aboutLink}
+
+        </nav>
+
+      </div>
+
+    </section>
+  `;
+}
+
+
+
+/* =========================================================
+   BOTTOM NAV STYLES
+   ========================================================= */
+
+function injectBottomNavigationStyles() {
+  if (
+    document.getElementById(
+      "site-bottom-navigation-styles"
+    )
+  ) {
+    return;
+  }
+
+
+  const style =
+    document.createElement("style");
+
+
+  style.id =
+    "site-bottom-navigation-styles";
+
+
+  style.textContent = `
+
+    .site-bottom-navigation {
+      padding:
+        clamp(70px, 10vw, 120px)
+        0
+        clamp(70px, 9vw, 105px);
+
+      border-top:
+        1px solid
+        rgba(234, 215, 173, 0.2);
+    }
+
+
+    .site-bottom-eyebrow {
+      margin:
+        0
+        0
+        24px;
+
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.78rem;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        0.18em;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    .site-bottom-links {
+      display:
+        flex;
+
+      flex-wrap:
+        wrap;
+
+      align-items:
+        center;
+
+      gap:
+        16px 34px;
+    }
+
+
+    .site-bottom-link {
+      display:
+        inline-block;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        clamp(
+          0.88rem,
+          2.5vw,
+          1.05rem
+        );
+
+      font-weight:
+        800;
+
+      line-height:
+        1.2;
+
+      letter-spacing:
+        0.11em;
+
+      text-decoration:
+        underline;
+
+      text-decoration-thickness:
+        1px;
+
+      text-underline-offset:
+        5px;
+
+      text-transform:
+        uppercase;
+
+      transition:
+        opacity
+        160ms ease,
+        transform
+        160ms ease;
+    }
+
+
+    .site-bottom-link:hover {
+      opacity:
+        0.72;
+
+      transform:
+        translateY(-1px);
+    }
+
+
+    .site-bottom-parent {
+      margin-right:
+        auto;
+    }
+
+
+    .site-bottom-about {
+      margin-left:
+        auto;
+    }
+
+
+    @media (
+      max-width: 620px
+    ) {
+
+      .site-bottom-links {
+        display:
+          grid;
+
+        grid-template-columns:
+          1fr 1fr;
+
+        gap:
+          24px 20px;
+      }
+
+
+      .site-bottom-parent {
+        grid-column:
+          1 / -1;
+
+        margin-right:
+          0;
+      }
+
+
+      .site-bottom-about {
+        margin-left:
+          0;
+
+        text-align:
+          right;
+      }
+
+    }
+
+  `;
+
+
+  document.head.appendChild(
+    style
+  );
+}
+
+
+
+/* =========================================================
+   REMOVE OLD PAGE-SPECIFIC BACK LINKS
+
+   Crooked Gate and any other older pages may still contain
+   their manually-added "Back to Make" etc. The shared
+   navigation replaces those.
+   ========================================================= */
+
+function removeLegacyBackLinks() {
+  const page =
+    document.getElementById(
+      "page-content"
+    );
+
+  if (!page) return;
+
+
+  const legacyLabels = [
+    "BACK TO MAKE",
+    "BACK TO BUILD",
+    "BACK TO FIGURE IT OUT",
+    "BACK HOME"
+  ];
+
+
+  page
+    .querySelectorAll("a[href]")
+    .forEach(
+      (link) => {
+
+        const label =
+          link.textContent
+            .replace(/[←→]/g, "")
+            .replace(/\s+/g, " ")
+            .trim()
+            .toUpperCase();
+
+
+        if (
+          legacyLabels.includes(
+            label
+          )
+        ) {
+          link.remove();
+        }
+
+      }
+    );
+}
+
+
+
+/* =========================================================
    FOOTER
    ========================================================= */
 
@@ -106,6 +479,9 @@ function renderSiteFooter() {
   const root = getSiteRoot();
 
   footerMount.innerHTML = `
+
+    ${getBottomNavigation()}
+
     <footer class="site-footer">
       <div class="wrap footer-wrap">
 
@@ -755,7 +1131,11 @@ function initScrollReveal() {
 
 renderSiteHeader();
 
+injectBottomNavigationStyles();
+
 renderSiteFooter();
+
+removeLegacyBackLinks();
 
 createSiteTransition();
 
