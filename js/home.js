@@ -36,7 +36,10 @@ function renderHomePage() {
 
         <div class="category-grid">
           ${UNCLE_MIKE_AREAS.map(area => `
-            <a class="category-card" href="${area.path}">
+            <a
+              class="category-card"
+              href="${area.path}"
+            >
 
               <span class="category-number">
                 ${area.number}
@@ -63,14 +66,18 @@ function renderHomePage() {
 
         <div class="project-grid">
           ${UNCLE_MIKE_FEATURED.map(project => `
-            <article class="project-card">
+            <a
+              class="project-card"
+              href="${project.path}"
+              aria-label="View ${project.title}"
+            >
 
               <div class="project-card-media">
-                ${
-                  project.image
-                    ? `<img src="${project.image}" alt="${project.title}">`
-                    : ""
-                }
+                <img
+                  src="${project.image}"
+                  alt="${project.title}"
+                  loading="lazy"
+                >
               </div>
 
               <div class="project-card-body">
@@ -81,7 +88,7 @@ function renderHomePage() {
 
               </div>
 
-            </article>
+            </a>
           `).join("")}
         </div>
 
