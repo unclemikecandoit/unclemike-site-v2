@@ -34,6 +34,33 @@
 
 
     <!-- =====================================================
+         HERO MEDIA
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="project-gallery">
+
+          <img
+            src="./IMG_6742.jpeg"
+            alt="Super Duty in the snow"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6746.jpeg"
+            alt="Working on heavy machinery"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
          THE ACTUAL SKILL
          ===================================================== -->
 
@@ -79,96 +106,174 @@
 
 
     <!-- =====================================================
-         PROCESS
+         SUPER DUTY
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          How I Work
+          Automotive
         </p>
 
         <h2>
-          Look. Question.<br>
-          Test. Know.
+          The Super Duty.
         </h2>
 
-        <div class="project-detail-grid">
+        <div class="project-gallery">
 
-          <article class="project-detail-card">
+          <img
+            src="./IMG_6744.jpeg"
+            alt="Ford Super Duty"
+            loading="lazy"
+          >
 
-            <p class="eyebrow">
-              01 · Look
-            </p>
+          <img
+            src="./IMG_6751.jpeg"
+            alt="Super Duty with hood open"
+            loading="lazy"
+          >
 
-            <h3>
-              What's Actually Happening?
-            </h3>
+          <img
+            src="./IMG_6748.jpeg"
+            alt="Tools laid across the truck engine bay"
+            loading="lazy"
+          >
 
-            <p>
-              Start with what the thing is doing,
-              not what somebody already decided
-              must be wrong with it.
-            </p>
+          <img
+            src="./IMG_6749.jpeg"
+            alt="Learning to wrench"
+            loading="lazy"
+          >
+
+        </div>
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+          <p class="eyebrow">
+            Problem Child
+          </p>
+
+          <h3>
+            Find It Before You Fix It.
+          </h3>
+
+          <p>
+            Electrical diagnosis and repair on my own truck.
+            Follow the system, question the assumption and
+            figure out what is actually wrong before throwing
+            parts at it.
+          </p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         BIG IRON
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Big Iron
+        </p>
+
+        <h2>
+          Bigger Machine.<br>
+          Same Logic.
+        </h2>
+
+        <div class="project-grid">
+
+          <article class="project-card project-card-static">
+
+            <div class="project-card-media">
+              <img
+                src="./IMG_6741.jpeg"
+                alt="Caterpillar generator load testing"
+                loading="lazy"
+              >
+            </div>
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Power Generation
+              </p>
+
+              <h3>
+                Caterpillar Genset.
+              </h3>
+
+              <p>
+                AC power and load testing.
+              </p>
+
+            </div>
 
           </article>
 
 
-          <article class="project-detail-card">
+          <article class="project-card project-card-static">
 
-            <p class="eyebrow">
-              02 · Question
-            </p>
+            <div class="project-card-media">
+              <img
+                src="./IMG_6754.jpeg"
+                alt="EMD locomotive engine"
+                loading="lazy"
+              >
+            </div>
 
-            <h3>
-              What Doesn't Fit?
-            </h3>
+            <div class="project-card-body">
 
-            <p>
-              The weird detail usually matters.
-              Assumptions get expensive when nobody
-              bothers checking them.
-            </p>
+              <p class="eyebrow">
+                Railroad
+              </p>
 
-          </article>
+              <h3>
+                EMD Power.
+              </h3>
 
+              <p>
+                Big machines don't make the logic any different.
+                They just make the parts heavier.
+              </p>
 
-          <article class="project-detail-card">
-
-            <p class="eyebrow">
-              03 · Test
-            </p>
-
-            <h3>
-              Prove It.
-            </h3>
-
-            <p>
-              Follow the system.
-              Isolate variables.
-              Test the theory before turning it
-              into another problem.
-            </p>
+            </div>
 
           </article>
 
 
-          <article class="project-detail-card">
+          <article class="project-card project-card-static">
 
-            <p class="eyebrow">
-              04 · Know
-            </p>
+            <div class="project-card-media">
+              <img
+                src="./IMG_6746.jpeg"
+                alt="Working on heavy industrial machinery"
+                loading="lazy"
+              >
+            </div>
 
-            <h3>
-              Then Fix It.
-            </h3>
+            <div class="project-card-body">
 
-            <p>
-              Once the problem makes sense,
-              the repair usually gets a whole
-              lot less mysterious.
-            </p>
+              <p class="eyebrow">
+                Mechanical
+              </p>
+
+              <h3>
+                Get In There.
+              </h3>
+
+              <p>
+                Look at the system. Find what doesn't belong.
+              </p>
+
+            </div>
 
           </article>
 
@@ -179,41 +284,85 @@
 
 
     <!-- =====================================================
-         REAL PROBLEMS
+         TWO WHEELS
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          In The Wild
+          Two Wheels
         </p>
 
         <h2>
-          Different Machines.<br>
-          Same Brain.
+          Same Brain.<br>
+          Different Machine.
+        </h2>
+
+        <div class="project-gallery">
+
+          <img
+            src="./IMG_6747.jpeg"
+            alt="Yamaha motorcycle"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6752.jpeg"
+            alt="Motorcycles"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6745.jpeg"
+            alt="Learning to work on a motorcycle"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6753.jpeg"
+            alt="Mike in motorcycle gear"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         TEACH THEM YOUNG
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Teach Them Young
+        </p>
+
+        <h2>
+          Show Them<br>
+          How To Figure It Out.
         </h2>
 
         <div class="project-grid">
 
-
           <article class="project-card project-card-static">
 
+            <div class="project-card-media">
+              <img
+                src="./IMG_6749.jpeg"
+                alt="Learning to wrench on the truck"
+                loading="lazy"
+              >
+            </div>
+
             <div class="project-card-body">
-
-              <p class="eyebrow">
-                Automotive
-              </p>
-
               <h3>
-                The Super Duty.
+                Turn The Wrench.
               </h3>
-
-              <p>
-                Electrical diagnosis and repair
-                on my own problem child.
-              </p>
-
             </div>
 
           </article>
@@ -221,21 +370,18 @@
 
           <article class="project-card project-card-static">
 
+            <div class="project-card-media">
+              <img
+                src="./IMG_6745.jpeg"
+                alt="Helping with the motorcycle"
+                loading="lazy"
+              >
+            </div>
+
             <div class="project-card-body">
-
-              <p class="eyebrow">
-                Heavy Equipment
-              </p>
-
               <h3>
-                Caterpillar Genset.
+                Get Your Hands Dirty.
               </h3>
-
-              <p>
-                AC power, load testing and figuring
-                out what the machine is actually telling you.
-              </p>
-
             </div>
 
           </article>
@@ -243,26 +389,21 @@
 
           <article class="project-card project-card-static">
 
+            <div class="project-card-media">
+              <img
+                src="./IMG_6750.jpeg"
+                alt="Matching shoes"
+                loading="lazy"
+              >
+            </div>
+
             <div class="project-card-body">
-
-              <p class="eyebrow">
-                Railroad
-              </p>
-
               <h3>
-                Locomotive Systems.
+                Same Shoes. Same Team.
               </h3>
-
-              <p>
-                Big machines don't make the logic
-                any different. They just make
-                the parts heavier.
-              </p>
-
             </div>
 
           </article>
-
 
         </div>
 
