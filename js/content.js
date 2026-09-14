@@ -5,7 +5,7 @@ const UNCLE_MIKE_AREAS = [
     title: "Make",
     description:
       "Design, merch, logos, branding, artwork and the ideas that start on a screen before becoming something real.",
-    path: "/make/"
+    path: "./make/"
   },
 
   {
@@ -14,7 +14,7 @@ const UNCLE_MIKE_AREAS = [
     title: "Build",
     description:
       "Cars, engines, fabrication, mechanical projects and the stuff that gets solved with tools in your hands.",
-    path: "/build/"
+    path: "./build/"
   },
 
   {
@@ -23,7 +23,7 @@ const UNCLE_MIKE_AREAS = [
     title: "Figure It Out",
     description:
       "Electrical diagnosis, equipment, weird problems, technical work and everything that refuses to fit neatly into one trade.",
-    path: "/figure-it-out/"
+    path: "./figure-it-out/"
   }
 ];
 
@@ -33,23 +33,23 @@ const UNCLE_MIKE_FEATURED = [
     id: "ranchero",
     title: "1965 Ford Ranchero",
     category: "Build",
-    image: "",
-    path: "/projects/ranchero/"
+    image: "./build/ranchero/20260825_110401.jpeg",
+    path: "./build/ranchero/"
   },
 
   {
-    id: "k10",
-    title: "1975 Chevy K10",
+    id: "c10",
+    title: "1972 Chevy C10",
     category: "Build",
-    image: "",
-    path: "/projects/k10/"
+    image: "./build/C10/c10-hero.jpg",
+    path: "./build/C10/"
   },
 
   {
-    id: "hard-luck",
-    title: "Hard Luck Made Me",
+    id: "crooked-gate",
+    title: "Crooked Gate",
     category: "Make",
-    image: "",
-    path: "/designs/hard-luck/"
+    image: "./make/crooked-gate/IMG_6141.jpeg",
+    path: "./make/crooked-gate/"
   }
 ];
