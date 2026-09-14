@@ -4,51 +4,352 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>About | Uncle Mike Can Do It</title>
+  <title>About Mike | Uncle Mike Can Do It</title>
 
   <link rel="stylesheet" href="../css/site.css">
+
+  <style>
+
+    /* =====================================================
+       ABOUT — PROFILE HERO
+       ===================================================== */
+
+    .about-hero {
+      padding: 78px 0 92px;
+    }
+
+    .about-hero-grid {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: clamp(40px, 7vw, 90px);
+      align-items: center;
+    }
+
+    .about-avatar-wrap {
+      position: relative;
+      width: min(100%, 300px);
+      aspect-ratio: 1;
+      margin-inline: auto;
+    }
+
+    .about-avatar-wrap::before {
+      content: "";
+      position: absolute;
+      inset: -9px;
+      border: 1px solid var(--paper);
+      border-radius: 50%;
+      opacity: 0.65;
+    }
+
+    .about-avatar-wrap::after {
+      content: "";
+      position: absolute;
+      inset: -17px;
+      border: 1px solid rgba(234, 215, 173, 0.22);
+      border-radius: 50%;
+    }
+
+    .about-avatar {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid var(--ink);
+    }
+
+    .about-hero h1 {
+      max-width: 800px;
+      margin-bottom: 24px;
+      font-size: clamp(3rem, 8vw, 6.6rem);
+    }
+
+    .about-lead {
+      max-width: 720px;
+      margin: 0;
+
+      color: #d6c49e;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1.05rem, 2vw, 1.35rem);
+      line-height: 1.65;
+    }
+
+
+    /* =====================================================
+       ABOUT — BIO
+       ===================================================== */
+
+    .about-bio-grid {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .about-copy {
+      max-width: 760px;
+    }
+
+    .about-copy p {
+      margin: 0 0 24px;
+
+      color: #d6c49e;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: clamp(1rem, 1.8vw, 1.18rem);
+      line-height: 1.7;
+    }
+
+    .about-copy p:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-copy .about-punch {
+      color: var(--paper-2);
+
+      font-family: Georgia, "Times New Roman", serif;
+      font-size: clamp(1.45rem, 3vw, 2.25rem);
+      font-weight: 700;
+      line-height: 1.25;
+    }
+
+    .about-portrait {
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #11100d;
+    }
+
+    .about-portrait img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+
+    /* =====================================================
+       ABOUT — LIFE / RANGE
+       ===================================================== */
+
+    .about-range {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 38px;
+    }
+
+    .about-range-card {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: #11100d;
+    }
+
+    .about-range-card img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    .about-range-caption {
+      padding: 22px;
+    }
+
+    .about-range-caption h3 {
+      margin-bottom: 8px;
+      font-size: clamp(1.6rem, 4vw, 2.7rem);
+    }
+
+    .about-range-caption p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 700;
+      line-height: 1.5;
+
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+
+    /* =====================================================
+       ABOUT — MENACE
+       ===================================================== */
+
+    .about-menace {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: clamp(32px, 6vw, 80px);
+      align-items: center;
+    }
+
+    .about-menace-image {
+      overflow: hidden;
+      border: 1px solid var(--line);
+    }
+
+    .about-menace-image img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+    }
+
+    .about-menace h2 {
+      margin-bottom: 24px;
+    }
+
+
+    /* =====================================================
+       ABOUT — END
+       ===================================================== */
+
+    .about-end {
+      padding: 110px 0 125px;
+      text-align: center;
+    }
+
+    .about-end h2 {
+      max-width: 900px;
+      margin: 0 auto 26px;
+    }
+
+    .about-end p {
+      max-width: 650px;
+      margin: 0 auto;
+
+      color: #d6c49e;
+
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       MOBILE
+       ===================================================== */
+
+    @media (max-width: 700px) {
+
+      .about-hero {
+        padding: 58px 0 72px;
+      }
+
+      .about-hero-grid,
+      .about-bio-grid,
+      .about-menace {
+        grid-template-columns: 1fr;
+      }
+
+      .about-hero-grid {
+        gap: 44px;
+      }
+
+      .about-avatar-wrap {
+        width: min(72vw, 285px);
+      }
+
+      .about-hero-copy {
+        text-align: left;
+      }
+
+      .about-range {
+        grid-template-columns: 1fr;
+      }
+
+      .about-menace-image {
+        order: 2;
+      }
+
+      .about-menace-copy {
+        order: 1;
+      }
+
+      .about-end {
+        padding: 80px 0 95px;
+      }
+
+    }
+
+  </style>
 </head>
+
 
 <body>
 
   <div id="site-header"></div>
 
+
   <main id="page-content">
 
-    <section class="project-hero">
-      <div class="wrap">
 
-        <p class="eyebrow">
-          About
-        </p>
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
-        <h1>
-          I Build. I Fix.<br>
-          I Design.<br>
-          I Figure Shit Out.
-        </h1>
+    <section class="about-hero">
 
-        <p class="project-hero-copy">
-          Cars. Fabrication. Brands. Merch. Websites.
-          Problems that don't come with instructions.
-        </p>
+      <div class="wrap about-hero-grid">
+
+        <div class="about-avatar-wrap">
+
+          <img
+            class="about-avatar"
+            src="./IMG_6783.jpeg"
+            alt="Uncle Mike"
+          >
+
+        </div>
+
+
+        <div class="about-hero-copy">
+
+          <p class="eyebrow">
+            About Mike
+          </p>
+
+          <h1>
+            I Build.<br>
+            I Fix.<br>
+            I Design.<br>
+            I Figure Shit Out.
+          </h1>
+
+          <p class="about-lead">
+            Cars. Fabrication. Brands. Merch. Websites.
+            Problems that don't come with instructions.
+            People who know they're capable of more but
+            can't figure out what the fuck is keeping
+            them stuck.
+          </p>
+
+        </div>
 
       </div>
+
     </section>
 
 
+
+    <!-- ===================================================
+         HOW MY BRAIN WORKS
+         =================================================== -->
+
     <section class="page-section">
-      <div class="wrap">
 
-        <p class="eyebrow">
-          How My Brain Works
-        </p>
+      <div class="wrap about-bio-grid">
 
-        <h2>
-          I See Patterns.
-        </h2>
+        <div class="about-copy">
 
-        <div class="project-copy">
+          <p class="eyebrow">
+            Pattern Recognition
+          </p>
+
+          <h2>
+            I See Things Differently.
+          </h2>
 
           <p>
             I see patterns other people miss.
@@ -63,36 +364,128 @@
             to figure it out.
           </p>
 
-          <p>
-            Turns out being the autistic guy
-            everybody underestimated has its advantages.
+          <p class="about-punch">
+            Turns out being the autistic guy everybody
+            underestimated has its advantages.
           </p>
 
         </div>
 
+
+        <div class="about-portrait">
+
+          <img
+            src="./IMG_6785.jpeg"
+            alt="Mike"
+            loading="lazy"
+          >
+
+        </div>
+
       </div>
+
     </section>
 
 
+
+    <!-- ===================================================
+         RANGE
+         =================================================== -->
+
     <section class="page-section">
+
       <div class="wrap">
 
         <p class="eyebrow">
-          The Point
+          Different Medium. Same Brain.
         </p>
 
         <h2>
-          I Quit Listening.
+          Whatever's In Front Of Me.
         </h2>
 
-        <div class="project-copy">
+
+        <div class="about-range">
+
+          <div class="about-range-card">
+
+            <img
+              src="./IMG_6787.jpeg"
+              alt="Mike in motorcycle gear"
+              loading="lazy"
+            >
+
+            <div class="about-range-caption">
+
+              <h3>
+                Make A Life.
+              </h3>
+
+              <p>
+                The projects aren't really separate
+                from the rest of it.
+              </p>
+
+            </div>
+
+          </div>
+
+
+          <div class="about-range-card">
+
+            <img
+              src="./IMG_6783.jpeg"
+              alt="Uncle Mike"
+              loading="lazy"
+            >
+
+            <div class="about-range-caption">
+
+              <h3>
+                Dad First.
+              </h3>
+
+              <p>
+                Build things. Teach things.
+                Show them what's possible.
+              </p>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         I QUIT LISTENING
+         =================================================== -->
+
+    <section class="page-section">
+
+      <div class="wrap about-bio-grid">
+
+        <div class="about-copy">
+
+          <p class="eyebrow">
+            The Part That Matters
+          </p>
+
+          <h2>
+            I Quit Listening.
+          </h2>
 
           <p>
             I spent a lot of my life being told,
             directly or otherwise, what I couldn't do.
           </p>
 
-          <p>
+          <p class="about-punch">
             I quit listening.
           </p>
 
@@ -104,11 +497,79 @@
 
         </div>
 
+
+        <div class="about-portrait">
+
+          <img
+            src="./IMG_6785.jpeg"
+            alt="Mike"
+            loading="lazy"
+          >
+
+        </div>
+
       </div>
+
     </section>
 
 
+
+    <!-- ===================================================
+         MENACE
+         =================================================== -->
+
     <section class="page-section">
+
+      <div class="wrap about-menace">
+
+        <div class="about-menace-image">
+
+          <img
+            src="./IMG_6624.jpeg"
+            alt="Mike being Mike"
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div class="about-menace-copy">
+
+          <p class="eyebrow">
+            Also
+          </p>
+
+          <h2>
+            Don't Make It Weird.
+          </h2>
+
+          <div class="about-copy">
+
+            <p>
+              I take the work seriously.
+            </p>
+
+            <p>
+              Myself?
+              Considerably less so.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         END
+         =================================================== -->
+
+    <section class="about-end">
+
       <div class="wrap">
 
         <p class="eyebrow">
@@ -119,21 +580,21 @@
           It's Not Really A Slogan Anymore.
         </h2>
 
-        <div class="project-copy">
-
-          <p>
-            Somewhere along the way, "I can probably
-            figure that out" stopped being something
-            I said and became a pretty accurate
-            description of my life.
-          </p>
-
-        </div>
+        <p>
+          Somewhere along the way,
+          "I can probably figure that out"
+          stopped being something I said
+          and became a pretty accurate
+          description of my life.
+        </p>
 
       </div>
+
     </section>
 
+
   </main>
+
 
   <div id="site-footer"></div>
 
