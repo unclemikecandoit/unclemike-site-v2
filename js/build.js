@@ -8,7 +8,7 @@ function renderBuildPage() {
   page.innerHTML = `
 
     <!-- =====================================================
-         BUILD HERO
+         BUILDS HERO
          ===================================================== -->
 
     <section class="page-section build-hero">
@@ -16,19 +16,20 @@ function renderBuildPage() {
       <div class="wrap">
 
         <p class="eyebrow">
-          Build
+          Builds
         </p>
 
         <h1>
-          Built To Work.
+          Some Shit Needs Saving.
         </h1>
 
         <p class="home-hero-copy">
+          Old cars. Bad decisions. Broken shit.
+          Somebody else's "good enough."
+          <br><br>
           <strong>
-            Cars. Engines. Fabrication.
+            That's usually where I come in.
           </strong>
-          <br>
-          Every project is better with me figuring it out.
         </p>
 
       </div>
@@ -38,26 +39,32 @@ function renderBuildPage() {
 
 
     <!-- =====================================================
-         FEATURED BUILDS
+         BUILD JOURNALS
          ===================================================== -->
 
     <section class="page-section">
 
       <div class="wrap">
 
-        <p class="eyebrow">
-          Build Journals
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          The Ones With Stories.
-        </h2>
+          <p class="eyebrow">
+            Build Journals
+          </p>
+
+          <h2 class="section-title">
+            Pick Your Problem.
+          </h2>
+
+        </div>
 
 
         <div class="project-grid">
 
 
-          <!-- 1965 FORD RANCHERO -->
+          <!-- =================================================
+               1965 FORD RANCHERO
+               ================================================= -->
 
           <a
             class="project-card"
@@ -86,9 +93,8 @@ function renderBuildPage() {
               </h3>
 
               <p>
-                First start, repairs, figuring out sixty years
-                of other people's decisions and putting an old
-                car back together one problem at a time.
+                Sixty years of old-car decisions,
+                one problem at a time.
               </p>
 
               <span class="project-card-link">
@@ -101,7 +107,9 @@ function renderBuildPage() {
 
 
 
-          <!-- 1972 CHEVY C10 -->
+          <!-- =================================================
+               1972 CHEVY C10
+               ================================================= -->
 
           <a
             class="project-card"
@@ -130,10 +138,9 @@ function renderBuildPage() {
               </h3>
 
               <p>
-                Loose suspension hardware, a bad lowering job,
-                custom airbag mounts, mechanical problems,
-                wiring problems and a truck that needed to
-                become considerably less dangerous.
+                Somebody already built it.
+                I had to make it stop trying
+                to kill people.
               </p>
 
               <span class="project-card-link">
@@ -154,115 +161,30 @@ function renderBuildPage() {
 
 
     <!-- =====================================================
-         OTHER BUILDS
+         KEEP GOING
          ===================================================== -->
 
     <section class="page-section">
 
       <div class="wrap">
 
-        <p class="eyebrow">
-          From The Garage
-        </p>
+        <div class="project-detail-card">
 
-        <h2>
-          Built. Fixed. Figured Out.
-        </h2>
+          <p class="eyebrow">
+            More Coming
+          </p>
 
+          <h2>
+            I Don't Really Do Finished.
+          </h2>
 
-        <div class="project-grid">
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                1975 Chevy K10
-              </p>
-
-              <h3>
-                Big Truck. Simple Formula.
-              </h3>
-
-              <p>
-                Small-block Chevy · TH400 · 4.10 gears ·
-                6-inch lift · custom toolbox fitted around
-                the roll bar.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Ford Super Duty
-              </p>
-
-              <h3>
-                My POS Super Duty.
-              </h3>
-
-              <p>
-                Because apparently owning something means
-                eventually having to figure out why the
-                electrical system decided to become a problem.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Heavy Diesel
-              </p>
-
-              <h3>
-                EMD Locomotive Engine.
-              </h3>
-
-              <p>
-                Railroad power on an entirely different scale.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Learning The Trade
-              </p>
-
-              <h3>
-                Teaching My Son To Wrench.
-              </h3>
-
-              <p>
-                The useful kind of education.
-              </p>
-
-            </div>
-
-          </article>
-
+          <p>
+            These are the builds with stories worth
+            following right now.
+            <br><br>
+            There will be more.
+            There is always more.
+          </p>
 
         </div>
 
