@@ -4,51 +4,88 @@ function renderRancheroPage() {
   if (!page) return;
 
   page.innerHTML = `
+
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
+
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          Build · Project
+          1965 Ford Ranchero · Build Journal
         </p>
 
         <h1>
-          1965 Ford Ranchero
+          Bringing<br>
+          It Back.
         </h1>
 
         <p class="home-hero-copy">
-          Bringing it back.
+          Sixty years old.
+          Plenty of other people's decisions.
+          Absolutely not finished.
+          <br><br>
+          <strong>
+            Perfect.
+          </strong>
         </p>
 
       </div>
     </section>
 
 
+
+    <!-- =====================================================
+         THE BEGINNING
+         ===================================================== -->
+
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Where It Started
-        </p>
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Day One
+          </p>
+
+          <h2 class="section-title">
+            This Is Where<br>
+            It Started.
+          </h2>
+
+        </div>
+
 
         <div class="project-gallery">
 
           <figure class="project-card">
 
             <div class="project-card-media">
+
               <img
-                src="./20260825_111600.jpeg"
-                alt="1965 Ford Ranchero"
+                src="./20260825_110401.jpeg"
+                alt="1965 Ford Ranchero when it came home"
+                loading="lazy"
               >
+
             </div>
 
             <figcaption class="project-card-body">
 
+              <p class="eyebrow">
+                The Beginning
+              </p>
+
               <h3>
-                Bringing It Back
+                The Day It Came Home.
               </h3>
 
               <p>
-                1965 Ford Ranchero
+                Before the first start.
+                Before the fixes.
+                Before finding out what sixty years
+                had left for me.
               </p>
 
             </figcaption>
@@ -59,20 +96,32 @@ function renderRancheroPage() {
           <figure class="project-card">
 
             <div class="project-card-media">
+
               <img
-                src="./20260825_110401.jpeg"
-                alt="1965 Ford Ranchero when it came home"
+                src="./20260825_111600.jpeg"
+                alt="1965 Ford Ranchero"
+                loading="lazy"
               >
+
             </div>
 
             <figcaption class="project-card-body">
 
+              <p class="eyebrow">
+                The Assignment
+              </p>
+
               <h3>
-                The Day It Came Home
+                Bring It Back.
               </h3>
 
               <p>
-                Where this one started
+                Not restore it into something
+                too precious to use.
+                <br><br>
+                Make it work.
+                Make it right.
+                Drive the damn thing.
               </p>
 
             </figcaption>
@@ -85,16 +134,26 @@ function renderRancheroPage() {
     </section>
 
 
+
+    <!-- =====================================================
+         FIRST QUESTION
+         ===================================================== -->
+
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Build Journal
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          First Start.
-        </h2>
+          <p class="eyebrow">
+            First Question
+          </p>
+
+          <h2 class="section-title">
+            Will It Fucking Run?
+          </h2>
+
+        </div>
+
 
         <div class="video-card ranchero-video-card">
 
@@ -144,15 +203,16 @@ function renderRancheroPage() {
           <div class="video-card-body">
 
             <p class="eyebrow">
-              Ranchero
+              First Start
             </p>
 
             <h3>
-              It Lives.
+              It Fucking Lives.
             </h3>
 
             <p>
-              The moment the Ranchero came back to life.
+              That's a pretty good answer
+              to the first question.
             </p>
 
           </div>
@@ -163,16 +223,62 @@ function renderRancheroPage() {
     </section>
 
 
+
+    <!-- =====================================================
+         AND THEN...
+         ===================================================== -->
+
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Build Journal
-        </p>
+        <div class="project-detail-card">
 
-        <h2>
-          Fix The Door.
-        </h2>
+          <p class="eyebrow">
+            Naturally
+          </p>
+
+          <h2>
+            Cool.<br>
+            What's Broken Next?
+          </h2>
+
+          <p>
+            Getting an old car running doesn't
+            magically make the rest of it right.
+          </p>
+
+          <p>
+            It just means you get to move on
+            to the next problem.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         DOOR
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Next Problem
+          </p>
+
+          <h2 class="section-title">
+            That Door<br>
+            Ain't Right.
+          </h2>
+
+        </div>
+
 
         <div class="video-card ranchero-video-card">
 
@@ -222,16 +328,17 @@ function renderRancheroPage() {
           <div class="video-card-body">
 
             <p class="eyebrow">
-              Fix It
+              Door Alignment
             </p>
 
             <h3>
-              Door Alignment.
+              See It. Understand It. Fix It.
             </h3>
 
             <p>
-              See something wrong. Figure out why. Make it work
-              the way it should.
+              Something doesn't sit right.
+              Figure out why.
+              Make it work the way it should.
             </p>
 
           </div>
@@ -241,54 +348,113 @@ function renderRancheroPage() {
       </div>
     </section>
 
+
+
+    <!-- =====================================================
+         THE ACTUAL PROJECT
+         ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="project-detail-grid">
+        <div class="section-heading">
 
-          <div class="project-detail-card">
+          <p class="eyebrow">
+            The Actual Project
+          </p>
 
-            <p class="eyebrow">
-              The Project
-            </p>
+          <h2 class="section-title">
+            One Problem<br>
+            At A Time.
+          </h2>
 
-            <h2>
-              Not Finished.
-            </h2>
-
-            <p>
-              This is the permanent home for the Ranchero.
-              Every repair, first, failure, improvement and
-              questionable decision gets added as the project moves forward.
-            </p>
-
-          </div>
+        </div>
 
 
-          <div class="project-detail-card">
+        <div class="project-detail-card">
 
-            <p class="eyebrow">
-              Status
-            </p>
+          <p>
+            That's what this build is.
+          </p>
 
-            <h2>
-              Bringing It Back.
-            </h2>
+          <p>
+            Not a dramatic before-and-after reveal
+            where sixty years disappear between two photos.
+          </p>
 
-            <p>
-              It doesn't have to be finished to be worth showing.
-              The process is the project.
-            </p>
+          <p>
+            Every first start.
+            Every repair.
+            Every failure.
+            Every improvement.
+            Every questionable decision.
+          </p>
 
-          </div>
+          <h3
+            style="
+              margin-top:28px;
+              margin-bottom:0;
+            "
+          >
+            The process is the project.
+          </h3>
 
         </div>
 
       </div>
     </section>
+
+
+
+    <!-- =====================================================
+         TO BE CONTINUED
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div
+          style="
+            max-width:900px;
+            margin:auto;
+            text-align:center;
+            padding:clamp(40px, 8vw, 90px) 0;
+          "
+        >
+
+          <p class="eyebrow">
+            Current Status
+          </p>
+
+          <h2 class="section-title">
+            Not Finished.
+          </h2>
+
+          <p
+            style="
+              max-width:680px;
+              margin:28px auto 0;
+              color:#d6c49e;
+              font-size:clamp(1.1rem, 3vw, 1.45rem);
+              line-height:1.65;
+            "
+          >
+            Good.
+            <br><br>
+            This page grows when the Ranchero does.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
   `;
 
+
+  /* =====================================================
+     VIDEO COVER SYSTEM
+     ===================================================== */
 
   document.querySelectorAll(".video-frame").forEach((frame) => {
     const video = frame.querySelector("video");
