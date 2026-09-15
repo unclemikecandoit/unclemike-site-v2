@@ -22,42 +22,17 @@
         </h1>
 
         <p class="home-hero-copy">
+          Diagnosis. Systems. Pattern recognition.
+          <br><br>
           <strong>
-            Diagnosis. Systems. Pattern Recognition.
+            I don't need to know the answer yet.
+            I need to know how to find it.
           </strong>
-          <br>
-          Problems that don't come with instructions.
         </p>
 
       </div>
     </section>
 
-
-    <!-- =====================================================
-         HERO MEDIA
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="project-gallery">
-
-          <img
-            src="./IMG_6742.jpeg"
-            alt="Super Duty in the snow"
-            loading="lazy"
-          >
-
-          <img
-            src="./IMG_6746.jpeg"
-            alt="Working on heavy machinery"
-            loading="lazy"
-          >
-
-        </div>
-
-      </div>
-    </section>
 
 
     <!-- =====================================================
@@ -67,19 +42,21 @@
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          The Actual Skill
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Find The Thing<br>
-          That's Actually Wrong.
-        </h2>
+          <p class="eyebrow">
+            The Actual Skill
+          </p>
 
-        <div
-          class="project-detail-card"
-          style="margin-top:42px;"
-        >
+          <h2 class="section-title">
+            Find The Thing<br>
+            That's Actually Wrong.
+          </h2>
+
+        </div>
+
+
+        <div class="project-detail-card">
 
           <p>
             Replacing parts is easy.
@@ -91,18 +68,22 @@
 
           <p>
             Electrical. Mechanical. Fabrication.
-            Machines. Cars. Systems I've never seen before.
-            The medium changes.
+            Cars. Motorcycles. Industrial equipment.
+            Machines I've never seen before.
           </p>
 
           <p>
-            The process doesn't.
+            <strong>
+              The machine changes.
+              The process doesn't.
+            </strong>
           </p>
 
         </div>
 
       </div>
     </section>
+
 
 
     <!-- =====================================================
@@ -112,15 +93,27 @@
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Automotive
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          The Super Duty.
-        </h2>
+          <p class="eyebrow">
+            Exhibit A
+          </p>
+
+          <h2 class="section-title">
+            My POS<br>
+            Super Duty.
+          </h2>
+
+        </div>
+
 
         <div class="project-gallery">
+
+          <img
+            src="./IMG_6742.jpeg"
+            alt="Super Duty in the snow"
+            loading="lazy"
+          >
 
           <img
             src="./IMG_6744.jpeg"
@@ -140,64 +133,75 @@
             loading="lazy"
           >
 
-          <img
-            src="./IMG_6749.jpeg"
-            alt="Learning to wrench"
-            loading="lazy"
-          >
-
         </div>
+
 
         <div
           class="project-detail-card"
           style="margin-top:14px;"
         >
+
           <p class="eyebrow">
             Problem Child
           </p>
 
           <h3>
-            Find It Before You Fix It.
+            Diagnose First.<br>
+            Throw Parts Later.
           </h3>
 
           <p>
-            Electrical diagnosis and repair on my own truck.
-            Follow the system, question the assumption and
-            figure out what is actually wrong before throwing
-            parts at it.
+            Electrical problems reward bad assumptions.
+            So follow the system, test what you think
+            you know and find what's actually wrong
+            before buying the answer you hoped for.
           </p>
+
         </div>
 
       </div>
     </section>
 
 
+
     <!-- =====================================================
-         BIG IRON
+         SCALE IT UP
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Big Iron
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Bigger Machine.<br>
-          Same Logic.
-        </h2>
+          <p class="eyebrow">
+            Scale It Up
+          </p>
+
+          <h2 class="section-title">
+            Bigger Machine.<br>
+            Same Brain.
+          </h2>
+
+        </div>
+
 
         <div class="project-grid">
 
-          <article class="project-card project-card-static">
+
+          <!-- CATERPILLAR -->
+
+          <article
+            class="project-card project-card-static"
+          >
 
             <div class="project-card-media">
+
               <img
                 src="./IMG_6741.jpeg"
                 alt="Caterpillar generator load testing"
                 loading="lazy"
               >
+
             </div>
 
             <div class="project-card-body">
@@ -211,7 +215,10 @@
               </h3>
 
               <p>
-                AC power and load testing.
+                AC power. Load testing.
+                Different system, same requirement:
+                understand what it's supposed to do
+                before deciding what's wrong.
               </p>
 
             </div>
@@ -219,14 +226,21 @@
           </article>
 
 
-          <article class="project-card project-card-static">
+
+          <!-- EMD -->
+
+          <article
+            class="project-card project-card-static"
+          >
 
             <div class="project-card-media">
+
               <img
                 src="./IMG_6754.jpeg"
                 alt="EMD locomotive engine"
                 loading="lazy"
               >
+
             </div>
 
             <div class="project-card-body">
@@ -240,8 +254,8 @@
               </h3>
 
               <p>
-                Big machines don't make the logic any different.
-                They just make the parts heavier.
+                The parts get considerably heavier.
+                The logic doesn't.
               </p>
 
             </div>
@@ -249,14 +263,21 @@
           </article>
 
 
-          <article class="project-card project-card-static">
+
+          <!-- INDUSTRIAL -->
+
+          <article
+            class="project-card project-card-static"
+          >
 
             <div class="project-card-media">
+
               <img
                 src="./IMG_6746.jpeg"
                 alt="Working on heavy industrial machinery"
                 loading="lazy"
               >
+
             </div>
 
             <div class="project-card-body">
@@ -270,17 +291,21 @@
               </h3>
 
               <p>
-                Look at the system. Find what doesn't belong.
+                Look at the system.
+                Understand what belongs.
+                Find what doesn't.
               </p>
 
             </div>
 
           </article>
 
+
         </div>
 
       </div>
     </section>
+
 
 
     <!-- =====================================================
@@ -290,14 +315,18 @@
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Two Wheels
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Same Brain.<br>
-          Different Machine.
-        </h2>
+          <p class="eyebrow">
+            Change The Machine
+          </p>
+
+          <h2 class="section-title">
+            Still Works.
+          </h2>
+
+        </div>
+
 
         <div class="project-gallery">
 
@@ -309,13 +338,7 @@
 
           <img
             src="./IMG_6752.jpeg"
-            alt="Motorcycles"
-            loading="lazy"
-          >
-
-          <img
-            src="./IMG_6745.jpeg"
-            alt="Learning to work on a motorcycle"
+            alt="Yamaha and KTM motorcycles"
             loading="lazy"
           >
 
@@ -327,88 +350,164 @@
 
         </div>
 
-      </div>
-    </section>
 
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
 
-    <!-- =====================================================
-         TEACH THEM YOUNG
-         ===================================================== -->
+          <p class="eyebrow">
+            Two Wheels
+          </p>
 
-    <section class="page-section">
-      <div class="wrap">
+          <h3>
+            Different Machine.<br>
+            Same Questions.
+          </h3>
 
-        <p class="eyebrow">
-          Teach Them Young
-        </p>
+          <p>
+            What is it doing?
+            What should it be doing?
+            What changed?
+            What doesn't make sense?
+          </p>
 
-        <h2>
-          Show Them<br>
-          How To Figure It Out.
-        </h2>
-
-        <div class="project-grid">
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-              <img
-                src="./IMG_6749.jpeg"
-                alt="Learning to wrench on the truck"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="project-card-body">
-              <h3>
-                Turn The Wrench.
-              </h3>
-            </div>
-
-          </article>
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-              <img
-                src="./IMG_6745.jpeg"
-                alt="Helping with the motorcycle"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="project-card-body">
-              <h3>
-                Get Your Hands Dirty.
-              </h3>
-            </div>
-
-          </article>
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-              <img
-                src="./IMG_6750.jpeg"
-                alt="Matching shoes"
-                loading="lazy"
-              >
-            </div>
-
-            <div class="project-card-body">
-              <h3>
-                Same Shoes. Same Team.
-              </h3>
-            </div>
-
-          </article>
+          <p>
+            Start there.
+          </p>
 
         </div>
 
       </div>
     </section>
+
+
+
+    <!-- =====================================================
+         PASS IT DOWN
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            The Part That Matters
+          </p>
+
+          <h2 class="section-title">
+            Teach Them<br>
+            How To Think.
+          </h2>
+
+        </div>
+
+
+        <div class="project-grid">
+
+
+          <!-- TRUCK -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_6749.jpeg"
+                alt="Learning to wrench on the truck"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="project-card-body">
+
+              <h3>
+                Turn The Wrench.
+              </h3>
+
+              <p>
+                Let them see how things work.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- MOTORCYCLE -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_6745.jpeg"
+                alt="Helping work on a motorcycle"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="project-card-body">
+
+              <h3>
+                Ask Why.
+              </h3>
+
+              <p>
+                The answer matters.
+                Knowing how to find it matters more.
+              </p>
+
+            </div>
+
+          </article>
+
+
+
+          <!-- SAME TEAM -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_6750.jpeg"
+                alt="Matching shoes"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="project-card-body">
+
+              <h3>
+                Same Team.
+              </h3>
+
+              <p>
+                Curiosity is worth passing down.
+              </p>
+
+            </div>
+
+          </article>
+
+
+        </div>
+
+      </div>
+    </section>
+
 
 
     <!-- =====================================================
@@ -422,23 +521,25 @@
           The Point
         </p>
 
-        <h2>
-          I Don't Need To<br>
-          Know The Answer.
+        <h2 class="section-title">
+          Knowing Everything<br>
+          Isn't The Skill.
         </h2>
 
         <p
           style="
             max-width:760px;
-            margin:0;
+            margin:24px 0 0;
             color:#d6c49e;
             font-size:clamp(1.15rem, 3vw, 1.6rem);
             line-height:1.55;
           "
         >
-          I need enough information to
+          Give me enough information
+          and enough time to understand the system.
+          <br><br>
           <strong style="color:var(--paper-2);">
-            figure it out.
+            I'll figure out the rest.
           </strong>
         </p>
 
