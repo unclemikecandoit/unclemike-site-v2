@@ -3,6 +3,18 @@ function renderHomePage() {
 
   if (!page) return;
 
+  const directionLabels = {
+    make: "Let's Make It",
+    build: "Builds",
+    "figure-it-out": "Figure It Out"
+  };
+
+  const directionDescriptions = {
+    make: "Design · Merch · Brands",
+    build: "Cars · Engines · Fabrication",
+    "figure-it-out": "Diagnosis · Problems · Weird Shit"
+  };
+
   page.innerHTML = `
     <section class="home-hero">
       <div class="wrap home-hero-inner">
@@ -27,31 +39,56 @@ function renderHomePage() {
     </section>
 
 
-    <section class="page-section">
+    <section class="page-section home-directions">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Pick A Direction
-        </p>
+        <div class="section-heading">
+          <p class="eyebrow">
+            Where To?
+          </p>
 
-        <div class="category-grid">
+          <h2 class="section-title">
+            Pick A Direction.
+          </h2>
+        </div>
+
+        <nav
+          class="direction-grid"
+          aria-label="Explore Uncle Mike"
+        >
           ${UNCLE_MIKE_AREAS.map(area => `
             <a
-              class="category-card"
+              class="direction-button"
               href="${area.path}"
+              aria-label="${directionLabels[area.id] || area.title}"
             >
 
-              <span class="category-number">
+              <span class="direction-number">
                 ${area.number}
               </span>
 
-              <h3>${area.title}</h3>
+              <span class="direction-content">
 
-              <p>${area.description}</p>
+                <strong class="direction-title">
+                  ${directionLabels[area.id] || area.title}
+                </strong>
+
+                <span class="direction-description">
+                  ${directionDescriptions[area.id] || area.description}
+                </span>
+
+              </span>
+
+              <span
+                class="direction-arrow"
+                aria-hidden="true"
+              >
+                →
+              </span>
 
             </a>
           `).join("")}
-        </div>
+        </nav>
 
       </div>
     </section>
@@ -60,9 +97,15 @@ function renderHomePage() {
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Selected Work
-        </p>
+        <div class="section-heading">
+          <p class="eyebrow">
+            A Few Things I've Done
+          </p>
+
+          <h2 class="section-title">
+            Selected Work.
+          </h2>
+        </div>
 
         <div class="project-grid">
           ${UNCLE_MIKE_FEATURED.map(project => `
@@ -85,6 +128,10 @@ function renderHomePage() {
                 <h3>${project.title}</h3>
 
                 <p>${project.category}</p>
+
+                <span class="project-card-link">
+                  View Project →
+                </span>
 
               </div>
 
