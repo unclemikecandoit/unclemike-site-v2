@@ -58,14 +58,17 @@ function renderSiteHeader() {
             class="nav-button"
             href="${root}make/"
           >
-            <span>Make</span>
+            <span>
+              Let's Make<br>
+              It
+            </span>
           </a>
 
           <a
             class="nav-button"
             href="${root}build/"
           >
-            <span>Build</span>
+            <span>Builds</span>
           </a>
 
           <a
@@ -82,7 +85,10 @@ function renderSiteHeader() {
             class="nav-button"
             href="${root}about/"
           >
-            <span>About</span>
+            <span>
+              About<br>
+              Me
+            </span>
           </a>
         </nav>
 
@@ -150,7 +156,7 @@ function getBottomNavigation() {
         class="site-bottom-link site-bottom-parent"
         href="${root}make/"
       >
-        ← Make
+        ← Let's Make It
       </a>
     `;
   }
@@ -162,7 +168,7 @@ function getBottomNavigation() {
         class="site-bottom-link site-bottom-parent"
         href="${root}build/"
       >
-        ← Build
+        ← Builds
       </a>
     `;
   }
@@ -186,7 +192,7 @@ function getBottomNavigation() {
           class="site-bottom-link site-bottom-about"
           href="${root}about/"
         >
-          About Mike →
+          About Me →
         </a>
       `;
 
@@ -416,10 +422,6 @@ function injectBottomNavigationStyles() {
 
 /* =========================================================
    REMOVE OLD PAGE-SPECIFIC BACK LINKS
-
-   Crooked Gate and any other older pages may still contain
-   their manually-added "Back to Make" etc. The shared
-   navigation replaces those.
    ========================================================= */
 
 function removeLegacyBackLinks() {
@@ -640,10 +642,6 @@ const UNCLE_MIKE_TRANSITION_LINES = [
 
 /* =========================================================
    SHUFFLED DECK
-
-   Every phrase is shown once before anything repeats.
-   The remaining deck survives page navigation for the
-   duration of the browser session.
    ========================================================= */
 
 const UNCLE_MIKE_DECK_KEY =
