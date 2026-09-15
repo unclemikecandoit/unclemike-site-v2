@@ -13,20 +13,21 @@
       <div class="wrap">
 
         <p class="eyebrow">
-          Make
+          Let's Make It
         </p>
 
         <h1>
-          Make Something.
+          Make The Thing<br>
+          That Doesn't Exist.
         </h1>
 
         <p class="home-hero-copy">
+          Brands. Graphics. Websites. Merch.
+          Sometimes all of it at once.
+          <br><br>
           <strong>
-            Brands. Graphics. Websites. Merch.
+            “I have an idea” is usually enough to get started.
           </strong>
-          <br>
-          If it doesn't exist yet, that's usually
-          the interesting part.
         </p>
 
       </div>
@@ -35,168 +36,112 @@
 
 
     <!-- =====================================================
-         FEATURED WORK
+         CROOKED GATE
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Featured Work
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Ideas That Became Real Things.
-        </h2>
+          <p class="eyebrow">
+            Start With An Idea
+          </p>
 
-        <div class="project-grid">
-
-
-          <!-- CROOKED GATE -->
-
-          <a
-            class="project-card"
-            href="./crooked-gate/"
-          >
-
-            <div class="project-card-media">
-
-              <img
-                src="./IMG_6537.jpeg"
-                alt="Crooked Gate Seasonings physical retail display"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Brand · Web · E-Commerce · Fabrication
-              </p>
-
-              <h3>
-                Crooked Gate Seasonings.
-              </h3>
-
-              <p>
-                Started with seasonings.
-                Ended with a complete brand,
-                storefront, checkout system
-                and physical display.
-              </p>
-
-              <span class="project-card-link">
-                View Case Study →
-              </span>
-
-            </div>
-
-          </a>
-
-
-
-          <!-- HAWK RODS -->
-
-          <article
-            class="project-card project-card-static"
-          >
-
-            <div class="project-card-media">
-
-              <img
-                src="./hawk_orange.png"
-                alt="Hawk Rods Engines logo"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Logo · Identity · Automotive
-              </p>
-
-              <h3>
-                Hawk Rods Engines.
-              </h3>
-
-              <p>
-                Classic-engine branding built around
-                the attitude of old speed-shop decals
-                instead of another generic repair-shop logo.
-              </p>
-
-            </div>
-
-          </article>
-
-
-
-          <!-- COOL ARROW -->
-
-          <article
-            class="project-card project-card-static"
-          >
-
-            <div class="project-card-media">
-
-              <img
-                src="./IMG_5037.jpeg"
-                alt="Cool Arrow Clothing Company logo"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Identity · Apparel
-              </p>
-
-              <h3>
-                Cool Arrow Clothing Co.
-              </h3>
-
-              <p>
-                A compact Western identity designed
-                to work like a badge, label or mark
-                instead of just a line of text.
-              </p>
-
-            </div>
-
-          </article>
-
+          <h2 class="section-title">
+            Then Keep Going.
+          </h2>
 
         </div>
 
+
+        <a
+          class="project-card"
+          href="./crooked-gate/"
+          aria-label="View the Crooked Gate Seasonings case study"
+        >
+
+          <div class="project-card-media">
+
+            <img
+              src="./IMG_6537.jpeg"
+              alt="Crooked Gate Seasonings physical retail display"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-card-body">
+
+            <p class="eyebrow">
+              Brand · Web · E-Commerce · Fabrication
+            </p>
+
+            <h3>
+              Crooked Gate Seasonings.
+            </h3>
+
+            <p>
+              What started with seasonings became
+              a complete identity, label system,
+              website, checkout experience and
+              physical retail display.
+            </p>
+
+            <span class="project-card-link">
+              See How It Became Real →
+            </span>
+
+          </div>
+
+        </a>
+
       </div>
     </section>
 
 
 
     <!-- =====================================================
-         HAWK PROCESS
+         HAWK RODS
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Iteration
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Don't Stop At The First Good Idea.
-        </h2>
+          <p class="eyebrow">
+            Iteration
+          </p>
 
-        <p class="home-hero-copy">
-          Hawk Rods went through a pile of directions
-          before the identity started feeling right.
-        </p>
+          <h2 class="section-title">
+            The First Good Idea<br>
+            Isn't Always The One.
+          </h2>
+
+        </div>
+
+
+        <div class="project-detail-card">
+
+          <p class="eyebrow">
+            Hawk Rods Engines
+          </p>
+
+          <h3>
+            Find The Character.
+          </h3>
+
+          <p>
+            The goal wasn't another generic repair-shop logo.
+            It needed to feel like something you would've
+            found on a toolbox, race car or speed-shop window
+            fifty years ago.
+          </p>
+
+        </div>
+
 
         <div
           class="project-gallery"
@@ -235,30 +180,73 @@
 
 
     <!-- =====================================================
-         GRAPHIC / MERCH WORK
+         DESIGN / MERCH
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          Design Work
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Say It Louder.
-        </h2>
+          <p class="eyebrow">
+            Design Work
+          </p>
+
+          <h2 class="section-title">
+            Say It Louder.
+          </h2>
+
+        </div>
 
         <p class="home-hero-copy">
-          Shirts, stickers, badges and graphics
-          that probably weren't going to exist
-          unless I made them.
+          Shirts. Stickers. Badges. Graphics.
+          <br>
+          Sometimes the idea deserves way more
+          production value than anybody asked for.
         </p>
+
 
         <div
           class="project-grid"
           style="margin-top:32px;"
         >
+
+
+          <!-- COOL ARROW -->
+
+          <article
+            class="project-card project-card-static"
+          >
+
+            <div class="project-card-media">
+
+              <img
+                src="./IMG_5037.jpeg"
+                alt="Cool Arrow Clothing Company logo"
+                loading="lazy"
+              >
+
+            </div>
+
+            <div class="project-card-body">
+
+              <p class="eyebrow">
+                Identity · Apparel
+              </p>
+
+              <h3>
+                Cool Arrow Clothing Co.
+              </h3>
+
+              <p>
+                A Western identity built to work
+                as a badge, label or mark.
+              </p>
+
+            </div>
+
+          </article>
+
 
 
           <!-- HYPERFIXATION -->
@@ -360,7 +348,8 @@
               </h3>
 
               <p>
-                No twelve-paragraph motivational speech required.
+                No twelve-paragraph motivational
+                speech required.
               </p>
 
             </div>
@@ -486,20 +475,25 @@
 
 
     <!-- =====================================================
-         THE RANGE
+         RANGE
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <p class="eyebrow">
-          The Range
-        </p>
+        <div class="section-heading">
 
-        <h2>
-          Different Medium.<br>
-          Same Problem.
-        </h2>
+          <p class="eyebrow">
+            The Range
+          </p>
+
+          <h2 class="section-title">
+            Different Medium.<br>
+            Same Brain.
+          </h2>
+
+        </div>
+
 
         <div
           class="project-detail-card"
@@ -516,7 +510,8 @@
             "
           >
             Brand. Graphics. Websites. Fabrication.
-            Different tools, same process:
+            The tools change.
+            The process doesn't:
             see what it could be, figure out what it takes,
             and make the damn thing real.
           </p>
@@ -529,7 +524,7 @@
 
 
     <!-- =====================================================
-         PROCESS / CLOSE
+         CLOSE
          ===================================================== -->
 
     <section
@@ -542,7 +537,7 @@
           The Process
         </p>
 
-        <h2 style="margin-bottom:24px;">
+        <h2 class="section-title">
           See It.<br>
           Make It Real.
         </h2>
@@ -550,16 +545,19 @@
         <p
           style="
             max-width:720px;
-            margin:0;
+            margin:24px 0 0;
             color:#d6c49e;
             font-size:clamp(1.15rem, 3vw, 1.6rem);
             line-height:1.55;
           "
         >
-          Most of it starts with the same sentence:
+          A lot of this starts with:
           <strong style="color:var(--paper-2);">
             “I have an idea.”
           </strong>
+          <br><br>
+          Cool.
+          Now let's figure out what the hell it actually is.
         </p>
 
       </div>
