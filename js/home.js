@@ -38,6 +38,11 @@ function renderHomePage() {
     }
   ];
 
+  const featuredWork =
+    UNCLE_MIKE_FEATURED.filter(
+      project => project.id !== "systems"
+    );
+
   page.innerHTML = `
 
     <!-- =====================================================
@@ -155,7 +160,7 @@ function renderHomePage() {
 
         <div class="project-grid">
 
-          ${UNCLE_MIKE_FEATURED.map(project => `
+          ${featuredWork.map(project => `
             <a
               class="project-card"
               href="${project.path}"
@@ -224,31 +229,9 @@ function renderHomePage() {
 
           <p>
             Complicated systems hide their own problems.
-            Bottlenecks become normal. Waste becomes procedure.
-            Workarounds become “the way we've always done it.”
-          </p>
-
-          <p>
-            That's where I come in.
-          </p>
-
-          <p>
-            I work boots-on-the-ground, from the beginning
-            of a process to the end, documenting what actually
-            happens instead of what the process says is
-            supposed to happen.
-          </p>
-
-          <p>
-            I find the obstacles, redundancies, wasted motion
-            and unnecessary complexity that become invisible
-            to the people living inside the system every day.
-          </p>
-
-          <p>
-            I've built automated systems that remain in use
-            years later. I've written processes that reduced
-            waste and increased productivity.
+            I work from the beginning of a process to the end,
+            find the bottlenecks, waste and unnecessary complexity,
+            then make the system easier to operate.
           </p>
 
           <p class="home-consulting-punch">
@@ -256,11 +239,6 @@ function renderHomePage() {
               I take complicated problems and provide
               simple solutions.
             </strong>
-          </p>
-
-          <p>
-            When your organization can't see its own
-            bottlenecks, that's what you pay <strong>ME</strong> for.
           </p>
 
           <a
