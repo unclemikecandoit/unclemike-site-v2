@@ -53,7 +53,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <input
             type="hidden"
             name="access_key"
-            value="YOUR_WEB3FORMS_ACCESS_KEY"
+            value="53d7b1c4-0561-43df-a480-fbcb0aa61010"
           >
 
           <input
@@ -324,24 +324,6 @@ document.addEventListener("DOMContentLoaded", () => {
   form.addEventListener("submit", async (event) => {
 
     event.preventDefault();
-
-    const accessKey = form.querySelector(
-      'input[name="access_key"]'
-    ).value;
-
-    if (
-      !accessKey ||
-      accessKey === "YOUR_WEB3FORMS_ACCESS_KEY"
-    ) {
-
-      status.innerHTML = `
-        <strong>Contact form isn't connected yet.</strong><br>
-        Add the Web3Forms access key and we're live.
-      `;
-
-      return;
-
-    }
 
     const originalButtonText = button.textContent;
 
