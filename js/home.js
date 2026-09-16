@@ -10,10 +10,33 @@ function renderHomePage() {
   };
 
   const directionDescriptions = {
-    make: "Design · Merch · Brands",
+    make: "Design · Web · Brands · Merch",
     build: "Cars · Engines · Fabrication",
-    "figure-it-out": "Diagnosis · Problems · Weird Shit"
+    "figure-it-out": "Consulting · Systems · Problems"
   };
+
+  const capabilityCards = [
+    {
+      number: "01",
+      title: "Make It.",
+      copy:
+        "Brand identity, graphic design, websites, merch and products. If the thing doesn't exist yet, that's not much of an obstacle."
+    },
+
+    {
+      number: "02",
+      title: "Build It.",
+      copy:
+        "Cars, engines, fabrication and mechanical work. Sometimes the solution lives on a screen. Sometimes it needs a welder."
+    },
+
+    {
+      number: "03",
+      title: "Figure It Out.",
+      copy:
+        "Consulting, systems analysis, process improvement, automation and diagnosis. Complicated problems don't need complicated solutions."
+    }
+  ];
 
   page.innerHTML = `
 
@@ -35,14 +58,68 @@ function renderHomePage() {
         </h1>
 
         <p class="home-hero-copy">
-          Cars, brands, websites, merch, and weird problems
-          that don't come with instructions.
+          Cars, brands, websites, systems, products and weird
+          problems that don't come with instructions.
         </p>
 
         <p class="home-hero-punch">
-          If it needs to be designed, fixed or figured out,
+          If it needs to be designed, built, fixed or figured out,
           that's what you pay <strong>ME</strong> for.
         </p>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         WHAT I ACTUALLY DO
+         ===================================================== -->
+
+    <section class="page-section home-capabilities">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            What I Actually Do
+          </p>
+
+          <h2 class="section-title">
+            Design It.<br>
+            Build It.<br>
+            Make It Work Better.
+          </h2>
+
+          <p class="home-section-intro">
+            Different medium. Same brain. I take an idea,
+            a problem or something that isn't working the way
+            it should and figure out what it needs to become.
+          </p>
+
+        </div>
+
+
+        <div class="project-grid home-capability-grid">
+
+          ${capabilityCards.map(card => `
+            <article class="project-detail-card home-capability-card">
+
+              <span class="direction-number">
+                ${card.number}
+              </span>
+
+              <h3>
+                ${card.title}
+              </h3>
+
+              <p>
+                ${card.copy}
+              </p>
+
+            </article>
+          `).join("")}
+
+        </div>
 
       </div>
     </section>
@@ -62,8 +139,16 @@ function renderHomePage() {
           </p>
 
           <h2 class="section-title">
-            Selected Work.
+            Different Problems.<br>
+            Same Process.
           </h2>
+
+          <p class="home-section-intro">
+            The tools change. The objective doesn't:
+            understand what needs to happen,
+            figure out what's in the way,
+            and make the damn thing work.
+          </p>
 
         </div>
 
@@ -106,6 +191,84 @@ function renderHomePage() {
 
             </a>
           `).join("")}
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CONSULTING / SYSTEMS
+         ===================================================== -->
+
+    <section class="page-section home-consulting">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Consulting · Systems · Process
+          </p>
+
+          <h2 class="section-title">
+            You Know Something<br>
+            Isn't Working.<br>
+            You Just Can't See Why.
+          </h2>
+
+        </div>
+
+
+        <div class="project-detail-card home-consulting-card">
+
+          <p>
+            Complicated systems hide their own problems.
+            Bottlenecks become normal. Waste becomes procedure.
+            Workarounds become “the way we've always done it.”
+          </p>
+
+          <p>
+            That's where I come in.
+          </p>
+
+          <p>
+            I work boots-on-the-ground, from the beginning
+            of a process to the end, documenting what actually
+            happens instead of what the process says is
+            supposed to happen.
+          </p>
+
+          <p>
+            I find the obstacles, redundancies, wasted motion
+            and unnecessary complexity that become invisible
+            to the people living inside the system every day.
+          </p>
+
+          <p>
+            I've built automated systems that remain in use
+            years later. I've written processes that reduced
+            waste and increased productivity.
+          </p>
+
+          <p class="home-consulting-punch">
+            <strong>
+              I take complicated problems and provide
+              simple solutions.
+            </strong>
+          </p>
+
+          <p>
+            When your organization can't see its own
+            bottlenecks, that's what you pay <strong>ME</strong> for.
+          </p>
+
+          <a
+            class="project-card-link"
+            href="./figure-it-out/"
+          >
+            See How I Figure It Out →
+          </a>
 
         </div>
 
