@@ -26,7 +26,7 @@ function renderHomePage() {
 
         <img
           class="home-logo"
-          src="./5DC2AA26-E6DE-4633-9476-78BF6FE3118C.png"
+          src="./B9AEDA13-4CAE-4E5F-8631-0932FD665538.png"
           alt="Uncle Mike Can Do It"
         >
 
