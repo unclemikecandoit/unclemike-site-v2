@@ -13,7 +13,8 @@ function getSiteRoot() {
     path.includes("/build/") ||
     path.includes("/make/") ||
     path.includes("/figure-it-out/") ||
-    path.includes("/about/")
+    path.includes("/about/") ||
+    path.includes("/contact/")
   ) {
     return "../";
   }
@@ -90,6 +91,15 @@ function renderSiteHeader() {
               Me
             </span>
           </a>
+
+          <a
+            class="nav-button"
+            href="${root}contact/"
+          >
+            <span>
+              Contact
+            </span>
+          </a>
         </nav>
 
       </div>
@@ -123,6 +133,9 @@ function getBottomNavigation() {
   const isAbout =
     path.includes("/about/");
 
+  const isContact =
+    path.includes("/contact/");
+
 
   const isMakeProject =
     path.includes("/make/crooked-gate/");
@@ -136,7 +149,8 @@ function getBottomNavigation() {
     !isMake &&
     !isBuild &&
     !isFigure &&
-    !isAbout;
+    !isAbout &&
+    !isContact;
 
 
   /*
@@ -197,6 +211,19 @@ function getBottomNavigation() {
       `;
 
 
+  const contactLink =
+    isContact
+      ? ""
+      : `
+        <a
+          class="site-bottom-link site-bottom-contact"
+          href="${root}contact/"
+        >
+          Contact →
+        </a>
+      `;
+
+
   return `
     <section class="site-bottom-navigation">
 
@@ -216,6 +243,8 @@ function getBottomNavigation() {
           ${homeLink}
 
           ${aboutLink}
+
+          ${contactLink}
 
         </nav>
 
@@ -404,6 +433,12 @@ function injectBottomNavigationStyles() {
         margin-left:
           0;
 
+        text-align:
+          right;
+      }
+
+
+      .site-bottom-contact {
         text-align:
           right;
       }
