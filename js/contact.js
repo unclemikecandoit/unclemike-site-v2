@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   page.innerHTML = `
 
-    <section class="page-section">
+    <section class="page-section contact-hero">
 
       <div class="section-heading">
 
@@ -172,6 +172,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
   style.textContent = `
 
+    .contact-hero .section-heading {
+      max-width: 900px;
+    }
+
+    .contact-hero h1 {
+      max-width: 900px;
+    }
+
+    .contact-hero .home-hero-copy {
+      max-width: 760px;
+      margin: 0;
+    }
+
     .contact-card {
       max-width: 760px;
       margin: 0 auto;
@@ -257,7 +270,27 @@ document.addEventListener("DOMContentLoaded", () => {
       display: none !important;
     }
 
+    .contact-success {
+      padding: 18px 0;
+    }
+
+    .contact-success h2 {
+      margin-bottom: 12px;
+    }
+
+
     @media (max-width: 600px) {
+
+      .contact-hero h1 {
+        font-size: clamp(3rem, 14vw, 4.5rem);
+        line-height: 0.88;
+        letter-spacing: -0.035em;
+      }
+
+      .contact-hero .home-hero-copy {
+        font-size: 1rem;
+        line-height: 1.55;
+      }
 
       .contact-card {
         padding: 22px;
