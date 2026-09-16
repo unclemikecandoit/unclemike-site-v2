@@ -4,7 +4,7 @@ const UNCLE_MIKE_AREAS = [
     number: "01",
     title: "Make",
     description:
-      "Design, merch, logos, branding, artwork and the ideas that start on a screen before becoming something real.",
+      "Brand identity, graphic design, websites, merch, products and ideas that need to become something real.",
     path: "./make/"
   },
 
@@ -13,7 +13,7 @@ const UNCLE_MIKE_AREAS = [
     number: "02",
     title: "Build",
     description:
-      "Cars, engines, fabrication, mechanical projects and the stuff that gets solved with tools in your hands.",
+      "Cars, engines, fabrication, mechanical projects and one-off problems solved with tools in your hands.",
     path: "./build/"
   },
 
@@ -22,7 +22,7 @@ const UNCLE_MIKE_AREAS = [
     number: "03",
     title: "Figure It Out",
     description:
-      "Electrical diagnosis, equipment, weird problems, technical work and everything that refuses to fit neatly into one trade.",
+      "Consulting, systems analysis, process improvement, automation, diagnosis and complicated problems that need simple solutions.",
     path: "./figure-it-out/"
   }
 ];
@@ -32,24 +32,32 @@ const UNCLE_MIKE_FEATURED = [
   {
     id: "ranchero",
     title: "1965 Ford Ranchero",
-    category: "Build",
+    category: "Build · Mechanical · Problem Solving",
     image: "./build/ranchero/20260825_110401.jpeg",
     path: "./build/ranchero/"
   },
 
   {
-    id: "c10",
-    title: "1972 Chevy C10",
-    category: "Build",
-    image: "./build/C10/c10-hero.jpg",
-    path: "./build/C10/"
+    id: "crooked-gate",
+    title: "Crooked Gate",
+    category: "Brand · Web · Product · Retail",
+    image: "./make/crooked-gate/IMG_6141.jpeg",
+    path: "./make/crooked-gate/"
   },
 
   {
-    id: "crooked-gate",
-    title: "Crooked Gate",
-    category: "Make",
-    image: "./make/crooked-gate/IMG_6141.jpeg",
-    path: "./make/crooked-gate/"
+    id: "hawk-rods",
+    title: "Hawk Rods Engines",
+    category: "Identity · Graphic Design",
+    image: "./make/3C10AA31-2167-4BF4-89AE-7A69D4ADD559.png",
+    path: "./make/"
+  },
+
+  {
+    id: "systems",
+    title: "Systems & Process",
+    category: "Consulting · Process Improvement · Automation",
+    image: "./figure-it-out/IMG_6746.jpeg",
+    path: "./figure-it-out/"
   }
 ];
