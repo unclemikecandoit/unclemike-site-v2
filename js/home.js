@@ -3,45 +3,48 @@ function renderHomePage() {
 
   if (!page) return;
 
-  const directionLabels = {
-    make: "Let's Make It",
-    build: "Builds",
-    "figure-it-out": "Figure It Out"
+  const featuredWork =
+    UNCLE_MIKE_FEATURED.filter(project => project.id !== "systems");
+
+  const receiptLabels = {
+    c10: {
+      eyebrow: "Build",
+      category: "Mechanical · Fabrication · Problem Solving"
+    },
+
+    "crooked-gate": {
+      eyebrow: "Make",
+      category: "Brand · Graphic Design · Web · E-Commerce · Retail"
+    },
+
+    "hawk-rods": {
+      eyebrow: "Design",
+      category: "Identity · Illustration · Iteration"
+    }
   };
 
-  const directionDescriptions = {
-    make: "Design · Web · Brands · Merch",
-    build: "Cars · Engines · Fabrication",
-    "figure-it-out": "Consulting · Systems · Problems"
-  };
-
-  const capabilityCards = [
+  const directions = [
     {
       number: "01",
-      title: "Make It.",
-      copy:
-        "Brand identity, graphic design, websites, merch and products. If the thing doesn't exist yet, that's not much of an obstacle."
+      title: "Make",
+      description: "Brand · Web · Graphics · Merch",
+      path: "./make/"
     },
 
     {
       number: "02",
-      title: "Build It.",
-      copy:
-        "Cars, engines, fabrication and mechanical work. Sometimes the solution lives on a screen. Sometimes it needs a welder."
+      title: "Build",
+      description: "Cars · Engines · Fabrication",
+      path: "./build/"
     },
 
     {
       number: "03",
-      title: "Figure It Out.",
-      copy:
-        "Consulting, systems analysis, process improvement, automation and diagnosis. Complicated problems don't need complicated solutions."
+      title: "Figure It Out",
+      description: "Consulting · Systems · Process",
+      path: "./figure-it-out/"
     }
   ];
-
-  const featuredWork =
-    UNCLE_MIKE_FEATURED.filter(
-      project => project.id !== "systems"
-    );
 
   page.innerHTML = `
 
@@ -63,75 +66,24 @@ function renderHomePage() {
         </h1>
 
         <p class="home-hero-copy">
-          Cars, brands, websites, systems, products and weird
-          problems that don't come with instructions.
+          Cars. Brands. Websites. Systems. Products.
+          Problems that don't come with instructions.
         </p>
 
         <p class="home-hero-punch">
-          If it needs to be designed, built, fixed or figured out,
-          that's what you pay <strong>ME</strong> for.
+          <strong>
+            Design it. Build it. Fix it. Figure it out.
+          </strong>
         </p>
 
       </div>
     </section>
 
 
-    <!-- =====================================================
-         WHAT I ACTUALLY DO
-         ===================================================== -->
-
-    <section class="page-section home-capabilities">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            What I Actually Do
-          </p>
-
-          <h2 class="section-title">
-            Design It.<br>
-            Build It.<br>
-            Make It Work Better.
-          </h2>
-
-          <p class="home-section-intro">
-            Different medium. Same brain. I take an idea,
-            a problem or something that isn't working the way
-            it should and figure out what it needs to become.
-          </p>
-
-        </div>
-
-
-        <div class="project-grid home-capability-grid">
-
-          ${capabilityCards.map(card => `
-            <article class="project-detail-card home-capability-card">
-
-              <span class="direction-number">
-                ${card.number}
-              </span>
-
-              <h3>
-                ${card.title}
-              </h3>
-
-              <p>
-                ${card.copy}
-              </p>
-
-            </article>
-          `).join("")}
-
-        </div>
-
-      </div>
-    </section>
-
 
     <!-- =====================================================
-         SELECTED WORK
+         RECEIPTS
+         VISUALS COME FIRST
          ===================================================== -->
 
     <section class="page-section home-selected-work">
@@ -145,57 +97,62 @@ function renderHomePage() {
 
           <h2 class="section-title">
             Different Problems.<br>
-            Same Process.
+            Same Brain.
           </h2>
-
-          <p class="home-section-intro">
-            The tools change. The objective doesn't:
-            understand what needs to happen,
-            figure out what's in the way,
-            and make the damn thing work.
-          </p>
 
         </div>
 
 
         <div class="project-grid">
 
-          ${featuredWork.map(project => `
-            <a
-              class="project-card"
-              href="${project.path}"
-              aria-label="View ${project.title}"
-            >
+          ${featuredWork.map(project => {
+            const labels =
+              receiptLabels[project.id] || {
+                eyebrow: "Project",
+                category: project.category
+              };
 
-              <div class="project-card-media">
+            return `
+              <a
+                class="project-card"
+                href="${project.path}"
+                aria-label="View ${project.title}"
+              >
 
-                <img
-                  src="${project.image}"
-                  alt="${project.title}"
-                  loading="lazy"
-                >
+                <div class="project-card-media">
 
-              </div>
+                  <img
+                    src="${project.image}"
+                    alt="${project.title}"
+                    loading="lazy"
+                  >
+
+                </div>
 
 
-              <div class="project-card-body">
+                <div class="project-card-body">
 
-                <h3>
-                  ${project.title}
-                </h3>
+                  <p class="eyebrow">
+                    ${labels.eyebrow}
+                  </p>
 
-                <p>
-                  ${project.category}
-                </p>
+                  <h3>
+                    ${project.title}
+                  </h3>
 
-                <span class="project-card-link">
-                  View Project →
-                </span>
+                  <p>
+                    ${labels.category}
+                  </p>
 
-              </div>
+                  <span class="project-card-link">
+                    See It →
+                  </span>
 
-            </a>
-          `).join("")}
+                </div>
+
+              </a>
+            `;
+          }).join("")}
 
         </div>
 
@@ -203,8 +160,77 @@ function renderHomePage() {
     </section>
 
 
+
     <!-- =====================================================
-         CONSULTING / SYSTEMS
+         WHAT I DO
+         SHORT. FAST. CLICKABLE.
+         ===================================================== -->
+
+    <section class="page-section home-directions">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            What I Do
+          </p>
+
+          <h2 class="section-title">
+            Pick Your<br>
+            Problem.
+          </h2>
+
+        </div>
+
+
+        <nav
+          class="direction-grid"
+          aria-label="What Uncle Mike Does"
+        >
+
+          ${directions.map(direction => `
+            <a
+              class="direction-button"
+              href="${direction.path}"
+            >
+
+              <span class="direction-number">
+                ${direction.number}
+              </span>
+
+
+              <span class="direction-content">
+
+                <strong class="direction-title">
+                  ${direction.title}
+                </strong>
+
+                <span class="direction-description">
+                  ${direction.description}
+                </span>
+
+              </span>
+
+
+              <span
+                class="direction-arrow"
+                aria-hidden="true"
+              >
+                →
+              </span>
+
+            </a>
+          `).join("")}
+
+        </nav>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         CONSULTING PATTERN BREAK
          ===================================================== -->
 
     <section class="page-section home-consulting">
@@ -217,9 +243,8 @@ function renderHomePage() {
           </p>
 
           <h2 class="section-title">
-            You Know Something<br>
-            Isn't Working.<br>
-            You Just Can't See Why.
+            You Can't Fix<br>
+            What You Can't See.
           </h2>
 
         </div>
@@ -229,15 +254,15 @@ function renderHomePage() {
 
           <p>
             Complicated systems hide their own problems.
-            I work from the beginning of a process to the end,
-            find the bottlenecks, waste and unnecessary complexity,
-            then make the system easier to operate.
+            I follow the process, find the bottlenecks,
+            waste and unnecessary complexity, and make
+            the system easier to operate.
           </p>
 
           <p class="home-consulting-punch">
             <strong>
-              I take complicated problems and provide
-              simple solutions.
+              Complicated problem.<br>
+              Simple solution.
             </strong>
           </p>
 
@@ -254,8 +279,9 @@ function renderHomePage() {
     </section>
 
 
+
     <!-- =====================================================
-         PICK A DIRECTION
+         FINAL DIRECTION
          ===================================================== -->
 
     <section class="page-section home-directions">
@@ -264,11 +290,12 @@ function renderHomePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            Keep Looking
+            Keep Going
           </p>
 
           <h2 class="section-title">
-            Pick A Direction.
+            What Are You<br>
+            Here For?
           </h2>
 
         </div>
@@ -279,26 +306,25 @@ function renderHomePage() {
           aria-label="Explore Uncle Mike"
         >
 
-          ${UNCLE_MIKE_AREAS.map(area => `
+          ${directions.map(direction => `
             <a
               class="direction-button"
-              href="${area.path}"
-              aria-label="${directionLabels[area.id] || area.title}"
+              href="${direction.path}"
             >
 
               <span class="direction-number">
-                ${area.number}
+                ${direction.number}
               </span>
 
 
               <span class="direction-content">
 
                 <strong class="direction-title">
-                  ${directionLabels[area.id] || area.title}
+                  ${direction.title}
                 </strong>
 
                 <span class="direction-description">
-                  ${directionDescriptions[area.id] || area.description}
+                  ${direction.description}
                 </span>
 
               </span>
