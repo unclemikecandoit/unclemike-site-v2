@@ -96,14 +96,70 @@ function renderSiteHeader() {
             class="nav-button"
             href="${root}contact/"
           >
-            <span>
-              Contact
-            </span>
+            <span>Contact</span>
           </a>
         </nav>
 
       </div>
     </header>
+  `;
+}
+
+
+
+/* =========================================================
+   SHARED CONTACT CTA
+   ========================================================= */
+
+function getContactCTA() {
+  const path =
+    window.location.pathname;
+
+  const root =
+    getSiteRoot();
+
+  const isContact =
+    path.includes("/contact/");
+
+
+  if (isContact) {
+    return "";
+  }
+
+
+  return `
+    <section class="site-contact-cta">
+
+      <div class="wrap">
+
+        <div class="site-contact-cta-inner">
+
+          <p class="site-contact-eyebrow">
+            Ready To Make It Happen?
+          </p>
+
+          <h2>
+            Contact Me.
+          </h2>
+
+          <p class="site-contact-copy">
+            Got an idea, a project, or a problem
+            that needs figuring out?
+            Tell me what you're trying to make happen.
+          </p>
+
+          <a
+            class="site-contact-button"
+            href="${root}contact/"
+          >
+            Let's Do It →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
   `;
 }
 
@@ -153,9 +209,6 @@ function getBottomNavigation() {
     !isContact;
 
 
-  /*
-   * Home doesn't need a shared return bar.
-   */
   if (isHome) {
     return "";
   }
@@ -211,19 +264,6 @@ function getBottomNavigation() {
       `;
 
 
-  const contactLink =
-    isContact
-      ? ""
-      : `
-        <a
-          class="site-bottom-link site-bottom-contact"
-          href="${root}contact/"
-        >
-          Contact →
-        </a>
-      `;
-
-
   return `
     <section class="site-bottom-navigation">
 
@@ -244,8 +284,6 @@ function getBottomNavigation() {
 
           ${aboutLink}
 
-          ${contactLink}
-
         </nav>
 
       </div>
@@ -257,13 +295,13 @@ function getBottomNavigation() {
 
 
 /* =========================================================
-   BOTTOM NAV STYLES
+   SHARED CTA + BOTTOM NAV STYLES
    ========================================================= */
 
-function injectBottomNavigationStyles() {
+function injectSharedNavigationStyles() {
   if (
     document.getElementById(
-      "site-bottom-navigation-styles"
+      "site-shared-navigation-styles"
     )
   ) {
     return;
@@ -275,10 +313,166 @@ function injectBottomNavigationStyles() {
 
 
   style.id =
-    "site-bottom-navigation-styles";
+    "site-shared-navigation-styles";
 
 
   style.textContent = `
+
+    .site-contact-cta {
+      padding:
+        clamp(78px, 10vw, 125px)
+        0;
+
+      border-top:
+        1px solid
+        rgba(234, 215, 173, 0.2);
+    }
+
+
+    .site-contact-cta-inner {
+      max-width:
+        820px;
+    }
+
+
+    .site-contact-eyebrow {
+      margin:
+        0
+        0
+        16px;
+
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.78rem;
+
+      font-weight:
+        800;
+
+      letter-spacing:
+        0.18em;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    .site-contact-cta h2 {
+      margin:
+        0
+        0
+        22px;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(
+          3rem,
+          8vw,
+          6.5rem
+        );
+
+      line-height:
+        0.9;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+
+    .site-contact-copy {
+      max-width:
+        650px;
+
+      margin:
+        0
+        0
+        30px;
+
+      color:
+        var(--copy);
+
+      font-size:
+        clamp(
+          1rem,
+          2vw,
+          1.2rem
+        );
+
+      line-height:
+        1.55;
+    }
+
+
+    .site-contact-button {
+      display:
+        inline-block;
+
+      padding:
+        15px
+        20px;
+
+      border:
+        1px solid
+        var(--paper);
+
+      background:
+        var(--paper);
+
+      color:
+        var(--ink);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.9rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        0.11em;
+
+      line-height:
+        1;
+
+      text-decoration:
+        none;
+
+      text-transform:
+        uppercase;
+
+      transition:
+        transform
+        160ms ease,
+        opacity
+        160ms ease;
+    }
+
+
+    .site-contact-button:hover {
+      transform:
+        translateY(-2px);
+
+      opacity:
+        0.86;
+    }
+
 
     .site-bottom-navigation {
       padding:
@@ -408,6 +602,39 @@ function injectBottomNavigationStyles() {
       max-width: 620px
     ) {
 
+      .site-contact-cta {
+        padding:
+          68px
+          0;
+      }
+
+
+      .site-contact-cta h2 {
+        font-size:
+          clamp(
+            3rem,
+            15vw,
+            4.8rem
+          );
+      }
+
+
+      .site-contact-button {
+        box-sizing:
+          border-box;
+
+        width:
+          100%;
+
+        padding:
+          17px
+          20px;
+
+        text-align:
+          center;
+      }
+
+
       .site-bottom-links {
         display:
           grid;
@@ -433,12 +660,6 @@ function injectBottomNavigationStyles() {
         margin-left:
           0;
 
-        text-align:
-          right;
-      }
-
-
-      .site-bottom-contact {
         text-align:
           right;
       }
@@ -516,6 +737,8 @@ function renderSiteFooter() {
   const root = getSiteRoot();
 
   footerMount.innerHTML = `
+
+    ${getContactCTA()}
 
     ${getBottomNavigation()}
 
@@ -746,7 +969,7 @@ function getTransitionDeck() {
   }
 
   catch {
-    /* If storage is unavailable, just use a fresh deck. */
+    /* If storage is unavailable, use a fresh deck. */
   }
 
   return makeFreshTransitionDeck();
@@ -1164,7 +1387,7 @@ function initScrollReveal() {
 
 renderSiteHeader();
 
-injectBottomNavigationStyles();
+injectSharedNavigationStyles();
 
 renderSiteFooter();
 
