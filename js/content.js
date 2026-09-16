@@ -30,11 +30,11 @@ const UNCLE_MIKE_AREAS = [
 
 const UNCLE_MIKE_FEATURED = [
   {
-    id: "ranchero",
-    title: "1965 Ford Ranchero",
-    category: "Build · Mechanical · Problem Solving",
-    image: "./build/ranchero/20260825_110401.jpeg",
-    path: "./build/ranchero/"
+    id: "c10",
+    title: "1972 Chevy C10",
+    category: "Build · Fabrication · Problem Solving",
+    image: "./build/C10/c10-hero.jpg",
+    path: "./build/C10/"
   },
 
   {
