@@ -23,11 +23,8 @@
 
         <p class="home-hero-copy">
           Brands. Graphics. Websites. Merch.
-          Sometimes all of it at once.
-          <br><br>
-          <strong>
-            “I have an idea” is usually enough to get started.
-          </strong>
+          <br>
+          <strong>“I have an idea” is enough.</strong>
         </p>
 
       </div>
@@ -36,24 +33,14 @@
 
 
     <!-- =====================================================
-         CROOKED GATE
+         CROOKED GATE — VISUAL IMMEDIATELY
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:20px;"
+    >
       <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Start With An Idea
-          </p>
-
-          <h2 class="section-title">
-            Then Keep Going.
-          </h2>
-
-        </div>
-
 
         <a
           class="project-card"
@@ -66,7 +53,7 @@
             <img
               src="./IMG_6537.jpeg"
               alt="Crooked Gate Seasonings physical retail display"
-              loading="lazy"
+              loading="eager"
             >
 
           </div>
@@ -83,14 +70,12 @@
             </h3>
 
             <p>
-              What started with seasonings became
-              a complete identity, label system,
-              website, checkout experience and
-              physical retail display.
+              One idea became the brand, labels,
+              website, checkout and physical retail system.
             </p>
 
             <span class="project-card-link">
-              See How It Became Real →
+              See The Whole Build →
             </span>
 
           </div>
@@ -103,54 +88,41 @@
 
 
     <!-- =====================================================
-         HAWK RODS
+         CAPABILITY HIT
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          Design
+        </p>
 
-          <p class="eyebrow">
-            Iteration
-          </p>
+        <h2 class="section-title">
+          Give The Idea<br>
+          A Face.
+        </h2>
 
-          <h2 class="section-title">
-            The First Good Idea<br>
-            Isn't Always The One.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <p class="eyebrow">
-            Hawk Rods Engines
-          </p>
-
-          <h3>
-            Find The Character.
-          </h3>
-
-          <p>
-            The goal wasn't another generic repair-shop logo.
-            It needed to feel like something you would've
-            found on a toolbox, race car or speed-shop window
-            fifty years ago.
-          </p>
-
-        </div>
+      </div>
+    </section>
 
 
-        <div
-          class="project-gallery"
-          style="margin-top:32px;"
-        >
+
+    <!-- =====================================================
+         HAWK RODS — VISUAL STORY
+         ===================================================== -->
+
+    <section
+      class="page-section"
+      style="padding-top:0;"
+    >
+      <div class="wrap">
+
+        <div class="project-gallery">
 
           <img
             src="./3C10AA31-2167-4BF4-89AE-7A69D4ADD559.png"
-            alt="Hawk Rods Engines logo concept exploration"
+            alt="Hawk Rods Engines logo concept"
             loading="lazy"
           >
 
@@ -174,13 +146,35 @@
 
         </div>
 
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+
+          <p class="eyebrow">
+            Hawk Rods Engines
+          </p>
+
+          <h3>
+            Find The Character.
+          </h3>
+
+          <p>
+            Not another generic repair-shop logo.
+            Something that belongs on a toolbox,
+            race car or speed-shop window.
+          </p>
+
+        </div>
+
       </div>
     </section>
 
 
 
     <!-- =====================================================
-         DESIGN / MERCH
+         GRAPHIC WORK
          ===================================================== -->
 
     <section class="page-section">
@@ -189,34 +183,22 @@
         <div class="section-heading">
 
           <p class="eyebrow">
-            Design Work
+            Graphics · Merch
           </p>
 
           <h2 class="section-title">
-            Say It Louder.
+            Say It<br>
+            Louder.
           </h2>
 
         </div>
 
-        <p class="home-hero-copy">
-          Shirts. Stickers. Badges. Graphics.
-          <br>
-          Sometimes the idea deserves way more
-          production value than anybody asked for.
-        </p>
 
-
-        <div
-          class="project-grid"
-          style="margin-top:32px;"
-        >
-
+        <div class="project-grid">
 
           <!-- COOL ARROW -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -235,13 +217,8 @@
               </p>
 
               <h3>
-                Cool Arrow Clothing Co.
+                Cool Arrow.
               </h3>
-
-              <p>
-                A Western identity built to work
-                as a badge, label or mark.
-              </p>
 
             </div>
 
@@ -251,9 +228,7 @@
 
           <!-- HYPERFIXATION -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -275,10 +250,6 @@
                 Hyperfixation.
               </h3>
 
-              <p>
-                Is a hell of a drug.
-              </p>
-
             </div>
 
           </article>
@@ -287,9 +258,7 @@
 
           <!-- WEAPONIZED AUTISM -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -311,10 +280,6 @@
                 Weaponized Autism.
               </h3>
 
-              <p>
-                Subtle was never really the assignment.
-              </p>
-
             </div>
 
           </article>
@@ -323,9 +288,7 @@
 
           <!-- GET AFTER IT -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -347,11 +310,6 @@
                 Get After It.
               </h3>
 
-              <p>
-                No twelve-paragraph motivational
-                speech required.
-              </p>
-
             </div>
 
           </article>
@@ -360,9 +318,7 @@
 
           <!-- UNFORTUNATELY FOR YOU -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -384,10 +340,6 @@
                 Unfortunately For You.
               </h3>
 
-              <p>
-                Pattern recognition with consequences.
-              </p>
-
             </div>
 
           </article>
@@ -396,9 +348,7 @@
 
           <!-- COOL STORY -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -420,11 +370,6 @@
                 Cool Story.
               </h3>
 
-              <p>
-                Unfortunately, I remember exactly
-                what you said six months ago.
-              </p>
-
             </div>
 
           </article>
@@ -433,9 +378,7 @@
 
           <!-- REPEATER DEFEATER -->
 
-          <article
-            class="project-card project-card-static"
-          >
+          <article class="project-card project-card-static">
 
             <div class="project-card-media">
 
@@ -454,18 +397,12 @@
               </p>
 
               <h3>
-                The Repeater Defeater.
+                Repeater Defeater.
               </h3>
-
-              <p>
-                Sometimes the joke gets way too
-                much production value.
-              </p>
 
             </div>
 
           </article>
-
 
         </div>
 
@@ -475,46 +412,74 @@
 
 
     <!-- =====================================================
-         RANGE
+         WEB / BRAND SYSTEM PATTERN BREAK
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          Web · Brand · Product
+        </p>
 
-          <p class="eyebrow">
-            The Range
-          </p>
-
-          <h2 class="section-title">
-            Different Medium.<br>
-            Same Brain.
-          </h2>
-
-        </div>
-
+        <h2 class="section-title">
+          A Logo Isn't<br>
+          A Brand.
+        </h2>
 
         <div
           class="project-detail-card"
-          style="margin-top:42px;"
+          style="margin-top:24px;"
         >
 
-          <p
-            style="
-              margin:0;
-              color:#d6c49e;
-              font-family:Arial, Helvetica, sans-serif;
-              font-size:clamp(1.05rem, 2.5vw, 1.35rem);
-              line-height:1.65;
-            "
-          >
-            Brand. Graphics. Websites. Fabrication.
-            The tools change.
-            The process doesn't:
-            see what it could be, figure out what it takes,
-            and make the damn thing real.
+          <p>
+            The identity has to keep working when it becomes
+            a website, a label, a shirt, a package,
+            a checkout screen or something sitting on a shelf.
           </p>
+
+          <p>
+            <strong>
+              Make the whole thing feel like the same idea.
+            </strong>
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         MORE VISUALS
+         ===================================================== -->
+
+    <section
+      class="page-section"
+      style="padding-top:10px;"
+    >
+      <div class="wrap">
+
+        <div class="project-gallery">
+
+          <img
+            src="./IMG_6537.jpeg"
+            alt="Crooked Gate retail display"
+            loading="lazy"
+          >
+
+          <img
+            src="./hawk_orange.png"
+            alt="Hawk Rods Engines identity"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_5037.jpeg"
+            alt="Cool Arrow Clothing Company identity"
+            loading="lazy"
+          >
 
         </div>
 
@@ -527,10 +492,7 @@
          CLOSE
          ===================================================== -->
 
-    <section
-      class="page-section"
-      style="padding-top:35px;"
-    >
+    <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
@@ -542,22 +504,14 @@
           Make It Real.
         </h2>
 
-        <p
-          style="
-            max-width:720px;
-            margin:24px 0 0;
-            color:#d6c49e;
-            font-size:clamp(1.15rem, 3vw, 1.6rem);
-            line-height:1.55;
-          "
-        >
-          A lot of this starts with:
-          <strong style="color:var(--paper-2);">
-            “I have an idea.”
-          </strong>
+        <p class="home-hero-copy">
+          Different medium. Same brain.
           <br><br>
-          Cool.
-          Now let's figure out what the hell it actually is.
+
+          <strong>
+            Bring the idea.
+            We'll figure out what it needs to become.
+          </strong>
         </p>
 
       </div>
