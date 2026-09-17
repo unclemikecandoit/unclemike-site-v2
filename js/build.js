@@ -8,7 +8,7 @@ function renderBuildPage() {
   page.innerHTML = `
 
     <!-- =====================================================
-         BUILDS HERO
+         HERO
          ===================================================== -->
 
     <section class="page-section build-hero">
@@ -20,16 +20,13 @@ function renderBuildPage() {
         </p>
 
         <h1>
-          Some Shit Needs Saving.
+          Some Shit<br>
+          Needs Saving.
         </h1>
 
         <p class="home-hero-copy">
-          Old cars. Bad decisions. Broken shit.
+          Old cars. Bad decisions.
           Somebody else's "good enough."
-          <br><br>
-          <strong>
-            That's usually where I come in.
-          </strong>
         </p>
 
       </div>
@@ -39,7 +36,144 @@ function renderBuildPage() {
 
 
     <!-- =====================================================
-         BUILD JOURNALS
+         RANCHERO — FIRST VISUAL
+         ===================================================== -->
+
+    <section
+      class="page-section"
+      style="padding-top:20px;"
+    >
+
+      <div class="wrap">
+
+        <a
+          class="project-card"
+          href="./ranchero/"
+          aria-label="View the 1965 Ford Ranchero build"
+        >
+
+          <div class="project-card-media">
+
+            <img
+              src="./ranchero/20260825_111600.jpeg"
+              alt="1965 Ford Ranchero"
+              loading="eager"
+            >
+
+          </div>
+
+
+          <div class="project-card-body">
+
+            <p class="eyebrow">
+              1965 Ford Ranchero
+            </p>
+
+            <h3>
+              Bringing It Back.
+            </h3>
+
+            <p>
+              Sixty years of old-car decisions.
+              One problem at a time.
+            </p>
+
+            <span class="project-card-link">
+              View Build →
+            </span>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         PATTERN BREAK
+         ===================================================== -->
+
+    <section class="page-section">
+
+      <div class="wrap">
+
+        <p class="eyebrow">
+          The Process
+        </p>
+
+        <h2 class="section-title">
+          Find What's Wrong.<br>
+          Make It Right.
+        </h2>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         C10 — SECOND VISUAL
+         ===================================================== -->
+
+    <section
+      class="page-section"
+      style="padding-top:0;"
+    >
+
+      <div class="wrap">
+
+        <a
+          class="project-card"
+          href="./C10/"
+          aria-label="View the 1972 Chevy C10 build"
+        >
+
+          <div class="project-card-media">
+
+            <img
+              src="./C10/c10-hero.jpg"
+              alt="1972 Chevrolet C10"
+              loading="lazy"
+            >
+
+          </div>
+
+
+          <div class="project-card-body">
+
+            <p class="eyebrow">
+              1972 Chevy C10
+            </p>
+
+            <h3>
+              Unfucking This Death Trap.
+            </h3>
+
+            <p>
+              Somebody already built it.
+              I had to make it stop trying to kill people.
+            </p>
+
+            <span class="project-card-link">
+              View Build →
+            </span>
+
+          </div>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =====================================================
+         TWO BUILDS — VISUAL REWARD
          ===================================================== -->
 
     <section class="page-section">
@@ -49,108 +183,59 @@ function renderBuildPage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            Build Journals
+            Different Problems
           </p>
 
           <h2 class="section-title">
-            Pick Your Problem.
+            Same Rule.
           </h2>
 
         </div>
 
 
-        <div class="project-grid">
-
-
-          <!-- =================================================
-               1965 FORD RANCHERO
-               ================================================= -->
+        <div class="project-gallery">
 
           <a
-            class="project-card"
             href="./ranchero/"
-            aria-label="View the 1965 Ford Ranchero build"
+            aria-label="View the Ranchero build"
           >
-
-            <div class="project-card-media">
-
-              <img
-                src="./ranchero/20260825_111600.jpeg"
-                alt="1965 Ford Ranchero"
-              >
-
-            </div>
-
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                1965 Ford Ranchero
-              </p>
-
-              <h3>
-                Bringing It Back.
-              </h3>
-
-              <p>
-                Sixty years of old-car decisions,
-                one problem at a time.
-              </p>
-
-              <span class="project-card-link">
-                View Build →
-              </span>
-
-            </div>
-
+            <img
+              src="./ranchero/20260825_110401.jpeg"
+              alt="1965 Ford Ranchero"
+              loading="lazy"
+            >
           </a>
-
-
-
-          <!-- =================================================
-               1972 CHEVY C10
-               ================================================= -->
 
           <a
-            class="project-card"
             href="./C10/"
-            aria-label="View the 1972 Chevy C10 build"
+            aria-label="View the C10 build"
           >
-
-            <div class="project-card-media">
-
-              <img
-                src="./C10/c10-hero.jpg"
-                alt="1972 Chevrolet C10"
-              >
-
-            </div>
-
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                1972 Chevy C10
-              </p>
-
-              <h3>
-                Unfucking This Death Trap.
-              </h3>
-
-              <p>
-                Somebody already built it.
-                I had to make it stop trying
-                to kill people.
-              </p>
-
-              <span class="project-card-link">
-                View Build →
-              </span>
-
-            </div>
-
+            <img
+              src="./C10/c10-hero.jpg"
+              alt="1972 Chevrolet C10"
+              loading="lazy"
+            >
           </a>
 
+        </div>
+
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+
+          <p>
+            Don't cover up the problem.
+            Don't build around it.
+          </p>
+
+          <p>
+            <strong>
+              Figure out what it actually needs
+              and do the damn thing right.
+            </strong>
+          </p>
 
         </div>
 
@@ -161,32 +246,30 @@ function renderBuildPage() {
 
 
     <!-- =====================================================
-         KEEP GOING
+         CLOSE
          ===================================================== -->
 
     <section class="page-section">
 
       <div class="wrap">
 
-        <div class="project-detail-card">
+        <p class="eyebrow">
+          More Coming
+        </p>
 
-          <p class="eyebrow">
-            More Coming
-          </p>
+        <h2 class="section-title">
+          I Don't Really<br>
+          Do Finished.
+        </h2>
 
-          <h2>
-            I Don't Really Do Finished.
-          </h2>
+        <p class="home-hero-copy">
+          These are the stories worth following right now.
+          <br><br>
 
-          <p>
-            These are the builds with stories worth
-            following right now.
-            <br><br>
+          <strong>
             There will be more.
-            There is always more.
-          </p>
-
-        </div>
+          </strong>
+        </p>
 
       </div>
 
