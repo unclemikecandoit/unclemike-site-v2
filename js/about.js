@@ -6,7 +6,7 @@
   page.innerHTML = `
 
     <!-- =====================================================
-         HERO — FACE FIRST
+         HERO — VISUAL IMMEDIATELY
          ===================================================== -->
 
     <section class="page-section about-hero">
@@ -50,7 +50,7 @@
 
 
     <!-- =====================================================
-         VISUAL / BRAIN
+         PATTERN RECOGNITION
          ===================================================== -->
 
     <section
@@ -68,6 +68,7 @@
           >
 
         </div>
+
 
         <div
           class="project-detail-card"
@@ -120,23 +121,13 @@
           My Medium Is Possibility.
         </h2>
 
-        <p class="home-hero-copy">
-          Cars. Art. Business. Parenting.
-          <br><br>
-
-          <strong>
-            Eventually I look at something and decide:
-            “I can make that.”
-          </strong>
-        </p>
-
       </div>
     </section>
 
 
 
     <!-- =====================================================
-         LIFE VISUAL
+         VISUAL BREAK
          ===================================================== -->
 
     <section
@@ -152,6 +143,25 @@
             alt="Mike in motorcycle gear"
             loading="lazy"
           >
+
+        </div>
+
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+
+          <p>
+            Cars. Art. Business. Parenting.
+          </p>
+
+          <p>
+            <strong>
+              Eventually I look at something and decide:
+              “I can make that.”
+            </strong>
+          </p>
 
         </div>
 
@@ -175,6 +185,7 @@
           I Quit<br>
           Listening.
         </h2>
+
 
         <div
           class="project-detail-card"
@@ -210,4 +221,159 @@
          DAD — VISUAL FIRST
          ===================================================== -->
 
-    <section
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="about-image-break">
+
+          <img
+            src="./IMG_6783.jpeg"
+            alt="Mike"
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+
+          <p class="eyebrow">
+            Dad
+          </p>
+
+          <h3>
+            The Dad I Never Had.
+          </h3>
+
+          <p>
+            Building things matters.
+            Building people matters more.
+          </p>
+
+          <p>
+            <strong>
+              Teach them how to think.
+              Let them know they're capable.
+              Show up.
+            </strong>
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         LIFE
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          The Goal
+        </p>
+
+        <h2 class="section-title">
+          Build A Life<br>
+          Worth Living In.
+        </h2>
+
+
+        <div class="about-image-break about-image-wide">
+
+          <img
+            src="./IMG_6787.jpeg"
+            alt="Mike"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         PERSONALITY
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="about-image-break">
+
+          <img
+            src="./IMG_6624.jpeg"
+            alt="Mike"
+            loading="lazy"
+          >
+
+        </div>
+
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
+
+          <p class="eyebrow">
+            Also
+          </p>
+
+          <h3>
+            Don't Make It Weird.
+          </h3>
+
+          <p>
+            I take the work seriously.
+          </p>
+
+          <p>
+            Myself considerably less so.
+          </p>
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         CLOSE
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Uncle Mike Can Do It
+        </p>
+
+        <h2 class="section-title">
+          It's Not Really<br>
+          A Slogan Anymore.
+        </h2>
+
+        <p class="home-hero-copy">
+          See what it could be.
+          Figure out what it takes.
+          <br><br>
+
+          <strong>
+            Make the damn thing real.
+          </strong>
+        </p>
+
+      </div>
+    </section>
+
+  `;
+})();
