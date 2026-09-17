@@ -23,10 +23,9 @@
 
         <p class="home-hero-copy">
           Systems. Processes. Machines. Organizations.
-          <br><br>
+          <br>
           <strong>
-            I don't need to know the answer yet.
-            I need to understand the system well enough to find it.
+            Understand the system. Find what's actually wrong.
           </strong>
         </p>
 
@@ -36,47 +35,54 @@
 
 
     <!-- =====================================================
-         CORE IDEA
+         VISUAL IMMEDIATELY
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:20px;"
+    >
       <div class="wrap">
 
-        <div class="section-heading">
+        <div class="project-gallery">
+
+          <img
+            src="./IMG_6746.jpeg"
+            alt="Working on heavy industrial machinery"
+            loading="eager"
+          >
+
+          <img
+            src="./IMG_6748.jpeg"
+            alt="Tools laid across a truck engine bay"
+            loading="eager"
+          >
+
+        </div>
+
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
 
           <p class="eyebrow">
             The Actual Skill
           </p>
 
-          <h2 class="section-title">
+          <h3>
             Find The Thing<br>
             That's Actually Wrong.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
+          </h3>
 
           <p>
-            Complicated problems have a habit of producing
-            complicated explanations.
-          </p>
-
-          <p>
-            I work the other direction.
-          </p>
-
-          <p>
-            Understand the system. Follow what actually happens.
-            Find the point where reality stops matching the intended
-            outcome. Fix that.
+            What should it be doing?
+            What is it actually doing?
+            Where did those two things stop matching?
           </p>
 
           <p>
             <strong>
-              I take complicated problems and provide
-              simple solutions.
+              Start there.
             </strong>
           </p>
 
@@ -88,42 +94,43 @@
 
 
     <!-- =====================================================
-         CONSULTING
+         CONSULTING HIT
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          Consulting · Systems · Process
+        </p>
 
-          <p class="eyebrow">
-            Consulting · Systems · Process
-          </p>
+        <h2 class="section-title">
+          You Can't Fix<br>
+          What You Can't See.
+        </h2>
 
-          <h2 class="section-title">
-            You Can't Fix<br>
-            What You Can't See.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <p>
-            Organizations get used to their own problems.
-          </p>
+        <div
+          class="project-detail-card"
+          style="margin-top:24px;"
+        >
 
           <p>
             Bottlenecks become normal.
             Waste becomes procedure.
             Workarounds become part of the job.
-            Eventually nobody remembers why the system
-            works that way in the first place.
           </p>
 
           <p>
-            That's when an outside set of eyes becomes valuable.
+            I follow the process from beginning to end,
+            find where the system is fighting itself,
+            and simplify it.
+          </p>
+
+          <p>
+            <strong>
+              Complicated problem.
+              Simple solution.
+            </strong>
           </p>
 
         </div>
@@ -134,7 +141,38 @@
 
 
     <!-- =====================================================
-         BOOTS ON THE GROUND
+         VISUAL BREAK
+         ===================================================== -->
+
+    <section
+      class="page-section"
+      style="padding-top:10px;"
+    >
+      <div class="wrap">
+
+        <div class="project-gallery">
+
+          <img
+            src="./IMG_6741.jpeg"
+            alt="Caterpillar generator load testing"
+            loading="lazy"
+          >
+
+          <img
+            src="./IMG_6754.jpeg"
+            alt="EMD locomotive engine"
+            loading="lazy"
+          >
+
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         HOW I WORK
          ===================================================== -->
 
     <section class="page-section">
@@ -147,35 +185,33 @@
           </p>
 
           <h2 class="section-title">
-            Boots On<br>
-            The Ground.
+            Follow The<br>
+            Damn Thing.
           </h2>
 
         </div>
 
-
         <div class="project-detail-card">
 
           <p>
-            I don't want a conference-room explanation
-            of how the process is supposed to work.
+            I don't want the conference-room version
+            of how a process is supposed to work.
           </p>
 
           <p>
-            I want to follow it.
+            I want to watch the work move through the system.
           </p>
 
           <p>
-            Start at the beginning.
-            Move through the system the way the work actually moves.
-            Document the obstacles, handoffs, redundancies,
-            delays and unnecessary complexity along the way.
+            Find the delays. Bad handoffs. Redundant steps.
+            Workarounds. Wasted motion. Assumptions nobody
+            has questioned in years.
           </p>
 
           <p>
-            The difference between the process on paper
-            and the process people actually live with every day
-            is usually where the useful information is.
+            <strong>
+              Reality is the process.
+            </strong>
           </p>
 
         </div>
@@ -186,27 +222,26 @@
 
 
     <!-- =====================================================
-         EXPERIENCE / RECEIPTS
+         RECEIPTS
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          The Receipts
+        </p>
 
-          <p class="eyebrow">
-            The Receipts
-          </p>
-
-          <h2 class="section-title">
-            Make The System<br>
-            Easier To Live With.
-          </h2>
-
-        </div>
+        <h2 class="section-title">
+          Make It<br>
+          Work Better.
+        </h2>
 
 
-        <div class="project-grid">
+        <div
+          class="project-grid"
+          style="margin-top:32px;"
+        >
 
           <article class="project-detail-card">
 
@@ -215,13 +250,12 @@
             </p>
 
             <h3>
-              Build It Once.<br>
-              Let It Keep Working.
+              Build It Once.
             </h3>
 
             <p>
-              I've built automated systems that remain
-              in use years after they were implemented.
+              Automated systems I've built remain
+              in use years after implementation.
             </p>
 
           </article>
@@ -239,8 +273,8 @@
             </h3>
 
             <p>
-              I've written and improved processes that
-              reduced waste while increasing productivity.
+              Processes I've written and improved
+              have reduced waste and increased productivity.
             </p>
 
           </article>
@@ -253,14 +287,13 @@
             </p>
 
             <h3>
-              Find The<br>
-              Bottleneck.
+              Find The Bottleneck.
             </h3>
 
             <p>
-              When the people inside a system can no longer
-              see what's slowing it down, I trace the work
-              until the obstacle becomes visible.
+              When the people inside the system
+              can't see what's slowing it down,
+              follow the work until the obstacle appears.
             </p>
 
           </article>
@@ -273,210 +306,14 @@
 
 
     <!-- =====================================================
-         THE BRIDGE
+         VISUAL REWARD
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:10px;"
+    >
       <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Same Brain
-          </p>
-
-          <h2 class="section-title">
-            Organizations.<br>
-            Machines.<br>
-            Same Questions.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <p>
-            What is it supposed to do?
-          </p>
-
-          <p>
-            What is it actually doing?
-          </p>
-
-          <p>
-            Where does the outcome change?
-          </p>
-
-          <p>
-            What assumption are we treating as fact?
-          </p>
-
-          <p>
-            What happens if we follow the evidence
-            instead of the explanation?
-          </p>
-
-          <p>
-            <strong>
-              Change the system.
-              The method still works.
-            </strong>
-          </p>
-
-        </div>
-
-      </div>
-    </section>
-
-
-
-    <!-- =====================================================
-         TECHNICAL PROBLEM SOLVING
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Technical Problem Solving
-          </p>
-
-          <h2 class="section-title">
-            Sometimes The System<br>
-            Has An Engine.
-          </h2>
-
-        </div>
-
-
-        <div class="project-grid">
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-
-              <img
-                src="./IMG_6748.jpeg"
-                alt="Tools laid across a truck engine bay"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Diagnosis
-              </p>
-
-              <h3>
-                Diagnose First.
-              </h3>
-
-              <p>
-                Test what you think you know.
-                Find what's actually wrong before
-                buying the answer you hoped for.
-              </p>
-
-            </div>
-
-          </article>
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-
-              <img
-                src="./IMG_6741.jpeg"
-                alt="Caterpillar generator load testing"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Power Generation
-              </p>
-
-              <h3>
-                Caterpillar Genset.
-              </h3>
-
-              <p>
-                AC power. Load testing.
-                Understand what the system is supposed
-                to do before deciding what's wrong.
-              </p>
-
-            </div>
-
-          </article>
-
-
-          <article class="project-card project-card-static">
-
-            <div class="project-card-media">
-
-              <img
-                src="./IMG_6754.jpeg"
-                alt="EMD locomotive engine"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <p class="eyebrow">
-                Railroad
-              </p>
-
-              <h3>
-                EMD Power.
-              </h3>
-
-              <p>
-                The parts get considerably heavier.
-                The logic doesn't.
-              </p>
-
-            </div>
-
-          </article>
-
-        </div>
-
-      </div>
-    </section>
-
-
-
-    <!-- =====================================================
-         RANGE
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Change The Machine
-          </p>
-
-          <h2 class="section-title">
-            Still Works.
-          </h2>
-
-        </div>
-
 
         <div class="project-gallery">
 
@@ -493,17 +330,38 @@
           >
 
           <img
-            src="./IMG_6746.jpeg"
-            alt="Working on heavy industrial machinery"
+            src="./IMG_6751.jpeg"
+            alt="Super Duty with hood open"
             loading="lazy"
           >
 
         </div>
 
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         SAME BRAIN
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Same Brain
+        </p>
+
+        <h2 class="section-title">
+          Organization.<br>
+          Engine.<br>
+          Doesn't Matter.
+        </h2>
 
         <div
           class="project-detail-card"
-          style="margin-top:14px;"
+          style="margin-top:24px;"
         >
 
           <p>
@@ -529,7 +387,7 @@
 
 
     <!-- =====================================================
-         PASS IT DOWN
+         KIDS / VISUAL
          ===================================================== -->
 
     <section class="page-section">
@@ -549,61 +407,37 @@
         </div>
 
 
-        <div class="project-grid">
+        <div class="project-gallery">
 
-          <article class="project-card project-card-static">
+          <img
+            src="./IMG_6749.jpeg"
+            alt="Learning to wrench on the truck"
+            loading="lazy"
+          >
 
-            <div class="project-card-media">
+          <img
+            src="./IMG_6745.jpeg"
+            alt="Helping work on a motorcycle"
+            loading="lazy"
+          >
 
-              <img
-                src="./IMG_6749.jpeg"
-                alt="Learning to wrench on the truck"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <h3>
-                Turn The Wrench.
-              </h3>
-
-              <p>
-                Let them see how things work.
-              </p>
-
-            </div>
-
-          </article>
+        </div>
 
 
-          <article class="project-card project-card-static">
+        <div
+          class="project-detail-card"
+          style="margin-top:14px;"
+        >
 
-            <div class="project-card-media">
+          <p>
+            The answer matters.
+          </p>
 
-              <img
-                src="./IMG_6745.jpeg"
-                alt="Helping work on a motorcycle"
-                loading="lazy"
-              >
-
-            </div>
-
-            <div class="project-card-body">
-
-              <h3>
-                Ask Why.
-              </h3>
-
-              <p>
-                The answer matters.
-                Knowing how to find it matters more.
-              </p>
-
-            </div>
-
-          </article>
+          <p>
+            <strong>
+              Knowing how to find it matters more.
+            </strong>
+          </p>
 
         </div>
 
@@ -628,20 +462,11 @@
           Isn't The Skill.
         </h2>
 
-        <p
-          style="
-            max-width:760px;
-            margin:24px 0 0;
-            color:#d6c49e;
-            font-size:clamp(1.15rem, 3vw, 1.6rem);
-            line-height:1.55;
-          "
-        >
-          Give me enough information
-          and enough access to understand the system.
+        <p class="home-hero-copy">
+          Give me enough access to understand the system.
           <br><br>
 
-          <strong style="color:var(--paper-2);">
+          <strong>
             I'll figure out the rest.
           </strong>
         </p>
