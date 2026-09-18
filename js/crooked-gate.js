@@ -64,6 +64,15 @@ function renderCrookedGatePage() {
             One System.
           </h2>
 
+          <a
+            class="project-card-link"
+            href="https://crookedgate.co"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Visit Crooked Gate →
+          </a>
+
         </div>
 
       </div>
@@ -159,6 +168,15 @@ function renderCrookedGatePage() {
               into one coherent customer experience.
             </p>
 
+            <a
+              class="project-card-link"
+              href="https://crookedgate.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Explore The Live Site →
+            </a>
+
           </div>
 
         </div>
@@ -212,6 +230,15 @@ function renderCrookedGatePage() {
               The purchasing path stays simple,
               obvious and consistent with the brand.
             </p>
+
+            <a
+              class="project-card-link"
+              href="https://crookedgate.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Try The Store →
+            </a>
 
           </div>
 
@@ -429,6 +456,15 @@ function renderCrookedGatePage() {
             <p>
               So I designed and fabricated the display too.
             </p>
+
+            <a
+              class="project-card-link"
+              href="https://crookedgate.co"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              See Crooked Gate Live →
+            </a>
 
           </div>
 
