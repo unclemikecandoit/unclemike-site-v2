@@ -25,31 +25,65 @@
           Somebody had already “built” this truck.
           <br><br>
           <strong>
-            My job was to make sure it stopped trying
-            to kill its owner—or anybody else on the road.
+            I had to make it stop trying to kill people.
           </strong>
         </p>
 
 
+        <!-- HERO TEASER -->
         <div
           style="
-            margin-top:48px;
+            margin-top:32px;
+            height:clamp(220px, 38vh, 380px);
             overflow:hidden;
             border:1px solid var(--line);
           "
         >
-
           <img
             src="./c10-hero.jpg"
             alt="1972 Chevrolet C10 project"
+            loading="eager"
             style="
               display:block;
               width:100%;
-              max-height:780px;
+              height:100%;
               object-fit:cover;
+              object-position:center center;
             "
           >
+        </div>
 
+
+        <!-- SCROLL CUE -->
+        <div
+          style="
+            margin-top:18px;
+            text-align:center;
+            padding:18px 10px 4px;
+          "
+        >
+          <p
+            class="eyebrow"
+            style="
+              margin-bottom:8px;
+            "
+          >
+            This Thing Was A Mess
+          </p>
+
+          <a
+            href="#first-fix"
+            style="
+              display:inline-block;
+              color:var(--paper);
+              text-decoration:none;
+              font-weight:700;
+              letter-spacing:.08em;
+              text-transform:uppercase;
+            "
+          >
+            Keep Scrolling — Watch Me Work ↓
+          </a>
         </div>
 
       </div>
@@ -61,57 +95,26 @@
          FIRST DISCOVERY
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      id="first-fix"
+      style="padding-top:24px;"
+    >
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          01 · Previous Work
+        </p>
 
-          <p class="eyebrow">
-            01 · Let's See What We're Working With
-          </p>
-
-          <h2 class="section-title">
-            Well, That's Not<br>
-            Supposed To Be Loose.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <p>
-            The truck had already been modified
-            before it came to me.
-          </p>
-
-          <p>
-            Unfortunately, whoever did the work
-            apparently considered properly torquing
-            the rear-end hardware optional.
-          </p>
-
-          <p>
-            Loose hardware in the rear suspension
-            isn't a cosmetic problem.
-          </p>
-
-          <h3
-            style="
-              margin-top:28px;
-              margin-bottom:0;
-            "
-          >
-            This is the kind of shit you want to find
-            before somebody discovers it at highway speed.
-          </h3>
-
-        </div>
+        <h2 class="section-title">
+          Well, That's Not<br>
+          Supposed To Be Loose.
+        </h2>
 
 
         <div
           class="video-card"
-          style="margin-top:32px;"
+          style="margin-top:24px;"
         >
 
           <div class="video-frame">
@@ -162,7 +165,7 @@
           <div class="video-card-body">
 
             <p class="eyebrow">
-              Previous Work
+              Rear Suspension
             </p>
 
             <h3>
@@ -170,8 +173,7 @@
             </h3>
 
             <p>
-              A pretty good indication that we should
-              probably inspect everything else too.
+              Probably worth checking everything else.
             </p>
 
           </div>
@@ -184,34 +186,20 @@
 
 
     <!-- =====================================================
-         UH OH
+         PATTERN BREAK
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="project-detail-card">
+        <p class="eyebrow">
+          And There It Is
+        </p>
 
-          <p class="eyebrow">
-            And There It Is
-          </p>
-
-          <h2>
-            If That's Wrong,<br>
-            What Else Is Wrong?
-          </h2>
-
-          <p>
-            That's the problem with finding one
-            genuinely dangerous shortcut.
-          </p>
-
-          <p>
-            You don't get to assume the rest
-            of the work was done correctly.
-          </p>
-
-        </div>
+        <h2 class="section-title">
+          If That's Wrong,<br>
+          What Else Is Wrong?
+        </h2>
 
       </div>
     </section>
@@ -222,55 +210,45 @@
          SUSPENSION
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:24px;"
+    >
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          02 · Suspension
+        </p>
 
-          <p class="eyebrow">
-            02 · Fix The Actual Problem
-          </p>
-
-          <h2 class="section-title">
-            When Lowering It<br>
-            Goes Wrong.
-          </h2>
-
-        </div>
+        <h2 class="section-title">
+          When Lowering It<br>
+          Goes Wrong.
+        </h2>
 
 
-        <div class="project-detail-card">
-
-          <p>
-            The truck had been lowered badly enough
-            that the frame was contacting the axle housing.
-          </p>
+        <div
+          class="project-detail-card"
+          style="margin-top:24px;"
+        >
 
           <p>
-            The goal wasn't to throw expensive parts at it
-            or rebuild the entire suspension just because
-            I could.
+            Frame hitting axle.
           </p>
 
           <p>
-            The goal was to solve the problem in a way
-            that made sense for the owner.
-          </p>
-
-          <p>
-            Airbags were the most budget-friendly solution.
-            They corrected the clearance problem and gave
-            the truck additional support so it could still
-            be useful for towing.
+            <strong>
+              Airbags fixed the clearance
+              without murdering the owner's budget.
+            </strong>
           </p>
 
           <h3
             style="
-              margin-top:28px;
+              margin-top:24px;
               margin-bottom:0;
             "
           >
-            The mounts I needed didn't exist.
+            The mounts didn't exist.<br>
             So I made them.
           </h3>
 
@@ -279,7 +257,7 @@
 
         <div
           class="video-card"
-          style="margin-top:32px;"
+          style="margin-top:18px;"
         >
 
           <div class="video-frame">
@@ -330,19 +308,12 @@
           <div class="video-card-body">
 
             <p class="eyebrow">
-              Fabrication · Suspension
+              Fabrication
             </p>
 
             <h3>
               Make What You Need.
             </h3>
-
-            <p>
-              Custom-fabricated airbag mounts,
-              installed to correct the axle-to-frame
-              interference without turning the owner's
-              budget into another casualty.
-            </p>
 
           </div>
 
@@ -354,33 +325,20 @@
 
 
     <!-- =====================================================
-         NOT DONE
+         KEEP GOING
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="project-detail-card">
+        <p class="eyebrow">
+          Naturally
+        </p>
 
-          <p class="eyebrow">
-            Naturally
-          </p>
-
-          <h2>
-            Cool.<br>
-            Keep Finding Shit.
-          </h2>
-
-          <p>
-            Suspension wasn't the end of it.
-          </p>
-
-          <p>
-            Fixing the biggest problem just gave us
-            room to find the smaller ones.
-          </p>
-
-        </div>
+        <h2 class="section-title">
+          Cool.<br>
+          Keep Finding Shit.
+        </h2>
 
       </div>
     </section>
@@ -391,26 +349,25 @@
          EVERYTHING ELSE
          ===================================================== -->
 
-    <section class="page-section">
+    <section
+      class="page-section"
+      style="padding-top:24px;"
+    >
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          03 · Mechanical · Fuel · Electrical
+        </p>
 
-          <p class="eyebrow">
-            03 · Mechanical · Fuel · Electrical
-          </p>
-
-          <h2 class="section-title">
-            Unfucking<br>
-            Everything Else.
-          </h2>
-
-        </div>
+        <h2 class="section-title">
+          Unfucking<br>
+          Everything Else.
+        </h2>
 
 
         <div
           class="project-detail-grid"
-          style="margin-bottom:32px;"
+          style="margin-top:28px; margin-bottom:24px;"
         >
 
           <div class="project-detail-card">
@@ -425,22 +382,22 @@
 
           <div class="project-detail-card">
             <p class="eyebrow">Fuel</p>
-            <h3>Rebuild The Carburetor.</h3>
+            <h3>Rebuild The Carb.</h3>
           </div>
 
           <div class="project-detail-card">
             <p class="eyebrow">Fuel</p>
-            <h3>Install A Filter.</h3>
+            <h3>Add A Filter.</h3>
           </div>
 
           <div class="project-detail-card">
             <p class="eyebrow">Transmission</p>
-            <h3>Replace The Vacuum Modulator.</h3>
+            <h3>Vacuum Modulator.</h3>
           </div>
 
           <div class="project-detail-card">
             <p class="eyebrow">Electrical</p>
-            <h3>Redo Some Really Bad Wiring.</h3>
+            <h3>Fix The Wiring.</h3>
           </div>
 
         </div>
@@ -483,7 +440,7 @@
                 </span>
 
                 <span class="video-cover-title">
-                  Unfucking Everything Else.
+                  One Problem At A Time.
                 </span>
 
               </div>
@@ -496,16 +453,14 @@
           <div class="video-card-body">
 
             <p class="eyebrow">
-              One Problem At A Time
+              The Process
             </p>
 
             <h3>
-              Find It. Understand It. Fix It.
+              Find It.<br>
+              Understand It.<br>
+              Fix It.
             </h3>
-
-            <p>
-              Then move to the next thing.
-            </p>
 
           </div>
 
@@ -523,41 +478,35 @@
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
+        <p class="eyebrow">
+          The Result
+        </p>
 
-          <p class="eyebrow">
-            The Result
-          </p>
-
-          <h2 class="section-title">
-            Considerably Less<br>
-            Death-Trappy.
-          </h2>
-
-        </div>
+        <h2 class="section-title">
+          Considerably Less<br>
+          Death-Trappy.
+        </h2>
 
 
-        <div class="project-detail-card">
-
-          <p>
-            The point wasn't to turn somebody else's
-            truck into my truck.
-          </p>
+        <div
+          class="project-detail-card"
+          style="margin-top:24px;"
+        >
 
           <p>
-            It was to understand what was wrong,
-            fix the dangerous shit, correct the bad
-            decisions where they mattered and stay
-            conscious of the owner's budget.
+            Fix the dangerous shit.
+            Correct the bad decisions.
+            Respect the owner's budget.
           </p>
 
           <h3
             style="
-              margin-top:28px;
+              margin-top:24px;
               margin-bottom:0;
             "
           >
-            Safer. More useful.
+            Safer.<br>
+            More useful.<br>
             Better than I found it.
           </h3>
 
@@ -569,34 +518,24 @@
 
 
     <!-- =====================================================
-         PERSONALITY RELEASE
+         PERSONALITY
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Meanwhile
-          </p>
-
-          <h2 class="section-title">
-            Mike Being Mike.
-          </h2>
-
-        </div>
-
-
-        <p class="home-hero-copy">
-          Not every part of the build journal
-          needs to be educational.
+        <p class="eyebrow">
+          Meanwhile
         </p>
+
+        <h2 class="section-title">
+          Mike Being Mike.
+        </h2>
 
 
         <div
           class="video-card"
-          style="margin-top:32px;"
+          style="margin-top:24px;"
         >
 
           <div class="video-frame">
@@ -636,23 +575,6 @@
               </div>
 
             </div>
-
-          </div>
-
-
-          <div class="video-card-body">
-
-            <p class="eyebrow">
-              Pattern Recognition
-            </p>
-
-            <h3>
-              Seems Unrelated.
-            </h3>
-
-            <p>
-              It isn't.
-            </p>
 
           </div>
 
