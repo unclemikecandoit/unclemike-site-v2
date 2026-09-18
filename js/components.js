@@ -1,3 +1,13 @@
+/* =========================================================
+   UNCLE MIKE — SHARED SITE SYSTEM
+   Persistent navigation + transitions + video management
+   ========================================================= */
+
+
+/* =========================================================
+   SITE ROOT
+   ========================================================= */
+
 function getSiteRoot() {
   const path = window.location.pathname;
 
@@ -21,6 +31,117 @@ function getSiteRoot() {
 
   return "./";
 }
+
+
+
+/* =========================================================
+   ROUTES
+   ========================================================= */
+
+const UNCLE_MIKE_ROUTES = {
+  "/": {
+    script: "/js/home.js",
+    renderer: "renderHomePage",
+    title: "Uncle Mike Can Do It"
+  },
+
+  "/make/": {
+    script: "/js/make.js",
+    renderer: "renderMakePage",
+    title: "Make | Uncle Mike Can Do It"
+  },
+
+  "/build/": {
+    script: "/js/build.js",
+    renderer: "renderBuildPage",
+    title: "Builds | Uncle Mike Can Do It"
+  },
+
+  "/figure-it-out/": {
+    script: "/js/figure-it-out.js",
+    renderer: "renderFigureItOutPage",
+    title: "Figure It Out | Uncle Mike Can Do It"
+  },
+
+  "/about/": {
+    script: "/js/about.js",
+    renderer: "renderAboutPage",
+    title: "About | Uncle Mike Can Do It"
+  },
+
+  "/contact/": {
+    script: "/js/contact.js",
+    renderer: "renderContactPage",
+    title: "Contact | Uncle Mike Can Do It"
+  },
+
+  "/build/ranchero/": {
+    script: "/js/ranchero.js",
+    renderer: "renderRancheroPage",
+    title: "1965 Ford Ranchero | Uncle Mike Can Do It"
+  },
+
+  "/build/C10/": {
+    script: "/js/c10.js",
+    renderer: "renderC10Page",
+    title: "1972 Chevy C10 | Uncle Mike Can Do It"
+  },
+
+  "/make/crooked-gate/": {
+    script: "/js/crooked-gate.js",
+    renderer: "renderCrookedGatePage",
+    title: "Crooked Gate Seasonings | Uncle Mike Can Do It"
+  }
+};
+
+
+function normalizeRoutePath(pathname) {
+  let path = pathname || "/";
+
+  if (!path.startsWith("/")) {
+    path = `/${path}`;
+  }
+
+  if (
+    path !== "/" &&
+    !path.endsWith("/")
+  ) {
+    path += "/";
+  }
+
+  return path;
+}
+
+
+function getCurrentRoute() {
+  return normalizeRoutePath(
+    window.location.pathname
+  );
+}
+
+
+function getRouteConfig(pathname) {
+  const path =
+    normalizeRoutePath(pathname);
+
+  return (
+    UNCLE_MIKE_ROUTES[path] ||
+    null
+  );
+}
+
+
+
+/* =========================================================
+   ROUTER STATE
+   ========================================================= */
+
+window.UNCLE_MIKE_ROUTER_ACTIVE = true;
+
+const loadedRouteScripts =
+  new Map();
+
+let siteNavigationRunning = false;
 
 
 
@@ -764,6 +885,56 @@ function renderSiteFooter() {
 
 
 /* =========================================================
+   PERSISTENT SHOP RADIO MOUNT
+   Actual player gets added next.
+   This element NEVER gets replaced during internal navigation.
+   ========================================================= */
+
+function createShopRadioMount() {
+  if (
+    document.getElementById(
+      "shop-radio"
+    )
+  ) {
+    return;
+  }
+
+
+  const radio =
+    document.createElement("div");
+
+  radio.id =
+    "shop-radio";
+
+  radio.setAttribute(
+    "aria-label",
+    "Uncle Mike's Shop Radio"
+  );
+
+
+  const footerMount =
+    document.getElementById(
+      "site-footer"
+    );
+
+
+  if (footerMount) {
+    document.body.insertBefore(
+      radio,
+      footerMount
+    );
+  }
+
+  else {
+    document.body.appendChild(
+      radio
+    );
+  }
+}
+
+
+
+/* =========================================================
    UNCLE MIKE RESPONSE BANK
    ========================================================= */
 
@@ -899,7 +1070,7 @@ const UNCLE_MIKE_TRANSITION_LINES = [
 
 
 /* =========================================================
-   SHUFFLED DECK
+   SHUFFLED TRANSITION DECK
    ========================================================= */
 
 const UNCLE_MIKE_DECK_KEY =
@@ -969,7 +1140,7 @@ function getTransitionDeck() {
   }
 
   catch {
-    /* If storage is unavailable, use a fresh deck. */
+    /* Use a fresh deck. */
   }
 
   return makeFreshTransitionDeck();
@@ -985,7 +1156,7 @@ function saveTransitionDeck(deck) {
   }
 
   catch {
-    /* Navigation still works if storage is unavailable. */
+    /* Navigation still works. */
   }
 }
 
@@ -1026,8 +1197,10 @@ function createSiteTransition() {
     return;
   }
 
+
   const transition =
     document.createElement("div");
+
 
   transition.id =
     "site-text-transition";
@@ -1040,11 +1213,13 @@ function createSiteTransition() {
     "true"
   );
 
+
   transition.innerHTML = `
     <div class="site-text-transition-inner">
       <div class="site-transition-line"></div>
     </div>
   `;
+
 
   document.body.appendChild(
     transition
@@ -1054,7 +1229,553 @@ function createSiteTransition() {
 
 
 /* =========================================================
-   INTERNAL LINK BEHAVIOR
+   ROUTE SCRIPT LOADER
+   ========================================================= */
+
+function loadRouteScript(route) {
+  const config =
+    getRouteConfig(route);
+
+  if (!config) {
+    return Promise.reject(
+      new Error(
+        `Unknown route: ${route}`
+      )
+    );
+  }
+
+
+  const existingRenderer =
+    window[config.renderer];
+
+
+  if (
+    typeof existingRenderer ===
+    "function"
+  ) {
+    return Promise.resolve();
+  }
+
+
+  if (
+    loadedRouteScripts.has(
+      config.script
+    )
+  ) {
+    return loadedRouteScripts.get(
+      config.script
+    );
+  }
+
+
+  const promise =
+    new Promise(
+      (resolve, reject) => {
+
+        const script =
+          document.createElement(
+            "script"
+          );
+
+
+        script.src =
+          config.script;
+
+        script.async =
+          true;
+
+
+        script.onload =
+          () => {
+
+            if (
+              typeof window[
+                config.renderer
+              ] !== "function"
+            ) {
+              reject(
+                new Error(
+                  `Renderer ${config.renderer} was not found.`
+                )
+              );
+
+              return;
+            }
+
+
+            resolve();
+          };
+
+
+        script.onerror =
+          () => {
+            reject(
+              new Error(
+                `Could not load ${config.script}`
+              )
+            );
+          };
+
+
+        document.head.appendChild(
+          script
+        );
+
+      }
+    );
+
+
+  loadedRouteScripts.set(
+    config.script,
+    promise
+  );
+
+
+  return promise;
+}
+
+
+
+/* =========================================================
+   PRELOAD ROUTE RENDERERS
+   ========================================================= */
+
+function preloadRouteRenderers() {
+  Object.keys(
+    UNCLE_MIKE_ROUTES
+  ).forEach(
+    (route) => {
+
+      loadRouteScript(route)
+        .catch(() => {
+          /*
+           * Do nothing here.
+           * If a route cannot preload,
+           * normal navigation remains
+           * available as fallback.
+           */
+        });
+
+    }
+  );
+}
+
+
+
+/* =========================================================
+   VIDEO MANAGEMENT
+   ========================================================= */
+
+let videoVisibilityObserver = null;
+
+
+function pauseAllPageVideos(
+  exceptVideo = null
+) {
+  const page =
+    document.getElementById(
+      "page-content"
+    );
+
+  if (!page) return;
+
+
+  page
+    .querySelectorAll("video")
+    .forEach(
+      (video) => {
+
+        if (
+          video === exceptVideo
+        ) {
+          return;
+        }
+
+
+        if (!video.paused) {
+          video.pause();
+        }
+
+      }
+    );
+}
+
+
+function initPageVideoManagement() {
+  const page =
+    document.getElementById(
+      "page-content"
+    );
+
+  if (!page) return;
+
+
+  if (videoVisibilityObserver) {
+    videoVisibilityObserver.disconnect();
+  }
+
+
+  videoVisibilityObserver =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(
+          (entry) => {
+
+            const video =
+              entry.target;
+
+
+            /*
+             * If the video is basically
+             * out of view, stop playback.
+             *
+             * We DO NOT automatically
+             * resume when it returns.
+             */
+            if (
+              !entry.isIntersecting ||
+              entry.intersectionRatio < 0.15
+            ) {
+              if (!video.paused) {
+                video.pause();
+              }
+            }
+
+          }
+        );
+
+      },
+      {
+        threshold: [
+          0,
+          0.15,
+          0.5,
+          1
+        ]
+      }
+    );
+
+
+  page
+    .querySelectorAll("video")
+    .forEach(
+      (video) => {
+
+        videoVisibilityObserver.observe(
+          video
+        );
+
+
+        video.addEventListener(
+          "play",
+          () => {
+            pauseAllPageVideos(
+              video
+            );
+          }
+        );
+
+      }
+    );
+}
+
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+let revealObserver = null;
+
+
+function initScrollReveal() {
+  const reducedMotion =
+    window.matchMedia(
+      "(prefers-reduced-motion: reduce)"
+    ).matches;
+
+
+  if (reducedMotion) {
+    return;
+  }
+
+
+  document.documentElement.classList.add(
+    "has-reveal-motion"
+  );
+
+
+  const selector = [
+    ".category-card",
+    ".project-card",
+    ".project-detail-card",
+    ".video-card",
+    ".project-media-placeholder"
+  ].join(", ");
+
+
+  if (revealObserver) {
+    revealObserver.disconnect();
+  }
+
+
+  revealObserver =
+    new IntersectionObserver(
+      (entries) => {
+
+        entries.forEach(
+          (entry) => {
+
+            if (!entry.isIntersecting) {
+              return;
+            }
+
+
+            entry.target.classList.add(
+              "is-visible"
+            );
+
+
+            revealObserver.unobserve(
+              entry.target
+            );
+
+          }
+        );
+
+      },
+      {
+        threshold: 0.12,
+        rootMargin:
+          "0px 0px -25px 0px"
+      }
+    );
+
+
+  document
+    .querySelectorAll(selector)
+    .forEach(
+      (element) => {
+
+        element.classList.add(
+          "scroll-reveal"
+        );
+
+
+        /*
+         * Remove old registration flag
+         * because persistent navigation
+         * creates fresh DOM each route.
+         */
+        delete element.dataset
+          .revealRegistered;
+
+
+        revealObserver.observe(
+          element
+        );
+
+      }
+    );
+}
+
+
+
+/* =========================================================
+   RENDER CURRENT ROUTE
+   ========================================================= */
+
+async function renderCurrentRoute() {
+  const route =
+    getCurrentRoute();
+
+  const config =
+    getRouteConfig(route);
+
+
+  if (!config) {
+    return false;
+  }
+
+
+  try {
+    await loadRouteScript(
+      route
+    );
+  }
+
+  catch (error) {
+    return false;
+  }
+
+
+  const renderer =
+    window[config.renderer];
+
+
+  if (
+    typeof renderer !==
+    "function"
+  ) {
+    return false;
+  }
+
+
+  renderer();
+
+
+  document.title =
+    config.title;
+
+
+  renderSiteHeader();
+
+  renderSiteFooter();
+
+  removeLegacyBackLinks();
+
+  initScrollReveal();
+
+  initPageVideoManagement();
+
+
+  return true;
+}
+
+
+
+/* =========================================================
+   INTERNAL NAVIGATION
+   ========================================================= */
+
+async function navigateTo(
+  destination,
+  options = {}
+) {
+  const {
+    replace = false,
+    scroll = true
+  } = options;
+
+
+  const url =
+    destination instanceof URL
+      ? destination
+      : new URL(
+          destination,
+          window.location.href
+        );
+
+
+  const route =
+    normalizeRoutePath(
+      url.pathname
+    );
+
+
+  const config =
+    getRouteConfig(route);
+
+
+  if (!config) {
+    window.location.href =
+      url.href;
+
+    return;
+  }
+
+
+  /*
+   * Load the destination renderer
+   * BEFORE touching history.
+   *
+   * If loading fails, we can still
+   * fall back to normal navigation.
+   */
+  try {
+    await loadRouteScript(
+      route
+    );
+  }
+
+  catch {
+    window.location.href =
+      url.href;
+
+    return;
+  }
+
+
+  /*
+   * Stop page video audio before
+   * destroying the old content.
+   * Shop Radio lives outside the
+   * page and is untouched.
+   */
+  pauseAllPageVideos();
+
+
+  if (replace) {
+    history.replaceState(
+      {
+        uncleMikeRoute: route
+      },
+      "",
+      url.href
+    );
+  }
+
+  else {
+    history.pushState(
+      {
+        uncleMikeRoute: route
+      },
+      "",
+      url.href
+    );
+  }
+
+
+  const rendered =
+    await renderCurrentRoute();
+
+
+  if (!rendered) {
+    window.location.href =
+      url.href;
+
+    return;
+  }
+
+
+  if (url.hash) {
+    const target =
+      document.querySelector(
+        url.hash
+      );
+
+
+    if (target) {
+      target.scrollIntoView();
+    }
+  }
+
+  else if (scroll) {
+    window.scrollTo(
+      {
+        top: 0,
+        left: 0,
+        behavior: "instant"
+      }
+    );
+  }
+}
+
+
+
+/* =========================================================
+   TRANSITION + INTERNAL LINK HANDLING
    ========================================================= */
 
 function initSiteLinkTransitions() {
@@ -1065,6 +1786,7 @@ function initSiteLinkTransitions() {
 
   if (!transition) return;
 
+
   const line =
     transition.querySelector(
       ".site-transition-line"
@@ -1072,20 +1794,22 @@ function initSiteLinkTransitions() {
 
   if (!line) return;
 
+
   const reducedMotion =
     window.matchMedia(
       "(prefers-reduced-motion: reduce)"
     ).matches;
 
-  let transitionRunning = false;
-
 
   document.addEventListener(
     "click",
-    (event) => {
+    async (event) => {
 
       const link =
-        event.target.closest("a[href]");
+        event.target.closest(
+          "a[href]"
+        );
+
 
       if (!link) return;
 
@@ -1103,7 +1827,9 @@ function initSiteLinkTransitions() {
 
 
       if (
-        link.hasAttribute("download")
+        link.hasAttribute(
+          "download"
+        )
       ) {
         return;
       }
@@ -1134,8 +1860,10 @@ function initSiteLinkTransitions() {
 
 
       if (
-        destination.protocol !== "http:" &&
-        destination.protocol !== "https:"
+        destination.protocol !==
+          "http:" &&
+        destination.protocol !==
+          "https:"
       ) {
         return;
       }
@@ -1149,11 +1877,20 @@ function initSiteLinkTransitions() {
       }
 
 
-      if (
+      const sameDocument =
         destination.pathname ===
           window.location.pathname &&
         destination.search ===
-          window.location.search &&
+          window.location.search;
+
+
+      /*
+       * Normal same-page anchor.
+       * Example:
+       * Keep Scrolling — Watch Me Work
+       */
+      if (
+        sameDocument &&
         destination.hash
       ) {
         return;
@@ -1168,20 +1905,48 @@ function initSiteLinkTransitions() {
       }
 
 
-      if (reducedMotion) {
-        return;
-      }
+      const destinationRoute =
+        normalizeRoutePath(
+          destination.pathname
+        );
 
 
-      if (transitionRunning) {
-        event.preventDefault();
+      if (
+        !getRouteConfig(
+          destinationRoute
+        )
+      ) {
         return;
       }
 
 
       event.preventDefault();
 
-      transitionRunning = true;
+
+      if (siteNavigationRunning) {
+        return;
+      }
+
+
+      siteNavigationRunning =
+        true;
+
+
+      /*
+       * Reduced motion:
+       * navigate immediately,
+       * but still persist the shell.
+       */
+      if (reducedMotion) {
+        await navigateTo(
+          destination
+        );
+
+        siteNavigationRunning =
+          false;
+
+        return;
+      }
 
 
       const choice =
@@ -1191,6 +1956,7 @@ function initSiteLinkTransitions() {
       line.innerHTML =
         choice.text;
 
+
       line.className =
         `site-transition-line is-${choice.style}`;
 
@@ -1199,19 +1965,43 @@ function initSiteLinkTransitions() {
         "is-active"
       );
 
+
       void transition.offsetWidth;
+
 
       transition.classList.add(
         "is-active"
       );
 
 
+      /*
+       * Swap content while the
+       * transition owns the screen.
+       */
       window.setTimeout(
-        () => {
-          window.location.href =
-            destination.href;
+        async () => {
+
+          await navigateTo(
+            destination
+          );
+
+
+          /*
+           * Existing transition CSS
+           * controls its disappearance.
+           * We simply release navigation
+           * shortly after the swap.
+           */
+          window.setTimeout(
+            () => {
+              siteNavigationRunning =
+                false;
+            },
+            350
+          );
+
         },
-        1400
+        700
       );
 
     }
@@ -1221,160 +2011,62 @@ function initSiteLinkTransitions() {
 
 
 /* =========================================================
-   SCROLL REVEAL
+   BACK / FORWARD
    ========================================================= */
 
-function initScrollReveal() {
-  const reducedMotion =
-    window.matchMedia(
-      "(prefers-reduced-motion: reduce)"
-    ).matches;
+function initHistoryNavigation() {
+  window.addEventListener(
+    "popstate",
+    async () => {
 
-  if (reducedMotion) {
-    return;
-  }
-
-
-  document.documentElement.classList.add(
-    "has-reveal-motion"
-  );
-
-
-  const selector = [
-    ".category-card",
-    ".project-card",
-    ".project-detail-card",
-    ".video-card",
-    ".project-media-placeholder"
-  ].join(", ");
-
-
-  const observer =
-    new IntersectionObserver(
-      (entries) => {
-
-        entries.forEach(
-          (entry) => {
-
-            if (!entry.isIntersecting) {
-              return;
-            }
-
-            entry.target.classList.add(
-              "is-visible"
-            );
-
-            observer.unobserve(
-              entry.target
-            );
-
-          }
-        );
-
-      },
-      {
-        threshold: 0.12,
-        rootMargin:
-          "0px 0px -25px 0px"
+      if (siteNavigationRunning) {
+        return;
       }
-    );
 
 
-  function registerRevealElements(
-    root = document
-  ) {
-
-    if (
-      root.matches &&
-      root.matches(selector) &&
-      !root.dataset.revealRegistered
-    ) {
-
-      root.dataset.revealRegistered =
-        "true";
-
-      root.classList.add(
-        "scroll-reveal"
-      );
-
-      observer.observe(
-        root
-      );
-    }
+      siteNavigationRunning =
+        true;
 
 
-    if (!root.querySelectorAll) {
-      return;
-    }
+      pauseAllPageVideos();
 
 
-    root
-      .querySelectorAll(selector)
-      .forEach(
-        (element) => {
+      const rendered =
+        await renderCurrentRoute();
 
-          if (
-            element.dataset.revealRegistered
-          ) {
-            return;
-          }
 
-          element.dataset.revealRegistered =
-            "true";
+      if (!rendered) {
+        window.location.reload();
+        return;
+      }
 
-          element.classList.add(
-            "scroll-reveal"
+
+      if (window.location.hash) {
+        const target =
+          document.querySelector(
+            window.location.hash
           );
 
-          observer.observe(
-            element
-          );
 
+        if (target) {
+          target.scrollIntoView();
         }
-      );
-  }
+      }
 
-
-  registerRevealElements(
-    document
-  );
-
-
-  const mutationObserver =
-    new MutationObserver(
-      (mutations) => {
-
-        mutations.forEach(
-          (mutation) => {
-
-            mutation.addedNodes.forEach(
-              (node) => {
-
-                if (
-                  node.nodeType !== 1
-                ) {
-                  return;
-                }
-
-                registerRevealElements(
-                  node
-                );
-
-              }
-            );
-
+      else {
+        window.scrollTo(
+          {
+            top: 0,
+            left: 0,
+            behavior: "instant"
           }
         );
-
       }
-    );
 
 
-  mutationObserver.observe(
-    document.body,
-    {
-      childList: true,
-      subtree: true
+      siteNavigationRunning =
+        false;
+
     }
   );
 }
@@ -1385,16 +2077,59 @@ function initScrollReveal() {
    BOOT
    ========================================================= */
 
-renderSiteHeader();
+async function bootUncleMikeSite() {
 
-injectSharedNavigationStyles();
+  injectSharedNavigationStyles();
 
-renderSiteFooter();
+  createSiteTransition();
 
-removeLegacyBackLinks();
+  createShopRadioMount();
 
-createSiteTransition();
 
-initSiteLinkTransitions();
+  /*
+   * Render shared chrome immediately.
+   */
+  renderSiteHeader();
 
-initScrollReveal();
+  renderSiteFooter();
+
+
+  /*
+   * The page-specific script in each
+   * HTML shell will NOT self-render now
+   * because ROUTER_ACTIVE is true.
+   *
+   * So components.js renders the initial
+   * route itself.
+   */
+  const rendered =
+    await renderCurrentRoute();
+
+
+  /*
+   * If anything unexpected happens,
+   * don't destroy the site. The page's
+   * existing HTML shell remains usable.
+   */
+  if (!rendered) {
+    window.UNCLE_MIKE_ROUTER_ACTIVE =
+      false;
+
+    return;
+  }
+
+
+  initSiteLinkTransitions();
+
+  initHistoryNavigation();
+
+
+  /*
+   * Load the other route renderers
+   * quietly after the first page is ready.
+   */
+  preloadRouteRenderers();
+}
+
+
+bootUncleMikeSite();
