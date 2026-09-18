@@ -1,6 +1,6 @@
 /* =========================================================
    UNCLE MIKE'S SHOP RADIO
-   Persistent Spotify player
+   Tiny persistent Spotify player
    ========================================================= */
 
 (function initShopRadio() {
@@ -9,12 +9,6 @@
 
   if (!mount) return;
 
-  /*
-   * Never rebuild the player.
-   * The entire point is keeping the same
-   * Spotify iframe alive while the site's
-   * page content changes around it.
-   */
   if (mount.dataset.radioReady === "true") {
     return;
   }
@@ -22,129 +16,107 @@
   mount.dataset.radioReady = "true";
 
 
-  const PLAYLIST_ID =
-    "4IaHVqj1E8kTJvVVgLYzMK";
+  /* =======================================================
+     PLAYLIST
+     ======================================================= */
 
   const PLAYLIST_URL =
-    `https://open.spotify.com/playlist/${PLAYLIST_ID}`;
+    "https://open.spotify.com/playlist/4IaHVqj1E8kTJvVVgLYzMK?si=XrKSnTQnQUaNwQTKKNCPRg&utm_source=sms&pi=5V8ykTZZSOGr8";
 
-  const EMBED_URL =
-    `https://open.spotify.com/embed/playlist/${PLAYLIST_ID}?utm_source=generator&theme=0`;
 
+  /* =======================================================
+     PLAYER STATE
+     ======================================================= */
+
+  let spotifyController = null;
+  let isPlaying = false;
+  let spotifyReady = false;
+
+
+  /* =======================================================
+     RADIO
+     ======================================================= */
 
   mount.innerHTML = `
+
     <aside
       class="shop-radio"
       aria-label="Uncle Mike's Shop Radio"
     >
 
-      <div class="shop-radio-top">
+      <div class="shop-radio-face">
 
-        <div class="shop-radio-brand">
+        <button
+          class="shop-radio-main"
+          type="button"
+          aria-label="Play or pause Shop Radio"
+        >
 
-          <span class="shop-radio-kicker">
-            Uncle Mike's
+          <span
+            class="shop-radio-note"
+            aria-hidden="true"
+          >
+            ♫
           </span>
 
-          <strong class="shop-radio-title">
-            Shop Radio
-          </strong>
+          <span class="shop-radio-copy">
 
-        </div>
+            <span class="shop-radio-kicker">
+              Uncle Mike's
+            </span>
+
+            <strong class="shop-radio-title">
+              Shop Radio
+            </strong>
+
+          </span>
+
+        </button>
 
 
         <button
-          class="shop-radio-collapse"
+          class="shop-radio-play"
           type="button"
-          aria-label="Collapse Shop Radio"
-          aria-expanded="true"
+          aria-label="Play Shop Radio"
         >
-          —
-        </button>
-
-      </div>
-
-
-      <div class="shop-radio-body">
-
-        <div class="shop-radio-screen">
-
-          <div class="shop-radio-screen-copy">
-
-            <span class="shop-radio-now">
-              Now Playing
-            </span>
-
-            <strong>
-              Garage Songs For A Better Tomorrow
-            </strong>
-
-          </div>
-
           <span
-            class="shop-radio-live"
+            class="shop-radio-play-icon"
             aria-hidden="true"
           >
-            ●
+            ▶
           </span>
-
-        </div>
-
-
-        <div class="shop-radio-player">
-
-          <iframe
-            class="shop-radio-spotify"
-            title="Uncle Mike's Shop Radio"
-            src="${EMBED_URL}"
-            width="100%"
-            height="152"
-            frameborder="0"
-            allowfullscreen=""
-            allow="
-              autoplay;
-              clipboard-write;
-              encrypted-media;
-              fullscreen;
-              picture-in-picture
-            "
-            loading="eager"
-          ></iframe>
-
-        </div>
+        </button>
 
 
-        <div class="shop-radio-bottom">
-
-          <span class="shop-radio-motto">
-            Music Makes The Work Go Faster.
-          </span>
-
-          <a
-            class="shop-radio-open"
-            href="${PLAYLIST_URL}"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Open In Spotify ↗
-          </a>
-
-        </div>
+        <a
+          class="shop-radio-spotify-link"
+          href="${PLAYLIST_URL}"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Open playlist in Spotify"
+        >
+          ↗
+        </a>
 
       </div>
 
 
-      <button
-        class="shop-radio-collapsed-button"
-        type="button"
-        aria-label="Open Shop Radio"
+      <div
+        class="shop-radio-status"
+        aria-live="polite"
       >
-        <span aria-hidden="true">♫</span>
-        <strong>Shop Radio</strong>
-        <span class="shop-radio-mini-play" aria-hidden="true">▶</span>
-      </button>
+        Garage Songs For A Better Tomorrow
+      </div>
+
+
+      <div
+        id="shop-radio-spotify-embed"
+        class="shop-radio-spotify-embed"
+        aria-hidden="true"
+      ></div>
 
     </aside>
+
   `;
 
 
@@ -157,16 +129,19 @@
       "uncle-mike-shop-radio-styles"
     )
   ) {
+
     const style =
       document.createElement("style");
+
 
     style.id =
       "uncle-mike-shop-radio-styles";
 
+
     style.textContent = `
 
       /* =====================================================
-         RADIO MOUNT
+         MOUNT
          ===================================================== */
 
       #shop-radio {
@@ -174,18 +149,18 @@
           fixed;
 
         right:
-          18px;
+          12px;
 
         bottom:
-          18px;
+          12px;
 
         z-index:
           8500;
 
         width:
           min(
-            390px,
-            calc(100vw - 36px)
+            285px,
+            calc(100vw - 24px)
           );
 
         font-family:
@@ -194,6 +169,10 @@
           sans-serif;
       }
 
+
+      /* =====================================================
+         FACEPLATE
+         ===================================================== */
 
       .shop-radio {
         position:
@@ -204,93 +183,135 @@
 
         border:
           1px solid
-          rgba(69, 225, 232, 0.48);
+          rgba(69, 225, 232, 0.42);
 
         background:
           linear-gradient(
             145deg,
-            #161715,
-            #080908 68%
+            #171816,
+            #090a09 70%
           );
 
         box-shadow:
-          0 18px 50px
-          rgba(0, 0, 0, 0.55),
+          0 10px 30px
+          rgba(0, 0, 0, 0.48),
           inset 0 0 0 1px
           rgba(255, 255, 255, 0.025);
       }
 
 
+      .shop-radio-face {
+        display:
+          grid;
+
+        grid-template-columns:
+          minmax(0, 1fr)
+          38px
+          30px;
+
+        align-items:
+          stretch;
+
+        min-height:
+          52px;
+      }
+
+
       /* =====================================================
-         TOP PLATE
+         BRAND / MAIN BUTTON
          ===================================================== */
 
-      .shop-radio-top {
+      .shop-radio-main {
         display:
           flex;
 
         align-items:
           center;
 
-        justify-content:
-          space-between;
-
         gap:
-          18px;
-
-        padding:
-          13px 14px 12px;
-
-        border-bottom:
-          1px solid
-          rgba(69, 225, 232, 0.22);
-
-        background:
-          linear-gradient(
-            180deg,
-            rgba(255,255,255,0.035),
-            rgba(255,255,255,0)
-          );
-      }
-
-
-      .shop-radio-brand {
-        display:
-          flex;
-
-        align-items:
-          baseline;
-
-        gap:
-          8px;
+          10px;
 
         min-width:
           0;
+
+        padding:
+          8px 10px;
+
+        border:
+          0;
+
+        background:
+          transparent;
+
+        color:
+          inherit;
+
+        cursor:
+          pointer;
+
+        text-align:
+          left;
+      }
+
+
+      .shop-radio-note {
+        flex:
+          0 0 auto;
+
+        color:
+          #49e1e8;
+
+        font-size:
+          1.05rem;
+
+        line-height:
+          1;
+      }
+
+
+      .shop-radio-copy {
+        display:
+          block;
+
+        min-width:
+          0;
+      }
+
+
+      .shop-radio-kicker {
+        display:
+          block;
+
+        margin-bottom:
+          1px;
+
+        color:
+          var(--muted);
+
+        font-size:
+          0.46rem;
+
+        font-weight:
+          900;
+
+        letter-spacing:
+          0.15em;
+
+        line-height:
+          1;
 
         text-transform:
           uppercase;
       }
 
 
-      .shop-radio-kicker {
-        color:
-          #49e1e8;
-
-        font-size:
-          0.58rem;
-
-        font-weight:
-          900;
-
-        letter-spacing:
-          0.16em;
-
-        white-space:
-          nowrap;
-      }
-
-
       .shop-radio-title {
+        display:
+          block;
+
+        overflow:
+          hidden;
+
         color:
           #49e1e8;
 
@@ -300,158 +321,13 @@
           serif;
 
         font-size:
-          1.18rem;
+          0.98rem;
 
         line-height:
-          1;
+          1.05;
 
         letter-spacing:
-          -0.02em;
-
-        text-transform:
-          uppercase;
-
-        white-space:
-          nowrap;
-      }
-
-
-      .shop-radio-collapse {
-        display:
-          grid;
-
-        flex:
-          0 0 auto;
-
-        place-items:
-          center;
-
-        width:
-          30px;
-
-        height:
-          30px;
-
-        padding:
-          0;
-
-        border:
-          1px solid
-          rgba(234, 215, 173, 0.3);
-
-        background:
-          #0b0b09;
-
-        color:
-          var(--paper);
-
-        cursor:
-          pointer;
-
-        font-size:
-          1.2rem;
-
-        font-weight:
-          900;
-
-        line-height:
-          1;
-      }
-
-
-      /* =====================================================
-         BODY
-         ===================================================== */
-
-      .shop-radio-body {
-        padding:
-          12px;
-      }
-
-
-      .shop-radio-screen {
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          space-between;
-
-        gap:
-          14px;
-
-        margin-bottom:
-          10px;
-
-        padding:
-          10px 12px;
-
-        border:
-          1px solid
-          rgba(69, 225, 232, 0.24);
-
-        background:
-          #071011;
-
-        box-shadow:
-          inset 0 0 24px
-          rgba(69, 225, 232, 0.055);
-      }
-
-
-      .shop-radio-screen-copy {
-        min-width:
-          0;
-      }
-
-
-      .shop-radio-now {
-        display:
-          block;
-
-        margin-bottom:
-          4px;
-
-        color:
-          #49e1e8;
-
-        font-size:
-          0.54rem;
-
-        font-weight:
-          900;
-
-        letter-spacing:
-          0.18em;
-
-        text-transform:
-          uppercase;
-      }
-
-
-      .shop-radio-screen strong {
-        display:
-          block;
-
-        overflow:
-          hidden;
-
-        color:
-          var(--paper-2);
-
-        font-size:
-          0.73rem;
-
-        font-weight:
-          800;
-
-        letter-spacing:
-          0.055em;
-
-        line-height:
-          1.25;
+          0.01em;
 
         text-overflow:
           ellipsis;
@@ -464,166 +340,41 @@
       }
 
 
-      .shop-radio-live {
-        flex:
-          0 0 auto;
-
-        color:
-          #49e1e8;
-
-        font-size:
-          0.75rem;
-
-        text-shadow:
-          0 0 10px
-          rgba(69, 225, 232, 0.9);
-      }
-
-
       /* =====================================================
-         SPOTIFY
+         PLAY BUTTON
          ===================================================== */
 
-      .shop-radio-player {
-        overflow:
-          hidden;
-
-        border:
-          1px solid
-          rgba(234, 215, 173, 0.16);
-
-        background:
-          #000;
-      }
-
-
-      .shop-radio-spotify {
+      .shop-radio-play {
         display:
-          block;
+          grid;
+
+        align-self:
+          center;
+
+        justify-self:
+          center;
+
+        place-items:
+          center;
 
         width:
-          100%;
+          30px;
 
-        border:
+        height:
+          30px;
+
+        padding:
           0;
-      }
-
-
-      /* =====================================================
-         BOTTOM
-         ===================================================== */
-
-      .shop-radio-bottom {
-        display:
-          flex;
-
-        align-items:
-          center;
-
-        justify-content:
-          space-between;
-
-        gap:
-          14px;
-
-        padding:
-          11px 2px 1px;
-      }
-
-
-      .shop-radio-motto {
-        color:
-          var(--muted);
-
-        font-size:
-          0.52rem;
-
-        font-weight:
-          800;
-
-        letter-spacing:
-          0.1em;
-
-        line-height:
-          1.3;
-
-        text-transform:
-          uppercase;
-      }
-
-
-      .shop-radio-open {
-        flex:
-          0 0 auto;
-
-        color:
-          #49e1e8;
-
-        font-size:
-          0.58rem;
-
-        font-weight:
-          900;
-
-        letter-spacing:
-          0.1em;
-
-        text-decoration:
-          none;
-
-        text-transform:
-          uppercase;
-      }
-
-
-      .shop-radio-open:hover {
-        text-decoration:
-          underline;
-
-        text-underline-offset:
-          4px;
-      }
-
-
-      /* =====================================================
-         COLLAPSED PLAYER
-         ===================================================== */
-
-      .shop-radio-collapsed-button {
-        display:
-          none;
-
-        align-items:
-          center;
-
-        justify-content:
-          flex-start;
-
-        gap:
-          10px;
-
-        box-sizing:
-          border-box;
-
-        width:
-          100%;
-
-        min-height:
-          52px;
-
-        padding:
-          12px 14px;
 
         border:
           1px solid
-          rgba(69, 225, 232, 0.5);
+          rgba(69, 225, 232, 0.7);
+
+        border-radius:
+          50%;
 
         background:
-          linear-gradient(
-            145deg,
-            #161715,
-            #080908
-          );
+          #071011;
 
         color:
           #49e1e8;
@@ -632,92 +383,205 @@
           pointer;
 
         box-shadow:
-          0 14px 40px
-          rgba(0, 0, 0, 0.5);
+          0 0 8px
+          rgba(69, 225, 232, 0.22);
 
-        font-family:
-          Arial,
-          Helvetica,
-          sans-serif;
-
-        text-transform:
-          uppercase;
+        transition:
+          transform
+          150ms ease,
+          border-color
+          150ms ease;
       }
 
 
-      .shop-radio-collapsed-button > span:first-child {
+      .shop-radio-play:hover {
+        transform:
+          scale(1.06);
+      }
+
+
+      .shop-radio-play-icon {
+        display:
+          block;
+
+        margin-left:
+          2px;
+
         font-size:
-          1.05rem;
+          0.62rem;
+
+        line-height:
+          1;
       }
 
 
-      .shop-radio-collapsed-button strong {
-        font-family:
-          Georgia,
-          "Times New Roman",
-          serif;
-
-        font-size:
-          0.95rem;
-
-        letter-spacing:
-          0.02em;
+      .shop-radio:not(.is-playing)
+      .shop-radio-play {
+        animation:
+          shop-radio-halo
+          2.3s
+          ease-in-out
+          infinite;
       }
 
 
-      .shop-radio-mini-play {
+      .shop-radio.is-playing
+      .shop-radio-play {
+        animation:
+          none;
+
+        box-shadow:
+          0 0 12px
+          rgba(69, 225, 232, 0.34);
+      }
+
+
+      .shop-radio.is-playing
+      .shop-radio-play-icon {
+        margin-left:
+          0;
+      }
+
+
+      /* =====================================================
+         SPOTIFY LINK
+         ===================================================== */
+
+      .shop-radio-spotify-link {
         display:
           grid;
 
         place-items:
           center;
 
-        width:
-          28px;
-
-        height:
-          28px;
-
-        margin-left:
-          auto;
-
-        border:
+        border-left:
           1px solid
-          rgba(69, 225, 232, 0.65);
+          rgba(234, 215, 173, 0.13);
 
-        border-radius:
-          50%;
+        color:
+          var(--paper);
 
         font-size:
-          0.65rem;
+          0.8rem;
 
-        animation:
-          shop-radio-halo
-          2.4s
-          ease-in-out
-          infinite;
-      }
+        font-weight:
+          900;
 
-
-      .shop-radio.is-collapsed
-      .shop-radio-top,
-
-      .shop-radio.is-collapsed
-      .shop-radio-body {
-        display:
+        text-decoration:
           none;
+
+        transition:
+          background
+          150ms ease,
+          color
+          150ms ease;
       }
 
 
-      .shop-radio.is-collapsed
-      .shop-radio-collapsed-button {
-        display:
-          flex;
+      .shop-radio-spotify-link:hover {
+        background:
+          rgba(69, 225, 232, 0.08);
+
+        color:
+          #49e1e8;
       }
 
 
       /* =====================================================
-         CYAN PLAY HALO
+         STATUS STRIP
+         ===================================================== */
+
+      .shop-radio-status {
+        overflow:
+          hidden;
+
+        padding:
+          4px 10px 5px;
+
+        border-top:
+          1px solid
+          rgba(69, 225, 232, 0.14);
+
+        background:
+          #071011;
+
+        color:
+          rgba(234, 215, 173, 0.72);
+
+        font-size:
+          0.43rem;
+
+        font-weight:
+          800;
+
+        letter-spacing:
+          0.11em;
+
+        line-height:
+          1.15;
+
+        text-overflow:
+          ellipsis;
+
+        text-transform:
+          uppercase;
+
+        white-space:
+          nowrap;
+      }
+
+
+      .shop-radio.is-playing
+      .shop-radio-status {
+        color:
+          #49e1e8;
+      }
+
+
+      /* =====================================================
+         SPOTIFY EMBED
+         Keep the real player alive,
+         but don't let it become the UI.
+         ===================================================== */
+
+      .shop-radio-spotify-embed {
+        position:
+          absolute;
+
+        left:
+          -10000px;
+
+        top:
+          -10000px;
+
+        width:
+          300px;
+
+        height:
+          152px;
+
+        overflow:
+          hidden;
+
+        opacity:
+          0;
+
+        pointer-events:
+          none;
+      }
+
+
+      .shop-radio-spotify-embed iframe {
+        width:
+          300px !important;
+
+        height:
+          152px !important;
+      }
+
+
+      /* =====================================================
+         HALO
          ===================================================== */
 
       @keyframes shop-radio-halo {
@@ -726,17 +590,17 @@
         100% {
           box-shadow:
             0 0 0 0
-            rgba(69, 225, 232, 0.05),
-            0 0 8px
+            rgba(69, 225, 232, 0.02),
+            0 0 7px
             rgba(69, 225, 232, 0.16);
         }
 
         50% {
           box-shadow:
-            0 0 0 7px
-            rgba(69, 225, 232, 0.08),
-            0 0 20px
-            rgba(69, 225, 232, 0.55);
+            0 0 0 5px
+            rgba(69, 225, 232, 0.07),
+            0 0 16px
+            rgba(69, 225, 232, 0.48);
         }
 
       }
@@ -750,58 +614,69 @@
 
         #shop-radio {
           right:
-            10px;
+            8px;
 
           bottom:
-            10px;
+            8px;
 
           width:
-            calc(100vw - 20px);
+            236px;
         }
 
 
-        .shop-radio-top {
-          padding:
-            11px 12px;
+        .shop-radio-face {
+          grid-template-columns:
+            minmax(0, 1fr)
+            36px
+            28px;
+
+          min-height:
+            48px;
         }
 
 
-        .shop-radio-body {
-          padding:
-            9px;
-        }
-
-
-        .shop-radio-screen {
-          margin-bottom:
+        .shop-radio-main {
+          gap:
             8px;
 
           padding:
-            8px 10px;
+            7px 8px;
         }
 
 
-        .shop-radio-player iframe {
+        .shop-radio-note {
+          font-size:
+            0.92rem;
+        }
+
+
+        .shop-radio-kicker {
+          font-size:
+            0.4rem;
+        }
+
+
+        .shop-radio-title {
+          font-size:
+            0.86rem;
+        }
+
+
+        .shop-radio-play {
+          width:
+            28px;
+
           height:
-            152px;
+            28px;
         }
 
 
-        .shop-radio-bottom {
-          padding-top:
-            9px;
-        }
+        .shop-radio-status {
+          padding:
+            3px 8px 4px;
 
-
-        .shop-radio-motto {
-          display:
-            none;
-        }
-
-
-        .shop-radio-open {
-          margin-left:
-            auto;
+          font-size:
+            0.38rem;
         }
 
       }
@@ -815,14 +690,15 @@
         prefers-reduced-motion: reduce
       ) {
 
-        .shop-radio-mini-play {
+        .shop-radio-play {
           animation:
-            none;
+            none !important;
         }
 
       }
 
     `;
+
 
     document.head.appendChild(
       style
@@ -831,7 +707,7 @@
 
 
   /* =======================================================
-     COLLAPSE / EXPAND
+     ELEMENTS
      ======================================================= */
 
   const radio =
@@ -839,49 +715,215 @@
       ".shop-radio"
     );
 
-  const collapseButton =
+  const mainButton =
     mount.querySelector(
-      ".shop-radio-collapse"
+      ".shop-radio-main"
     );
 
-  const collapsedButton =
+  const playButton =
     mount.querySelector(
-      ".shop-radio-collapsed-button"
+      ".shop-radio-play"
+    );
+
+  const playIcon =
+    mount.querySelector(
+      ".shop-radio-play-icon"
+    );
+
+  const status =
+    mount.querySelector(
+      ".shop-radio-status"
     );
 
 
-  function collapseRadio() {
-    radio.classList.add(
-      "is-collapsed"
+  /* =======================================================
+     STATE
+     ======================================================= */
+
+  function updatePlayerState() {
+
+    radio.classList.toggle(
+      "is-playing",
+      isPlaying
     );
 
-    collapseButton.setAttribute(
-      "aria-expanded",
-      "false"
+
+    playIcon.textContent =
+      isPlaying
+        ? "❚❚"
+        : "▶";
+
+
+    playButton.setAttribute(
+      "aria-label",
+      isPlaying
+        ? "Pause Shop Radio"
+        : "Play Shop Radio"
     );
+
+
+    if (!spotifyReady) {
+      status.textContent =
+        "Loading The Shop Radio...";
+    }
+
+    else if (isPlaying) {
+      status.textContent =
+        "Shop Radio · Playing";
+    }
+
+    else {
+      status.textContent =
+        "Garage Songs For A Better Tomorrow";
+    }
   }
 
 
-  function expandRadio() {
-    radio.classList.remove(
-      "is-collapsed"
-    );
+  updatePlayerState();
 
-    collapseButton.setAttribute(
-      "aria-expanded",
-      "true"
-    );
+
+  /* =======================================================
+     PLAY / PAUSE
+     ======================================================= */
+
+  function toggleRadio() {
+
+    if (!spotifyController) {
+
+      status.textContent =
+        "Radio's Warming Up...";
+
+      return;
+    }
+
+
+    spotifyController.togglePlay();
   }
 
 
-  collapseButton.addEventListener(
+  playButton.addEventListener(
     "click",
-    collapseRadio
+    toggleRadio
   );
 
 
-  collapsedButton.addEventListener(
+  mainButton.addEventListener(
     "click",
-    expandRadio
+    toggleRadio
   );
+
+
+  /* =======================================================
+     SPOTIFY IFRAME API
+     ======================================================= */
+
+  window.onSpotifyIframeApiReady =
+    function (IFrameAPI) {
+
+      const element =
+        document.getElementById(
+          "shop-radio-spotify-embed"
+        );
+
+
+      if (!element) return;
+
+
+      const options = {
+        width: 300,
+        height: 152,
+        url: PLAYLIST_URL
+      };
+
+
+      IFrameAPI.createController(
+        element,
+        options,
+        function (EmbedController) {
+
+          spotifyController =
+            EmbedController;
+
+
+          EmbedController.addListener(
+            "ready",
+            function () {
+
+              spotifyReady =
+                true;
+
+              updatePlayerState();
+
+            }
+          );
+
+
+          EmbedController.addListener(
+            "playback_started",
+            function () {
+
+              isPlaying =
+                true;
+
+              updatePlayerState();
+
+            }
+          );
+
+
+          EmbedController.addListener(
+            "playback_update",
+            function (event) {
+
+              if (
+                !event ||
+                !event.data
+              ) {
+                return;
+              }
+
+
+              isPlaying =
+                !event.data.isPaused;
+
+
+              updatePlayerState();
+
+            }
+          );
+
+        }
+      );
+    };
+
+
+  /* =======================================================
+     LOAD SPOTIFY API ONCE
+     ======================================================= */
+
+  if (
+    !document.querySelector(
+      'script[data-spotify-iframe-api="true"]'
+    )
+  ) {
+
+    const spotifyScript =
+      document.createElement("script");
+
+
+    spotifyScript.src =
+      "https://open.spotify.com/embed/iframe-api/v1";
+
+    spotifyScript.async =
+      true;
+
+    spotifyScript.dataset.spotifyIframeApi =
+      "true";
+
+
+    document.body.appendChild(
+      spotifyScript
+    );
+  }
+
 })();
