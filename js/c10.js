@@ -1,4 +1,4 @@
-(() => {
+function renderC10Page() {
   const page = document.getElementById("page-content");
 
   if (!page) return;
@@ -568,4 +568,13 @@
       cover.classList.remove("is-hidden");
     });
   });
-})();
+}
+
+
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderC10Page();
+}
