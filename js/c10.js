@@ -17,15 +17,15 @@ function renderC10Page() {
         </p>
 
         <h1>
-          Unfucking This<br>
-          Death Trap.
+          Making It<br>
+          Right.
         </h1>
 
         <p class="home-hero-copy">
           Somebody had already “built” this truck.
           <br><br>
           <strong>
-            I had to make it stop trying to kill people.
+            The job was figuring out what they got wrong.
           </strong>
         </p>
 
@@ -241,12 +241,12 @@ function renderC10Page() {
       <div class="wrap">
 
         <p class="eyebrow">
-          Okay, Back To The Truck
+          Back To The Truck
         </p>
 
         <h2 class="section-title">
           There's Your<br>
-          Fucking Problem.
+          Problem.
         </h2>
 
       </div>
@@ -314,7 +314,7 @@ function renderC10Page() {
             </p>
 
             <h3>
-              That's Bad.
+              That's A Problem.
             </h3>
 
             <p>
@@ -341,7 +341,7 @@ function renderC10Page() {
         </p>
 
         <h2 class="section-title">
-          Cool.<br>
+          Good.<br>
           What Else Is Wrong?
         </h2>
 
@@ -438,7 +438,7 @@ function renderC10Page() {
 
 
     <!-- =====================================================
-         RAPID-FIRE RECEIPTS
+         RAPID-FIRE REPAIRS
          ===================================================== -->
 
     <section class="page-section">
@@ -450,7 +450,7 @@ function renderC10Page() {
 
         <h2 class="section-title">
           Keep Finding<br>
-          Shit.
+          Problems.
         </h2>
 
         <div
@@ -506,8 +506,8 @@ function renderC10Page() {
         </p>
 
         <h2 class="section-title">
-          Considerably Less<br>
-          Death-Trappy.
+          Better Than<br>
+          I Found It.
         </h2>
 
         <div
@@ -517,8 +517,8 @@ function renderC10Page() {
 
           <h3 style="margin:0;">
             Safer.<br>
-            More Useful.<br>
-            Better Than I Found It.
+            More Reliable.<br>
+            More Useful.
           </h3>
 
         </div>
