@@ -22,8 +22,8 @@ function renderContactPage() {
         <div class="home-hero-copy">
 
           <p>
-            You've got the idea. Maybe you know exactly what you need.
-            Maybe you don't.
+            Have an idea, a project, or a problem that needs solving?
+            You don't need to have every detail figured out.
           </p>
 
           <p>
@@ -121,7 +121,7 @@ function renderContactPage() {
               id="contact-project"
               type="text"
               name="project"
-              placeholder="Car, brand, website, merch, weird problem..."
+              placeholder="Car, brand, website, product, system, problem..."
               required
             >
 
@@ -149,7 +149,7 @@ function renderContactPage() {
             class="project-link contact-submit"
             type="submit"
           >
-            Send It →
+            Send Inquiry →
           </button>
 
 
@@ -444,8 +444,8 @@ function initContactForm() {
 
 
         status.innerHTML = `
-          <strong>Well, that ain't right.</strong><br>
-          Something went wrong sending your message. Try again.
+          <strong>Something went wrong.</strong><br>
+          Your message wasn't sent. Please try again.
         `;
 
       }
