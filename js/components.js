@@ -886,7 +886,6 @@ function renderSiteFooter() {
 
 /* =========================================================
    PERSISTENT SHOP RADIO MOUNT
-   Actual player gets added next.
    This element NEVER gets replaced during internal navigation.
    ========================================================= */
 
@@ -930,6 +929,38 @@ function createShopRadioMount() {
       radio
     );
   }
+}
+
+
+
+/* =========================================================
+   LOAD PERSISTENT SHOP RADIO
+   ========================================================= */
+
+function loadShopRadio() {
+  if (
+    document.querySelector(
+      'script[data-shop-radio-script="true"]'
+    )
+  ) {
+    return;
+  }
+
+
+  const script =
+    document.createElement("script");
+
+
+  script.src =
+    "/js/shop-radio.js";
+
+  script.dataset.shopRadioScript =
+    "true";
+
+
+  document.head.appendChild(
+    script
+  );
 }
 
 
@@ -1426,13 +1457,6 @@ function initPageVideoManagement() {
               entry.target;
 
 
-            /*
-             * If the video is basically
-             * out of view, stop playback.
-             *
-             * We DO NOT automatically
-             * resume when it returns.
-             */
             if (
               !entry.isIntersecting ||
               entry.intersectionRatio < 0.15
@@ -1563,11 +1587,6 @@ function initScrollReveal() {
         );
 
 
-        /*
-         * Remove old registration flag
-         * because persistent navigation
-         * creates fresh DOM each route.
-         */
         delete element.dataset
           .revealRegistered;
 
@@ -1686,13 +1705,6 @@ async function navigateTo(
   }
 
 
-  /*
-   * Load the destination renderer
-   * BEFORE touching history.
-   *
-   * If loading fails, we can still
-   * fall back to normal navigation.
-   */
   try {
     await loadRouteScript(
       route
@@ -1707,12 +1719,6 @@ async function navigateTo(
   }
 
 
-  /*
-   * Stop page video audio before
-   * destroying the old content.
-   * Shop Radio lives outside the
-   * page and is untouched.
-   */
   pauseAllPageVideos();
 
 
@@ -1884,11 +1890,6 @@ function initSiteLinkTransitions() {
           window.location.search;
 
 
-      /*
-       * Normal same-page anchor.
-       * Example:
-       * Keep Scrolling — Watch Me Work
-       */
       if (
         sameDocument &&
         destination.hash
@@ -1932,11 +1933,6 @@ function initSiteLinkTransitions() {
         true;
 
 
-      /*
-       * Reduced motion:
-       * navigate immediately,
-       * but still persist the shell.
-       */
       if (reducedMotion) {
         await navigateTo(
           destination
@@ -1974,10 +1970,6 @@ function initSiteLinkTransitions() {
       );
 
 
-      /*
-       * Swap content while the
-       * transition owns the screen.
-       */
       window.setTimeout(
         async () => {
 
@@ -1986,12 +1978,6 @@ function initSiteLinkTransitions() {
           );
 
 
-          /*
-           * Existing transition CSS
-           * controls its disappearance.
-           * We simply release navigation
-           * shortly after the swap.
-           */
           window.setTimeout(
             () => {
               siteNavigationRunning =
@@ -2085,6 +2071,8 @@ async function bootUncleMikeSite() {
 
   createShopRadioMount();
 
+  loadShopRadio();
+
 
   /*
    * Render shared chrome immediately.
@@ -2106,11 +2094,6 @@ async function bootUncleMikeSite() {
     await renderCurrentRoute();
 
 
-  /*
-   * If anything unexpected happens,
-   * don't destroy the site. The page's
-   * existing HTML shell remains usable.
-   */
   if (!rendered) {
     window.UNCLE_MIKE_ROUTER_ACTIVE =
       false;
@@ -2124,10 +2107,6 @@ async function bootUncleMikeSite() {
   initHistoryNavigation();
 
 
-  /*
-   * Load the other route renderers
-   * quietly after the first page is ready.
-   */
   preloadRouteRenderers();
 }
 
