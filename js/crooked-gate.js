@@ -420,6 +420,7 @@ function renderCrookedGatePage() {
               controls
               playsinline
               preload="metadata"
+              poster="./IMG_6642.jpeg"
             >
               <source
                 src="./51E5087A-67EC-4A99-85F6-72F2E918F05C.mov"
