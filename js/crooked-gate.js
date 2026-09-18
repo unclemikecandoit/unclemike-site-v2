@@ -7,6 +7,7 @@ function renderCrookedGatePage() {
 
     <!-- =====================================================
          HERO
+         HOOK
          ===================================================== -->
 
     <section class="project-hero">
@@ -22,9 +23,9 @@ function renderCrookedGatePage() {
         </h1>
 
         <p class="project-lead">
-          What started as a seasoning product became a complete
-          brand system, website, e-commerce experience and
-          physical retail presence.
+          A seasoning company needed a brand.
+          So I built the brand, the store, the checkout
+          and then the fucking display.
         </p>
 
       </div>
@@ -32,7 +33,46 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         BEFORE
+         IMMEDIATE PROOF
+         SHOW THE PRODUCT FIRST
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="project-detail-card">
+
+          <div class="project-detail-media">
+
+            <img
+              src="./IMG_6644.jpeg"
+              alt="Crooked Gate seasoning collection"
+            >
+
+          </div>
+
+        </div>
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Eleven Blends
+          </p>
+
+          <h2 class="section-title">
+            One Brand.<br>
+            One System.
+          </h2>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         PATTERN BREAK
+         LITERAL BUILD
          ===================================================== -->
 
     <section class="page-section">
@@ -41,12 +81,162 @@ function renderCrookedGatePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            Before
+            And When I Say Build
           </p>
 
           <h2 class="section-title">
-            The Product<br>
-            Already Existed.
+            I Mean<br>
+            Fucking Build.
+          </h2>
+
+        </div>
+
+
+        <div class="video-card">
+
+          <div class="video-frame">
+
+            <video
+              controls
+              playsinline
+              preload="metadata"
+              poster="../../figure-it-out/IMG_7009.jpeg"
+            >
+              <source
+                src="./51E5087A-67EC-4A99-85F6-72F2E918F05C.mov"
+              >
+            </video>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         DIGITAL PRODUCT
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Then Build The Store
+          </p>
+
+          <h2 class="section-title">
+            Make The Brand<br>
+            Do Something.
+          </h2>
+
+        </div>
+
+
+        <div class="project-detail-card">
+
+          <div class="project-detail-media">
+
+            <img
+              src="./IMG_6645.jpeg"
+              alt="Crooked Gate product page"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="project-detail-copy">
+
+            <p>
+              Looking good wasn't enough.
+            </p>
+
+            <p>
+              The website had to turn eleven physical products
+              into one coherent customer experience.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         COMMERCE
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            Make Buying Easy
+          </p>
+
+          <h2 class="section-title">
+            The Pantry.
+          </h2>
+
+        </div>
+
+
+        <div class="project-detail-card">
+
+          <div class="project-detail-media">
+
+            <img
+              src="./IMG_6646.jpeg"
+              alt="Crooked Gate Pantry shopping cart"
+              loading="lazy"
+            >
+
+          </div>
+
+          <div class="project-detail-copy">
+
+            <p>
+              Customers can add products where they discover them,
+              choose pickup or shipping, and move directly into
+              Square checkout.
+            </p>
+
+            <p>
+              No wandering around looking for the button
+              that actually lets you buy the damn thing.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- =====================================================
+         CURIOSITY TURN
+         NOW SHOW WHERE IT CAME FROM
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <div class="section-heading">
+
+          <p class="eyebrow">
+            So How Did We Get Here?
+          </p>
+
+          <h2 class="section-title">
+            It Didn't Start<br>
+            Like This.
           </h2>
 
         </div>
@@ -72,8 +262,7 @@ function renderCrookedGatePage() {
             </p>
 
             <p>
-              What didn't exist yet was a system around them
-              that made the whole thing feel like one coherent brand.
+              What didn't exist was the system around them.
             </p>
 
           </div>
@@ -85,7 +274,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         FIRST EVOLUTION
+         FIRST SYSTEM
          ===================================================== -->
 
     <section class="page-section">
@@ -98,8 +287,8 @@ function renderCrookedGatePage() {
           </p>
 
           <h2 class="section-title">
-            Give The Product<br>
-            A System.
+            Turn Products<br>
+            Into A Family.
           </h2>
 
         </div>
@@ -111,7 +300,7 @@ function renderCrookedGatePage() {
 
             <img
               src="./DD97DAC7-E75B-4C30-8EC8-3751BF617B3D.png"
-              alt="Early seasoning label system"
+              alt="Early Crooked Gate seasoning label system"
               loading="lazy"
             >
 
@@ -120,13 +309,13 @@ function renderCrookedGatePage() {
           <div class="project-detail-copy">
 
             <p>
-              Individual products became a family.
+              Individual products needed hierarchy,
+              consistency and personality.
             </p>
 
             <p>
-              Labels needed hierarchy, consistency and enough
-              personality that every blend could stand on its own
-              while still obviously belonging to the same brand.
+              Every blend had to stand on its own while still
+              obviously belonging to the same family.
             </p>
 
           </div>
@@ -138,7 +327,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         BRAND TURN
+         BRAND IDENTITY
          ===================================================== -->
 
     <section class="page-section">
@@ -151,7 +340,7 @@ function renderCrookedGatePage() {
           </p>
 
           <h2 class="section-title">
-            This Wasn't Just<br>
+            This Wasn't<br>
             A Label Project.
           </h2>
 
@@ -177,9 +366,9 @@ function renderCrookedGatePage() {
             </p>
 
             <p>
-              The job wasn't to make one cool graphic.
-              It was to create a visual language capable of carrying
-              an entire product line.
+              The job became creating a visual language capable
+              of carrying the products, the website,
+              the shopping experience and the physical brand.
             </p>
 
           </div>
@@ -191,7 +380,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         PRODUCT FAMILY
+         PHYSICAL PAYOFF
          ===================================================== -->
 
     <section class="page-section">
@@ -200,175 +389,12 @@ function renderCrookedGatePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            Product System
+            Digital Wasn't Enough
           </p>
 
           <h2 class="section-title">
-            Eleven Blends.<br>
-            One Family.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <div class="project-detail-media">
-
-            <img
-              src="./IMG_6644.jpeg"
-              alt="Crooked Gate seasoning collection"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="project-detail-copy">
-
-            <p>
-              Eleven different seasonings needed to look related
-              without becoming eleven copies of the same thing.
-            </p>
-
-            <p>
-              The system had to work on the product,
-              on a screen and eventually in a physical retail display.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =====================================================
-         WEBSITE
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Customer Experience
-          </p>
-
-          <h2 class="section-title">
-            Then Build<br>
-            The Website.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <div class="project-detail-media">
-
-            <img
-              src="./IMG_6645.jpeg"
-              alt="Crooked Gate product page"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="project-detail-copy">
-
-            <p>
-              The website couldn't just display the brand.
-              It had to sell the product.
-            </p>
-
-            <p>
-              Product discovery, individual seasoning pages,
-              recipes and purchasing all became parts of the
-              same customer experience.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =====================================================
-         E-COMMERCE
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Commerce
-          </p>
-
-          <h2 class="section-title">
-            Make Buying<br>
-            The Easy Part.
-          </h2>
-
-        </div>
-
-
-        <div class="project-detail-card">
-
-          <div class="project-detail-media">
-
-            <img
-              src="./IMG_6646.jpeg"
-              alt="Crooked Gate Pantry shopping cart"
-              loading="lazy"
-            >
-
-          </div>
-
-          <div class="project-detail-copy">
-
-            <p>
-              The Pantry became the site's cart experience.
-            </p>
-
-            <p>
-              Customers can add products where they discover them,
-              choose pickup or shipping, and move into Square
-              checkout without wandering through unnecessary steps.
-            </p>
-
-            <p>
-              The brand didn't stop where the payment system started.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-    </section>
-
-
-    <!-- =====================================================
-         PHYSICAL DISPLAY
-         ===================================================== -->
-
-    <section class="page-section">
-      <div class="wrap">
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Surely We're Done
-          </p>
-
-          <h2 class="section-title">
-            Nope.
+            Put It In<br>
+            The Real World.
           </h2>
 
         </div>
@@ -380,7 +406,7 @@ function renderCrookedGatePage() {
 
             <img
               src="./IMG_6642.jpeg"
-              alt="Crooked Gate retail display fabrication"
+              alt="Finished Crooked Gate physical retail display"
               loading="lazy"
             >
 
@@ -393,39 +419,9 @@ function renderCrookedGatePage() {
               in the physical world too.
             </p>
 
-          </div>
-
-        </div>
-
-
-        <div class="section-heading">
-
-          <p class="eyebrow">
-            Physical Retail
-          </p>
-
-          <h2 class="section-title">
-            Build The<br>
-            Fucking Display.
-          </h2>
-
-        </div>
-
-
-        <div class="video-card">
-
-          <div class="video-frame">
-
-            <video
-              controls
-              playsinline
-              preload="metadata"
-              poster="./IMG_6642.jpeg"
-            >
-              <source
-                src="./51E5087A-67EC-4A99-85F6-72F2E918F05C.mov"
-              >
-            </video>
+            <p>
+              So the display became part of the project.
+            </p>
 
           </div>
 
@@ -436,7 +432,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         THE POINT
+         RECEIPT
          ===================================================== -->
 
     <section class="page-section">
@@ -445,12 +441,12 @@ function renderCrookedGatePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            The Point
+            The Receipt
           </p>
 
           <h2 class="section-title">
-            That's What<br>
-            “Make” Means.
+            Different Mediums.<br>
+            Same Brain.
           </h2>
 
         </div>
@@ -467,13 +463,9 @@ function renderCrookedGatePage() {
             </p>
 
             <p>
-              Different mediums. Same problem.
-            </p>
-
-            <p>
-              See what the thing needs to become,
-              figure out everything required to get it there,
-              and build the whole damn thing.
+              See what the thing needs to become.
+              Figure out everything required to get it there.
+              Build the whole damn thing.
             </p>
 
           </div>
@@ -486,6 +478,7 @@ function renderCrookedGatePage() {
 
     <!-- =====================================================
          LIVE RESULT
+         NEXT MOVE
          ===================================================== -->
 
     <section class="page-section">
@@ -498,7 +491,8 @@ function renderCrookedGatePage() {
           </p>
 
           <h2 class="section-title">
-            It's Live.
+            It's Fucking<br>
+            Live.
           </h2>
 
         </div>
@@ -509,9 +503,10 @@ function renderCrookedGatePage() {
           <div class="project-detail-copy">
 
             <p>
-              Crooked Gate isn't a concept piece.
-              It's a functioning brand with real products,
-              a live storefront and a checkout system.
+              Not a mockup.
+              Not a concept piece.
+              A functioning brand with real products,
+              a live storefront and working checkout.
             </p>
 
             <a
