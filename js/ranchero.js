@@ -499,4 +499,10 @@ function renderRancheroPage() {
 }
 
 
-renderRancheroPage();
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderRancheroPage();
+}
