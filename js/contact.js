@@ -1,8 +1,8 @@
-document.addEventListener("DOMContentLoaded", () => {
-
+function renderContactPage() {
   const page = document.getElementById("page-content");
 
   if (!page) return;
+
 
   page.innerHTML = `
 
@@ -168,7 +168,33 @@ document.addEventListener("DOMContentLoaded", () => {
   `;
 
 
-  const style = document.createElement("style");
+  injectContactStyles();
+  initContactForm();
+}
+
+
+
+/* =========================================================
+   CONTACT STYLES
+   ========================================================= */
+
+function injectContactStyles() {
+  if (
+    document.getElementById(
+      "uncle-mike-contact-styles"
+    )
+  ) {
+    return;
+  }
+
+
+  const style =
+    document.createElement("style");
+
+
+  style.id =
+    "uncle-mike-contact-styles";
+
 
   style.textContent = `
 
@@ -314,74 +340,126 @@ document.addEventListener("DOMContentLoaded", () => {
 
   `;
 
+
   document.head.appendChild(style);
+}
 
 
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("contact-status");
-  const button = form.querySelector(".contact-submit");
 
-  form.addEventListener("submit", async (event) => {
+/* =========================================================
+   CONTACT FORM
+   ========================================================= */
 
-    event.preventDefault();
+function initContactForm() {
+  const form =
+    document.getElementById("contact-form");
 
-    const originalButtonText = button.textContent;
+  if (!form) return;
 
-    button.disabled = true;
-    button.textContent = "Sending...";
 
-    status.textContent = "";
+  const status =
+    document.getElementById("contact-status");
 
-    try {
+  const button =
+    form.querySelector(".contact-submit");
 
-      const formData = new FormData(form);
+  if (!status || !button) return;
 
-      const response = await fetch(
-        "https://api.web3forms.com/submit",
-        {
-          method: "POST",
-          body: formData
+
+  form.addEventListener(
+    "submit",
+    async (event) => {
+
+      event.preventDefault();
+
+
+      const originalButtonText =
+        button.textContent;
+
+
+      button.disabled = true;
+      button.textContent = "Sending...";
+
+      status.textContent = "";
+
+
+      try {
+
+        const formData =
+          new FormData(form);
+
+
+        const response =
+          await fetch(
+            "https://api.web3forms.com/submit",
+            {
+              method: "POST",
+              body: formData
+            }
+          );
+
+
+        const result =
+          await response.json();
+
+
+        if (
+          !response.ok ||
+          !result.success
+        ) {
+          throw new Error(
+            "Submission failed."
+          );
         }
-      );
 
-      const result = await response.json();
 
-      if (!response.ok || !result.success) {
-        throw new Error("Submission failed.");
-      }
+        form.innerHTML = `
 
-      form.innerHTML = `
+          <div class="contact-success">
 
-        <div class="contact-success">
+            <div class="eyebrow">
+              Message Sent
+            </div>
 
-          <div class="eyebrow">
-            Message Sent
+            <h2>
+              Got It.
+            </h2>
+
+            <p>
+              I'll take it from here.
+            </p>
+
           </div>
 
-          <h2>
-            Got It.
-          </h2>
+        `;
 
-          <p>
-            I'll take it from here.
-          </p>
+      }
 
-        </div>
+      catch (error) {
 
-      `;
+        button.disabled = false;
 
-    } catch (error) {
+        button.textContent =
+          originalButtonText;
 
-      button.disabled = false;
-      button.textContent = originalButtonText;
 
-      status.innerHTML = `
-        <strong>Well, that ain't right.</strong><br>
-        Something went wrong sending your message. Try again.
-      `;
+        status.innerHTML = `
+          <strong>Well, that ain't right.</strong><br>
+          Something went wrong sending your message. Try again.
+        `;
+
+      }
 
     }
+  );
+}
 
-  });
 
-});
+
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderContactPage();
+}
