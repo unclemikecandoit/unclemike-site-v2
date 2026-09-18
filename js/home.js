@@ -349,4 +349,10 @@ function renderHomePage() {
 }
 
 
-renderHomePage();
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderHomePage();
+}
