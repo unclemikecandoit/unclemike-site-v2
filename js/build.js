@@ -20,12 +20,12 @@ function renderBuildPage() {
         </p>
 
         <h1>
-          Some Shit<br>
-          Needs Saving.
+          Some Things<br>
+          Are Worth Saving.
         </h1>
 
         <p class="home-hero-copy">
-          Old cars. Bad decisions.
+          Old cars. Mechanical problems.
           Somebody else's "good enough."
         </p>
 
@@ -150,12 +150,12 @@ function renderBuildPage() {
             </p>
 
             <h3>
-              Unfucking This Death Trap.
+              Making It Right.
             </h3>
 
             <p>
               Somebody already built it.
-              I had to make it stop trying to kill people.
+              My job was figuring out what they got wrong.
             </p>
 
             <span class="project-card-link">
@@ -232,8 +232,8 @@ function renderBuildPage() {
 
           <p>
             <strong>
-              Figure out what it actually needs
-              and do the damn thing right.
+              Understand what it actually needs.
+              Then do it right.
             </strong>
           </p>
 
@@ -254,20 +254,21 @@ function renderBuildPage() {
       <div class="wrap">
 
         <p class="eyebrow">
-          More Coming
+          Ongoing Work
         </p>
 
         <h2 class="section-title">
-          I Don't Really<br>
-          Do Finished.
+          The Work<br>
+          Keeps Moving.
         </h2>
 
         <p class="home-hero-copy">
-          These are the stories worth following right now.
+          These builds aren't static portfolio pieces.
+          They change as the work does.
           <br><br>
 
           <strong>
-            There will be more.
+            More problems. More solutions. More builds.
           </strong>
         </p>
 
