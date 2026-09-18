@@ -1,6 +1,6 @@
 /* =========================================================
    UNCLE MIKE'S SHOP RADIO
-   Tiny persistent Spotify launcher
+   Tiny persistent Spotify player
    ========================================================= */
 
 (function initShopRadio() {
@@ -9,11 +9,6 @@
 
   if (!mount) return;
 
-
-  /*
-   * Never rebuild the radio during
-   * persistent internal navigation.
-   */
   if (mount.dataset.radioReady === "true") {
     return;
   }
@@ -30,48 +25,74 @@
 
 
   /* =======================================================
-     RADIO
+     STATE
+     ======================================================= */
+
+  let controller = null;
+
+  let playerReady = false;
+
+  let isPlaying = false;
+
+
+  /* =======================================================
+     RADIO UI
      ======================================================= */
 
   mount.innerHTML = `
 
-    <a
+    <aside
       class="shop-radio"
-      href="${PLAYLIST_URL}"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="Open Uncle Mike's Shop Radio on Spotify"
+      aria-label="Uncle Mike's Shop Radio"
     >
 
-      <span
-        class="shop-radio-note"
-        aria-hidden="true"
-      >
-        ♫
-      </span>
+      <div class="shop-radio-face">
 
-
-      <span class="shop-radio-copy">
-
-        <span class="shop-radio-kicker">
-          Uncle Mike's
+        <span
+          class="shop-radio-note"
+          aria-hidden="true"
+        >
+          ♫
         </span>
 
-        <strong class="shop-radio-title">
-          Shop Radio
-        </strong>
 
-      </span>
+        <span class="shop-radio-copy">
+
+          <span class="shop-radio-kicker">
+            Uncle Mike's
+          </span>
+
+          <strong class="shop-radio-title">
+            Shop Radio
+          </strong>
+
+        </span>
 
 
-      <span
-        class="shop-radio-play"
+        <button
+          class="shop-radio-play"
+          type="button"
+          aria-label="Play Shop Radio"
+        >
+          <span
+            class="shop-radio-play-icon"
+            aria-hidden="true"
+          >
+            ▶
+          </span>
+        </button>
+
+      </div>
+
+
+      <div
+        class="shop-radio-engine"
         aria-hidden="true"
       >
-        ▶
-      </span>
+        <div id="shop-radio-spotify-engine"></div>
+      </div>
 
-    </a>
+    </aside>
 
   `;
 
@@ -105,16 +126,16 @@
           fixed;
 
         right:
-          10px;
+          7px;
 
         bottom:
-          10px;
+          7px;
 
         z-index:
           8500;
 
         width:
-          170px;
+          160px;
 
         font-family:
           Arial,
@@ -128,13 +149,22 @@
          ===================================================== */
 
       .shop-radio {
+        position:
+          relative;
+
+        width:
+          100%;
+      }
+
+
+      .shop-radio-face {
         display:
           grid;
 
         grid-template-columns:
-          22px
+          20px
           minmax(0, 1fr)
-          30px;
+          29px;
 
         align-items:
           center;
@@ -146,14 +176,17 @@
           100%;
 
         min-height:
-          42px;
+          40px;
 
         padding:
-          5px 6px 5px 8px;
+          4px
+          5px
+          4px
+          7px;
 
         border:
           1px solid
-          rgba(69, 225, 232, 0.5);
+          rgba(69, 225, 232, 0.52);
 
         background:
           linear-gradient(
@@ -162,37 +195,16 @@
             #080908 72%
           );
 
-        color:
-          inherit;
-
-        text-decoration:
-          none;
-
         box-shadow:
           0 8px 24px
-          rgba(0, 0, 0, 0.5),
+          rgba(0, 0, 0, 0.52),
           inset 0 0 0 1px
           rgba(255, 255, 255, 0.025);
-
-        transition:
-          transform
-          150ms ease,
-          border-color
-          150ms ease;
-      }
-
-
-      .shop-radio:hover {
-        transform:
-          translateY(-2px);
-
-        border-color:
-          rgba(69, 225, 232, 0.8);
       }
 
 
       /* =====================================================
-         NOTE
+         MUSIC NOTE
          ===================================================== */
 
       .shop-radio-note {
@@ -200,7 +212,7 @@
           #49e1e8;
 
         font-size:
-          0.86rem;
+          0.78rem;
 
         line-height:
           1;
@@ -234,7 +246,7 @@
           var(--muted);
 
         font-size:
-          0.34rem;
+          0.31rem;
 
         font-weight:
           900;
@@ -269,7 +281,7 @@
           serif;
 
         font-size:
-          0.72rem;
+          0.67rem;
 
         font-weight:
           900;
@@ -292,7 +304,7 @@
 
 
       /* =====================================================
-         PLAY
+         REAL PLAY BUTTON
          ===================================================== */
 
       .shop-radio-play {
@@ -303,14 +315,17 @@
           center;
 
         width:
-          25px;
+          24px;
 
         height:
-          25px;
+          24px;
+
+        padding:
+          0;
 
         border:
           1px solid
-          rgba(69, 225, 232, 0.7);
+          rgba(69, 225, 232, 0.78);
 
         border-radius:
           50%;
@@ -321,11 +336,14 @@
         color:
           #49e1e8;
 
-        font-size:
-          0.52rem;
+        cursor:
+          pointer;
 
-        line-height:
-          1;
+        -webkit-appearance:
+          none;
+
+        appearance:
+          none;
 
         box-shadow:
           0 0 8px
@@ -336,6 +354,125 @@
           2.4s
           ease-in-out
           infinite;
+
+        transition:
+          transform
+          150ms ease,
+          opacity
+          150ms ease;
+      }
+
+
+      .shop-radio-play:active {
+        transform:
+          scale(0.92);
+      }
+
+
+      .shop-radio-play-icon {
+        display:
+          block;
+
+        margin-left:
+          1px;
+
+        font-size:
+          0.48rem;
+
+        line-height:
+          1;
+      }
+
+
+      /* =====================================================
+         PLAYING
+         ===================================================== */
+
+      .shop-radio.is-playing
+      .shop-radio-play {
+        animation:
+          none;
+
+        box-shadow:
+          0 0 12px
+          rgba(69, 225, 232, 0.4);
+      }
+
+
+      .shop-radio.is-playing
+      .shop-radio-play-icon {
+        margin-left:
+          0;
+      }
+
+
+      /* =====================================================
+         LOADING
+         ===================================================== */
+
+      .shop-radio:not(.is-ready)
+      .shop-radio-play {
+        opacity:
+          0.62;
+      }
+
+
+      /* =====================================================
+         SPOTIFY ENGINE
+
+         Spotify replaces our inner DIV
+         with its iframe.
+
+         Keep the real player alive in
+         the DOM but clip the entire
+         engine to one invisible pixel.
+         ===================================================== */
+
+      .shop-radio-engine {
+        position:
+          fixed;
+
+        left:
+          0;
+
+        bottom:
+          0;
+
+        width:
+          1px;
+
+        height:
+          1px;
+
+        overflow:
+          hidden;
+
+        clip-path:
+          inset(50%);
+
+        opacity:
+          0;
+
+        pointer-events:
+          none;
+      }
+
+
+      .shop-radio-engine iframe {
+        display:
+          block !important;
+
+        width:
+          300px !important;
+
+        height:
+          152px !important;
+
+        max-width:
+          none !important;
+
+        border:
+          0 !important;
       }
 
 
@@ -366,64 +503,20 @@
 
 
       /* =====================================================
-         MOBILE
+         DESKTOP
          ===================================================== */
 
-      @media (max-width: 560px) {
+      @media (min-width: 561px) {
 
         #shop-radio {
           right:
-            7px;
+            12px;
 
           bottom:
-            7px;
+            12px;
 
           width:
-            160px;
-        }
-
-
-        .shop-radio {
-          grid-template-columns:
-            20px
-            minmax(0, 1fr)
-            28px;
-
-          min-height:
-            40px;
-
-          padding:
-            4px 5px 4px 7px;
-        }
-
-
-        .shop-radio-note {
-          font-size:
-            0.78rem;
-        }
-
-
-        .shop-radio-kicker {
-          font-size:
-            0.31rem;
-        }
-
-
-        .shop-radio-title {
-          font-size:
-            0.67rem;
-        }
-
-
-        .shop-radio-play {
-          width:
-            23px;
-
-          height:
-            23px;
-
-          font-size:
-            0.48rem;
+            170px;
         }
 
       }
@@ -449,6 +542,250 @@
 
     document.head.appendChild(
       style
+    );
+  }
+
+
+  /* =======================================================
+     ELEMENTS
+     ======================================================= */
+
+  const radio =
+    mount.querySelector(
+      ".shop-radio"
+    );
+
+
+  const playButton =
+    mount.querySelector(
+      ".shop-radio-play"
+    );
+
+
+  const playIcon =
+    mount.querySelector(
+      ".shop-radio-play-icon"
+    );
+
+
+  /* =======================================================
+     UI STATE
+     ======================================================= */
+
+  function renderState() {
+
+    radio.classList.toggle(
+      "is-ready",
+      playerReady
+    );
+
+
+    radio.classList.toggle(
+      "is-playing",
+      isPlaying
+    );
+
+
+    playIcon.textContent =
+      isPlaying
+        ? "❚❚"
+        : "▶";
+
+
+    playButton.setAttribute(
+      "aria-label",
+      isPlaying
+        ? "Pause Shop Radio"
+        : "Play Shop Radio"
+    );
+  }
+
+
+  renderState();
+
+
+  /* =======================================================
+     PLAY / PAUSE
+     ======================================================= */
+
+  function togglePlayback() {
+
+    if (!controller) {
+      return;
+    }
+
+
+    /*
+     * This click is the user's direct
+     * interaction, which is important
+     * for mobile browser playback rules.
+     */
+    controller.togglePlay();
+  }
+
+
+  playButton.addEventListener(
+    "click",
+    togglePlayback
+  );
+
+
+  /* =======================================================
+     CREATE SPOTIFY PLAYER
+     ======================================================= */
+
+  function createSpotifyController(
+    IFrameAPI
+  ) {
+
+    /*
+     * Guard against the API callback
+     * firing more than once.
+     */
+    if (controller) {
+      return;
+    }
+
+
+    const engine =
+      document.getElementById(
+        "shop-radio-spotify-engine"
+      );
+
+
+    if (!engine) {
+      return;
+    }
+
+
+    const options = {
+
+      url:
+        PLAYLIST_URL,
+
+      width:
+        300,
+
+      height:
+        152
+
+    };
+
+
+    IFrameAPI.createController(
+      engine,
+      options,
+      function (
+        EmbedController
+      ) {
+
+        controller =
+          EmbedController;
+
+
+        /*
+         * Spotify controller exists.
+         */
+        playerReady =
+          true;
+
+        renderState();
+
+
+        /*
+         * Spotify confirms actual
+         * playback has started.
+         */
+        EmbedController.addListener(
+          "playback_started",
+          function () {
+
+            isPlaying =
+              true;
+
+            renderState();
+
+          }
+        );
+
+
+        /*
+         * Keep our custom button
+         * synchronized with Spotify.
+         */
+        EmbedController.addListener(
+          "playback_update",
+          function (event) {
+
+            if (
+              !event ||
+              !event.data
+            ) {
+              return;
+            }
+
+
+            isPlaying =
+              !event.data.isPaused;
+
+
+            renderState();
+
+          }
+        );
+
+      }
+    );
+  }
+
+
+  /* =======================================================
+     SPOTIFY API READY
+     ======================================================= */
+
+  window.onSpotifyIframeApiReady =
+    function (
+      IFrameAPI
+    ) {
+
+      createSpotifyController(
+        IFrameAPI
+      );
+    };
+
+
+  /* =======================================================
+     LOAD SPOTIFY IFRAME API ONCE
+     ======================================================= */
+
+  const existingApiScript =
+    document.querySelector(
+      'script[data-spotify-iframe-api="true"]'
+    );
+
+
+  if (!existingApiScript) {
+
+    const script =
+      document.createElement(
+        "script"
+      );
+
+
+    script.src =
+      "https://open.spotify.com/embed/iframe-api/v1";
+
+
+    script.async =
+      true;
+
+
+    script.dataset.spotifyIframeApi =
+      "true";
+
+
+    document.body.appendChild(
+      script
     );
   }
 
