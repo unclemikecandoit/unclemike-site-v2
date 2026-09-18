@@ -94,7 +94,7 @@ function renderFigureItOutPage() {
 
 
     <!-- =====================================================
-         CONSULTING HIT
+         CONSULTING
          ===================================================== -->
 
     <section class="page-section">
@@ -122,14 +122,15 @@ function renderFigureItOutPage() {
 
           <p>
             I follow the process from beginning to end,
-            find where the system is fighting itself,
-            and simplify it.
+            document where the work slows down,
+            identify where the system is fighting itself,
+            and find practical ways to simplify it.
           </p>
 
           <p>
             <strong>
               Complicated problem.
-              Simple solution.
+              Clear solution.
             </strong>
           </p>
 
@@ -186,7 +187,7 @@ function renderFigureItOutPage() {
 
           <h2 class="section-title">
             Follow The<br>
-            Damn Thing.
+            Work.
           </h2>
 
         </div>
@@ -199,7 +200,8 @@ function renderFigureItOutPage() {
           </p>
 
           <p>
-            I want to watch the work move through the system.
+            I want to see how the work actually moves
+            through the system.
           </p>
 
           <p>
@@ -210,7 +212,7 @@ function renderFigureItOutPage() {
 
           <p>
             <strong>
-              Reality is the process.
+              The real process is the one people actually use.
             </strong>
           </p>
 
@@ -222,14 +224,14 @@ function renderFigureItOutPage() {
 
 
     <!-- =====================================================
-         RECEIPTS
+         EXPERIENCE
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          The Receipts
+          Applied Experience
         </p>
 
         <h2 class="section-title">
@@ -291,9 +293,9 @@ function renderFigureItOutPage() {
             </h3>
 
             <p>
-              When the people inside the system
+              When the people inside a system
               can't see what's slowing it down,
-              follow the work until the obstacle appears.
+              follow the work until the obstacle becomes visible.
             </p>
 
           </article>
@@ -350,13 +352,13 @@ function renderFigureItOutPage() {
       <div class="wrap">
 
         <p class="eyebrow">
-          Same Brain
+          Pattern Recognition
         </p>
 
         <h2 class="section-title">
           Organization.<br>
           Engine.<br>
-          Doesn't Matter.
+          Same Approach.
         </h2>
 
         <div
@@ -375,7 +377,7 @@ function renderFigureItOutPage() {
 
           <p>
             <strong>
-              Pattern recognition doesn't.
+              The problem-solving process doesn't.
             </strong>
           </p>
 
