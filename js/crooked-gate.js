@@ -19,13 +19,13 @@ function renderCrookedGatePage() {
 
         <h1 class="project-title">
           Build The Whole<br>
-          Damn Thing.
+          Thing.
         </h1>
 
         <p class="project-lead">
-          A seasoning company needed a brand.
-          So I built the brand, the store, the checkout
-          and then the fucking display.
+          A seasoning company needed more than a logo.
+          I built the brand, product system, storefront,
+          checkout experience and physical retail display.
         </p>
 
       </div>
@@ -34,7 +34,6 @@ function renderCrookedGatePage() {
 
     <!-- =====================================================
          IMMEDIATE PROOF
-         SHOW THE PRODUCT FIRST
          ===================================================== -->
 
     <section class="page-section">
@@ -52,6 +51,7 @@ function renderCrookedGatePage() {
           </div>
 
         </div>
+
 
         <div class="section-heading">
 
@@ -71,8 +71,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         PATTERN BREAK
-         LITERAL BUILD
+         PHYSICAL BUILD
          ===================================================== -->
 
     <section class="page-section">
@@ -86,7 +85,7 @@ function renderCrookedGatePage() {
 
           <h2 class="section-title">
             I Mean<br>
-            Fucking Build.
+            Build.
           </h2>
 
         </div>
@@ -148,6 +147,7 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
@@ -199,6 +199,7 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
@@ -208,8 +209,8 @@ function renderCrookedGatePage() {
             </p>
 
             <p>
-              No wandering around looking for the button
-              that actually lets you buy the damn thing.
+              The purchasing path stays simple,
+              obvious and consistent with the brand.
             </p>
 
           </div>
@@ -221,8 +222,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         CURIOSITY TURN
-         NOW SHOW WHERE IT CAME FROM
+         ORIGIN
          ===================================================== -->
 
     <section class="page-section">
@@ -254,15 +254,19 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
-              The seasonings were already real.
-              The recipes existed. The product existed.
+              The recipes existed.
+              The seasonings existed.
+              The product was real.
             </p>
 
             <p>
-              What didn't exist was the system around them.
+              What didn't exist yet was a system capable
+              of turning those individual products into
+              a recognizable business.
             </p>
 
           </div>
@@ -274,7 +278,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         FIRST SYSTEM
+         PRODUCT SYSTEM
          ===================================================== -->
 
     <section class="page-section">
@@ -306,6 +310,7 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
@@ -315,7 +320,7 @@ function renderCrookedGatePage() {
 
             <p>
               Every blend had to stand on its own while still
-              obviously belonging to the same family.
+              clearly belonging to the same product family.
             </p>
 
           </div>
@@ -359,6 +364,7 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
@@ -366,9 +372,9 @@ function renderCrookedGatePage() {
             </p>
 
             <p>
-              The job became creating a visual language capable
-              of carrying the products, the website,
-              the shopping experience and the physical brand.
+              The project became a visual system capable of carrying
+              the products, website, purchasing experience
+              and physical retail presence.
             </p>
 
           </div>
@@ -412,15 +418,16 @@ function renderCrookedGatePage() {
 
           </div>
 
+
           <div class="project-detail-copy">
 
             <p>
-              Eventually the digital brand needed to exist
-              in the physical world too.
+              Eventually the brand needed to leave the screen
+              and work in a physical retail environment.
             </p>
 
             <p>
-              So the display became part of the project.
+              So I designed and fabricated the display too.
             </p>
 
           </div>
@@ -432,7 +439,7 @@ function renderCrookedGatePage() {
 
 
     <!-- =====================================================
-         RECEIPT
+         CAPABILITY RECEIPT
          ===================================================== -->
 
     <section class="page-section">
@@ -441,12 +448,12 @@ function renderCrookedGatePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            The Receipt
+            The Work
           </p>
 
           <h2 class="section-title">
             Different Mediums.<br>
-            Same Brain.
+            Same Process.
           </h2>
 
         </div>
@@ -457,15 +464,15 @@ function renderCrookedGatePage() {
           <div class="project-detail-copy">
 
             <p>
-              Brand identity. Graphic design. Product system.
-              Website. E-commerce. Customer experience.
+              Brand identity. Graphic design. Product architecture.
+              Web development. E-commerce. Customer experience.
               Physical fabrication.
             </p>
 
             <p>
-              See what the thing needs to become.
-              Figure out everything required to get it there.
-              Build the whole damn thing.
+              See what the project needs to become.
+              Identify what it takes to get there.
+              Then make the pieces work together.
             </p>
 
           </div>
@@ -478,7 +485,6 @@ function renderCrookedGatePage() {
 
     <!-- =====================================================
          LIVE RESULT
-         NEXT MOVE
          ===================================================== -->
 
     <section class="page-section">
@@ -491,8 +497,7 @@ function renderCrookedGatePage() {
           </p>
 
           <h2 class="section-title">
-            It's Fucking<br>
-            Live.
+            It's Live.
           </h2>
 
         </div>
@@ -503,10 +508,10 @@ function renderCrookedGatePage() {
           <div class="project-detail-copy">
 
             <p>
-              Not a mockup.
-              Not a concept piece.
-              A functioning brand with real products,
-              a live storefront and working checkout.
+              Crooked Gate isn't a concept piece.
+              It's a functioning brand with real products,
+              a live storefront, working checkout
+              and a physical retail presence.
             </p>
 
             <a
