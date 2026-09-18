@@ -2298,3 +2298,94 @@ a.project-card:focus-visible .project-card-media img {
   }
 
 }
+
+
+/* =========================================================
+   COMPACT PROJECT VIDEO SYSTEM
+   Attention-first mobile presentation
+   ========================================================= */
+
+/*
+ * Keep project videos visually substantial without allowing
+ * portrait footage to consume an entire phone screen.
+ */
+
+@media (max-width: 560px) {
+
+  .video-card {
+    width: 100%;
+    max-width: 100%;
+    margin-inline: auto;
+  }
+
+  .video-frame {
+    height: 55svh;
+    max-height: 520px;
+    min-height: 360px;
+  }
+
+  .video-frame video {
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .video-cover {
+    height: 100%;
+    padding: 18px;
+  }
+
+  .video-cover-title {
+    max-width: 92%;
+
+    font-size: clamp(1.45rem, 7vw, 2.25rem);
+    line-height: 0.92;
+  }
+
+  .video-cover-kicker {
+    margin-bottom: 7px;
+
+    font-size: 0.58rem;
+  }
+
+  .video-play {
+    width: 58px;
+    height: 58px;
+  }
+
+  .video-card-body {
+    padding: 17px 18px;
+  }
+
+  .video-card-body h3 {
+    margin-bottom: 6px;
+
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+
+  .video-card-body p {
+    font-size: 0.84rem;
+  }
+
+}
+
+
+/*
+ * Give videos a controlled size on larger screens too.
+ */
+
+@media (min-width: 561px) {
+
+  .video-frame {
+    max-height: 680px;
+  }
+
+  .video-frame video {
+    max-height: 680px;
+
+    object-fit: cover;
+  }
+
+}
