@@ -1,4 +1,4 @@
-(() => {
+function renderAboutPage() {
   const page = document.getElementById("page-content");
 
   if (!page) return;
@@ -376,4 +376,13 @@
     </section>
 
   `;
-})();
+}
+
+
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderAboutPage();
+}
