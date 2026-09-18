@@ -22,7 +22,7 @@ function renderMakePage() {
         </h1>
 
         <p class="home-hero-copy">
-          Brands. Graphics. Websites. Merch.
+          Brands. Graphics. Websites. Products.
           <br>
           <strong>“I have an idea” is enough.</strong>
         </p>
@@ -33,7 +33,7 @@ function renderMakePage() {
 
 
     <!-- =====================================================
-         CROOKED GATE — VISUAL IMMEDIATELY
+         CROOKED GATE — IMMEDIATE PROOF
          ===================================================== -->
 
     <section
@@ -70,12 +70,12 @@ function renderMakePage() {
             </h3>
 
             <p>
-              One idea became the brand, labels,
-              website, checkout and physical retail system.
+              One idea became a complete brand, product system,
+              website, checkout experience and physical retail presence.
             </p>
 
             <span class="project-card-link">
-              See The Whole Build →
+              View Case Study →
             </span>
 
           </div>
@@ -88,7 +88,7 @@ function renderMakePage() {
 
 
     <!-- =====================================================
-         CAPABILITY HIT
+         DESIGN
          ===================================================== -->
 
     <section class="page-section">
@@ -109,7 +109,7 @@ function renderMakePage() {
 
 
     <!-- =====================================================
-         HAWK RODS — VISUAL STORY
+         HAWK RODS
          ===================================================== -->
 
     <section
@@ -161,9 +161,9 @@ function renderMakePage() {
           </h3>
 
           <p>
-            Not another generic repair-shop logo.
-            Something that belongs on a toolbox,
-            race car or speed-shop window.
+            The goal wasn't another generic automotive logo.
+            It needed enough character to belong on a toolbox,
+            race car, engine or speed-shop window.
           </p>
 
         </div>
@@ -187,8 +187,8 @@ function renderMakePage() {
           </p>
 
           <h2 class="section-title">
-            Say It<br>
-            Louder.
+            Ideas With<br>
+            An Identity.
           </h2>
 
         </div>
@@ -234,7 +234,7 @@ function renderMakePage() {
 
               <img
                 src="./20260825_211443_CC274B.jpeg"
-                alt="Hyperfixation is a hell of a drug graphic"
+                alt="Hyperfixation graphic"
                 loading="lazy"
               >
 
@@ -412,7 +412,7 @@ function renderMakePage() {
 
 
     <!-- =====================================================
-         WEB / BRAND SYSTEM PATTERN BREAK
+         BRAND SYSTEM
          ===================================================== -->
 
     <section class="page-section">
@@ -433,14 +433,14 @@ function renderMakePage() {
         >
 
           <p>
-            The identity has to keep working when it becomes
-            a website, a label, a shirt, a package,
-            a checkout screen or something sitting on a shelf.
+            A strong identity has to keep working when it becomes
+            a website, label, shirt, package, checkout experience
+            or something sitting on a shelf.
           </p>
 
           <p>
             <strong>
-              Make the whole thing feel like the same idea.
+              Every piece should feel like part of the same idea.
             </strong>
           </p>
 
@@ -500,12 +500,12 @@ function renderMakePage() {
         </p>
 
         <h2 class="section-title">
-          See It.<br>
+          See The Idea.<br>
           Make It Real.
         </h2>
 
         <p class="home-hero-copy">
-          Different medium. Same brain.
+          Different medium. Same process.
           <br><br>
 
           <strong>
