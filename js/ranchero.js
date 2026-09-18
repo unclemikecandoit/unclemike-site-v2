@@ -121,7 +121,7 @@ function renderRancheroPage() {
                 <br><br>
                 Make it work.
                 Make it right.
-                Drive the damn thing.
+                Drive it.
               </p>
 
             </figcaption>
@@ -149,7 +149,7 @@ function renderRancheroPage() {
           </p>
 
           <h2 class="section-title">
-            Will It Fucking Run?
+            Will It Run?
           </h2>
 
         </div>
@@ -207,7 +207,7 @@ function renderRancheroPage() {
             </p>
 
             <h3>
-              It Fucking Lives.
+              It Lives.
             </h3>
 
             <p>
@@ -238,8 +238,8 @@ function renderRancheroPage() {
           </p>
 
           <h2>
-            Cool.<br>
-            What's Broken Next?
+            Good.<br>
+            What's Next?
           </h2>
 
           <p>
@@ -274,7 +274,7 @@ function renderRancheroPage() {
 
           <h2 class="section-title">
             That Door<br>
-            Ain't Right.
+            Isn't Right.
           </h2>
 
         </div>
@@ -315,7 +315,7 @@ function renderRancheroPage() {
                 </span>
 
                 <span class="video-cover-title">
-                  Lemme Fix It Real Quick.
+                  Let's Fix It.
                 </span>
 
               </div>
@@ -387,7 +387,7 @@ function renderRancheroPage() {
             Every repair.
             Every failure.
             Every improvement.
-            Every questionable decision.
+            Every decision along the way.
           </p>
 
           <h3
