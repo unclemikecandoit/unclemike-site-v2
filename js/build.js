@@ -279,4 +279,10 @@ function renderBuildPage() {
 }
 
 
-renderBuildPage();
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderBuildPage();
+}
