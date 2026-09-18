@@ -82,8 +82,7 @@ function renderHomePage() {
 
 
     <!-- =====================================================
-         RECEIPTS
-         VISUALS COME FIRST
+         SELECTED WORK
          ===================================================== -->
 
     <section class="page-section home-selected-work">
@@ -92,7 +91,7 @@ function renderHomePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            The Receipts
+            Selected Work
           </p>
 
           <h2 class="section-title">
@@ -145,7 +144,7 @@ function renderHomePage() {
                   </p>
 
                   <span class="project-card-link">
-                    See It →
+                    View Project →
                   </span>
 
                 </div>
@@ -163,7 +162,6 @@ function renderHomePage() {
 
     <!-- =====================================================
          WHAT I DO
-         SHORT. FAST. CLICKABLE.
          ===================================================== -->
 
     <section class="page-section home-directions">
@@ -176,8 +174,8 @@ function renderHomePage() {
           </p>
 
           <h2 class="section-title">
-            Pick Your<br>
-            Problem.
+            Three Ways<br>
+            I Work.
           </h2>
 
         </div>
@@ -230,7 +228,7 @@ function renderHomePage() {
 
 
     <!-- =====================================================
-         CONSULTING PATTERN BREAK
+         CONSULTING
          ===================================================== -->
 
     <section class="page-section home-consulting">
@@ -254,15 +252,15 @@ function renderHomePage() {
 
           <p>
             Complicated systems hide their own problems.
-            I follow the process, find the bottlenecks,
-            waste and unnecessary complexity, and make
-            the system easier to operate.
+            I follow the process from beginning to end,
+            identify bottlenecks, waste and unnecessary complexity,
+            and find practical ways to make the system work better.
           </p>
 
           <p class="home-consulting-punch">
             <strong>
               Complicated problem.<br>
-              Simple solution.
+              Clear solution.
             </strong>
           </p>
 
@@ -290,12 +288,12 @@ function renderHomePage() {
         <div class="section-heading">
 
           <p class="eyebrow">
-            Keep Going
+            Explore
           </p>
 
           <h2 class="section-title">
-            What Are You<br>
-            Here For?
+            See What<br>
+            I Can Do.
           </h2>
 
         </div>
