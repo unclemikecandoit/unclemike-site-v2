@@ -32,7 +32,7 @@ function renderAboutPage() {
               I Build.<br>
               I Fix.<br>
               I Design.<br>
-              I Figure Shit Out.
+              I Figure Things Out.
             </h1>
 
             <p class="home-hero-copy">
@@ -86,15 +86,16 @@ function renderAboutPage() {
           <p>
             I see patterns other people miss.
             I obsess over details.
-            If I don't know how to do something,
-            there's a pretty good chance I'm about
-            to figure it out.
+            I learn quickly because understanding
+            how something works is usually the first step
+            toward making it better.
           </p>
 
           <p>
             <strong>
-              Turns out being the autistic guy
-              everybody underestimated has its advantages.
+              If I don't know how to do something,
+              there's a pretty good chance I'm about
+              to figure it out.
             </strong>
           </p>
 
@@ -154,6 +155,7 @@ function renderAboutPage() {
 
           <p>
             Cars. Art. Business. Parenting.
+            Different mediums. Same instinct.
           </p>
 
           <p>
@@ -171,19 +173,19 @@ function renderAboutPage() {
 
 
     <!-- =====================================================
-         THE TURN
+         AUTISM / DIFFERENT PERSPECTIVE
          ===================================================== -->
 
     <section class="page-section">
       <div class="wrap">
 
         <p class="eyebrow">
-          The Part That Changed Everything
+          Different By Design
         </p>
 
         <h2 class="section-title">
-          I Quit<br>
-          Listening.
+          The Difference<br>
+          Became An Advantage.
         </h2>
 
 
@@ -193,21 +195,70 @@ function renderAboutPage() {
         >
 
           <p>
-            I spent a lot of my life being told,
-            directly or otherwise,
-            what I couldn't do.
+            I'm autistic.
+            For a long time, the things that made me different
+            were treated like limitations.
+          </p>
+
+          <p>
+            The same brain that can get buried in details
+            is also very good at seeing patterns,
+            questioning assumptions and staying with a problem
+            until it makes sense.
           </p>
 
           <p>
             <strong>
-              So I quit listening.
+              I stopped measuring what I could do
+              by what other people expected from me.
             </strong>
           </p>
 
+        </div>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
+         THE WORK
+         ===================================================== -->
+
+    <section class="page-section">
+      <div class="wrap">
+
+        <p class="eyebrow">
+          What That Looks Like
+        </p>
+
+        <h2 class="section-title">
+          See The Problem.<br>
+          Find The Possibility.
+        </h2>
+
+
+        <div
+          class="project-detail-card"
+          style="margin-top:24px;"
+        >
+
           <p>
-            Now I build cool shit,
-            solve hard problems
+            I build things, solve hard problems
             and make good ideas better.
+          </p>
+
+          <p>
+            Sometimes that means an engine.
+            Sometimes it's a brand, a website,
+            a process or an entire system.
+          </p>
+
+          <p>
+            <strong>
+              The medium changes.
+              The way I approach the problem doesn't.
+            </strong>
           </p>
 
         </div>
@@ -368,7 +419,7 @@ function renderAboutPage() {
           <br><br>
 
           <strong>
-            Make the damn thing real.
+            Make it real.
           </strong>
         </p>
 
