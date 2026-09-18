@@ -902,11 +902,6 @@ function loadShopRadio() {
 const UNCLE_MIKE_TRANSITION_LINES = [
 
   {
-    text: "FUCK AROUND. FIND OUT.",
-    style: "wide"
-  },
-
-  {
     text: "THAT LOOKED EXPENSIVE.",
     style: "wide"
   },
@@ -942,11 +937,6 @@ const UNCLE_MIKE_TRANSITION_LINES = [
   },
 
   {
-    text: "GOOD ENOUGH FOR WHO IT’S FOR.",
-    style: "wide"
-  },
-
-  {
     text: "THAT’S A TOMORROW PROBLEM.",
     style: "wide"
   },
@@ -954,11 +944,6 @@ const UNCLE_MIKE_TRANSITION_LINES = [
   {
     text: "YOU SAW NOTHING.",
     style: "normal"
-  },
-
-  {
-    text: "JUST FUCKING SEND IT.",
-    style: "wide"
   },
 
   {
