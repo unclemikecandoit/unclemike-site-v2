@@ -533,4 +533,10 @@ function renderCrookedGatePage() {
 }
 
 
-renderCrookedGatePage();
+/* =========================================================
+   INITIAL PAGE LOAD
+   ========================================================= */
+
+if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+  renderCrookedGatePage();
+}
