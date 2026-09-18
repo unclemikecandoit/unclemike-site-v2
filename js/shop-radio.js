@@ -9,6 +9,11 @@
 
   if (!mount) return;
 
+  /*
+   * Never rebuild the radio.
+   * components.js keeps #shop-radio alive
+   * during internal site navigation.
+   */
   if (mount.dataset.radioReady === "true") {
     return;
   }
@@ -31,10 +36,11 @@
   let controller = null;
   let playerReady = false;
   let isPlaying = false;
+  let isExpanded = false;
 
 
   /* =======================================================
-     HTML
+     RADIO HTML
      ======================================================= */
 
   mount.innerHTML = `
@@ -43,6 +49,10 @@
       class="shop-radio"
       aria-label="Uncle Mike's Shop Radio"
     >
+
+      <!-- ===============================================
+           EXPANDED JUKEBOX
+           =============================================== -->
 
       <section
         class="shop-radio-panel"
@@ -88,48 +98,16 @@
         </div>
 
 
+        <!--
+          Spotify owns everything inside this window:
+          track list, previous/next, play/pause, etc.
+        -->
         <div class="shop-radio-player-window">
 
           <div
             id="shop-radio-spotify-engine"
             class="shop-radio-spotify-engine"
           ></div>
-
-        </div>
-
-
-        <div class="shop-radio-controls">
-
-          <button
-            class="shop-radio-control shop-radio-previous"
-            type="button"
-            aria-label="Previous track"
-          >
-            ⏮
-          </button>
-
-
-          <button
-            class="shop-radio-control shop-radio-big-play"
-            type="button"
-            aria-label="Play Shop Radio"
-          >
-            <span
-              class="shop-radio-big-play-icon"
-              aria-hidden="true"
-            >
-              ▶
-            </span>
-          </button>
-
-
-          <button
-            class="shop-radio-control shop-radio-next"
-            type="button"
-            aria-label="Next track"
-          >
-            ⏭
-          </button>
 
         </div>
 
@@ -152,6 +130,10 @@
 
       </section>
 
+
+      <!-- ===============================================
+           TINY PERSISTENT FACEPLATE
+           =============================================== -->
 
       <div class="shop-radio-face">
 
@@ -252,11 +234,14 @@
           Helvetica,
           sans-serif;
 
-        --spotify-green:
+        --radio-green:
           #1DB954;
 
-        --spotify-green-bright:
-          #1ed760;
+        --radio-green-bright:
+          #1ED760;
+
+        --radio-green-rgb:
+          30, 215, 96;
       }
 
 
@@ -301,7 +286,10 @@
 
         border:
           1px solid
-          rgba(29, 185, 84, 0.72);
+          rgba(
+            var(--radio-green-rgb),
+            0.68
+          );
 
         background:
           linear-gradient(
@@ -319,7 +307,7 @@
 
 
       /* =====================================================
-         EXPAND AREA
+         EXPAND BUTTON
          ===================================================== */
 
       .shop-radio-expand {
@@ -364,13 +352,20 @@
 
       .shop-radio-note {
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         font-size:
           0.78rem;
 
         line-height:
           1;
+
+        text-shadow:
+          0 0 9px
+          rgba(
+            var(--radio-green-rgb),
+            0.45
+          );
       }
 
 
@@ -424,7 +419,7 @@
           hidden;
 
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         font-family:
           Georgia,
@@ -451,11 +446,18 @@
 
         white-space:
           nowrap;
+
+        text-shadow:
+          0 0 10px
+          rgba(
+            var(--radio-green-rgb),
+            0.24
+          );
       }
 
 
       /* =====================================================
-         COLLAPSED PLAY BUTTON
+         SMALL PLAY BUTTON
          ===================================================== */
 
       .shop-radio-play {
@@ -482,16 +484,16 @@
 
         border:
           1px solid
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         border-radius:
           50%;
 
         background:
-          #07100a;
+          #061008;
 
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         cursor:
           pointer;
@@ -503,8 +505,8 @@
           none;
 
         animation:
-          shop-radio-green-pulse
-          2.2s
+          shop-radio-halo
+          2.1s
           ease-in-out
           infinite;
       }
@@ -556,7 +558,10 @@
 
         border:
           1px solid
-          rgba(29, 185, 84, 0.75);
+          rgba(
+            var(--radio-green-rgb),
+            0.72
+          );
 
         background:
           linear-gradient(
@@ -567,7 +572,12 @@
 
         box-shadow:
           0 18px 50px
-          rgba(0, 0, 0, 0.68);
+          rgba(0, 0, 0, 0.68),
+          0 0 18px
+          rgba(
+            var(--radio-green-rgb),
+            0.08
+          );
 
         opacity:
           0;
@@ -634,7 +644,10 @@
 
         border-bottom:
           1px solid
-          rgba(29, 185, 84, 0.24);
+          rgba(
+            var(--radio-green-rgb),
+            0.25
+          );
       }
 
 
@@ -676,7 +689,7 @@
           block;
 
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         font-family:
           Georgia,
@@ -691,6 +704,13 @@
 
         text-transform:
           uppercase;
+
+        text-shadow:
+          0 0 10px
+          rgba(
+            var(--radio-green-rgb),
+            0.25
+          );
       }
 
 
@@ -741,7 +761,7 @@
 
 
       /* =====================================================
-         NOW PLAYING
+         NOW PLAYING SCREEN
          ===================================================== */
 
       .shop-radio-screen {
@@ -750,10 +770,13 @@
 
         border-bottom:
           1px solid
-          rgba(29, 185, 84, 0.2);
+          rgba(
+            var(--radio-green-rgb),
+            0.2
+          );
 
         background:
-          #07100a;
+          #061008;
       }
 
 
@@ -765,7 +788,7 @@
           2px;
 
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         font-size:
           0.36rem;
@@ -813,9 +836,7 @@
 
       /* =====================================================
          SPOTIFY PLAYER
-
-         THIS is the important size fix.
-         No giant fake 330px player cavity.
+         Spotify owns the iframe.
          ===================================================== */
 
       .shop-radio-player-window {
@@ -842,6 +863,11 @@
       }
 
 
+      /*
+       * Size only.
+       * Do NOT alter Spotify iframe permissions,
+       * source, playback attributes or internals.
+       */
       .shop-radio-spotify-engine iframe {
         display:
           block !important;
@@ -861,105 +887,7 @@
 
 
       /* =====================================================
-         CONTROLS
-         ===================================================== */
-
-      .shop-radio-controls {
-        display:
-          grid;
-
-        grid-template-columns:
-          repeat(3, 34px);
-
-        justify-content:
-          center;
-
-        align-items:
-          center;
-
-        gap:
-          13px;
-
-        padding:
-          8px 10px;
-
-        border-top:
-          1px solid
-          rgba(29, 185, 84, 0.15);
-
-        border-bottom:
-          1px solid
-          rgba(29, 185, 84, 0.15);
-
-        background:
-          #090a09;
-      }
-
-
-      .shop-radio-control {
-        display:
-          grid;
-
-        place-items:
-          center;
-
-        width:
-          34px;
-
-        height:
-          30px;
-
-        padding:
-          0;
-
-        border:
-          1px solid
-          rgba(234, 215, 173, 0.26);
-
-        background:
-          #0b0b09;
-
-        color:
-          var(--paper);
-
-        cursor:
-          pointer;
-
-        font-size:
-          0.68rem;
-
-        line-height:
-          1;
-
-        -webkit-appearance:
-          none;
-
-        appearance:
-          none;
-      }
-
-
-      .shop-radio-big-play {
-        border-color:
-          var(--spotify-green);
-
-        color:
-          var(--spotify-green-bright);
-
-        box-shadow:
-          0 0 10px
-          rgba(29, 185, 84, 0.24);
-      }
-
-
-      .shop-radio-control:active {
-        transform:
-          scale(0.92);
-      }
-
-
-      /* =====================================================
-         BOTTOM STRIP
+         PANEL BOTTOM
          ===================================================== */
 
       .shop-radio-panel-bottom {
@@ -977,6 +905,16 @@
 
         padding:
           7px 9px;
+
+        border-top:
+          1px solid
+          rgba(
+            var(--radio-green-rgb),
+            0.16
+          );
+
+        background:
+          #090a09;
       }
 
 
@@ -1003,7 +941,7 @@
           0 0 auto;
 
         color:
-          var(--spotify-green-bright);
+          var(--radio-green-bright);
 
         font-size:
           0.4rem;
@@ -1032,14 +970,25 @@
           none;
 
         background:
-          var(--spotify-green);
+          var(--radio-green);
 
         color:
           #050505;
 
+        border-color:
+          var(--radio-green-bright);
+
         box-shadow:
-          0 0 14px
-          rgba(29, 185, 84, 0.6);
+          0 0 7px
+          rgba(
+            var(--radio-green-rgb),
+            0.7
+          ),
+          0 0 18px
+          rgba(
+            var(--radio-green-rgb),
+            0.38
+          );
       }
 
 
@@ -1051,43 +1000,60 @@
 
 
       .shop-radio:not(.is-ready)
-      .shop-radio-play,
-
-      .shop-radio:not(.is-ready)
-      .shop-radio-control {
+      .shop-radio-play {
         opacity:
           0.58;
       }
 
 
       /* =====================================================
-         GREEN BREATHING PULSE
+         BRIGHT GREEN BREATHING HALO
          ===================================================== */
 
-      @keyframes shop-radio-green-pulse {
+      @keyframes shop-radio-halo {
 
         0%,
         100% {
           border-color:
-            rgba(29, 185, 84, 0.72);
+            rgba(
+              var(--radio-green-rgb),
+              0.7
+            );
 
           box-shadow:
             0 0 4px
-            rgba(29, 185, 84, 0.22),
+            rgba(
+              var(--radio-green-rgb),
+              0.28
+            ),
             0 0 0 0
-            rgba(29, 185, 84, 0);
+            rgba(
+              var(--radio-green-rgb),
+              0
+            );
         }
 
 
         50% {
           border-color:
-            #1ed760;
+            var(--radio-green-bright);
 
           box-shadow:
-            0 0 11px
-            rgba(30, 215, 96, 0.95),
+            0 0 10px
+            rgba(
+              var(--radio-green-rgb),
+              1
+            ),
+            0 0 22px
+            rgba(
+              var(--radio-green-rgb),
+              0.72
+            ),
             0 0 0 5px
-            rgba(30, 215, 96, 0.13);
+            rgba(
+              var(--radio-green-rgb),
+              0.15
+            );
         }
 
       }
@@ -1200,35 +1166,15 @@
     );
 
 
-  const bigPlayButton =
-    mount.querySelector(
-      ".shop-radio-big-play"
-    );
-
-
-  const bigPlayIcon =
-    mount.querySelector(
-      ".shop-radio-big-play-icon"
-    );
-
-
-  const previousButton =
-    mount.querySelector(
-      ".shop-radio-previous"
-    );
-
-
-  const nextButton =
-    mount.querySelector(
-      ".shop-radio-next"
-    );
-
-
   /* =======================================================
      EXPAND / COLLAPSE
      ======================================================= */
 
   function expandRadio() {
+
+    isExpanded =
+      true;
+
 
     radio.classList.add(
       "is-expanded"
@@ -1250,6 +1196,10 @@
 
 
   function collapseRadio() {
+
+    isExpanded =
+      false;
+
 
     radio.classList.remove(
       "is-expanded"
@@ -1283,7 +1233,7 @@
 
 
   /* =======================================================
-     PLAYER STATE
+     PLAYER UI STATE
      ======================================================= */
 
   function renderPlayerState() {
@@ -1310,10 +1260,6 @@
       icon;
 
 
-    bigPlayIcon.textContent =
-      icon;
-
-
     const label =
       isPlaying
         ? "Pause Shop Radio"
@@ -1325,12 +1271,6 @@
       label
     );
 
-
-    bigPlayButton.setAttribute(
-      "aria-label",
-      label
-    );
-
   }
 
 
@@ -1338,7 +1278,7 @@
 
 
   /* =======================================================
-     PLAY / PAUSE
+     COLLAPSED PLAY / PAUSE
      ======================================================= */
 
   function togglePlayback() {
@@ -1359,89 +1299,8 @@
   );
 
 
-  bigPlayButton.addEventListener(
-    "click",
-    togglePlayback
-  );
-
-
   /* =======================================================
-     PREVIOUS
-     ======================================================= */
-
-  previousButton.addEventListener(
-    "click",
-    function () {
-
-      if (
-        controller &&
-        typeof controller.previousTrack ===
-        "function"
-      ) {
-
-        controller.previousTrack();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     NEXT
-     ======================================================= */
-
-  nextButton.addEventListener(
-    "click",
-    function () {
-
-      if (
-        controller &&
-        typeof controller.nextTrack ===
-        "function"
-      ) {
-
-        controller.nextTrack();
-
-      }
-
-    }
-  );
-
-
-  /* =======================================================
-     SPOTIFY PERMISSIONS
-     ======================================================= */
-
-  function applySpotifyPermissions() {
-
-    const iframe =
-      mount.querySelector(
-        ".shop-radio-spotify-engine iframe"
-      );
-
-
-    if (!iframe) {
-      return;
-    }
-
-
-    iframe.setAttribute(
-      "allow",
-      "autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-    );
-
-
-    iframe.setAttribute(
-      "allowfullscreen",
-      ""
-    );
-
-  }
-
-
-  /* =======================================================
-     CREATE SPOTIFY PLAYER
+     CREATE SPOTIFY CONTROLLER
      ======================================================= */
 
   function createSpotifyController(
@@ -1470,7 +1329,7 @@
         PLAYLIST_URL,
 
       width:
-        300,
+        "100%",
 
       height:
         152
@@ -1493,16 +1352,12 @@
           true;
 
 
-        applySpotifyPermissions();
-
-
-        requestAnimationFrame(
-          applySpotifyPermissions
-        );
-
-
         renderPlayerState();
 
+
+        /* ===============================================
+           PLAYBACK STARTED
+           =============================================== */
 
         EmbedController.addListener(
           "playback_started",
@@ -1517,6 +1372,10 @@
           }
         );
 
+
+        /* ===============================================
+           PLAYBACK UPDATES
+           =============================================== */
 
         EmbedController.addListener(
           "playback_update",
