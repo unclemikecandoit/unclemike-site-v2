@@ -10,11 +10,6 @@
 
   if (!mount) return;
 
-  /*
-   * Never rebuild the radio.
-   * components.js keeps #shop-radio alive
-   * during internal site navigation.
-   */
   if (mount.dataset.radioReady === "true") {
     return;
   }
@@ -53,18 +48,10 @@
       aria-label="Uncle Mike's Shop Radio"
     >
 
-      <!-- ===============================================
-           EXPANDED RADIO
-           =============================================== -->
-
       <section
         class="shop-radio-panel"
         aria-hidden="true"
       >
-
-        <!-- =============================================
-             VINTAGE RADIO HEADER
-             ============================================= -->
 
         <div class="shop-radio-console">
 
@@ -94,13 +81,7 @@
           </div>
 
 
-          <!-- ===========================================
-               TUNER
-               =========================================== -->
-
           <div class="shop-radio-tuner">
-
-            <!-- LEFT KNOB -->
 
             <div
               class="shop-radio-knob-unit"
@@ -123,8 +104,6 @@
 
             </div>
 
-
-            <!-- TUNER GLASS -->
 
             <div class="shop-radio-dial">
 
@@ -188,8 +167,6 @@
             </div>
 
 
-            <!-- RIGHT KNOB -->
-
             <div
               class="shop-radio-knob-unit"
               aria-hidden="true"
@@ -215,10 +192,6 @@
 
         </div>
 
-
-        <!-- =============================================
-             SPOTIFY
-             ============================================= -->
 
         <div class="shop-radio-player-window">
 
@@ -248,10 +221,6 @@
 
       </section>
 
-
-      <!-- ===============================================
-           TINY PERSISTENT FACEPLATE
-           =============================================== -->
 
       <div class="shop-radio-face">
 
@@ -292,11 +261,9 @@
         >
 
           <span
-            class="shop-radio-play-icon"
+            class="shop-radio-play-icon is-play"
             aria-hidden="true"
-          >
-            ▶
-          </span>
+          ></span>
 
         </button>
 
@@ -326,10 +293,6 @@
 
 
     style.textContent = `
-
-      /* =====================================================
-         MOUNT
-         ===================================================== */
 
       #shop-radio {
         position:
@@ -577,8 +540,7 @@
 
 
       /* =====================================================
-         COLLAPSED PLAY / PAUSE
-         Always green. Always alive.
+         PLAY / PAUSE BUTTON
          ===================================================== */
 
       .shop-radio-play {
@@ -639,25 +601,118 @@
       }
 
 
+      /*
+       * IMPORTANT:
+       * No emoji characters are used here.
+       * Both icons are drawn completely with CSS,
+       * so iOS cannot turn the play icon blue.
+       */
+
       .shop-radio-play-icon {
+        position:
+          relative;
+
         display:
           block;
 
-        margin-left:
-          1px;
+        width:
+          10px;
 
-        font-size:
-          0.48rem;
+        height:
+          12px;
 
-        line-height:
-          1;
+        margin:
+          0;
       }
 
 
-      /*
-       * Playing keeps the same neon language.
-       * Only the glyph changes.
-       */
+      /* PLAY TRIANGLE */
+
+      .shop-radio-play-icon.is-play::before {
+        content:
+          "";
+
+        position:
+          absolute;
+
+        top:
+          50%;
+
+        left:
+          52%;
+
+        width:
+          0;
+
+        height:
+          0;
+
+        border-top:
+          5px solid transparent;
+
+        border-bottom:
+          5px solid transparent;
+
+        border-left:
+          8px solid
+          var(--radio-green-bright);
+
+        transform:
+          translate(-42%, -50%);
+
+        filter:
+          drop-shadow(
+            0 0 3px
+            rgba(
+              var(--radio-green-rgb),
+              0.7
+            )
+          );
+      }
+
+
+      /* PAUSE BARS */
+
+      .shop-radio-play-icon.is-pause::before,
+      .shop-radio-play-icon.is-pause::after {
+        content:
+          "";
+
+        position:
+          absolute;
+
+        top:
+          1px;
+
+        width:
+          3px;
+
+        height:
+          10px;
+
+        background:
+          var(--radio-green-bright);
+
+        box-shadow:
+          0 0 3px
+          rgba(
+            var(--radio-green-rgb),
+            0.7
+          );
+      }
+
+
+      .shop-radio-play-icon.is-pause::before {
+        left:
+          1px;
+      }
+
+
+      .shop-radio-play-icon.is-pause::after {
+        right:
+          1px;
+      }
+
 
       .shop-radio.is-playing
       .shop-radio-play {
@@ -675,13 +730,6 @@
           2.1s
           ease-in-out
           infinite;
-      }
-
-
-      .shop-radio.is-playing
-      .shop-radio-play-icon {
-        margin-left:
-          0;
       }
 
 
@@ -1519,11 +1567,6 @@
       }
 
 
-      /*
-       * Size only.
-       * Spotify owns the actual iframe.
-       */
-
       .shop-radio-spotify-engine iframe {
         display:
           block !important;
@@ -1866,10 +1909,22 @@
     );
 
 
-    playIcon.textContent =
+    /*
+     * CSS icons instead of Unicode/emoji.
+     * This prevents iOS from rendering the
+     * play triangle as a blue emoji button.
+     */
+
+    playIcon.classList.toggle(
+      "is-pause",
       isPlaying
-        ? "❚❚"
-        : "▶";
+    );
+
+
+    playIcon.classList.toggle(
+      "is-play",
+      !isPlaying
+    );
 
 
     playButton.setAttribute(
@@ -1886,11 +1941,7 @@
 
 
   /* =======================================================
-     TUNER MOVEMENT
-
-     Decorative only.
-     A playback start nudges the physical tuner to a
-     slightly different station position.
+     DECORATIVE TUNER MOVEMENT
      ======================================================= */
 
   function moveTuner() {
@@ -1934,7 +1985,7 @@
 
 
   /* =======================================================
-     COLLAPSED PLAY / PAUSE
+     PLAY / PAUSE
      ======================================================= */
 
   function togglePlayback() {
@@ -2011,10 +2062,6 @@
         renderPlayerState();
 
 
-        /* ===============================================
-           PLAYBACK STARTED
-           =============================================== */
-
         EmbedController.addListener(
           "playback_started",
           function () {
@@ -2031,10 +2078,6 @@
           }
         );
 
-
-        /* ===============================================
-           PLAYBACK UPDATES
-           =============================================== */
 
         EmbedController.addListener(
           "playback_update",
