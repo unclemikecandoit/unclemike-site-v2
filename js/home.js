@@ -427,14 +427,9 @@ function injectHomeStickerStyles() {
     return;
   }
 
+  const style = document.createElement("style");
 
-  const style =
-    document.createElement("style");
-
-
-  style.id =
-    "uncle-mike-home-sticker-styles";
-
+  style.id = "uncle-mike-home-sticker-styles";
 
   style.textContent = `
 
@@ -448,30 +443,45 @@ function injectHomeStickerStyles() {
       text-decoration: none;
     }
 
+    /*
+     * ONE SHORT HORIZONTAL STRIP
+     */
+
     .home-sticker-flash {
-      display: flex;
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       align-items: center;
-      justify-content: flex-start;
-      gap: clamp(10px, 2vw, 20px);
-      margin-bottom: 32px;
+
+      width: min(100%, 620px);
+
+      gap: 10px;
+      margin: 0 0 28px;
     }
 
     .home-sticker-shot {
       display: flex;
       align-items: center;
       justify-content: center;
-      width: clamp(120px, 16vw, 190px);
-      height: clamp(120px, 16vw, 190px);
-      flex: 0 0 auto;
+
+      width: 100%;
+      height: 160px;
+
+      min-width: 0;
+      min-height: 0;
+
       overflow: hidden;
-      background: #ffffff;
     }
 
     .home-sticker-shot img {
       display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
+
+      width: 100% !important;
+      height: 100% !important;
+
+      max-width: 100% !important;
+      max-height: 100% !important;
+
+      object-fit: contain !important;
     }
 
     .home-sticker-copy {
@@ -484,28 +494,55 @@ function injectHomeStickerStyles() {
     }
 
 
+    /*
+     * MOBILE
+     *
+     * All three remain in ONE ROW.
+     * The ENTIRE image strip is only 110px tall.
+     */
+
     @media (max-width: 600px) {
 
       .home-stickers {
-        padding-top: 48px;
+        padding-top: 36px;
       }
 
       .home-sticker-flash {
-        gap: 8px;
-        margin-bottom: 26px;
+        display: grid !important;
+        grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+
+        width: 100% !important;
+        height: 110px !important;
+
+        gap: 6px;
+        margin: 0 0 24px;
       }
 
       .home-sticker-shot {
-        width: calc((100vw - 64px) / 3);
-        height: calc((100vw - 64px) / 3);
-        max-width: 120px;
-        max-height: 120px;
+        width: 100% !important;
+        height: 110px !important;
+
+        min-width: 0 !important;
+        min-height: 0 !important;
+
+        overflow: hidden !important;
+      }
+
+      .home-sticker-shot img {
+        display: block !important;
+
+        width: 100% !important;
+        height: 110px !important;
+
+        max-width: 100% !important;
+        max-height: 110px !important;
+
+        object-fit: contain !important;
       }
 
     }
 
   `;
-
 
   document.head.appendChild(style);
 }
