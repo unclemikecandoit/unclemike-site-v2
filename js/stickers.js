@@ -19,7 +19,8 @@ function renderStickersPage() {
 
   if (
     typeof UNCLE_MIKE_STICKER_CATALOG === "undefined" ||
-    typeof UNCLE_MIKE_STICKER_COLLECTIONS === "undefined"
+    typeof UNCLE_MIKE_STICKER_COLLECTIONS === "undefined" ||
+    typeof UNCLE_MIKE_STICKER_PACKS === "undefined"
   ) {
 
     page.innerHTML = `
@@ -59,7 +60,7 @@ function renderStickersPage() {
           </span>
 
           <span>
-            Flash Packs $5.99
+            10-Sticker Packs $9.99
           </span>
 
         </div>
@@ -105,7 +106,9 @@ function renderStickersPage() {
 
                 <article
                   class="sticker-card"
-                  data-sticker-number="${sticker.number}"
+                  data-product-type="sticker"
+                  data-product-id="${sticker.number}"
+                  data-product-price="${sticker.price}"
                 >
 
                   <div class="sticker-card-image">
@@ -189,15 +192,78 @@ function renderStickersPage() {
         </div>
 
 
-        <div class="flash-pack-placeholder">
+        <div class="flash-pack-grid">
 
-          <span>
-            $5.99
-          </span>
+          ${UNCLE_MIKE_STICKER_PACKS.map(pack => `
 
-          <strong>
-            Packs Coming Soon
-          </strong>
+            <article
+              class="flash-pack-card"
+              data-product-type="pack"
+              data-product-id="${pack.id}"
+              data-product-price="${pack.price}"
+            >
+
+              <div class="flash-pack-image">
+
+                <img
+                  src="${pack.image}"
+                  alt="Sticker Pack ${pack.id}"
+                  loading="lazy"
+                >
+
+              </div>
+
+
+              <div class="flash-pack-controls">
+
+                <div class="flash-pack-info">
+
+                  <strong>
+                    #${pack.id}
+                  </strong>
+
+                  <span>
+                    ${pack.count} Stickers · $${pack.price.toFixed(2)}
+                  </span>
+
+                </div>
+
+
+                <div
+                  class="sticker-quantity"
+                  aria-label="Quantity for sticker pack ${pack.id}"
+                >
+
+                  <button
+                    class="sticker-quantity-button sticker-minus"
+                    type="button"
+                    aria-label="Remove one pack"
+                  >
+                    −
+                  </button>
+
+                  <span
+                    class="sticker-quantity-value"
+                    aria-live="polite"
+                  >
+                    0
+                  </span>
+
+                  <button
+                    class="sticker-quantity-button sticker-plus"
+                    type="button"
+                    aria-label="Add one pack"
+                  >
+                    +
+                  </button>
+
+                </div>
+
+              </div>
+
+            </article>
+
+          `).join("")}
 
         </div>
 
@@ -217,7 +283,7 @@ function renderStickersPage() {
         <div class="sticker-order-summary">
 
           <strong id="sticker-order-count">
-            0 Stickers
+            0 Items
           </strong>
 
           <span id="sticker-order-total">
@@ -256,10 +322,12 @@ function initializeStickerOrdering() {
 
   const quantities = {};
 
-  const cards =
+
+  const productCards =
     document.querySelectorAll(
-      ".sticker-card[data-sticker-number]"
+      "[data-product-type][data-product-id]"
     );
+
 
   const orderBar =
     document.getElementById(
@@ -282,14 +350,18 @@ function initializeStickerOrdering() {
     );
 
 
-  cards.forEach(card => {
+  productCards.forEach(card => {
 
-    const number =
-      Number(
-        card.dataset.stickerNumber
-      );
+    const type =
+      card.dataset.productType;
 
-    quantities[number] = 0;
+    const id =
+      card.dataset.productId;
+
+    const key =
+      `${type}:${id}`;
+
+    quantities[key] = 0;
 
 
     const minus =
@@ -312,10 +384,10 @@ function initializeStickerOrdering() {
       "click",
       () => {
 
-        quantities[number] += 1;
+        quantities[key] += 1;
 
         value.textContent =
-          quantities[number];
+          quantities[key];
 
         updateStickerOrder();
 
@@ -328,15 +400,15 @@ function initializeStickerOrdering() {
       () => {
 
         if (
-          quantities[number] === 0
+          quantities[key] === 0
         ) {
           return;
         }
 
-        quantities[number] -= 1;
+        quantities[key] -= 1;
 
         value.textContent =
-          quantities[number];
+          quantities[key];
 
         updateStickerOrder();
 
@@ -347,25 +419,66 @@ function initializeStickerOrdering() {
 
 
   /* =======================================================
+     GET ORDER TOTALS
+     ======================================================= */
+
+  function getOrderTotals() {
+
+    let totalItems = 0;
+    let totalPrice = 0;
+
+
+    productCards.forEach(card => {
+
+      const type =
+        card.dataset.productType;
+
+      const id =
+        card.dataset.productId;
+
+      const key =
+        `${type}:${id}`;
+
+      const quantity =
+        quantities[key] || 0;
+
+      const price =
+        Number(
+          card.dataset.productPrice
+        ) || 0;
+
+
+      totalItems +=
+        quantity;
+
+      totalPrice +=
+        quantity * price;
+
+    });
+
+
+    return {
+      totalItems,
+      totalPrice
+    };
+
+  }
+
+
+  /* =======================================================
      UPDATE ORDER
      ======================================================= */
 
   function updateStickerOrder() {
 
-    const totalQuantity =
-      Object.values(quantities)
-        .reduce(
-          (total, quantity) =>
-            total + quantity,
-          0
-        );
+    const {
+      totalItems,
+      totalPrice
+    } =
+      getOrderTotals();
 
 
-    const totalPrice =
-      totalQuantity * 1.99;
-
-
-    if (totalQuantity === 0) {
+    if (totalItems === 0) {
 
       orderBar.hidden = true;
 
@@ -378,10 +491,10 @@ function initializeStickerOrdering() {
 
 
     orderCount.textContent =
-      `${totalQuantity} ${
-        totalQuantity === 1
-          ? "Sticker"
-          : "Stickers"
+      `${totalItems} ${
+        totalItems === 1
+          ? "Item"
+          : "Items"
       }`;
 
 
@@ -405,10 +518,11 @@ function initializeStickerOrdering() {
       UNCLE_MIKE_STICKER_CATALOG
         .forEach(sticker => {
 
+          const key =
+            `sticker:${sticker.number}`;
+
           const quantity =
-            quantities[
-              sticker.number
-            ] || 0;
+            quantities[key] || 0;
 
 
           if (quantity > 0) {
@@ -422,22 +536,37 @@ function initializeStickerOrdering() {
         });
 
 
+      UNCLE_MIKE_STICKER_PACKS
+        .forEach(pack => {
+
+          const key =
+            `pack:${pack.id}`;
+
+          const quantity =
+            quantities[key] || 0;
+
+
+          if (quantity > 0) {
+
+            selected.push(
+              `#${pack.id} × ${quantity}`
+            );
+
+          }
+
+        });
+
+
       if (!selected.length) {
         return;
       }
 
 
-      const totalQuantity =
-        Object.values(quantities)
-          .reduce(
-            (total, quantity) =>
-              total + quantity,
-            0
-          );
-
-
-      const totalPrice =
-        totalQuantity * 1.99;
+      const {
+        totalItems,
+        totalPrice
+      } =
+        getOrderTotals();
 
 
       const orderText =
@@ -446,10 +575,10 @@ function initializeStickerOrdering() {
           "",
           ...selected,
           "",
-          `${totalQuantity} ${
-            totalQuantity === 1
-              ? "sticker"
-              : "stickers"
+          `${totalItems} ${
+            totalItems === 1
+              ? "item"
+              : "items"
           }`,
           `$${totalPrice.toFixed(2)}`
         ].join("\n");
@@ -658,7 +787,7 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       CARD
+       STICKER CARD
        ===================================================== */
 
     .sticker-card {
@@ -718,7 +847,8 @@ function injectStickerStoreStyles() {
        NUMBER + QUANTITY
        ===================================================== */
 
-    .sticker-card-controls {
+    .sticker-card-controls,
+    .flash-pack-controls {
       display:
         flex;
 
@@ -766,6 +896,9 @@ function injectStickerStoreStyles() {
 
       align-items:
         center;
+
+      flex:
+        0 0 auto;
 
       border:
         1px solid
@@ -841,24 +974,26 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       FLASH PACK
+       FLASH PACKS
        ===================================================== */
 
-    .flash-pack-placeholder {
+    .flash-pack-grid {
       display:
-        flex;
+        grid;
 
-      align-items:
-        center;
-
-      justify-content:
-        space-between;
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
 
       gap:
-        20px;
+        clamp(14px, 2vw, 24px);
+    }
 
-      padding:
-        24px;
+    .flash-pack-card {
+      min-width:
+        0;
+
+      overflow:
+        hidden;
 
       border:
         1px solid
@@ -868,23 +1003,56 @@ function injectStickerStoreStyles() {
         var(--surface);
     }
 
-    .flash-pack-placeholder span {
+    .flash-pack-image {
+      background:
+        #0d1014;
+
+      overflow:
+        hidden;
+    }
+
+    .flash-pack-image img {
+      display:
+        block;
+
+      width:
+        100%;
+
+      height:
+        auto;
+    }
+
+    .flash-pack-info {
+      display:
+        flex;
+
+      flex-direction:
+        column;
+
+      gap:
+        4px;
+    }
+
+    .flash-pack-info strong {
       color:
         var(--paper);
 
       font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+        Arial,
+        Helvetica,
+        sans-serif;
 
       font-size:
-        2rem;
+        0.82rem;
 
       font-weight:
-        700;
+        900;
+
+      letter-spacing:
+        0.1em;
     }
 
-    .flash-pack-placeholder strong {
+    .flash-pack-info span {
       color:
         var(--muted);
 
@@ -894,10 +1062,13 @@ function injectStickerStoreStyles() {
         sans-serif;
 
       font-size:
-        0.72rem;
+        0.68rem;
+
+      font-weight:
+        800;
 
       letter-spacing:
-        0.12em;
+        0.08em;
 
       text-transform:
         uppercase;
@@ -1143,7 +1314,8 @@ function injectStickerStoreStyles() {
           6px;
       }
 
-      .sticker-card-controls {
+      .sticker-card-controls,
+      .flash-pack-controls {
         padding:
           10px;
 
@@ -1179,14 +1351,19 @@ function injectStickerStoreStyles() {
           0.72rem;
       }
 
-      .flash-pack-placeholder {
-        padding:
-          18px;
+      .flash-pack-grid {
+        grid-template-columns:
+          1fr;
       }
 
-      .flash-pack-placeholder span {
+      .flash-pack-info strong {
         font-size:
-          1.6rem;
+          0.76rem;
+      }
+
+      .flash-pack-info span {
+        font-size:
+          0.62rem;
       }
 
       .sticker-order-bar {
