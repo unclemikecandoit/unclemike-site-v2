@@ -1,25 +1,27 @@
 /* =========================================================
    UNCLE MIKE — STICKER CATALOG
 
-   HOW TO ADD A NEW STICKER:
+   INDIVIDUAL STICKERS
+   -------------------
+   Add one line to the correct collection:
 
-   1. Upload the image to:
-      /stickers/images/
+   [number, collection, image]
 
-   2. Leave the filename EXACTLY as it uploaded.
+   Existing images can use their current path.
 
-   3. Add ONE line to the correct collection below:
+   New images can be uploaded wherever we're keeping
+   sticker assets and referenced by their actual filename.
 
-      [26, "gfy", "whatever-file-name.png"]
-
-      OR
-
-      [26, "brain", "whatever-file-name.png"]
-
-   That's it.
+   FLASH PACKS
+   -----------
+   Packs have their own catalog below.
 
    FORMAT:
-   [sticker number, collection, image path]
+   {
+     id: "P01",
+     image: "../stickers/IMG_7384.jpeg",
+     price: 9.99
+   }
    ========================================================= */
 
 
@@ -27,7 +29,6 @@ const UNCLE_MIKE_STICKERS = [
 
   /* =======================================================
      GFY COLLECTION
-     Existing images stay in their current location.
      ======================================================= */
 
   [
@@ -105,7 +106,6 @@ const UNCLE_MIKE_STICKERS = [
 
   /* =======================================================
      MY BRAIN IS BETTER THAN YOURS
-     Existing images stay in their current location.
      ======================================================= */
 
   [
@@ -209,13 +209,23 @@ const UNCLE_MIKE_STICKER_COLLECTIONS = [
 
 
 /* =========================================================
-   NORMALIZE CATALOG
+   FLASH PACKS
+   ========================================================= */
 
-   Converts the tiny inventory lines above into objects
-   the storefront can use.
+const UNCLE_MIKE_STICKER_PACKS = [
 
-   New images inside /stickers/images/ only need their
-   filename. Existing images keep their existing paths.
+  {
+    id: "P01",
+    image: "../stickers/IMG_7384.jpeg",
+    price: 9.99,
+    count: 10
+  }
+
+];
+
+
+/* =========================================================
+   NORMALIZE INDIVIDUAL STICKER CATALOG
    ========================================================= */
 
 const UNCLE_MIKE_STICKER_CATALOG =
@@ -234,7 +244,9 @@ const UNCLE_MIKE_STICKER_CATALOG =
         image:
           isExistingPath
             ? image
-            : `../stickers/images/${image}`
+            : `../stickers/images/${image}`,
+
+        price: 1.99
       };
 
     }
