@@ -96,23 +96,26 @@ function renderHomePage() {
 
           <div class="home-sticker-flash">
 
-            <img
-              class="home-sticker home-sticker-one"
-              src="./2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
-              alt="JR. Enemy of the State sticker"
-            >
+            <div class="home-sticker-shot">
+              <img
+                src="./2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
+                alt="JR. Enemy of the State sticker"
+              >
+            </div>
 
-            <img
-              class="home-sticker home-sticker-two"
-              src="./800448F2-6C0A-4009-BFEE-44762F9757AB.png"
-              alt="Not Today Satan sticker"
-            >
+            <div class="home-sticker-shot">
+              <img
+                src="./800448F2-6C0A-4009-BFEE-44762F9757AB.png"
+                alt="Not Today Satan sticker"
+              >
+            </div>
 
-            <img
-              class="home-sticker home-sticker-three"
-              src="./68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
-              alt="This Again sticker"
-            >
+            <div class="home-sticker-shot">
+              <img
+                src="./68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
+                alt="This Again sticker"
+              >
+            </div>
 
           </div>
 
@@ -446,138 +449,61 @@ function injectHomeStickerStyles() {
     }
 
     .home-sticker-flash {
-      position: relative;
-      min-height: 620px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
       margin-bottom: 42px;
     }
 
-    .home-sticker {
-      position: absolute;
+    .home-sticker-shot {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 0;
+      background: #ffffff;
+      overflow: hidden;
+    }
+
+    .home-sticker-shot img {
       display: block;
-      width: min(48vw, 520px);
-      height: auto;
+      width: 100%;
+      height: 100%;
+      max-height: 440px;
       object-fit: contain;
-      filter:
-        drop-shadow(0 18px 18px rgba(0, 0, 0, 0.38));
-      transition:
-        transform 180ms ease;
-    }
-
-    .home-sticker-one {
-      left: 2%;
-      top: 2%;
-      transform: rotate(-8deg);
-      z-index: 2;
-    }
-
-    .home-sticker-two {
-      left: 34%;
-      top: 12%;
-      transform: rotate(7deg);
-      z-index: 3;
-    }
-
-    .home-sticker-three {
-      right: 0;
-      top: 0;
-      transform: rotate(-3deg);
-      z-index: 1;
-    }
-
-    .home-sticker-feature:hover
-    .home-sticker-one {
-      transform:
-        rotate(-10deg)
-        translateY(-6px);
-    }
-
-    .home-sticker-feature:hover
-    .home-sticker-two {
-      transform:
-        rotate(9deg)
-        translateY(-8px);
-    }
-
-    .home-sticker-feature:hover
-    .home-sticker-three {
-      transform:
-        rotate(-5deg)
-        translateY(-5px);
     }
 
     .home-sticker-copy {
       max-width: 760px;
     }
 
-    .home-sticker-copy
-    .project-card-link {
+    .home-sticker-copy .project-card-link {
       display: inline-block;
       margin-top: 12px;
     }
 
 
-    @media (max-width: 800px) {
-
-      .home-sticker-flash {
-        min-height: 118vw;
-        max-height: 720px;
-        margin-left: -7vw;
-        margin-right: -7vw;
-        margin-bottom: 28px;
-      }
-
-      .home-sticker {
-        width: 67vw;
-        max-width: 430px;
-      }
-
-      .home-sticker-one {
-        left: 0;
-        top: 1%;
-        transform: rotate(-9deg);
-      }
-
-      .home-sticker-two {
-        left: 34%;
-        top: 28%;
-        transform: rotate(8deg);
-      }
-
-      .home-sticker-three {
-        left: 7%;
-        top: 52%;
-        transform: rotate(-5deg);
-      }
-
-    }
-
-
-    @media (max-width: 520px) {
+    @media (max-width: 600px) {
 
       .home-stickers {
         padding-top: 48px;
       }
 
       .home-sticker-flash {
-        min-height: 128vw;
+        grid-template-columns: 1fr;
+        gap: 8px;
+        margin-bottom: 32px;
       }
 
-      .home-sticker {
-        width: 72vw;
+      .home-sticker-shot {
+        width: 100%;
+        max-height: 68svh;
       }
 
-      .home-sticker-one {
-        left: -2%;
-      }
-
-      .home-sticker-two {
-        left: 34%;
-        top: 29%;
-      }
-
-      .home-sticker-three {
-        left: 5%;
-        top: 55%;
+      .home-sticker-shot img {
+        width: 100%;
+        height: auto;
+        max-height: 68svh;
+        object-fit: contain;
       }
 
     }
