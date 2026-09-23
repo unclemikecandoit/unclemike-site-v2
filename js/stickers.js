@@ -12,23 +12,133 @@ function renderStickersPage() {
 
   /* =======================================================
      STICKER CATALOG
-
-     Order here = order on the storefront.
-     Keep collections together.
      ======================================================= */
 
   const stickerGroups = [
 
     /* -----------------------------------------------------
-       AUTISM / AUTOMOTIVE
+       GFY COLLECTION
        ----------------------------------------------------- */
 
     {
-      id: "autism",
-      eyebrow: "Autism Collection",
-      title: "Different Fuels Progress.",
+      id: "gfy",
+      eyebrow: "GFY Collection",
+      title: "Stick Something.",
       description:
-        "Automotive culture, rebuilt for a different kind of wiring.",
+        "Poor decisions, dark humor and perfectly good surfaces that need ruining.",
+
+      stickers: [
+
+        {
+          id: "jr-enemy-state",
+          name: "JR. Enemy of the State",
+          subtitle: "",
+          image:
+            "../2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
+        },
+
+        {
+          id: "not-today-satan",
+          name: "Not Today Satan",
+          subtitle: "",
+          image:
+            "../800448F2-6C0A-4009-BFEE-44762F9757AB.png"
+        },
+
+        {
+          id: "this-again",
+          name: "This Again?",
+          subtitle: "",
+          image:
+            "../68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
+        },
+
+        {
+          id: "try-me",
+          name: "Try Me",
+          subtitle: "",
+          image:
+            "../377B33A1-8F06-4B25-91F4-F2ED9B401CFE.png"
+        },
+
+        {
+          id: "persuader",
+          name: "The Persuader",
+          subtitle: "",
+          image:
+            "../3246F0CD-1F4C-4C9B-88A1-986EEB60C397.png"
+        },
+
+        {
+          id: "catch-me-never",
+          name: "Catch Me Never",
+          subtitle: "STIHL Single",
+          image:
+            "../0547ED23-02FD-4A8B-B163-76675EECB51C.png"
+        },
+
+        {
+          id: "plan-b",
+          name: "Plan B",
+          subtitle: "",
+          image:
+            "../E49DC6DB-EA61-4ADE-97D9-AFDF3E238F78.png"
+        },
+
+        {
+          id: "fah-q",
+          name: "FAH-Q",
+          subtitle: "",
+          image:
+            "../DE7935CB-F093-4900-9CCA-1FA60E648B29.png"
+        },
+
+        {
+          id: "lol-k",
+          name: "LOL,K",
+          subtitle: "",
+          image:
+            "../B3D5BE20-E846-432C-A803-BEF686BBBAEF.png"
+        },
+
+        {
+          id: "nope",
+          name: "Nope.",
+          subtitle: "",
+          image:
+            "../AFA5E466-A470-444B-B73B-5BB66FD4F047.png"
+        },
+
+        {
+          id: "walk-it-off",
+          name: "Walk It Off",
+          subtitle: "",
+          image:
+            "../9CE55BC3-4DC7-43DA-957B-9B978289148D.png"
+        },
+
+        {
+          id: "well-fuck",
+          name: "Well Fuck",
+          subtitle: "",
+          image:
+            "../IMG_7328.jpeg"
+        }
+
+      ]
+    },
+
+
+    /* -----------------------------------------------------
+       MY BRAIN IS BETTER THAN YOURS
+       ----------------------------------------------------- */
+
+    {
+      id: "my-brain-is-better-than-yours",
+      eyebrow: "My Brain Is Better Than Yours",
+      title: "Fueled Differently.",
+      description:
+        "High-performance minds. Different wiring. Better stickers.",
 
       stickers: [
 
@@ -137,136 +247,6 @@ function renderStickersPage() {
         }
 
       ]
-    },
-
-
-    /* -----------------------------------------------------
-       DARK HUMOR / HORROR
-       ----------------------------------------------------- */
-
-    {
-      id: "dark-humor",
-      eyebrow: "Dark Humor",
-      title: "Poor Decisions. Great Stickers.",
-      description:
-        "A collection for toolboxes, shop cabinets, coolers and questionable judgment.",
-
-      stickers: [
-
-        {
-          id: "try-me",
-          name: "Try Me",
-          subtitle: "",
-          image:
-            "../377B33A1-8F06-4B25-91F4-F2ED9B401CFE.png"
-        },
-
-        {
-          id: "persuader",
-          name: "The Persuader",
-          subtitle: "",
-          image:
-            "../3246F0CD-1F4C-4C9B-88A1-986EEB60C397.png"
-        },
-
-        {
-          id: "catch-me-never",
-          name: "Catch Me Never",
-          subtitle: "STIHL Single",
-          image:
-            "../0547ED23-02FD-4A8B-B163-76675EECB51C.png"
-        },
-
-        {
-          id: "plan-b",
-          name: "Plan B",
-          subtitle: "",
-          image:
-            "../E49DC6DB-EA61-4ADE-97D9-AFDF3E238F78.png"
-        },
-
-        {
-          id: "fah-q",
-          name: "FAH-Q",
-          subtitle: "",
-          image:
-            "../DE7935CB-F093-4900-9CCA-1FA60E648B29.png"
-        },
-
-        {
-          id: "lol-k",
-          name: "LOL,K",
-          subtitle: "",
-          image:
-            "../B3D5BE20-E846-432C-A803-BEF686BBBAEF.png"
-        },
-
-        {
-          id: "nope",
-          name: "Nope.",
-          subtitle: "",
-          image:
-            "../AFA5E466-A470-444B-B73B-5BB66FD4F047.png"
-        },
-
-        {
-          id: "walk-it-off",
-          name: "Walk It Off",
-          subtitle: "",
-          image:
-            "../9CE55BC3-4DC7-43DA-957B-9B978289148D.png"
-        },
-
-        {
-          id: "well-fuck",
-          name: "Well Fuck",
-          subtitle: "",
-          image:
-            "../IMG_7328.jpeg"
-        }
-
-      ]
-    },
-
-
-    /* -----------------------------------------------------
-       OTHER / ORIGINALS
-       ----------------------------------------------------- */
-
-    {
-      id: "originals",
-      eyebrow: "Uncle Mike Originals",
-      title: "Stick Something.",
-      description:
-        "Because leaving perfectly good surfaces alone is boring.",
-
-      stickers: [
-
-        {
-          id: "jr-enemy-state",
-          name: "JR. Enemy of the State",
-          subtitle: "",
-          image:
-            "../2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
-        },
-
-        {
-          id: "not-today-satan",
-          name: "Not Today Satan",
-          subtitle: "",
-          image:
-            "../800448F2-6C0A-4009-BFEE-44762F9757AB.png"
-        },
-
-        {
-          id: "this-again",
-          name: "This Again?",
-          subtitle: "",
-          image:
-            "../68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
-        }
-
-      ]
     }
 
   ];
@@ -300,6 +280,11 @@ function renderStickersPage() {
           whatever else needs more personality.
         </p>
 
+        <div class="sticker-price-callout">
+          <span>Individual Stickers</span>
+          <strong>$1.99</strong>
+        </div>
+
       </div>
 
     </section>
@@ -321,11 +306,11 @@ function renderStickersPage() {
           <div class="sticker-collection-heading">
 
             <p class="eyebrow">
-              ${group.eyebrow}
+              Collection
             </p>
 
             <h2 class="sticker-collection-title">
-              ${group.title}
+              ${group.eyebrow}
             </h2>
 
             <p class="sticker-collection-description">
@@ -379,7 +364,7 @@ function renderStickersPage() {
                   <div class="sticker-card-purchase">
 
                     <span class="sticker-price">
-                      Coming Soon
+                      $1.99
                     </span>
 
                   </div>
@@ -400,6 +385,65 @@ function renderStickersPage() {
 
 
     <!-- ===================================================
+         FLASH PACKS
+         =================================================== -->
+
+    <section
+      class="sticker-collection flash-pack-section"
+      id="flash-packs"
+    >
+
+      <div class="wrap">
+
+        <div class="sticker-collection-heading">
+
+          <p class="eyebrow">
+            Sticker Sets
+          </p>
+
+          <h2 class="sticker-collection-title">
+            Flash Packs
+          </h2>
+
+          <p class="sticker-collection-description">
+            Curated sticker packs. More stickers.
+            Less thinking.
+          </p>
+
+        </div>
+
+
+        <div class="flash-pack-banner">
+
+          <div class="flash-pack-copy">
+
+            <p class="eyebrow">
+              Flash Packs
+            </p>
+
+            <h3>
+              $5.99
+            </h3>
+
+            <p>
+              Pick up a curated set of Uncle Mike
+              stickers for one price.
+            </p>
+
+          </div>
+
+          <div class="flash-pack-status">
+            Packs dropping soon.
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================================
          STORE STATUS
          =================================================== -->
 
@@ -414,13 +458,14 @@ function renderStickersPage() {
           </p>
 
           <h2 class="sticker-status-title">
-            Store Checkout<br>
+            Checkout<br>
             Coming Next.
           </h2>
 
           <p>
-            The designs are here. Online ordering
-            is being wired up now.
+            Individual stickers are $1.99.
+            Flash packs are $5.99.
+            Online checkout is being wired up now.
           </p>
 
           <p>
@@ -539,6 +584,56 @@ function injectStickerStoreStyles() {
         1.55;
     }
 
+    .sticker-price-callout {
+      display:
+        inline-flex;
+
+      align-items:
+        baseline;
+
+      gap:
+        16px;
+
+      margin-top:
+        30px;
+
+      padding:
+        13px
+        17px;
+
+      border:
+        1px solid
+        rgba(234, 215, 173, 0.28);
+
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.72rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        0.12em;
+
+      text-transform:
+        uppercase;
+    }
+
+    .sticker-price-callout strong {
+      color:
+        var(--paper);
+
+      font-size:
+        1.15rem;
+    }
+
 
     /* =====================================================
        COLLECTION
@@ -556,7 +651,7 @@ function injectStickerStoreStyles() {
 
     .sticker-collection-heading {
       max-width:
-        720px;
+        760px;
 
       margin-bottom:
         clamp(30px, 4vw, 46px);
@@ -564,7 +659,7 @@ function injectStickerStoreStyles() {
 
     .sticker-collection-title {
       max-width:
-        720px;
+        760px;
 
       margin:
         0;
@@ -786,6 +881,102 @@ function injectStickerStoreStyles() {
 
     .sticker-price {
       color:
+        var(--paper);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.9rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        0.1em;
+
+      text-transform:
+        uppercase;
+    }
+
+
+    /* =====================================================
+       FLASH PACKS
+       ===================================================== */
+
+    .flash-pack-banner {
+      display:
+        flex;
+
+      align-items:
+        flex-end;
+
+      justify-content:
+        space-between;
+
+      gap:
+        32px;
+
+      padding:
+        clamp(26px, 4vw, 46px);
+
+      border:
+        1px solid
+        rgba(234, 215, 173, 0.3);
+
+      background:
+        var(--surface);
+    }
+
+    .flash-pack-copy h3 {
+      margin:
+        6px
+        0
+        14px;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(
+          3.4rem,
+          7vw,
+          6rem
+        );
+
+      line-height:
+        0.9;
+
+      letter-spacing:
+        -0.04em;
+    }
+
+    .flash-pack-copy > p:last-child {
+      max-width:
+        470px;
+
+      margin:
+        0;
+
+      color:
+        var(--copy);
+
+      line-height:
+        1.5;
+    }
+
+    .flash-pack-status {
+      flex:
+        0 0 auto;
+
+      color:
         var(--muted);
 
       font-family:
@@ -794,13 +985,13 @@ function injectStickerStoreStyles() {
         sans-serif;
 
       font-size:
-        0.74rem;
+        0.72rem;
 
       font-weight:
         900;
 
       letter-spacing:
-        0.14em;
+        0.12em;
 
       text-transform:
         uppercase;
@@ -910,6 +1101,11 @@ function injectStickerStoreStyles() {
           1.5;
       }
 
+      .sticker-price-callout {
+        margin-top:
+          24px;
+      }
+
       .sticker-collection {
         padding:
           48px
@@ -985,7 +1181,26 @@ function injectStickerStoreStyles() {
 
       .sticker-price {
         font-size:
-          0.64rem;
+          0.78rem;
+      }
+
+      .flash-pack-banner {
+        align-items:
+          flex-start;
+
+        flex-direction:
+          column;
+
+        gap:
+          24px;
+
+        padding:
+          24px;
+      }
+
+      .flash-pack-copy h3 {
+        font-size:
+          3.6rem;
       }
 
       .sticker-store-status {
