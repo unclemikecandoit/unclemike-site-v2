@@ -22,105 +22,78 @@ function renderStickersPage() {
 
     {
       id: "gfy",
-      eyebrow: "GFY Collection",
-      title: "Stick Something.",
-      description:
-        "Poor decisions, dark humor and perfectly good surfaces that need ruining.",
+      title: "GFY Collection",
 
       stickers: [
 
         {
           id: "jr-enemy-state",
-          name: "JR. Enemy of the State",
-          subtitle: "",
           image:
             "../2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
         },
 
         {
           id: "not-today-satan",
-          name: "Not Today Satan",
-          subtitle: "",
           image:
             "../800448F2-6C0A-4009-BFEE-44762F9757AB.png"
         },
 
         {
           id: "this-again",
-          name: "This Again?",
-          subtitle: "",
           image:
             "../68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
         },
 
         {
           id: "try-me",
-          name: "Try Me",
-          subtitle: "",
           image:
             "../377B33A1-8F06-4B25-91F4-F2ED9B401CFE.png"
         },
 
         {
           id: "persuader",
-          name: "The Persuader",
-          subtitle: "",
           image:
             "../3246F0CD-1F4C-4C9B-88A1-986EEB60C397.png"
         },
 
         {
           id: "catch-me-never",
-          name: "Catch Me Never",
-          subtitle: "STIHL Single",
           image:
             "../0547ED23-02FD-4A8B-B163-76675EECB51C.png"
         },
 
         {
           id: "plan-b",
-          name: "Plan B",
-          subtitle: "",
           image:
             "../E49DC6DB-EA61-4ADE-97D9-AFDF3E238F78.png"
         },
 
         {
           id: "fah-q",
-          name: "FAH-Q",
-          subtitle: "",
           image:
             "../DE7935CB-F093-4900-9CCA-1FA60E648B29.png"
         },
 
         {
           id: "lol-k",
-          name: "LOL,K",
-          subtitle: "",
           image:
             "../B3D5BE20-E846-432C-A803-BEF686BBBAEF.png"
         },
 
         {
           id: "nope",
-          name: "Nope.",
-          subtitle: "",
           image:
             "../AFA5E466-A470-444B-B73B-5BB66FD4F047.png"
         },
 
         {
           id: "walk-it-off",
-          name: "Walk It Off",
-          subtitle: "",
           image:
             "../9CE55BC3-4DC7-43DA-957B-9B978289148D.png"
         },
 
         {
           id: "well-fuck",
-          name: "Well Fuck",
-          subtitle: "",
           image:
             "../IMG_7328.jpeg"
         }
@@ -135,113 +108,84 @@ function renderStickersPage() {
 
     {
       id: "my-brain-is-better-than-yours",
-      eyebrow: "My Brain Is Better Than Yours",
-      title: "Fueled Differently.",
-      description:
-        "High-performance minds. Different wiring. Better stickers.",
+      title: "My Brain Is Better Than Yours",
 
       stickers: [
 
         {
           id: "powered-autism-high-octane",
-          name: "Powered By Autism",
-          subtitle: "High Octane Minds",
           image:
             "../53FBB857-6589-4B6B-AB15-511094D09D9D.png"
         },
 
         {
           id: "powered-autism-different-fuels",
-          name: "Powered By Autism",
-          subtitle: "Different Fuels Progress",
           image:
             "../powered_by_autism_cutout.png"
         },
 
         {
           id: "autism-mental-lubrication",
-          name: "Autism",
-          subtitle: "Mental Lubrication Keeps Things Moving",
           image:
             "../autism_sticker_cutout.png"
         },
 
         {
           id: "autism-spark",
-          name: "Autism",
-          subtitle: "Spark A Brighter Tomorrow",
           image:
             "../autism_spark_cutout.png"
         },
 
         {
           id: "autism-racing-division",
-          name: "Autism",
-          subtitle: "Champions Think Different",
           image:
             "../autism_champions_cutout.png"
         },
 
         {
           id: "autism-cams",
-          name: "Autism Cams",
-          subtitle: "More Ideas Per Rev",
           image:
             "../autism_cams_cutout.png"
         },
 
         {
           id: "autism-look-further",
-          name: "Autism",
-          subtitle: "Look Further",
           image:
             "../14FF8ADB-DFA3-48BC-B0CE-83C2BBA50ADD.png"
         },
 
         {
           id: "powered-autism",
-          name: "Powered By Autism",
-          subtitle: "",
           image:
             "../FD5E3664-835E-41C7-AC69-006356BAA991.png"
         },
 
         {
           id: "autism-fueling-ideas",
-          name: "Autism",
-          subtitle: "Fueling Ideas",
           image:
             "../C3562F6C-48D5-4DA6-A7B2-CB8F89A5AC99.png"
         },
 
         {
           id: "autism-high-performance-minds",
-          name: "Autism",
-          subtitle: "High Performance Minds",
           image:
             "../CC263FC1-3A39-449F-997F-9FCCEE620C01.png"
         },
 
         {
           id: "autism-h",
-          name: "Autism",
-          subtitle: "",
           image:
             "../ED07CB72-68C8-41A9-B713-29C0F9A1E6B6.png"
         },
 
         {
           id: "autism-fueled-differently",
-          name: "Autism",
-          subtitle: "Fueled Differently",
           image:
             "../7C481E72-DD74-418F-8852-5DB20A64C752.png"
         },
 
         {
           id: "powered-autism-exceptional-performance",
-          name: "Powered By Autism",
-          subtitle: "Exceptional Performance Always",
           image:
             "../73665BA7-29B3-4596-AA3E-18256B3378EF.png"
         }
@@ -253,14 +197,24 @@ function renderStickersPage() {
 
 
   /* =======================================================
+     NUMBER THE STICKERS
+     ======================================================= */
+
+  let stickerNumber = 0;
+
+  stickerGroups.forEach(group => {
+    group.stickers.forEach(sticker => {
+      stickerNumber += 1;
+      sticker.number = stickerNumber;
+    });
+  });
+
+
+  /* =======================================================
      PAGE
      ======================================================= */
 
   page.innerHTML = `
-
-    <!-- ===================================================
-         HERO
-         =================================================== -->
 
     <section class="page-section sticker-store-hero">
 
@@ -274,25 +228,15 @@ function renderStickersPage() {
           Buy Stickers!
         </h1>
 
-        <p class="sticker-store-intro">
-          Original designs for toolboxes, cars,
-          coolers, laptops, shop cabinets and
-          whatever else needs more personality.
-        </p>
-
-        <div class="sticker-price-callout">
-          <span>Individual Stickers</span>
-          <strong>$1.99</strong>
+        <div class="sticker-store-pricing">
+          <span>Stickers $1.99 Each</span>
+          <span>Flash Packs $5.99</span>
         </div>
 
       </div>
 
     </section>
 
-
-    <!-- ===================================================
-         COLLECTIONS
-         =================================================== -->
 
     ${stickerGroups.map(group => `
 
@@ -305,17 +249,9 @@ function renderStickersPage() {
 
           <div class="sticker-collection-heading">
 
-            <p class="eyebrow">
-              Collection
-            </p>
-
             <h2 class="sticker-collection-title">
-              ${group.eyebrow}
+              ${group.title}
             </h2>
-
-            <p class="sticker-collection-description">
-              ${group.description}
-            </p>
 
           </div>
 
@@ -327,45 +263,53 @@ function renderStickersPage() {
               <article
                 class="sticker-card"
                 data-sticker-id="${sticker.id}"
+                data-sticker-number="${sticker.number}"
               >
 
                 <div class="sticker-card-image">
 
                   <img
                     src="${sticker.image}"
-                    alt="${sticker.name}"
+                    alt="Sticker #${String(sticker.number).padStart(2, "0")}"
                     loading="lazy"
                   >
 
                 </div>
 
 
-                <div class="sticker-card-body">
+                <div class="sticker-card-controls">
 
-                  <div class="sticker-card-copy">
+                  <span class="sticker-number">
+                    #${String(sticker.number).padStart(2, "0")}
+                  </span>
 
-                    <h3>
-                      ${sticker.name}
-                    </h3>
+                  <div
+                    class="sticker-quantity"
+                    aria-label="Quantity for sticker ${sticker.number}"
+                  >
 
-                    ${
-                      sticker.subtitle
-                        ? `
-                          <p>
-                            ${sticker.subtitle}
-                          </p>
-                        `
-                        : ""
-                    }
+                    <button
+                      class="sticker-quantity-button sticker-minus"
+                      type="button"
+                      aria-label="Remove one sticker"
+                    >
+                      −
+                    </button>
 
-                  </div>
-
-
-                  <div class="sticker-card-purchase">
-
-                    <span class="sticker-price">
-                      $1.99
+                    <span
+                      class="sticker-quantity-value"
+                      aria-live="polite"
+                    >
+                      0
                     </span>
+
+                    <button
+                      class="sticker-quantity-button sticker-plus"
+                      type="button"
+                      aria-label="Add one sticker"
+                    >
+                      +
+                    </button>
 
                   </div>
 
@@ -384,10 +328,6 @@ function renderStickersPage() {
     `).join("")}
 
 
-    <!-- ===================================================
-         FLASH PACKS
-         =================================================== -->
-
     <section
       class="sticker-collection flash-pack-section"
       id="flash-packs"
@@ -397,44 +337,22 @@ function renderStickersPage() {
 
         <div class="sticker-collection-heading">
 
-          <p class="eyebrow">
-            Sticker Sets
-          </p>
-
           <h2 class="sticker-collection-title">
             Flash Packs
           </h2>
 
-          <p class="sticker-collection-description">
-            Curated sticker packs. More stickers.
-            Less thinking.
-          </p>
-
         </div>
 
 
-        <div class="flash-pack-banner">
+        <div class="flash-pack-placeholder">
 
-          <div class="flash-pack-copy">
+          <span>
+            $5.99
+          </span>
 
-            <p class="eyebrow">
-              Flash Packs
-            </p>
-
-            <h3>
-              $5.99
-            </h3>
-
-            <p>
-              Pick up a curated set of Uncle Mike
-              stickers for one price.
-            </p>
-
-          </div>
-
-          <div class="flash-pack-status">
-            Packs dropping soon.
-          </div>
+          <strong>
+            Packs Coming Soon
+          </strong>
 
         </div>
 
@@ -443,46 +361,33 @@ function renderStickersPage() {
     </section>
 
 
-    <!-- ===================================================
-         STORE STATUS
-         =================================================== -->
+    <section
+      class="sticker-order-bar"
+      id="sticker-order-bar"
+      hidden
+    >
 
-    <section class="sticker-store-status">
+      <div class="sticker-order-bar-inner">
 
-      <div class="wrap">
+        <div class="sticker-order-summary">
 
-        <div class="project-detail-card sticker-status-card">
+          <strong id="sticker-order-count">
+            0 Stickers
+          </strong>
 
-          <p class="eyebrow">
-            Shop Update
-          </p>
-
-          <h2 class="sticker-status-title">
-            Checkout<br>
-            Coming Next.
-          </h2>
-
-          <p>
-            Individual stickers are $1.99.
-            Flash packs are $5.99.
-            Online checkout is being wired up now.
-          </p>
-
-          <p>
-            In the meantime, message me on Instagram
-            and we can get your order done.
-          </p>
-
-          <a
-            class="site-contact-button sticker-instagram-button"
-            href="https://www.instagram.com/unclemikecandoit/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Message Me On Instagram →
-          </a>
+          <span id="sticker-order-total">
+            $0.00
+          </span>
 
         </div>
+
+        <button
+          class="sticker-order-button"
+          id="sticker-order-button"
+          type="button"
+        >
+          Order →
+        </button>
 
       </div>
 
@@ -492,6 +397,200 @@ function renderStickersPage() {
 
 
   injectStickerStoreStyles();
+  initializeStickerOrdering(stickerGroups);
+}
+
+
+
+/* =========================================================
+   ORDERING
+   ========================================================= */
+
+function initializeStickerOrdering(stickerGroups) {
+
+  const quantities = {};
+
+  const cards =
+    document.querySelectorAll(".sticker-card");
+
+  const orderBar =
+    document.getElementById("sticker-order-bar");
+
+  const orderCount =
+    document.getElementById("sticker-order-count");
+
+  const orderTotal =
+    document.getElementById("sticker-order-total");
+
+  const orderButton =
+    document.getElementById("sticker-order-button");
+
+
+  cards.forEach(card => {
+
+    const id =
+      card.dataset.stickerId;
+
+    quantities[id] = 0;
+
+    const minus =
+      card.querySelector(".sticker-minus");
+
+    const plus =
+      card.querySelector(".sticker-plus");
+
+    const value =
+      card.querySelector(".sticker-quantity-value");
+
+
+    plus.addEventListener("click", () => {
+
+      quantities[id] += 1;
+
+      value.textContent =
+        quantities[id];
+
+      updateStickerOrder();
+
+    });
+
+
+    minus.addEventListener("click", () => {
+
+      if (quantities[id] === 0) {
+        return;
+      }
+
+      quantities[id] -= 1;
+
+      value.textContent =
+        quantities[id];
+
+      updateStickerOrder();
+
+    });
+
+  });
+
+
+  function updateStickerOrder() {
+
+    const totalQuantity =
+      Object.values(quantities)
+        .reduce(
+          (total, quantity) =>
+            total + quantity,
+          0
+        );
+
+    const totalPrice =
+      totalQuantity * 1.99;
+
+
+    if (totalQuantity === 0) {
+
+      orderBar.hidden = true;
+
+      return;
+
+    }
+
+
+    orderBar.hidden = false;
+
+
+    orderCount.textContent =
+      `${totalQuantity} ${
+        totalQuantity === 1
+          ? "Sticker"
+          : "Stickers"
+      }`;
+
+
+    orderTotal.textContent =
+      `$${totalPrice.toFixed(2)}`;
+
+  }
+
+
+  orderButton.addEventListener("click", () => {
+
+    const selected = [];
+
+
+    stickerGroups.forEach(group => {
+
+      group.stickers.forEach(sticker => {
+
+        const quantity =
+          quantities[sticker.id] || 0;
+
+
+        if (quantity > 0) {
+
+          selected.push(
+            `#${String(sticker.number).padStart(2, "0")} × ${quantity}`
+          );
+
+        }
+
+      });
+
+    });
+
+
+    if (!selected.length) {
+      return;
+    }
+
+
+    const totalQuantity =
+      Object.values(quantities)
+        .reduce(
+          (total, quantity) =>
+            total + quantity,
+          0
+        );
+
+
+    const totalPrice =
+      totalQuantity * 1.99;
+
+
+    const orderText =
+      [
+        "Uncle Mike Sticker Order",
+        "",
+        ...selected,
+        "",
+        `${totalQuantity} ${
+          totalQuantity === 1
+            ? "sticker"
+            : "stickers"
+        }`,
+        `$${totalPrice.toFixed(2)}`
+      ].join("\n");
+
+
+    try {
+
+      navigator.clipboard.writeText(orderText);
+
+    } catch (error) {
+
+      /* Clipboard support varies by browser. */
+
+    }
+
+
+    window.open(
+      "https://www.instagram.com/unclemikecandoit/",
+      "_blank",
+      "noopener,noreferrer"
+    );
+
+  });
+
 }
 
 
@@ -527,9 +626,8 @@ function injectStickerStoreStyles() {
 
     .sticker-store-hero {
       padding:
-        clamp(58px, 7vw, 90px)
-        0
-        clamp(58px, 7vw, 90px);
+        clamp(52px, 7vw, 82px)
+        0;
     }
 
     .sticker-store-title {
@@ -537,9 +635,7 @@ function injectStickerStoreStyles() {
         900px;
 
       margin:
-        0
-        0
-        22px;
+        0;
 
       color:
         var(--paper);
@@ -563,47 +659,24 @@ function injectStickerStoreStyles() {
         -0.045em;
     }
 
-    .sticker-store-intro {
-      max-width:
-        660px;
 
-      margin:
-        0;
+    /* =====================================================
+       PRICING
+       ===================================================== */
 
-      color:
-        var(--copy);
-
-      font-size:
-        clamp(
-          1rem,
-          2vw,
-          1.18rem
-        );
-
-      line-height:
-        1.55;
-    }
-
-    .sticker-price-callout {
+    .sticker-store-pricing {
       display:
-        inline-flex;
+        flex;
 
-      align-items:
-        baseline;
+      flex-wrap:
+        wrap;
 
       gap:
-        16px;
+        10px
+        24px;
 
       margin-top:
-        30px;
-
-      padding:
-        13px
-        17px;
-
-      border:
-        1px solid
-        rgba(234, 215, 173, 0.28);
+        26px;
 
       color:
         var(--muted);
@@ -614,34 +687,26 @@ function injectStickerStoreStyles() {
         sans-serif;
 
       font-size:
-        0.72rem;
+        0.76rem;
 
       font-weight:
         900;
 
       letter-spacing:
-        0.12em;
+        0.11em;
 
       text-transform:
         uppercase;
     }
 
-    .sticker-price-callout strong {
-      color:
-        var(--paper);
-
-      font-size:
-        1.15rem;
-    }
-
 
     /* =====================================================
-       COLLECTION
+       COLLECTIONS
        ===================================================== */
 
     .sticker-collection {
       padding:
-        clamp(56px, 7vw, 88px)
+        clamp(48px, 7vw, 82px)
         0;
 
       border-top:
@@ -650,16 +715,13 @@ function injectStickerStoreStyles() {
     }
 
     .sticker-collection-heading {
-      max-width:
-        760px;
-
       margin-bottom:
-        clamp(30px, 4vw, 46px);
+        clamp(26px, 4vw, 40px);
     }
 
     .sticker-collection-title {
       max-width:
-        760px;
+        900px;
 
       margin:
         0;
@@ -674,35 +736,19 @@ function injectStickerStoreStyles() {
 
       font-size:
         clamp(
-          2.5rem,
-          5.5vw,
-          4.8rem
+          2.6rem,
+          5.8vw,
+          5rem
         );
 
       line-height:
-        0.94;
+        0.92;
 
       letter-spacing:
-        -0.04em;
-    }
+        -0.045em;
 
-    .sticker-collection-description {
-      max-width:
-        620px;
-
-      margin:
-        18px
-        0
-        0;
-
-      color:
-        var(--copy);
-
-      font-size:
-        1rem;
-
-      line-height:
-        1.55;
+      text-transform:
+        uppercase;
     }
 
 
@@ -718,23 +764,20 @@ function injectStickerStoreStyles() {
         repeat(3, minmax(0, 1fr));
 
       gap:
-        clamp(18px, 2.4vw, 30px);
+        clamp(14px, 2vw, 24px);
     }
 
 
     /* =====================================================
-       CARD
+       STICKER
        ===================================================== */
 
     .sticker-card {
-      display:
-        flex;
-
-      flex-direction:
-        column;
-
       min-width:
         0;
+
+      overflow:
+        hidden;
 
       border:
         1px solid
@@ -742,9 +785,6 @@ function injectStickerStoreStyles() {
 
       background:
         var(--surface);
-
-      overflow:
-        hidden;
     }
 
     .sticker-card-image {
@@ -761,7 +801,7 @@ function injectStickerStoreStyles() {
         1 / 1;
 
       padding:
-        clamp(12px, 2vw, 22px);
+        clamp(8px, 1.5vw, 16px);
 
       background:
         #0d1014;
@@ -786,63 +826,30 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       CARD COPY
+       NUMBER + QUANTITY
        ===================================================== */
 
-    .sticker-card-body {
+    .sticker-card-controls {
       display:
         flex;
 
-      flex-direction:
-        column;
-
-      flex:
-        1;
+      align-items:
+        center;
 
       justify-content:
         space-between;
 
       gap:
-        24px;
+        12px;
 
       padding:
-        clamp(18px, 2.2vw, 26px);
+        14px
+        16px;
     }
 
-    .sticker-card-copy h3 {
-      margin:
-        0;
-
+    .sticker-number {
       color:
         var(--paper);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size:
-        clamp(
-          1.35rem,
-          2.4vw,
-          1.8rem
-        );
-
-      line-height:
-        1;
-
-      letter-spacing:
-        -0.025em;
-    }
-
-    .sticker-card-copy p {
-      margin:
-        10px
-        0
-        0;
-
-      color:
-        var(--muted);
 
       font-family:
         Arial,
@@ -853,33 +860,54 @@ function injectStickerStoreStyles() {
         0.78rem;
 
       font-weight:
-        700;
-
-      line-height:
-        1.4;
+        900;
 
       letter-spacing:
-        0.07em;
-
-      text-transform:
-        uppercase;
+        0.1em;
     }
 
+    .sticker-quantity {
+      display:
+        grid;
 
-    /* =====================================================
-       PURCHASE
-       ===================================================== */
+      grid-template-columns:
+        34px
+        30px
+        34px;
 
-    .sticker-card-purchase {
-      padding-top:
-        18px;
+      align-items:
+        center;
 
-      border-top:
+      border:
         1px solid
-        rgba(234, 215, 173, 0.14);
+        rgba(234, 215, 173, 0.28);
     }
 
-    .sticker-price {
+    .sticker-quantity-button {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        center;
+
+      width:
+        34px;
+
+      height:
+        34px;
+
+      padding:
+        0;
+
+      border:
+        0;
+
+      background:
+        transparent;
+
       color:
         var(--paper);
 
@@ -889,16 +917,37 @@ function injectStickerStoreStyles() {
         sans-serif;
 
       font-size:
-        0.9rem;
+        1.2rem;
+
+      line-height:
+        1;
+
+      cursor:
+        pointer;
+    }
+
+    .sticker-quantity-button:active {
+      background:
+        rgba(234, 215, 173, 0.12);
+    }
+
+    .sticker-quantity-value {
+      text-align:
+        center;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.8rem;
 
       font-weight:
         900;
-
-      letter-spacing:
-        0.1em;
-
-      text-transform:
-        uppercase;
     }
 
 
@@ -906,36 +955,31 @@ function injectStickerStoreStyles() {
        FLASH PACKS
        ===================================================== */
 
-    .flash-pack-banner {
+    .flash-pack-placeholder {
       display:
         flex;
 
       align-items:
-        flex-end;
+        center;
 
       justify-content:
         space-between;
 
       gap:
-        32px;
+        20px;
 
       padding:
-        clamp(26px, 4vw, 46px);
+        24px;
 
       border:
         1px solid
-        rgba(234, 215, 173, 0.3);
+        rgba(234, 215, 173, 0.2);
 
       background:
         var(--surface);
     }
 
-    .flash-pack-copy h3 {
-      margin:
-        6px
-        0
-        14px;
-
+    .flash-pack-placeholder span {
       color:
         var(--paper);
 
@@ -945,37 +989,13 @@ function injectStickerStoreStyles() {
         serif;
 
       font-size:
-        clamp(
-          3.4rem,
-          7vw,
-          6rem
-        );
+        2rem;
 
-      line-height:
-        0.9;
-
-      letter-spacing:
-        -0.04em;
+      font-weight:
+        700;
     }
 
-    .flash-pack-copy > p:last-child {
-      max-width:
-        470px;
-
-      margin:
-        0;
-
-      color:
-        var(--copy);
-
-      line-height:
-        1.5;
-    }
-
-    .flash-pack-status {
-      flex:
-        0 0 auto;
-
+    .flash-pack-placeholder strong {
       color:
         var(--muted);
 
@@ -987,9 +1007,6 @@ function injectStickerStoreStyles() {
       font-size:
         0.72rem;
 
-      font-weight:
-        900;
-
       letter-spacing:
         0.12em;
 
@@ -999,55 +1016,160 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       STATUS
+       ORDER BAR
        ===================================================== */
 
-    .sticker-store-status {
-      padding:
-        clamp(56px, 7vw, 88px)
-        0;
+    .sticker-order-bar {
+      position:
+        fixed;
 
-      border-top:
-        1px solid
-        rgba(234, 215, 173, 0.18);
+      z-index:
+        900;
+
+      right:
+        18px;
+
+      bottom:
+        82px;
+
+      left:
+        18px;
+
+      pointer-events:
+        none;
     }
 
-    .sticker-status-card p {
+    .sticker-order-bar[hidden] {
+      display:
+        none;
+    }
+
+    .sticker-order-bar-inner {
+      display:
+        flex;
+
+      align-items:
+        center;
+
+      justify-content:
+        space-between;
+
+      gap:
+        18px;
+
       max-width:
-        620px;
+        760px;
+
+      margin:
+        0 auto;
+
+      padding:
+        12px;
+
+      border:
+        1px solid
+        rgba(234, 215, 173, 0.4);
+
+      background:
+        rgba(11, 11, 9, 0.96);
+
+      box-shadow:
+        0 16px 40px
+        rgba(0, 0, 0, 0.45);
+
+      pointer-events:
+        auto;
     }
 
-    .sticker-status-title {
-      margin:
-        0
-        0
-        22px;
+    .sticker-order-summary {
+      display:
+        flex;
 
+      flex-direction:
+        column;
+
+      gap:
+        3px;
+
+      padding-left:
+        6px;
+    }
+
+    .sticker-order-summary strong {
       color:
         var(--paper);
 
       font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
+        Arial,
+        Helvetica,
+        sans-serif;
 
       font-size:
-        clamp(
-          2.3rem,
-          5vw,
-          4.3rem
-        );
-
-      line-height:
-        0.94;
+        0.78rem;
 
       letter-spacing:
-        -0.04em;
+        0.06em;
+
+      text-transform:
+        uppercase;
     }
 
-    .sticker-instagram-button {
-      margin-top:
-        12px;
+    .sticker-order-summary span {
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.74rem;
+
+      font-weight:
+        700;
+    }
+
+    .sticker-order-button {
+      flex:
+        0 0 auto;
+
+      min-height:
+        46px;
+
+      padding:
+        0
+        22px;
+
+      border:
+        1px solid
+        var(--paper);
+
+      background:
+        var(--paper);
+
+      color:
+        var(--ink);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size:
+        0.74rem;
+
+      font-weight:
+        900;
+
+      letter-spacing:
+        0.1em;
+
+      text-transform:
+        uppercase;
+
+      cursor:
+        pointer;
     }
 
 
@@ -1073,68 +1195,50 @@ function injectStickerStoreStyles() {
 
       .sticker-store-hero {
         padding:
-          44px
+          42px
           0
-          50px;
+          46px;
       }
 
       .sticker-store-title {
-        margin-bottom:
-          18px;
-
         font-size:
           clamp(
             3.25rem,
             15vw,
             4.2rem
           );
-
-        line-height:
-          0.9;
       }
 
-      .sticker-store-intro {
-        font-size:
-          1rem;
-
-        line-height:
-          1.5;
-      }
-
-      .sticker-price-callout {
+      .sticker-store-pricing {
         margin-top:
-          24px;
+          20px;
+
+        gap:
+          7px
+          18px;
+
+        font-size:
+          0.68rem;
       }
 
       .sticker-collection {
         padding:
-          48px
+          44px
           0;
       }
 
       .sticker-collection-heading {
         margin-bottom:
-          28px;
+          24px;
       }
 
       .sticker-collection-title {
         font-size:
           clamp(
-            2.35rem,
-            11vw,
-            3.15rem
+            2.25rem,
+            10.5vw,
+            3.1rem
           );
-
-        line-height:
-          0.92;
-      }
-
-      .sticker-collection-description {
-        margin-top:
-          14px;
-
-        font-size:
-          0.95rem;
       }
 
       .sticker-grid {
@@ -1147,86 +1251,78 @@ function injectStickerStoreStyles() {
 
       .sticker-card-image {
         padding:
-          7px;
+          6px;
       }
 
-      .sticker-card-body {
-        gap:
-          16px;
-
+      .sticker-card-controls {
         padding:
-          14px;
-      }
-
-      .sticker-card-copy h3 {
-        font-size:
-          1.08rem;
-      }
-
-      .sticker-card-copy p {
-        margin-top:
-          7px;
-
-        font-size:
-          0.63rem;
-
-        letter-spacing:
-          0.05em;
-      }
-
-      .sticker-card-purchase {
-        padding-top:
-          12px;
-      }
-
-      .sticker-price {
-        font-size:
-          0.78rem;
-      }
-
-      .flash-pack-banner {
-        align-items:
-          flex-start;
-
-        flex-direction:
-          column;
+          10px;
 
         gap:
-          24px;
-
-        padding:
-          24px;
+          8px;
       }
 
-      .flash-pack-copy h3 {
+      .sticker-number {
         font-size:
-          3.6rem;
+          0.68rem;
       }
 
-      .sticker-store-status {
-        padding:
-          48px
-          0;
+      .sticker-quantity {
+        grid-template-columns:
+          30px
+          24px
+          30px;
       }
 
-      .sticker-status-title {
-        font-size:
-          clamp(
-            2.15rem,
-            10vw,
-            3rem
-          );
-      }
-
-      .sticker-instagram-button {
-        box-sizing:
-          border-box;
-
+      .sticker-quantity-button {
         width:
-          100%;
+          30px;
 
-        text-align:
-          center;
+        height:
+          32px;
+
+        font-size:
+          1.05rem;
+      }
+
+      .sticker-quantity-value {
+        font-size:
+          0.72rem;
+      }
+
+      .flash-pack-placeholder {
+        padding:
+          18px;
+      }
+
+      .flash-pack-placeholder span {
+        font-size:
+          1.6rem;
+      }
+
+      .sticker-order-bar {
+        right:
+          10px;
+
+        bottom:
+          78px;
+
+        left:
+          10px;
+      }
+
+      .sticker-order-bar-inner {
+        padding:
+          9px;
+      }
+
+      .sticker-order-button {
+        min-height:
+          42px;
+
+        padding:
+          0
+          18px;
       }
 
     }
@@ -1234,9 +1330,7 @@ function injectStickerStoreStyles() {
   `;
 
 
-  document.head.appendChild(
-    style
-  );
+  document.head.appendChild(style);
 }
 
 
