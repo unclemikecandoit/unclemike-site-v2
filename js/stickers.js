@@ -1,6 +1,9 @@
 /* =========================================================
    UNCLE MIKE — STICKERS
-   Storefront
+   Storefront Engine
+
+   Product inventory lives in:
+   /js/sticker-products.js
    ========================================================= */
 
 function renderStickersPage() {
@@ -11,203 +14,24 @@ function renderStickersPage() {
 
 
   /* =======================================================
-     STICKER CATALOG
+     LOAD CATALOG
      ======================================================= */
 
-  const stickerGroups = [
+  if (
+    typeof UNCLE_MIKE_STICKER_CATALOG === "undefined" ||
+    typeof UNCLE_MIKE_STICKER_COLLECTIONS === "undefined"
+  ) {
 
-    /* -----------------------------------------------------
-       GFY COLLECTION
-       ----------------------------------------------------- */
+    page.innerHTML = `
+      <section class="page-section">
+        <div class="wrap">
+          <h1>Sticker catalog unavailable.</h1>
+        </div>
+      </section>
+    `;
 
-    {
-      id: "gfy",
-      title: "GFY Collection",
-
-      stickers: [
-
-        {
-          id: "jr-enemy-state",
-          image:
-            "../2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
-        },
-
-        {
-          id: "not-today-satan",
-          image:
-            "../800448F2-6C0A-4009-BFEE-44762F9757AB.png"
-        },
-
-        {
-          id: "this-again",
-          image:
-            "../68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
-        },
-
-        {
-          id: "try-me",
-          image:
-            "../377B33A1-8F06-4B25-91F4-F2ED9B401CFE.png"
-        },
-
-        {
-          id: "persuader",
-          image:
-            "../3246F0CD-1F4C-4C9B-88A1-986EEB60C397.png"
-        },
-
-        {
-          id: "catch-me-never",
-          image:
-            "../0547ED23-02FD-4A8B-B163-76675EECB51C.png"
-        },
-
-        {
-          id: "plan-b",
-          image:
-            "../E49DC6DB-EA61-4ADE-97D9-AFDF3E238F78.png"
-        },
-
-        {
-          id: "fah-q",
-          image:
-            "../DE7935CB-F093-4900-9CCA-1FA60E648B29.png"
-        },
-
-        {
-          id: "lol-k",
-          image:
-            "../B3D5BE20-E846-432C-A803-BEF686BBBAEF.png"
-        },
-
-        {
-          id: "nope",
-          image:
-            "../AFA5E466-A470-444B-B73B-5BB66FD4F047.png"
-        },
-
-        {
-          id: "walk-it-off",
-          image:
-            "../9CE55BC3-4DC7-43DA-957B-9B978289148D.png"
-        },
-
-        {
-          id: "well-fuck",
-          image:
-            "../IMG_7328.jpeg"
-        }
-
-      ]
-    },
-
-
-    /* -----------------------------------------------------
-       MY BRAIN IS BETTER THAN YOURS
-       ----------------------------------------------------- */
-
-    {
-      id: "my-brain-is-better-than-yours",
-      title: "My Brain Is Better Than Yours",
-
-      stickers: [
-
-        {
-          id: "powered-autism-high-octane",
-          image:
-            "../53FBB857-6589-4B6B-AB15-511094D09D9D.png"
-        },
-
-        {
-          id: "powered-autism-different-fuels",
-          image:
-            "../powered_by_autism_cutout.png"
-        },
-
-        {
-          id: "autism-mental-lubrication",
-          image:
-            "../autism_sticker_cutout.png"
-        },
-
-        {
-          id: "autism-spark",
-          image:
-            "../autism_spark_cutout.png"
-        },
-
-        {
-          id: "autism-racing-division",
-          image:
-            "../autism_champions_cutout.png"
-        },
-
-        {
-          id: "autism-cams",
-          image:
-            "../autism_cams_cutout.png"
-        },
-
-        {
-          id: "autism-look-further",
-          image:
-            "../14FF8ADB-DFA3-48BC-B0CE-83C2BBA50ADD.png"
-        },
-
-        {
-          id: "powered-autism",
-          image:
-            "../FD5E3664-835E-41C7-AC69-006356BAA991.png"
-        },
-
-        {
-          id: "autism-fueling-ideas",
-          image:
-            "../C3562F6C-48D5-4DA6-A7B2-CB8F89A5AC99.png"
-        },
-
-        {
-          id: "autism-high-performance-minds",
-          image:
-            "../CC263FC1-3A39-449F-997F-9FCCEE620C01.png"
-        },
-
-        {
-          id: "autism-h",
-          image:
-            "../ED07CB72-68C8-41A9-B713-29C0F9A1E6B6.png"
-        },
-
-        {
-          id: "autism-fueled-differently",
-          image:
-            "../7C481E72-DD74-418F-8852-5DB20A64C752.png"
-        },
-
-        {
-          id: "powered-autism-exceptional-performance",
-          image:
-            "../73665BA7-29B3-4596-AA3E-18256B3378EF.png"
-        }
-
-      ]
-    }
-
-  ];
-
-
-  /* =======================================================
-     NUMBER THE STICKERS
-     ======================================================= */
-
-  let stickerNumber = 0;
-
-  stickerGroups.forEach(group => {
-    group.stickers.forEach(sticker => {
-      stickerNumber += 1;
-      sticker.number = stickerNumber;
-    });
-  });
+    return;
+  }
 
 
   /* =======================================================
@@ -229,8 +53,15 @@ function renderStickersPage() {
         </h1>
 
         <div class="sticker-store-pricing">
-          <span>Stickers $1.99 Each</span>
-          <span>Flash Packs $5.99</span>
+
+          <span>
+            Stickers $1.99 Each
+          </span>
+
+          <span>
+            Flash Packs $5.99
+          </span>
+
         </div>
 
       </div>
@@ -238,94 +69,108 @@ function renderStickersPage() {
     </section>
 
 
-    ${stickerGroups.map(group => `
+    ${UNCLE_MIKE_STICKER_COLLECTIONS.map(collection => {
 
-      <section
-        class="sticker-collection"
-        id="${group.id}"
-      >
+      const stickers =
+        UNCLE_MIKE_STICKER_CATALOG.filter(
+          sticker =>
+            sticker.collection === collection.id
+        );
 
-        <div class="wrap">
+      if (!stickers.length) {
+        return "";
+      }
 
-          <div class="sticker-collection-heading">
+      return `
 
-            <h2 class="sticker-collection-title">
-              ${group.title}
-            </h2>
+        <section
+          class="sticker-collection"
+          id="${collection.id}"
+        >
 
-          </div>
+          <div class="wrap">
 
+            <div class="sticker-collection-heading">
 
-          <div class="sticker-grid">
+              <h2 class="sticker-collection-title">
+                ${collection.title}
+              </h2>
 
-            ${group.stickers.map(sticker => `
-
-              <article
-                class="sticker-card"
-                data-sticker-id="${sticker.id}"
-                data-sticker-number="${sticker.number}"
-              >
-
-                <div class="sticker-card-image">
-
-                  <img
-                    src="${sticker.image}"
-                    alt="Sticker #${String(sticker.number).padStart(2, "0")}"
-                    loading="lazy"
-                  >
-
-                </div>
+            </div>
 
 
-                <div class="sticker-card-controls">
+            <div class="sticker-grid">
 
-                  <span class="sticker-number">
-                    #${String(sticker.number).padStart(2, "0")}
-                  </span>
+              ${stickers.map(sticker => `
 
-                  <div
-                    class="sticker-quantity"
-                    aria-label="Quantity for sticker ${sticker.number}"
-                  >
+                <article
+                  class="sticker-card"
+                  data-sticker-number="${sticker.number}"
+                >
 
-                    <button
-                      class="sticker-quantity-button sticker-minus"
-                      type="button"
-                      aria-label="Remove one sticker"
+                  <div class="sticker-card-image">
+
+                    <img
+                      src="${sticker.image}"
+                      alt="Sticker #${String(sticker.number).padStart(2, "0")}"
+                      loading="lazy"
                     >
-                      −
-                    </button>
-
-                    <span
-                      class="sticker-quantity-value"
-                      aria-live="polite"
-                    >
-                      0
-                    </span>
-
-                    <button
-                      class="sticker-quantity-button sticker-plus"
-                      type="button"
-                      aria-label="Add one sticker"
-                    >
-                      +
-                    </button>
 
                   </div>
 
-                </div>
 
-              </article>
+                  <div class="sticker-card-controls">
 
-            `).join("")}
+                    <span class="sticker-number">
+                      #${String(sticker.number).padStart(2, "0")}
+                    </span>
+
+
+                    <div
+                      class="sticker-quantity"
+                      aria-label="Quantity for sticker ${sticker.number}"
+                    >
+
+                      <button
+                        class="sticker-quantity-button sticker-minus"
+                        type="button"
+                        aria-label="Remove one sticker"
+                      >
+                        −
+                      </button>
+
+                      <span
+                        class="sticker-quantity-value"
+                        aria-live="polite"
+                      >
+                        0
+                      </span>
+
+                      <button
+                        class="sticker-quantity-button sticker-plus"
+                        type="button"
+                        aria-label="Add one sticker"
+                      >
+                        +
+                      </button>
+
+                    </div>
+
+                  </div>
+
+                </article>
+
+              `).join("")}
+
+            </div>
 
           </div>
 
-        </div>
+        </section>
 
-      </section>
+      `;
 
-    `).join("")}
+    }).join("")}
 
 
     <section
@@ -381,6 +226,7 @@ function renderStickersPage() {
 
         </div>
 
+
         <button
           class="sticker-order-button"
           id="sticker-order-button"
@@ -397,7 +243,7 @@ function renderStickersPage() {
 
 
   injectStickerStoreStyles();
-  initializeStickerOrdering(stickerGroups);
+  initializeStickerOrdering();
 }
 
 
@@ -406,72 +252,103 @@ function renderStickersPage() {
    ORDERING
    ========================================================= */
 
-function initializeStickerOrdering(stickerGroups) {
+function initializeStickerOrdering() {
 
   const quantities = {};
 
   const cards =
-    document.querySelectorAll(".sticker-card");
+    document.querySelectorAll(
+      ".sticker-card[data-sticker-number]"
+    );
 
   const orderBar =
-    document.getElementById("sticker-order-bar");
+    document.getElementById(
+      "sticker-order-bar"
+    );
 
   const orderCount =
-    document.getElementById("sticker-order-count");
+    document.getElementById(
+      "sticker-order-count"
+    );
 
   const orderTotal =
-    document.getElementById("sticker-order-total");
+    document.getElementById(
+      "sticker-order-total"
+    );
 
   const orderButton =
-    document.getElementById("sticker-order-button");
+    document.getElementById(
+      "sticker-order-button"
+    );
 
 
   cards.forEach(card => {
 
-    const id =
-      card.dataset.stickerId;
+    const number =
+      Number(
+        card.dataset.stickerNumber
+      );
 
-    quantities[id] = 0;
+    quantities[number] = 0;
+
 
     const minus =
-      card.querySelector(".sticker-minus");
+      card.querySelector(
+        ".sticker-minus"
+      );
 
     const plus =
-      card.querySelector(".sticker-plus");
+      card.querySelector(
+        ".sticker-plus"
+      );
 
     const value =
-      card.querySelector(".sticker-quantity-value");
+      card.querySelector(
+        ".sticker-quantity-value"
+      );
 
 
-    plus.addEventListener("click", () => {
+    plus.addEventListener(
+      "click",
+      () => {
 
-      quantities[id] += 1;
+        quantities[number] += 1;
 
-      value.textContent =
-        quantities[id];
+        value.textContent =
+          quantities[number];
 
-      updateStickerOrder();
+        updateStickerOrder();
 
-    });
-
-
-    minus.addEventListener("click", () => {
-
-      if (quantities[id] === 0) {
-        return;
       }
+    );
 
-      quantities[id] -= 1;
 
-      value.textContent =
-        quantities[id];
+    minus.addEventListener(
+      "click",
+      () => {
 
-      updateStickerOrder();
+        if (
+          quantities[number] === 0
+        ) {
+          return;
+        }
 
-    });
+        quantities[number] -= 1;
+
+        value.textContent =
+          quantities[number];
+
+        updateStickerOrder();
+
+      }
+    );
 
   });
 
+
+  /* =======================================================
+     UPDATE ORDER
+     ======================================================= */
 
   function updateStickerOrder() {
 
@@ -482,6 +359,7 @@ function initializeStickerOrdering(stickerGroups) {
             total + quantity,
           0
         );
+
 
     const totalPrice =
       totalQuantity * 1.99;
@@ -513,83 +391,94 @@ function initializeStickerOrdering(stickerGroups) {
   }
 
 
-  orderButton.addEventListener("click", () => {
+  /* =======================================================
+     ORDER BUTTON
+     ======================================================= */
 
-    const selected = [];
+  orderButton.addEventListener(
+    "click",
+    () => {
 
-
-    stickerGroups.forEach(group => {
-
-      group.stickers.forEach(sticker => {
-
-        const quantity =
-          quantities[sticker.id] || 0;
+      const selected = [];
 
 
-        if (quantity > 0) {
+      UNCLE_MIKE_STICKER_CATALOG
+        .forEach(sticker => {
 
-          selected.push(
-            `#${String(sticker.number).padStart(2, "0")} × ${quantity}`
+          const quantity =
+            quantities[
+              sticker.number
+            ] || 0;
+
+
+          if (quantity > 0) {
+
+            selected.push(
+              `#${String(sticker.number).padStart(2, "0")} × ${quantity}`
+            );
+
+          }
+
+        });
+
+
+      if (!selected.length) {
+        return;
+      }
+
+
+      const totalQuantity =
+        Object.values(quantities)
+          .reduce(
+            (total, quantity) =>
+              total + quantity,
+            0
           );
 
-        }
 
-      });
-
-    });
+      const totalPrice =
+        totalQuantity * 1.99;
 
 
-    if (!selected.length) {
-      return;
-    }
+      const orderText =
+        [
+          "Uncle Mike Sticker Order",
+          "",
+          ...selected,
+          "",
+          `${totalQuantity} ${
+            totalQuantity === 1
+              ? "sticker"
+              : "stickers"
+          }`,
+          `$${totalPrice.toFixed(2)}`
+        ].join("\n");
 
 
-    const totalQuantity =
-      Object.values(quantities)
-        .reduce(
-          (total, quantity) =>
-            total + quantity,
-          0
-        );
+      /* Copy order to clipboard */
+
+      if (
+        navigator.clipboard &&
+        navigator.clipboard.writeText
+      ) {
+
+        navigator.clipboard
+          .writeText(orderText)
+          .catch(() => {});
+
+      }
 
 
-    const totalPrice =
-      totalQuantity * 1.99;
+      /* Open Instagram */
 
-
-    const orderText =
-      [
-        "Uncle Mike Sticker Order",
-        "",
-        ...selected,
-        "",
-        `${totalQuantity} ${
-          totalQuantity === 1
-            ? "sticker"
-            : "stickers"
-        }`,
-        `$${totalPrice.toFixed(2)}`
-      ].join("\n");
-
-
-    try {
-
-      navigator.clipboard.writeText(orderText);
-
-    } catch (error) {
-
-      /* Clipboard support varies by browser. */
+      window.open(
+        "https://www.instagram.com/unclemikecandoit/",
+        "_blank",
+        "noopener,noreferrer"
+      );
 
     }
-
-
-    window.open(
-      "https://www.instagram.com/unclemikecandoit/",
-      "_blank",
-      "noopener,noreferrer"
-    );
-
-  });
+  );
 
 }
 
@@ -701,7 +590,7 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       COLLECTIONS
+       COLLECTION
        ===================================================== */
 
     .sticker-collection {
@@ -769,7 +658,7 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       STICKER
+       CARD
        ===================================================== */
 
     .sticker-card {
@@ -952,7 +841,7 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       FLASH PACKS
+       FLASH PACK
        ===================================================== */
 
     .flash-pack-placeholder {
