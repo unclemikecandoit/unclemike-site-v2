@@ -94,6 +94,46 @@ function renderStickersPage() {
           subtitle: "",
           image:
             "../FD5E3664-835E-41C7-AC69-006356BAA991.png"
+        },
+
+        {
+          id: "autism-fueling-ideas",
+          name: "Autism",
+          subtitle: "Fueling Ideas",
+          image:
+            "../C3562F6C-48D5-4DA6-A7B2-CB8F89A5AC99.png"
+        },
+
+        {
+          id: "autism-high-performance-minds",
+          name: "Autism",
+          subtitle: "High Performance Minds",
+          image:
+            "../CC263FC1-3A39-449F-997F-9FCCEE620C01.png"
+        },
+
+        {
+          id: "autism-h",
+          name: "Autism",
+          subtitle: "",
+          image:
+            "../ED07CB72-68C8-41A9-B713-29C0F9A1E6B6.png"
+        },
+
+        {
+          id: "autism-fueled-differently",
+          name: "Autism",
+          subtitle: "Fueled Differently",
+          image:
+            "../7C481E72-DD74-418F-8852-5DB20A64C752.png"
+        },
+
+        {
+          id: "powered-autism-exceptional-performance",
+          name: "Powered By Autism",
+          subtitle: "Exceptional Performance Always",
+          image:
+            "../73665BA7-29B3-4596-AA3E-18256B3378EF.png"
         }
 
       ]
@@ -135,6 +175,46 @@ function renderStickersPage() {
           subtitle: "STIHL Single",
           image:
             "../0547ED23-02FD-4A8B-B163-76675EECB51C.png"
+        },
+
+        {
+          id: "plan-b",
+          name: "Plan B",
+          subtitle: "",
+          image:
+            "../E49DC6DB-EA61-4ADE-97D9-AFDF3E238F78.png"
+        },
+
+        {
+          id: "fah-q",
+          name: "FAH-Q",
+          subtitle: "",
+          image:
+            "../DE7935CB-F093-4900-9CCA-1FA60E648B29.png"
+        },
+
+        {
+          id: "lol-k",
+          name: "LOL,K",
+          subtitle: "",
+          image:
+            "../B3D5BE20-E846-432C-A803-BEF686BBBAEF.png"
+        },
+
+        {
+          id: "nope",
+          name: "Nope.",
+          subtitle: "",
+          image:
+            "../AFA5E466-A470-444B-B73B-5BB66FD4F047.png"
+        },
+
+        {
+          id: "walk-it-off",
+          name: "Walk It Off",
+          subtitle: "",
+          image:
+            "../9CE55BC3-4DC7-43DA-957B-9B978289148D.png"
         },
 
         {
