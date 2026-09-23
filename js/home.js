@@ -449,26 +449,28 @@ function injectHomeStickerStyles() {
     }
 
     .home-sticker-flash {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-      margin-bottom: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: clamp(10px, 2vw, 20px);
+      margin-bottom: 32px;
     }
 
     .home-sticker-shot {
       display: flex;
       align-items: center;
       justify-content: center;
-      min-width: 0;
-      background: #ffffff;
+      width: clamp(120px, 16vw, 190px);
+      height: clamp(120px, 16vw, 190px);
+      flex: 0 0 auto;
       overflow: hidden;
+      background: #ffffff;
     }
 
     .home-sticker-shot img {
       display: block;
       width: 100%;
       height: 100%;
-      max-height: 440px;
       object-fit: contain;
     }
 
@@ -489,21 +491,15 @@ function injectHomeStickerStyles() {
       }
 
       .home-sticker-flash {
-        grid-template-columns: 1fr;
         gap: 8px;
-        margin-bottom: 32px;
+        margin-bottom: 26px;
       }
 
       .home-sticker-shot {
-        width: 100%;
-        max-height: 68svh;
-      }
-
-      .home-sticker-shot img {
-        width: 100%;
-        height: auto;
-        max-height: 68svh;
-        object-fit: contain;
+        width: calc((100vw - 64px) / 3);
+        height: calc((100vw - 64px) / 3);
+        max-width: 120px;
+        max-height: 120px;
       }
 
     }
