@@ -26,7 +26,7 @@ function renderStickersPage() {
     {
       id: "autism",
       eyebrow: "Autism Collection",
-      title: "Different<br>Fuels Progress.",
+      title: "Different Fuels Progress.",
       description:
         "Automotive culture, rebuilt for a different kind of wiring.",
 
@@ -107,7 +107,7 @@ function renderStickersPage() {
     {
       id: "dark-humor",
       eyebrow: "Dark Humor",
-      title: "Poor Decisions.<br>Great Stickers.",
+      title: "Poor Decisions. Great Stickers.",
       description:
         "A collection for toolboxes, shop cabinets, coolers and questionable judgment.",
 
@@ -156,7 +156,7 @@ function renderStickersPage() {
     {
       id: "originals",
       eyebrow: "Uncle Mike Originals",
-      title: "Stick<br>Something.",
+      title: "Stick Something.",
       description:
         "Because leaving perfectly good surfaces alone is boring.",
 
@@ -211,8 +211,7 @@ function renderStickersPage() {
         </p>
 
         <h1 class="sticker-store-title">
-          Stick<br>
-          Something.
+          Buy Stickers!
         </h1>
 
         <p class="sticker-store-intro">
@@ -233,7 +232,7 @@ function renderStickersPage() {
     ${stickerGroups.map(group => `
 
       <section
-        class="page-section sticker-collection"
+        class="sticker-collection"
         id="${group.id}"
       >
 
@@ -245,7 +244,7 @@ function renderStickersPage() {
               ${group.eyebrow}
             </p>
 
-            <h2 class="section-title">
+            <h2 class="sticker-collection-title">
               ${group.title}
             </h2>
 
@@ -324,7 +323,7 @@ function renderStickersPage() {
          STORE STATUS
          =================================================== -->
 
-    <section class="page-section sticker-store-status">
+    <section class="sticker-store-status">
 
       <div class="wrap">
 
@@ -402,15 +401,20 @@ function injectStickerStoreStyles() {
        ===================================================== */
 
     .sticker-store-hero {
-      padding-top:
-        clamp(70px, 10vw, 120px);
+      padding:
+        clamp(58px, 7vw, 90px)
+        0
+        clamp(58px, 7vw, 90px);
     }
 
     .sticker-store-title {
+      max-width:
+        900px;
+
       margin:
         0
         0
-        28px;
+        22px;
 
       color:
         var(--paper);
@@ -422,16 +426,16 @@ function injectStickerStoreStyles() {
 
       font-size:
         clamp(
-          4.5rem,
-          14vw,
-          10rem
+          3.5rem,
+          8vw,
+          7rem
         );
 
       line-height:
-        0.78;
+        0.9;
 
       letter-spacing:
-        -0.055em;
+        -0.045em;
     }
 
     .sticker-store-intro {
@@ -447,8 +451,8 @@ function injectStickerStoreStyles() {
       font-size:
         clamp(
           1rem,
-          2.2vw,
-          1.2rem
+          2vw,
+          1.18rem
         );
 
       line-height:
@@ -461,6 +465,10 @@ function injectStickerStoreStyles() {
        ===================================================== */
 
     .sticker-collection {
+      padding:
+        clamp(56px, 7vw, 88px)
+        0;
+
       border-top:
         1px solid
         rgba(234, 215, 173, 0.18);
@@ -468,10 +476,39 @@ function injectStickerStoreStyles() {
 
     .sticker-collection-heading {
       max-width:
-        760px;
+        720px;
 
       margin-bottom:
-        clamp(38px, 6vw, 64px);
+        clamp(30px, 4vw, 46px);
+    }
+
+    .sticker-collection-title {
+      max-width:
+        720px;
+
+      margin:
+        0;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(
+          2.5rem,
+          5.5vw,
+          4.8rem
+        );
+
+      line-height:
+        0.94;
+
+      letter-spacing:
+        -0.04em;
     }
 
     .sticker-collection-description {
@@ -479,7 +516,7 @@ function injectStickerStoreStyles() {
         620px;
 
       margin:
-        24px
+        18px
         0
         0;
 
@@ -695,6 +732,10 @@ function injectStickerStoreStyles() {
        ===================================================== */
 
     .sticker-store-status {
+      padding:
+        clamp(56px, 7vw, 88px)
+        0;
+
       border-top:
         1px solid
         rgba(234, 215, 173, 0.18);
@@ -721,13 +762,13 @@ function injectStickerStoreStyles() {
 
       font-size:
         clamp(
-          2.5rem,
-          7vw,
-          5rem
+          2.3rem,
+          5vw,
+          4.3rem
         );
 
       line-height:
-        0.92;
+        0.94;
 
       letter-spacing:
         -0.04em;
@@ -760,17 +801,64 @@ function injectStickerStoreStyles() {
     @media (max-width: 600px) {
 
       .sticker-store-hero {
-        padding-top:
-          58px;
+        padding:
+          44px
+          0
+          50px;
       }
 
       .sticker-store-title {
+        margin-bottom:
+          18px;
+
         font-size:
           clamp(
-            4.1rem,
-            21vw,
-            6.4rem
+            3.25rem,
+            15vw,
+            4.2rem
           );
+
+        line-height:
+          0.9;
+      }
+
+      .sticker-store-intro {
+        font-size:
+          1rem;
+
+        line-height:
+          1.5;
+      }
+
+      .sticker-collection {
+        padding:
+          48px
+          0;
+      }
+
+      .sticker-collection-heading {
+        margin-bottom:
+          28px;
+      }
+
+      .sticker-collection-title {
+        font-size:
+          clamp(
+            2.35rem,
+            11vw,
+            3.15rem
+          );
+
+        line-height:
+          0.92;
+      }
+
+      .sticker-collection-description {
+        margin-top:
+          14px;
+
+        font-size:
+          0.95rem;
       }
 
       .sticker-grid {
@@ -818,6 +906,21 @@ function injectStickerStoreStyles() {
       .sticker-price {
         font-size:
           0.64rem;
+      }
+
+      .sticker-store-status {
+        padding:
+          48px
+          0;
+      }
+
+      .sticker-status-title {
+        font-size:
+          clamp(
+            2.15rem,
+            10vw,
+            3rem
+          );
       }
 
       .sticker-instagram-button {
