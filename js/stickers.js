@@ -328,7 +328,7 @@ function renderStickersPage() {
 
       <div class="wrap">
 
-        <div class="project-detail-card">
+        <div class="project-detail-card sticker-status-card">
 
           <p class="eyebrow">
             Shop Update
@@ -343,6 +343,20 @@ function renderStickersPage() {
             The designs are here. Online ordering
             is being wired up now.
           </p>
+
+          <p>
+            In the meantime, message me on Instagram
+            and we can get your order done.
+          </p>
+
+          <a
+            class="site-contact-button sticker-instagram-button"
+            href="https://www.instagram.com/unclemikecandoit/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Message Me On Instagram →
+          </a>
 
         </div>
 
@@ -686,6 +700,11 @@ function injectStickerStoreStyles() {
         rgba(234, 215, 173, 0.18);
     }
 
+    .sticker-status-card p {
+      max-width:
+        620px;
+    }
+
     .sticker-status-title {
       margin:
         0
@@ -712,6 +731,11 @@ function injectStickerStoreStyles() {
 
       letter-spacing:
         -0.04em;
+    }
+
+    .sticker-instagram-button {
+      margin-top:
+        12px;
     }
 
 
@@ -794,6 +818,17 @@ function injectStickerStoreStyles() {
       .sticker-price {
         font-size:
           0.64rem;
+      }
+
+      .sticker-instagram-button {
+        box-sizing:
+          border-box;
+
+        width:
+          100%;
+
+        text-align:
+          center;
       }
 
     }
