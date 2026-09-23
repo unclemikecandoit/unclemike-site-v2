@@ -23,7 +23,8 @@ function getSiteRoot() {
     path.includes("/make/") ||
     path.includes("/figure-it-out/") ||
     path.includes("/about/") ||
-    path.includes("/contact/")
+    path.includes("/contact/") ||
+    path.includes("/stickers/")
   ) {
     return "../";
   }
@@ -70,6 +71,12 @@ const UNCLE_MIKE_ROUTES = {
     script: "/js/contact.js",
     renderer: "renderContactPage",
     title: "Contact | Uncle Mike Can Do It"
+  },
+
+  "/stickers/": {
+    script: "/js/stickers.js",
+    renderer: "renderStickersPage",
+    title: "Stickers | Uncle Mike Can Do It"
   },
 
   "/build/ranchero/": {
@@ -296,6 +303,9 @@ function getBottomNavigation() {
   const isContact =
     path.includes("/contact/");
 
+  const isStickers =
+    path.includes("/stickers/");
+
   const isMakeProject =
     path.includes("/make/crooked-gate/");
 
@@ -308,7 +318,8 @@ function getBottomNavigation() {
     !isBuild &&
     !isFigure &&
     !isAbout &&
-    !isContact;
+    !isContact &&
+    !isStickers;
 
   if (isHome) {
     return "";
