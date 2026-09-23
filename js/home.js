@@ -82,6 +82,66 @@ function renderHomePage() {
 
 
     <!-- =====================================================
+         STICKERS
+         ===================================================== -->
+
+    <section class="page-section home-stickers">
+      <div class="wrap">
+
+        <a
+          class="home-sticker-feature"
+          href="./stickers/"
+          aria-label="Shop Uncle Mike stickers"
+        >
+
+          <div class="home-sticker-flash">
+
+            <img
+              class="home-sticker home-sticker-one"
+              src="./2D06CF4C-261D-4133-B64B-116872A1C0CE.png"
+              alt="JR. Enemy of the State sticker"
+            >
+
+            <img
+              class="home-sticker home-sticker-two"
+              src="./800448F2-6C0A-4009-BFEE-44762F9757AB.png"
+              alt="Not Today Satan sticker"
+            >
+
+            <img
+              class="home-sticker home-sticker-three"
+              src="./68BD59D5-32D0-4D26-B01D-9BA075EA7F80.png"
+              alt="This Again sticker"
+            >
+
+          </div>
+
+
+          <div class="home-sticker-copy">
+
+            <p class="eyebrow">
+              Stickers
+            </p>
+
+            <h2 class="section-title">
+              Stick<br>
+              Something.
+            </h2>
+
+            <span class="project-card-link">
+              Shop All Stickers →
+            </span>
+
+          </div>
+
+        </a>
+
+      </div>
+    </section>
+
+
+
+    <!-- =====================================================
          SELECTED WORK
          ===================================================== -->
 
@@ -344,7 +404,190 @@ function renderHomePage() {
     </section>
 
   `;
+
+
+  injectHomeStickerStyles();
 }
+
+
+
+/* =========================================================
+   STICKER FEATURE STYLES
+   ========================================================= */
+
+function injectHomeStickerStyles() {
+  if (
+    document.getElementById(
+      "uncle-mike-home-sticker-styles"
+    )
+  ) {
+    return;
+  }
+
+
+  const style =
+    document.createElement("style");
+
+
+  style.id =
+    "uncle-mike-home-sticker-styles";
+
+
+  style.textContent = `
+
+    .home-stickers {
+      overflow: hidden;
+    }
+
+    .home-sticker-feature {
+      display: block;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .home-sticker-flash {
+      position: relative;
+      min-height: 620px;
+      margin-bottom: 42px;
+    }
+
+    .home-sticker {
+      position: absolute;
+      display: block;
+      width: min(48vw, 520px);
+      height: auto;
+      object-fit: contain;
+      filter:
+        drop-shadow(0 18px 18px rgba(0, 0, 0, 0.38));
+      transition:
+        transform 180ms ease;
+    }
+
+    .home-sticker-one {
+      left: 2%;
+      top: 2%;
+      transform: rotate(-8deg);
+      z-index: 2;
+    }
+
+    .home-sticker-two {
+      left: 34%;
+      top: 12%;
+      transform: rotate(7deg);
+      z-index: 3;
+    }
+
+    .home-sticker-three {
+      right: 0;
+      top: 0;
+      transform: rotate(-3deg);
+      z-index: 1;
+    }
+
+    .home-sticker-feature:hover
+    .home-sticker-one {
+      transform:
+        rotate(-10deg)
+        translateY(-6px);
+    }
+
+    .home-sticker-feature:hover
+    .home-sticker-two {
+      transform:
+        rotate(9deg)
+        translateY(-8px);
+    }
+
+    .home-sticker-feature:hover
+    .home-sticker-three {
+      transform:
+        rotate(-5deg)
+        translateY(-5px);
+    }
+
+    .home-sticker-copy {
+      max-width: 760px;
+    }
+
+    .home-sticker-copy
+    .project-card-link {
+      display: inline-block;
+      margin-top: 12px;
+    }
+
+
+    @media (max-width: 800px) {
+
+      .home-sticker-flash {
+        min-height: 118vw;
+        max-height: 720px;
+        margin-left: -7vw;
+        margin-right: -7vw;
+        margin-bottom: 28px;
+      }
+
+      .home-sticker {
+        width: 67vw;
+        max-width: 430px;
+      }
+
+      .home-sticker-one {
+        left: 0;
+        top: 1%;
+        transform: rotate(-9deg);
+      }
+
+      .home-sticker-two {
+        left: 34%;
+        top: 28%;
+        transform: rotate(8deg);
+      }
+
+      .home-sticker-three {
+        left: 7%;
+        top: 52%;
+        transform: rotate(-5deg);
+      }
+
+    }
+
+
+    @media (max-width: 520px) {
+
+      .home-stickers {
+        padding-top: 48px;
+      }
+
+      .home-sticker-flash {
+        min-height: 128vw;
+      }
+
+      .home-sticker {
+        width: 72vw;
+      }
+
+      .home-sticker-one {
+        left: -2%;
+      }
+
+      .home-sticker-two {
+        left: 34%;
+        top: 29%;
+      }
+
+      .home-sticker-three {
+        left: 5%;
+        top: 55%;
+      }
+
+    }
+
+  `;
+
+
+  document.head.appendChild(style);
+}
+
 
 
 /* =========================================================
