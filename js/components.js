@@ -74,6 +74,9 @@ const UNCLE_MIKE_ROUTES = {
   },
 
   "/stickers/": {
+    dependencies: [
+      "/js/sticker-products.js"
+    ],
     script: "/js/stickers.js",
     renderer: "renderStickersPage",
     title: "Stickers | Uncle Mike Can Do It"
@@ -1171,40 +1174,37 @@ function createSiteTransition() {
 }
 
 /* =========================================================
-   ROUTE SCRIPT LOADER
+   GENERIC SCRIPT LOADER
    ========================================================= */
 
-function loadRouteScript(route) {
-  const config =
-    getRouteConfig(route);
-
-  if (!config) {
-    return Promise.reject(
-      new Error(
-        `Unknown route: ${route}`
-      )
-    );
-  }
-
-  const existingRenderer =
-    window[config.renderer];
+function loadSiteScript(src) {
 
   if (
-    typeof existingRenderer ===
-    "function"
+    loadedRouteScripts.has(src)
   ) {
-    return Promise.resolve();
+    return loadedRouteScripts.get(src);
   }
 
-  if (
-    loadedRouteScripts.has(
-      config.script
-    )
-  ) {
-    return loadedRouteScripts.get(
-      config.script
+
+  const existingScript =
+    document.querySelector(
+      `script[src="${src}"]`
     );
+
+
+  if (existingScript) {
+
+    const promise =
+      Promise.resolve();
+
+    loadedRouteScripts.set(
+      src,
+      promise
+    );
+
+    return promise;
   }
+
 
   const promise =
     new Promise(
@@ -1216,28 +1216,13 @@ function loadRouteScript(route) {
           );
 
         script.src =
-          config.script;
+          src;
 
         script.async =
-          true;
+          false;
 
         script.onload =
           () => {
-
-            if (
-              typeof window[
-                config.renderer
-              ] !== "function"
-            ) {
-              reject(
-                new Error(
-                  `Renderer ${config.renderer} was not found.`
-                )
-              );
-
-              return;
-            }
-
             resolve();
           };
 
@@ -1245,7 +1230,7 @@ function loadRouteScript(route) {
           () => {
             reject(
               new Error(
-                `Could not load ${config.script}`
+                `Could not load ${src}`
               )
             );
           };
@@ -1257,12 +1242,97 @@ function loadRouteScript(route) {
       }
     );
 
+
   loadedRouteScripts.set(
-    config.script,
+    src,
     promise
   );
 
+
   return promise;
+}
+
+/* =========================================================
+   ROUTE SCRIPT LOADER
+   Loads route dependencies BEFORE the page renderer.
+   ========================================================= */
+
+async function loadRouteScript(route) {
+  const config =
+    getRouteConfig(route);
+
+  if (!config) {
+    throw new Error(
+      `Unknown route: ${route}`
+    );
+  }
+
+
+  /*
+   * Load any dependencies first.
+   *
+   * Stickers uses this to load:
+   * sticker-products.js
+   * BEFORE stickers.js.
+   */
+  if (
+    Array.isArray(
+      config.dependencies
+    )
+  ) {
+
+    for (
+      const dependency
+      of config.dependencies
+    ) {
+
+      await loadSiteScript(
+        dependency
+      );
+
+    }
+
+  }
+
+
+  /*
+   * If the renderer already exists,
+   * the route script is ready.
+   */
+  const existingRenderer =
+    window[config.renderer];
+
+  if (
+    typeof existingRenderer ===
+    "function"
+  ) {
+    return;
+  }
+
+
+  /*
+   * Load the page script.
+   */
+  await loadSiteScript(
+    config.script
+  );
+
+
+  /*
+   * Make sure the page script actually
+   * registered its renderer.
+   */
+  if (
+    typeof window[
+      config.renderer
+    ] !== "function"
+  ) {
+
+    throw new Error(
+      `Renderer ${config.renderer} was not found.`
+    );
+
+  }
 }
 
 /* =========================================================
