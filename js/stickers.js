@@ -288,10 +288,6 @@ function renderStickersPage() {
   );
 
 
-  /* =======================================================
-     SUCCESS SCREEN
-     ======================================================= */
-
   if (
     isUncleMikeOrderComplete()
   ) {
@@ -304,10 +300,6 @@ function renderStickersPage() {
 
   }
 
-
-  /* =======================================================
-     LOAD CATALOG
-     ======================================================= */
 
   if (
     typeof UNCLE_MIKE_STICKER_CATALOG === "undefined" ||
@@ -326,10 +318,6 @@ function renderStickersPage() {
     return;
   }
 
-
-  /* =======================================================
-     STORE
-     ======================================================= */
 
   page.innerHTML = `
 
@@ -560,8 +548,6 @@ function renderStickersPage() {
     </section>
 
 
-    <!-- CART BAR -->
-
     <section
       class="uncle-cart-bar"
       id="uncle-cart-bar"
@@ -596,16 +582,12 @@ function renderStickersPage() {
     </section>
 
 
-    <!-- CART OVERLAY -->
-
     <div
       class="uncle-cart-overlay"
       id="uncle-cart-overlay"
       hidden
     ></div>
 
-
-    <!-- CART DRAWER -->
 
     <aside
       class="uncle-cart-drawer"
@@ -721,122 +703,14 @@ function renderStickersPage() {
           class="uncle-checkout-button"
           id="uncle-checkout-button"
           type="button"
+          aria-label="Checkout and help me support single moms"
         >
 
-          <span
-            class="uncle-club-icon"
-            aria-hidden="true"
+          <img
+            class="uncle-checkout-art"
+            src="/stickers/checkout-single-moms.png"
+            alt=""
           >
-
-            <span class="uncle-pole"></span>
-
-            <svg
-              class="uncle-dancer"
-              viewBox="0 0 70 110"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-
-              <circle
-                cx="39"
-                cy="17"
-                r="7"
-              />
-
-
-              <path d="
-                M34 12
-                C25 16 25 29 30 34
-                C24 31 21 24 23 18
-                C25 11 30 8 36 8
-                Z
-              "/>
-
-
-              <path d="
-                M35 25
-                C31 32 31 43 35 50
-                C38 55 43 55 46 49
-                C49 43 48 34 44 26
-                Z
-              "/>
-
-
-              <path d="
-                M36 28
-                C31 25 27 20 25 15
-                L21 2
-                C20 -1 16 0 17 4
-                L20 18
-                C22 27 28 33 34 35
-                Z
-              "/>
-
-
-              <path d="
-                M44 30
-                C49 34 52 40 54 46
-                C55 49 59 48 58 44
-                C56 35 51 29 45 25
-                Z
-              "/>
-
-
-              <path d="
-                M34 47
-                C29 51 29 59 34 63
-                C39 67 48 65 50 59
-                C52 53 47 48 44 46
-                Z
-              "/>
-
-
-              <path d="
-                M35 59
-                C28 62 22 68 18 76
-                C16 80 20 83 23 79
-                C27 74 31 70 37 68
-                L43 63
-                Z
-              "/>
-
-
-              <path d="
-                M18 75
-                C15 82 15 90 17 96
-                C18 100 22 99 22 95
-                C21 88 22 82 25 78
-                Z
-              "/>
-
-
-              <path d="
-                M45 60
-                C46 72 45 84 43 96
-                L42 105
-                C42 109 47 110 48 105
-                L51 96
-                C54 83 55 70 51 58
-                Z
-              "/>
-
-
-              <path d="
-                M42 102
-                L48 102
-                L52 108
-                L45 108
-                Z
-              "/>
-
-            </svg>
-
-          </span>
-
-
-          <span class="uncle-checkout-copy">
-            Checkout &amp; Help Me<br>
-            Support Single Moms →
-          </span>
 
         </button>
 
@@ -877,10 +751,6 @@ function initializeUncleMikeCart() {
     getUncleMikeCart();
 
 
-  /* =======================================================
-     REMOVE STALE PRODUCTS
-     ======================================================= */
-
   Object.keys(cart)
     .forEach(key => {
 
@@ -911,10 +781,6 @@ function initializeUncleMikeCart() {
 
   saveUncleMikeCart(cart);
 
-
-  /* =======================================================
-     ELEMENTS
-     ======================================================= */
 
   const productCards =
     document.querySelectorAll(
@@ -982,10 +848,6 @@ function initializeUncleMikeCart() {
     );
 
 
-  /* =======================================================
-     QUANTITIES
-     ======================================================= */
-
   function getQuantity(key) {
 
     return (
@@ -1040,10 +902,6 @@ function initializeUncleMikeCart() {
   }
 
 
-  /* =======================================================
-     PRODUCT CONTROLS
-     ======================================================= */
-
   productCards.forEach(card => {
 
     const key =
@@ -1096,10 +954,6 @@ function initializeUncleMikeCart() {
   });
 
 
-  /* =======================================================
-     TOTALS
-     ======================================================= */
-
   function getCartTotals() {
 
     let totalItems = 0;
@@ -1143,10 +997,6 @@ function initializeUncleMikeCart() {
   }
 
 
-  /* =======================================================
-     STORE QUANTITIES
-     ======================================================= */
-
   function renderStoreQuantities() {
 
     productCards.forEach(card => {
@@ -1171,10 +1021,6 @@ function initializeUncleMikeCart() {
 
   }
 
-
-  /* =======================================================
-     CART ITEMS
-     ======================================================= */
 
   function renderCartItems() {
 
@@ -1335,10 +1181,6 @@ function initializeUncleMikeCart() {
   }
 
 
-  /* =======================================================
-     RENDER CART
-     ======================================================= */
-
   function renderCart() {
 
     const {
@@ -1400,10 +1242,6 @@ function initializeUncleMikeCart() {
 
   }
 
-
-  /* =======================================================
-     DRAWER
-     ======================================================= */
 
   function openCart() {
 
@@ -1484,10 +1322,6 @@ function initializeUncleMikeCart() {
   );
 
 
-  /* =======================================================
-     LIVE SQUARE CHECKOUT
-     ======================================================= */
-
   checkoutButton.addEventListener(
     "click",
     async () => {
@@ -1533,7 +1367,7 @@ function initializeUncleMikeCart() {
 
 
       checkoutButton.innerHTML = `
-        <span>
+        <span class="uncle-checkout-loading">
           Getting Square Ready...
         </span>
       `;
@@ -2516,25 +2350,97 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       STRIP CLUB CHECKOUT BUTTON
+       EXACT APPROVED CHECKOUT ART
        ===================================================== */
 
     .uncle-checkout-button {
       position: relative;
       isolation: isolate;
 
+      display: block;
+
       width: 100%;
-      min-height: 82px;
+
+      padding: 0;
+      border: 0;
+
+      background: transparent;
+
+      cursor: pointer;
+
+      overflow: visible;
+
+      border-radius: 12px;
+
+      animation:
+        uncleClubPulse
+        1.35s
+        ease-in-out
+        infinite;
+    }
+
+    .uncle-checkout-button::before {
+      content: "";
+
+      position: absolute;
+      z-index: -1;
+
+      inset: 4px;
+
+      border-radius: 14px;
+
+      opacity: 0.75;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255, 35, 105, 0.9),
+          rgba(255, 170, 45, 0.88),
+          rgba(255, 35, 115, 0.9),
+          rgba(255, 185, 55, 0.88),
+          rgba(255, 35, 105, 0.9)
+        );
+
+      background-size:
+        300% 100%;
+
+      filter:
+        blur(14px);
+
+      animation:
+        uncleClubSweep
+        2.2s
+        linear
+        infinite;
+    }
+
+    .uncle-checkout-art {
+      position: relative;
+      z-index: 2;
+
+      display: block;
+
+      width: 100%;
+      height: auto;
+
+      border-radius: 10px;
+
+      pointer-events: none;
+
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    .uncle-checkout-loading {
+      position: relative;
+      z-index: 2;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      gap: 18px;
-
-      padding:
-        10px
-        22px;
+      width: 100%;
+      min-height: 82px;
 
       border:
         1px solid
@@ -2551,179 +2457,62 @@ function injectStickerStoreStyles() {
         Helvetica,
         sans-serif;
 
-      font-size: 0.76rem;
+      font-size: 0.72rem;
       font-weight: 900;
-      line-height: 1.35;
-      letter-spacing: 0.07em;
-      text-align: left;
+      letter-spacing: 0.08em;
       text-transform: uppercase;
-
-      cursor: pointer;
-
-      animation:
-        uncleClubLights
-        1.25s
-        ease-in-out
-        infinite;
     }
 
 
-    /* CLUB LIGHT HALO */
-
-    .uncle-checkout-button::before {
-      content: "";
-
-      position: absolute;
-      z-index: -1;
-
-      inset: -5px;
-
-      opacity: 0.58;
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(255, 45, 100, 0.9),
-          rgba(255, 170, 40, 0.95),
-          rgba(255, 40, 120, 0.9),
-          rgba(255, 190, 60, 0.95),
-          rgba(255, 45, 100, 0.9)
-        );
-
-      background-size:
-        300% 100%;
-
-      filter:
-        blur(10px);
-
-      animation:
-        uncleClubSweep
-        2.2s
-        linear
-        infinite;
-    }
-
-
-    /* =====================================================
-       POLE + DANCER
-       ===================================================== */
-
-    .uncle-club-icon {
-      position: relative;
-
-      display: block;
-
-      flex:
-        0 0 58px;
-
-      width: 58px;
-      height: 70px;
-
-      perspective:
-        220px;
-    }
-
-    .uncle-pole {
-      position: absolute;
-
-      z-index: 1;
-
-      top: -5px;
-      bottom: -5px;
-
-      left: 28px;
-
-      width: 3px;
-
-      border-radius: 3px;
-
-      background:
-        var(--ink);
-
-      opacity: 0.92;
-    }
-
-    .uncle-dancer {
-      position: absolute;
-
-      z-index: 2;
-
-      top: -2px;
-      left: 3px;
-
-      width: 51px;
-      height: 78px;
-
-      fill:
-        var(--ink);
-
-      overflow:
-        visible;
-
-      transform-origin:
-        28px 35px;
-
-      animation:
-        unclePoleDance
-        3.2s
-        cubic-bezier(
-          0.55,
-          0.05,
-          0.35,
-          1
-        )
-        infinite;
-
-      will-change:
-        transform,
-        filter;
-    }
-
-    .uncle-checkout-copy {
-      position: relative;
-      z-index: 3;
-
-      display: block;
-    }
-
-
-    /* =====================================================
-       CLUB LIGHT ANIMATION
-       ===================================================== */
-
-    @keyframes uncleClubLights {
+    @keyframes uncleClubPulse {
 
       0%,
       100% {
+        filter:
+          brightness(0.98)
+          saturate(0.98);
+
         box-shadow:
           0 0 8px
-          rgba(255, 60, 120, 0.18),
-          0 0 14px
-          rgba(255, 180, 70, 0.28);
+          rgba(255, 50, 110, 0.22),
+          0 0 16px
+          rgba(255, 175, 55, 0.15);
       }
 
-      25% {
+      30% {
+        filter:
+          brightness(1.04)
+          saturate(1.08);
+
+        box-shadow:
+          0 0 16px
+          rgba(255, 40, 110, 0.42),
+          0 0 28px
+          rgba(255, 40, 110, 0.2);
+      }
+
+      60% {
+        filter:
+          brightness(1.08)
+          saturate(1.15);
+
         box-shadow:
           0 0 20px
-          rgba(255, 45, 110, 0.58),
-          0 0 34px
+          rgba(255, 175, 50, 0.5),
+          0 0 36px
           rgba(255, 45, 110, 0.24);
       }
 
-      50% {
-        box-shadow:
-          0 0 18px
-          rgba(255, 175, 55, 0.62),
-          0 0 36px
-          rgba(255, 175, 55, 0.28);
-      }
+      82% {
+        filter:
+          brightness(1.03)
+          saturate(1.06);
 
-      75% {
         box-shadow:
-          0 0 22px
-          rgba(255, 40, 115, 0.54),
-          0 0 34px
-          rgba(255, 160, 40, 0.22);
+          0 0 16px
+          rgba(255, 45, 115, 0.4),
+          0 0 28px
+          rgba(255, 175, 55, 0.18);
       }
 
     }
@@ -2744,126 +2533,24 @@ function injectStickerStoreStyles() {
     }
 
 
-    /* =====================================================
-       POLE DANCE
-
-       Pause -> spin -> land -> pause
-       ===================================================== */
-
-    @keyframes unclePoleDance {
-
-      0%,
-      52% {
-        transform:
-          translateX(0)
-          rotateY(0deg)
-          rotateZ(-3deg);
-
-        filter:
-          drop-shadow(
-            0 0 0
-            rgba(255, 60, 120, 0)
-          );
-      }
-
-
-      58% {
-        transform:
-          translateX(5px)
-          rotateY(70deg)
-          rotateZ(8deg);
-
-        filter:
-          drop-shadow(
-            0 0 5px
-            rgba(255, 60, 120, 0.65)
-          );
-      }
-
-
-      65% {
-        transform:
-          translateX(1px)
-          rotateY(165deg)
-          rotateZ(-5deg);
-
-        filter:
-          drop-shadow(
-            0 0 9px
-            rgba(255, 175, 50, 0.8)
-          );
-      }
-
-
-      72% {
-        transform:
-          translateX(-2px)
-          rotateY(260deg)
-          rotateZ(7deg);
-
-        filter:
-          drop-shadow(
-            0 0 8px
-            rgba(255, 50, 120, 0.8)
-          );
-      }
-
-
-      80% {
-        transform:
-          translateX(0)
-          rotateY(360deg)
-          rotateZ(-3deg);
-
-        filter:
-          drop-shadow(
-            0 0 4px
-            rgba(255, 170, 50, 0.45)
-          );
-      }
-
-
-      100% {
-        transform:
-          translateX(0)
-          rotateY(360deg)
-          rotateZ(-3deg);
-
-        filter:
-          drop-shadow(
-            0 0 0
-            rgba(255, 60, 120, 0)
-          );
-      }
-
-    }
-
-
-    /* =====================================================
-       BUTTON STATES
-       ===================================================== */
-
     .uncle-checkout-button:active {
       transform:
         scale(0.985);
     }
 
     .uncle-checkout-button:disabled {
-      opacity: 0.4;
+      opacity: 0.45;
       cursor: default;
 
-      animation:
-        none;
+      animation: none;
     }
 
     .uncle-checkout-button:disabled::before {
-      display:
-        none;
+      display: none;
     }
 
     .uncle-checkout-button.is-waiting {
-      cursor:
-        wait;
+      cursor: wait;
     }
 
 
@@ -3153,8 +2840,6 @@ function injectStickerStoreStyles() {
       }
 
 
-      /* CART */
-
       .uncle-cart-bar {
         right: 10px;
         bottom: 78px;
@@ -3222,41 +2907,18 @@ function injectStickerStoreStyles() {
         font-size: 0.56rem;
       }
 
+
+      /* Keep exact button artwork intact on mobile */
+
       .uncle-checkout-button {
-        min-height: 78px;
-
-        gap: 12px;
-
-        padding:
-          8px
-          12px;
-
-        font-size: 0.68rem;
+        width: 100%;
       }
 
-      .uncle-club-icon {
-        flex-basis: 50px;
-
-        width: 50px;
-        height: 66px;
+      .uncle-checkout-art {
+        width: 100%;
+        height: auto;
       }
 
-      .uncle-pole {
-        left: 24px;
-      }
-
-      .uncle-dancer {
-        left: 1px;
-
-        width: 47px;
-        height: 73px;
-
-        transform-origin:
-          25px 34px;
-      }
-
-
-      /* SUCCESS */
 
       .uncle-order-success {
         align-items:
@@ -3290,10 +2952,6 @@ function injectStickerStoreStyles() {
     }
 
 
-    /* =====================================================
-       DESKTOP RADIO CLEARANCE
-       ===================================================== */
-
     @media (min-width: 601px) {
 
       body.uncle-cart-has-items:not(.uncle-cart-open)
@@ -3304,10 +2962,6 @@ function injectStickerStoreStyles() {
     }
 
 
-    /* =====================================================
-       REDUCED MOTION
-       ===================================================== */
-
     @media (
       prefers-reduced-motion:
       reduce
@@ -3316,8 +2970,7 @@ function injectStickerStoreStyles() {
       .uncle-cart-drawer,
       #shop-radio,
       .uncle-checkout-button,
-      .uncle-checkout-button::before,
-      .uncle-dancer {
+      .uncle-checkout-button::before {
         transition: none;
         animation: none;
       }
