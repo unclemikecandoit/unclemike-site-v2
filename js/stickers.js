@@ -12,6 +12,9 @@ const UNCLE_MIKE_CART_KEY =
 const UNCLE_MIKE_CHECKOUT_URL =
   "https://uncle-mike-checkout.mgruttemeyer.workers.dev/checkout";
 
+const UNCLE_MIKE_SHIPPING =
+  10;
+
 
 /* =========================================================
    CART STORAGE
@@ -649,17 +652,65 @@ function renderStickersPage() {
 
       <div class="uncle-cart-footer">
 
-        <div class="uncle-cart-subtotal">
+        <div class="uncle-cart-totals">
 
-          <span>
-            Subtotal
-          </span>
+          <div class="uncle-cart-total-row">
 
-          <strong id="uncle-cart-subtotal">
-            $0.00
-          </strong>
+            <span>
+              Subtotal
+            </span>
+
+            <strong id="uncle-cart-subtotal">
+              $0.00
+            </strong>
+
+          </div>
+
+
+          <div class="uncle-cart-total-row">
+
+            <span>
+              Shipping
+            </span>
+
+            <strong>
+              $10.00
+            </strong>
+
+          </div>
+
+
+          <div class="uncle-cart-total-row uncle-cart-tax-row">
+
+            <span>
+              Sales Tax
+            </span>
+
+            <strong>
+              Calculated by Square
+            </strong>
+
+          </div>
+
+
+          <div class="uncle-cart-total-row uncle-cart-grand-total">
+
+            <span>
+              Total Before Tax
+            </span>
+
+            <strong id="uncle-cart-before-tax">
+              $10.00
+            </strong>
+
+          </div>
 
         </div>
+
+
+        <p class="uncle-shipping-note">
+          $10 flat-rate shipping · Contiguous U.S. only
+        </p>
 
 
         <div
@@ -679,10 +730,14 @@ function renderStickersPage() {
             class="uncle-checkout-icon"
             aria-hidden="true"
           >
-            ♀
+            <span class="uncle-mudflap-head"></span>
+            <span class="uncle-mudflap-body"></span>
+            <span class="uncle-mudflap-leg uncle-mudflap-leg-one"></span>
+            <span class="uncle-mudflap-leg uncle-mudflap-leg-two"></span>
+            <span class="uncle-mudflap-arm"></span>
           </span>
 
-          <span>
+          <span class="uncle-checkout-copy">
             Checkout &amp; Help Me<br>
             Support Single Moms →
           </span>
@@ -814,6 +869,11 @@ function initializeUncleMikeCart() {
   const subtotalElement =
     document.getElementById(
       "uncle-cart-subtotal"
+    );
+
+  const beforeTaxElement =
+    document.getElementById(
+      "uncle-cart-before-tax"
     );
 
   const checkoutButton =
@@ -974,9 +1034,15 @@ function initializeUncleMikeCart() {
       );
 
 
+    const beforeTax =
+      subtotal +
+      UNCLE_MIKE_SHIPPING;
+
+
     return {
       totalItems,
-      subtotal
+      subtotal,
+      beforeTax
     };
 
   }
@@ -1182,7 +1248,8 @@ function initializeUncleMikeCart() {
 
     const {
       totalItems,
-      subtotal
+      subtotal,
+      beforeTax
     } =
       getCartTotals();
 
@@ -1205,6 +1272,10 @@ function initializeUncleMikeCart() {
 
     subtotalElement.textContent =
       `$${subtotal.toFixed(2)}`;
+
+
+    beforeTaxElement.textContent =
+      `$${beforeTax.toFixed(2)}`;
 
 
     cartBar.hidden =
@@ -2197,12 +2268,12 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       CART FOOTER
+       CART FOOTER / TOTALS
        ===================================================== */
 
     .uncle-cart-footer {
       padding:
-        20px
+        18px
         24px
         calc(
           20px +
@@ -2217,38 +2288,100 @@ function injectStickerStoreStyles() {
         var(--ink);
     }
 
-    .uncle-cart-subtotal {
+    .uncle-cart-totals {
+      margin-bottom: 10px;
+    }
+
+    .uncle-cart-total-row {
       display: flex;
       align-items: center;
       justify-content: space-between;
 
       gap: 20px;
 
-      margin-bottom: 16px;
+      padding:
+        6px
+        0;
 
       color:
         var(--paper);
     }
 
-    .uncle-cart-subtotal span {
+    .uncle-cart-total-row span {
       font-family:
         Arial,
         Helvetica,
         sans-serif;
 
-      font-size: 0.72rem;
+      font-size: 0.68rem;
       font-weight: 900;
       letter-spacing: 0.1em;
       text-transform: uppercase;
     }
 
-    .uncle-cart-subtotal strong {
+    .uncle-cart-total-row strong {
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.76rem;
+      font-weight: 900;
+    }
+
+    .uncle-cart-tax-row {
+      color:
+        var(--muted);
+    }
+
+    .uncle-cart-tax-row strong {
+      font-size: 0.66rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .uncle-cart-grand-total {
+      margin-top: 8px;
+
+      padding-top: 14px;
+
+      border-top:
+        1px solid
+        rgba(234, 215, 173, 0.18);
+    }
+
+    .uncle-cart-grand-total span {
+      font-size: 0.72rem;
+    }
+
+    .uncle-cart-grand-total strong {
       font-family:
         Georgia,
         "Times New Roman",
         serif;
 
       font-size: 1.5rem;
+    }
+
+    .uncle-shipping-note {
+      margin:
+        0
+        0
+        16px;
+
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.61rem;
+      font-weight: 800;
+      line-height: 1.4;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
 
@@ -2289,13 +2422,13 @@ function injectStickerStoreStyles() {
 
     .uncle-checkout-button {
       width: 100%;
-      min-height: 68px;
+      min-height: 70px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      gap: 14px;
+      gap: 16px;
 
       padding:
         10px
@@ -2326,30 +2459,156 @@ function injectStickerStoreStyles() {
       cursor: pointer;
     }
 
+    .uncle-checkout-copy {
+      display: block;
+    }
+
+
+    /* =====================================================
+       VINTAGE MUDFLAP SILHOUETTE
+       ===================================================== */
+
     .uncle-checkout-icon {
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      position: relative;
+
+      display: block;
 
       flex:
-        0 0 auto;
+        0 0 38px;
 
-      width: 34px;
-      height: 44px;
-
-      color:
-        var(--ink);
-
-      font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-      font-size: 2rem;
-      font-weight: 700;
+      width: 38px;
+      height: 48px;
 
       transform:
-        rotate(-10deg);
+        rotate(-5deg);
+    }
+
+    .uncle-mudflap-head {
+      position: absolute;
+
+      top: 2px;
+      left: 16px;
+
+      width: 9px;
+      height: 9px;
+
+      border-radius: 50%;
+
+      background:
+        var(--ink);
+    }
+
+    .uncle-mudflap-body {
+      position: absolute;
+
+      top: 10px;
+      left: 13px;
+
+      width: 14px;
+      height: 22px;
+
+      border-radius:
+        48%
+        48%
+        40%
+        40%;
+
+      background:
+        var(--ink);
+
+      transform:
+        rotate(-7deg);
+    }
+
+    .uncle-mudflap-body::before {
+      content: "";
+
+      position: absolute;
+
+      top: 7px;
+      left: -5px;
+
+      width: 9px;
+      height: 12px;
+
+      border-radius: 50%;
+
+      background:
+        var(--ink);
+    }
+
+    .uncle-mudflap-body::after {
+      content: "";
+
+      position: absolute;
+
+      top: 7px;
+      right: -5px;
+
+      width: 9px;
+      height: 12px;
+
+      border-radius: 50%;
+
+      background:
+        var(--ink);
+    }
+
+    .uncle-mudflap-leg {
+      position: absolute;
+
+      width: 7px;
+
+      border-radius:
+        10px;
+
+      background:
+        var(--ink);
+
+      transform-origin:
+        top center;
+    }
+
+    .uncle-mudflap-leg-one {
+      top: 28px;
+      left: 15px;
+
+      height: 19px;
+
+      transform:
+        rotate(13deg);
+    }
+
+    .uncle-mudflap-leg-two {
+      top: 28px;
+      left: 22px;
+
+      height: 20px;
+
+      transform:
+        rotate(-18deg);
+    }
+
+    .uncle-mudflap-arm {
+      position: absolute;
+
+      top: 14px;
+      left: 24px;
+
+      width: 6px;
+      height: 19px;
+
+      border-radius:
+        10px;
+
+      background:
+        var(--ink);
+
+      transform:
+        rotate(-48deg);
+
+      transform-origin:
+        top center;
     }
 
     .uncle-checkout-button:disabled {
@@ -2690,17 +2949,54 @@ function injectStickerStoreStyles() {
 
       .uncle-cart-footer {
         padding:
-          18px
+          15px
           18px
           calc(
-            18px +
+            16px +
             env(safe-area-inset-bottom)
           );
       }
 
+      .uncle-cart-total-row {
+        padding:
+          4px
+          0;
+      }
+
+      .uncle-cart-grand-total {
+        margin-top: 6px;
+        padding-top: 11px;
+      }
+
+      .uncle-cart-grand-total strong {
+        font-size: 1.35rem;
+      }
+
+      .uncle-shipping-note {
+        margin-bottom: 12px;
+        font-size: 0.56rem;
+      }
+
       .uncle-checkout-button {
         min-height: 64px;
-        font-size: 0.7rem;
+
+        gap: 12px;
+
+        padding:
+          8px
+          14px;
+
+        font-size: 0.67rem;
+      }
+
+      .uncle-checkout-icon {
+        flex-basis: 34px;
+
+        width: 34px;
+
+        transform:
+          scale(0.9)
+          rotate(-5deg);
       }
 
 
