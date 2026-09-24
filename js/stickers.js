@@ -79,7 +79,6 @@ function clearUncleMikeCart() {
 }
 
 
-
 /* =========================================================
    PRODUCT LOOKUP
    ========================================================= */
@@ -148,7 +147,6 @@ function getUncleMikeProducts() {
   return products;
 
 }
-
 
 
 /* =========================================================
@@ -268,7 +266,6 @@ function renderUncleMikeOrderSuccess(page) {
   injectStickerStoreStyles();
 
 }
-
 
 
 /* =========================================================
@@ -727,15 +724,114 @@ function renderStickersPage() {
         >
 
           <span
-            class="uncle-checkout-icon"
+            class="uncle-club-icon"
             aria-hidden="true"
           >
-            <span class="uncle-mudflap-head"></span>
-            <span class="uncle-mudflap-body"></span>
-            <span class="uncle-mudflap-leg uncle-mudflap-leg-one"></span>
-            <span class="uncle-mudflap-leg uncle-mudflap-leg-two"></span>
-            <span class="uncle-mudflap-arm"></span>
+
+            <span class="uncle-pole"></span>
+
+            <svg
+              class="uncle-dancer"
+              viewBox="0 0 70 110"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+
+              <circle
+                cx="39"
+                cy="17"
+                r="7"
+              />
+
+
+              <path d="
+                M34 12
+                C25 16 25 29 30 34
+                C24 31 21 24 23 18
+                C25 11 30 8 36 8
+                Z
+              "/>
+
+
+              <path d="
+                M35 25
+                C31 32 31 43 35 50
+                C38 55 43 55 46 49
+                C49 43 48 34 44 26
+                Z
+              "/>
+
+
+              <path d="
+                M36 28
+                C31 25 27 20 25 15
+                L21 2
+                C20 -1 16 0 17 4
+                L20 18
+                C22 27 28 33 34 35
+                Z
+              "/>
+
+
+              <path d="
+                M44 30
+                C49 34 52 40 54 46
+                C55 49 59 48 58 44
+                C56 35 51 29 45 25
+                Z
+              "/>
+
+
+              <path d="
+                M34 47
+                C29 51 29 59 34 63
+                C39 67 48 65 50 59
+                C52 53 47 48 44 46
+                Z
+              "/>
+
+
+              <path d="
+                M35 59
+                C28 62 22 68 18 76
+                C16 80 20 83 23 79
+                C27 74 31 70 37 68
+                L43 63
+                Z
+              "/>
+
+
+              <path d="
+                M18 75
+                C15 82 15 90 17 96
+                C18 100 22 99 22 95
+                C21 88 22 82 25 78
+                Z
+              "/>
+
+
+              <path d="
+                M45 60
+                C46 72 45 84 43 96
+                L42 105
+                C42 109 47 110 48 105
+                L51 96
+                C54 83 55 70 51 58
+                Z
+              "/>
+
+
+              <path d="
+                M42 102
+                L48 102
+                L52 108
+                L45 108
+                Z
+              "/>
+
+            </svg>
+
           </span>
+
 
           <span class="uncle-checkout-copy">
             Checkout &amp; Help Me<br>
@@ -755,7 +851,6 @@ function renderStickersPage() {
   initializeUncleMikeCart();
 
 }
-
 
 
 /* =========================================================
@@ -1538,7 +1633,6 @@ function initializeUncleMikeCart() {
   renderCart();
 
 }
-
 
 
 /* =========================================================
@@ -2386,7 +2480,7 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
-       CHECKOUT
+       CHECKOUT ERROR
        ===================================================== */
 
     .uncle-checkout-error {
@@ -2420,19 +2514,27 @@ function injectStickerStoreStyles() {
       display: none;
     }
 
+
+    /* =====================================================
+       STRIP CLUB CHECKOUT BUTTON
+       ===================================================== */
+
     .uncle-checkout-button {
+      position: relative;
+      isolation: isolate;
+
       width: 100%;
-      min-height: 70px;
+      min-height: 82px;
 
       display: flex;
       align-items: center;
       justify-content: center;
 
-      gap: 16px;
+      gap: 18px;
 
       padding:
         10px
-        18px;
+        22px;
 
       border:
         1px solid
@@ -2457,167 +2559,311 @@ function injectStickerStoreStyles() {
       text-transform: uppercase;
 
       cursor: pointer;
+
+      animation:
+        uncleClubLights
+        1.25s
+        ease-in-out
+        infinite;
     }
 
-    .uncle-checkout-copy {
-      display: block;
+
+    /* CLUB LIGHT HALO */
+
+    .uncle-checkout-button::before {
+      content: "";
+
+      position: absolute;
+      z-index: -1;
+
+      inset: -5px;
+
+      opacity: 0.58;
+
+      background:
+        linear-gradient(
+          90deg,
+          rgba(255, 45, 100, 0.9),
+          rgba(255, 170, 40, 0.95),
+          rgba(255, 40, 120, 0.9),
+          rgba(255, 190, 60, 0.95),
+          rgba(255, 45, 100, 0.9)
+        );
+
+      background-size:
+        300% 100%;
+
+      filter:
+        blur(10px);
+
+      animation:
+        uncleClubSweep
+        2.2s
+        linear
+        infinite;
     }
 
 
     /* =====================================================
-       VINTAGE MUDFLAP SILHOUETTE
+       POLE + DANCER
        ===================================================== */
 
-    .uncle-checkout-icon {
+    .uncle-club-icon {
       position: relative;
 
       display: block;
 
       flex:
-        0 0 38px;
+        0 0 58px;
 
-      width: 38px;
-      height: 48px;
+      width: 58px;
+      height: 70px;
 
-      transform:
-        rotate(-5deg);
+      perspective:
+        220px;
     }
 
-    .uncle-mudflap-head {
+    .uncle-pole {
       position: absolute;
 
-      top: 2px;
-      left: 16px;
+      z-index: 1;
 
-      width: 9px;
-      height: 9px;
+      top: -5px;
+      bottom: -5px;
 
-      border-radius: 50%;
+      left: 28px;
 
-      background:
-        var(--ink);
-    }
+      width: 3px;
 
-    .uncle-mudflap-body {
-      position: absolute;
-
-      top: 10px;
-      left: 13px;
-
-      width: 14px;
-      height: 22px;
-
-      border-radius:
-        48%
-        48%
-        40%
-        40%;
+      border-radius: 3px;
 
       background:
         var(--ink);
 
-      transform:
-        rotate(-7deg);
+      opacity: 0.92;
     }
 
-    .uncle-mudflap-body::before {
-      content: "";
-
+    .uncle-dancer {
       position: absolute;
 
-      top: 7px;
-      left: -5px;
+      z-index: 2;
 
-      width: 9px;
-      height: 12px;
+      top: -2px;
+      left: 3px;
 
-      border-radius: 50%;
+      width: 51px;
+      height: 78px;
 
-      background:
+      fill:
         var(--ink);
-    }
 
-    .uncle-mudflap-body::after {
-      content: "";
-
-      position: absolute;
-
-      top: 7px;
-      right: -5px;
-
-      width: 9px;
-      height: 12px;
-
-      border-radius: 50%;
-
-      background:
-        var(--ink);
-    }
-
-    .uncle-mudflap-leg {
-      position: absolute;
-
-      width: 7px;
-
-      border-radius:
-        10px;
-
-      background:
-        var(--ink);
+      overflow:
+        visible;
 
       transform-origin:
-        top center;
+        28px 35px;
+
+      animation:
+        unclePoleDance
+        3.2s
+        cubic-bezier(
+          0.55,
+          0.05,
+          0.35,
+          1
+        )
+        infinite;
+
+      will-change:
+        transform,
+        filter;
     }
 
-    .uncle-mudflap-leg-one {
-      top: 28px;
-      left: 15px;
+    .uncle-checkout-copy {
+      position: relative;
+      z-index: 3;
 
-      height: 19px;
-
-      transform:
-        rotate(13deg);
+      display: block;
     }
 
-    .uncle-mudflap-leg-two {
-      top: 28px;
-      left: 22px;
 
-      height: 20px;
+    /* =====================================================
+       CLUB LIGHT ANIMATION
+       ===================================================== */
 
-      transform:
-        rotate(-18deg);
+    @keyframes uncleClubLights {
+
+      0%,
+      100% {
+        box-shadow:
+          0 0 8px
+          rgba(255, 60, 120, 0.18),
+          0 0 14px
+          rgba(255, 180, 70, 0.28);
+      }
+
+      25% {
+        box-shadow:
+          0 0 20px
+          rgba(255, 45, 110, 0.58),
+          0 0 34px
+          rgba(255, 45, 110, 0.24);
+      }
+
+      50% {
+        box-shadow:
+          0 0 18px
+          rgba(255, 175, 55, 0.62),
+          0 0 36px
+          rgba(255, 175, 55, 0.28);
+      }
+
+      75% {
+        box-shadow:
+          0 0 22px
+          rgba(255, 40, 115, 0.54),
+          0 0 34px
+          rgba(255, 160, 40, 0.22);
+      }
+
     }
 
-    .uncle-mudflap-arm {
-      position: absolute;
 
-      top: 14px;
-      left: 24px;
+    @keyframes uncleClubSweep {
 
-      width: 6px;
-      height: 19px;
+      0% {
+        background-position:
+          0% 50%;
+      }
 
-      border-radius:
-        10px;
+      100% {
+        background-position:
+          300% 50%;
+      }
 
-      background:
-        var(--ink);
+    }
 
+
+    /* =====================================================
+       POLE DANCE
+
+       Pause -> spin -> land -> pause
+       ===================================================== */
+
+    @keyframes unclePoleDance {
+
+      0%,
+      52% {
+        transform:
+          translateX(0)
+          rotateY(0deg)
+          rotateZ(-3deg);
+
+        filter:
+          drop-shadow(
+            0 0 0
+            rgba(255, 60, 120, 0)
+          );
+      }
+
+
+      58% {
+        transform:
+          translateX(5px)
+          rotateY(70deg)
+          rotateZ(8deg);
+
+        filter:
+          drop-shadow(
+            0 0 5px
+            rgba(255, 60, 120, 0.65)
+          );
+      }
+
+
+      65% {
+        transform:
+          translateX(1px)
+          rotateY(165deg)
+          rotateZ(-5deg);
+
+        filter:
+          drop-shadow(
+            0 0 9px
+            rgba(255, 175, 50, 0.8)
+          );
+      }
+
+
+      72% {
+        transform:
+          translateX(-2px)
+          rotateY(260deg)
+          rotateZ(7deg);
+
+        filter:
+          drop-shadow(
+            0 0 8px
+            rgba(255, 50, 120, 0.8)
+          );
+      }
+
+
+      80% {
+        transform:
+          translateX(0)
+          rotateY(360deg)
+          rotateZ(-3deg);
+
+        filter:
+          drop-shadow(
+            0 0 4px
+            rgba(255, 170, 50, 0.45)
+          );
+      }
+
+
+      100% {
+        transform:
+          translateX(0)
+          rotateY(360deg)
+          rotateZ(-3deg);
+
+        filter:
+          drop-shadow(
+            0 0 0
+            rgba(255, 60, 120, 0)
+          );
+      }
+
+    }
+
+
+    /* =====================================================
+       BUTTON STATES
+       ===================================================== */
+
+    .uncle-checkout-button:active {
       transform:
-        rotate(-48deg);
-
-      transform-origin:
-        top center;
+        scale(0.985);
     }
 
     .uncle-checkout-button:disabled {
       opacity: 0.4;
       cursor: default;
+
+      animation:
+        none;
+    }
+
+    .uncle-checkout-button:disabled::before {
+      display:
+        none;
     }
 
     .uncle-checkout-button.is-waiting {
-      cursor: wait;
+      cursor:
+        wait;
     }
 
 
@@ -2672,8 +2918,7 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-order-breakdown-intro {
-      margin:
-        0;
+      margin: 0;
 
       padding:
         22px
@@ -2978,25 +3223,36 @@ function injectStickerStoreStyles() {
       }
 
       .uncle-checkout-button {
-        min-height: 64px;
+        min-height: 78px;
 
         gap: 12px;
 
         padding:
           8px
-          14px;
+          12px;
 
-        font-size: 0.67rem;
+        font-size: 0.68rem;
       }
 
-      .uncle-checkout-icon {
-        flex-basis: 34px;
+      .uncle-club-icon {
+        flex-basis: 50px;
 
-        width: 34px;
+        width: 50px;
+        height: 66px;
+      }
 
-        transform:
-          scale(0.9)
-          rotate(-5deg);
+      .uncle-pole {
+        left: 24px;
+      }
+
+      .uncle-dancer {
+        left: 1px;
+
+        width: 47px;
+        height: 73px;
+
+        transform-origin:
+          25px 34px;
       }
 
 
@@ -3058,8 +3314,12 @@ function injectStickerStoreStyles() {
     ) {
 
       .uncle-cart-drawer,
-      #shop-radio {
+      #shop-radio,
+      .uncle-checkout-button,
+      .uncle-checkout-button::before,
+      .uncle-dancer {
         transition: none;
+        animation: none;
       }
 
     }
@@ -3070,7 +3330,6 @@ function injectStickerStoreStyles() {
   document.head.appendChild(style);
 
 }
-
 
 
 /* =========================================================
