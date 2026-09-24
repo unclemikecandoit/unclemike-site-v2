@@ -3803,6 +3803,175 @@ function injectStickerStoreStyles() {
 
     }
 
+    /* =====================================================
+       ARCADE PITCH — RUBBER BAND PASS
+       ===================================================== */
+
+    .uncle-arcade-pitch {
+      padding:
+        clamp(38px, 5vw, 64px)
+        20px
+        clamp(42px, 5.5vw, 70px);
+    }
+
+
+    .uncle-arcade-line-one {
+      line-height: 0.84;
+    }
+
+
+    .uncle-arcade-line-two {
+      gap:
+        8px
+        clamp(14px, 2vw, 28px);
+
+      margin-top:
+        clamp(10px, 2vw, 20px);
+    }
+
+
+    .uncle-neon-price {
+      font-size:
+        clamp(4.5rem, 12vw, 9rem);
+
+      /* SHARP CORE + OUTER GLOW */
+      -webkit-text-stroke:
+        1px
+        #ffe87c;
+
+      text-shadow:
+        0 0 2px #fff,
+        0 0 5px #ffd84d,
+        0 0 13px rgba(255, 184, 0, 0.9),
+        0 0 30px rgba(255, 140, 0, 0.55);
+    }
+
+
+    .uncle-neon-arcade {
+      -webkit-text-stroke:
+        1px
+        #b9fcff;
+
+      text-shadow:
+        0 0 2px #fff,
+        0 0 5px #6ffaff,
+        0 0 13px rgba(0, 234, 255, 0.85),
+        0 0 28px rgba(0, 191, 255, 0.55);
+    }
+
+
+    .uncle-random-sticker {
+      padding:
+        8px
+        14px;
+
+      box-shadow:
+        5px
+        5px
+        0
+        #ff3f9f;
+    }
+
+
+    .uncle-you-pick {
+      margin:
+        clamp(28px, 4vw, 44px)
+        auto
+        clamp(24px, 3vw, 36px);
+
+      -webkit-text-stroke:
+        0.5px
+        #ff9dce;
+
+      text-shadow:
+        0 0 2px #ffb0d7,
+        0 0 6px #ff3f9f,
+        0 0 16px rgba(255, 0, 128, 0.65);
+    }
+
+
+    .uncle-cheap-sign {
+      padding:
+        0.12em
+        0.22em
+        0.1em;
+
+      border-width:
+        3px;
+
+      -webkit-text-stroke:
+        1px
+        #ff86c2;
+
+      text-shadow:
+        0 0 2px #fff,
+        0 0 5px #ff65b2,
+        0 0 13px rgba(255, 20, 147, 0.9),
+        0 0 30px rgba(255, 0, 100, 0.55);
+
+      box-shadow:
+        inset 0 0 4px rgba(255,255,255,0.25),
+        0 0 5px #ff4fa7,
+        0 0 14px rgba(255, 0, 119, 0.85),
+        0 0 32px rgba(255, 0, 119, 0.45);
+    }
+
+
+    .uncle-neon-arrow {
+      margin-top:
+        18px;
+
+      font-size:
+        clamp(2.4rem, 5vw, 4rem);
+
+      -webkit-text-stroke:
+        1px
+        #a0ffa0;
+
+      text-shadow:
+        0 0 2px #fff,
+        0 0 5px #72ff72,
+        0 0 14px rgba(0, 255, 102, 0.7);
+    }
+
+
+    .uncle-neon-star {
+      text-shadow:
+        0 0 2px currentColor,
+        0 0 6px currentColor,
+        0 0 15px currentColor;
+    }
+
+
+    @media (max-width: 600px) {
+
+      .uncle-arcade-pitch {
+        padding:
+          34px
+          14px
+          42px;
+      }
+
+
+      .uncle-arcade-line-two {
+        gap: 16px;
+      }
+
+
+      .uncle-you-pick {
+        margin:
+          26px
+          auto
+          24px;
+      }
+
+
+      .uncle-neon-arrow {
+        margin-top: 14px;
+      }
+
+    }
+
 
   `;
 
