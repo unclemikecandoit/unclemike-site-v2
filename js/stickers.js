@@ -343,11 +343,15 @@ function renderStickersPage() {
             10-Sticker Packs $9.99
           </span>
 
+          <span class="uncle-b5g1-hero">
+            Buy 5 Singles · Get 1 Free
+          </span>
+
         </div>
 
       </div>
 
-       </section>
+    </section>
 
 
     <section class="uncle-arcade-pitch">
@@ -694,7 +698,35 @@ function renderStickersPage() {
 
       <div class="uncle-cart-footer">
 
+        <div
+          class="uncle-b5g1-status"
+          id="uncle-b5g1-status"
+        >
+          <strong>BUY 5 · GET 1 FREE</strong>
+          <span id="uncle-b5g1-message">
+            Pick any 6 individual stickers. Your 6th is free.
+          </span>
+        </div>
+
+
         <div class="uncle-cart-totals">
+
+          <div
+            class="uncle-cart-total-row uncle-b5g1-discount-row"
+            id="uncle-b5g1-discount-row"
+            hidden
+          >
+
+            <span>
+              Buy 5 Get 1 Free
+            </span>
+
+            <strong id="uncle-b5g1-discount">
+              −$0.00
+            </strong>
+
+          </div>
+
 
           <div class="uncle-cart-total-row">
 
@@ -769,7 +801,7 @@ function renderStickersPage() {
           aria-label="Checkout and help me support single moms"
         >
 
-<img
+          <img
             class="uncle-checkout-art"
             id="uncle-checkout-art"
             src="/stickers/checkout-dancer-1.png"
@@ -789,7 +821,6 @@ function renderStickersPage() {
   initializeUncleMikeCart();
 
 }
-
 
 /* =========================================================
    CART ENGINE
@@ -911,6 +942,26 @@ function initializeUncleMikeCart() {
       "uncle-checkout-error"
     );
 
+  const b5g1Status =
+    document.getElementById(
+      "uncle-b5g1-status"
+    );
+
+  const b5g1Message =
+    document.getElementById(
+      "uncle-b5g1-message"
+    );
+
+  const b5g1DiscountRow =
+    document.getElementById(
+      "uncle-b5g1-discount-row"
+    );
+
+  const b5g1Discount =
+    document.getElementById(
+      "uncle-b5g1-discount"
+    );
+
 
   function getQuantity(key) {
 
@@ -1018,10 +1069,15 @@ function initializeUncleMikeCart() {
   });
 
 
+  /* =======================================================
+     CART TOTALS + BUY 5 GET 1 FREE
+     ======================================================= */
+
   function getCartTotals() {
 
     let totalItems = 0;
-    let subtotal = 0;
+    let grossSubtotal = 0;
+    let singleStickerCount = 0;
 
 
     Object.entries(cart)
@@ -1039,11 +1095,62 @@ function initializeUncleMikeCart() {
           totalItems +=
             quantity;
 
-          subtotal +=
+          grossSubtotal +=
             product.price *
             quantity;
 
+
+          /*
+            Only individual stickers qualify.
+
+            Flash packs do NOT count
+            toward Buy 5 Get 1 Free.
+          */
+
+          if (
+            product.type === "sticker"
+          ) {
+
+            singleStickerCount +=
+              quantity;
+
+          }
+
         }
+      );
+
+
+    /*
+      Every six individual stickers
+      earns one free sticker.
+
+      6  = 1 free
+      12 = 2 free
+      18 = 3 free
+    */
+
+    const freeStickerCount =
+      Math.floor(
+        singleStickerCount / 6
+      );
+
+
+    /*
+      Individual stickers are $1.99.
+
+      This mirrors the server-side
+      Worker promotion.
+    */
+
+    const discount =
+      freeStickerCount *
+      1.99;
+
+
+    const subtotal =
+      Math.max(
+        0,
+        grossSubtotal - discount
       );
 
 
@@ -1052,14 +1159,33 @@ function initializeUncleMikeCart() {
       UNCLE_MIKE_SHIPPING;
 
 
+    const progressInCurrentDeal =
+      singleStickerCount % 6;
+
+
+    const stickersUntilNextFree =
+      progressInCurrentDeal === 0
+        ? 6
+        : 6 - progressInCurrentDeal;
+
+
     return {
       totalItems,
+      grossSubtotal,
+      singleStickerCount,
+      freeStickerCount,
+      discount,
       subtotal,
-      beforeTax
+      beforeTax,
+      stickersUntilNextFree
     };
 
   }
 
+
+  /* =======================================================
+     STORE QUANTITIES
+     ======================================================= */
 
   function renderStoreQuantities() {
 
@@ -1085,6 +1211,10 @@ function initializeUncleMikeCart() {
 
   }
 
+
+  /* =======================================================
+     CART ITEMS
+     ======================================================= */
 
   function renderCartItems() {
 
@@ -1245,12 +1375,20 @@ function initializeUncleMikeCart() {
   }
 
 
+  /* =======================================================
+     RENDER CART
+     ======================================================= */
+
   function renderCart() {
 
     const {
       totalItems,
+      singleStickerCount,
+      freeStickerCount,
+      discount,
       subtotal,
-      beforeTax
+      beforeTax,
+      stickersUntilNextFree
     } =
       getCartTotals();
 
@@ -1267,6 +1405,11 @@ function initializeUncleMikeCart() {
       }`;
 
 
+    /*
+      Floating cart bar shows the
+      ACTUAL discounted subtotal.
+    */
+
     cartTotal.textContent =
       `$${subtotal.toFixed(2)}`;
 
@@ -1277,6 +1420,83 @@ function initializeUncleMikeCart() {
 
     beforeTaxElement.textContent =
       `$${beforeTax.toFixed(2)}`;
+
+
+    /* =====================================================
+       PROMOTION DISCOUNT
+       ===================================================== */
+
+    if (
+      b5g1DiscountRow &&
+      b5g1Discount
+    ) {
+
+      b5g1DiscountRow.hidden =
+        discount <= 0;
+
+
+      b5g1Discount.textContent =
+        `−$${discount.toFixed(2)}`;
+
+    }
+
+
+    /* =====================================================
+       PROMOTION PROGRESS MESSAGE
+       ===================================================== */
+
+    if (
+      b5g1Status &&
+      b5g1Message
+    ) {
+
+      b5g1Status.classList.toggle(
+        "is-unlocked",
+        freeStickerCount > 0
+      );
+
+
+      if (
+        singleStickerCount === 0
+      ) {
+
+        b5g1Message.textContent =
+          "Pick any 6 individual stickers. Your 6th is free.";
+
+      } else if (
+        singleStickerCount < 6
+      ) {
+
+        b5g1Message.textContent =
+          `${stickersUntilNextFree} MORE ${
+            stickersUntilNextFree === 1
+              ? "STICKER"
+              : "STICKERS"
+          } AND I OWE YOU A FREE ONE.`;
+
+      } else if (
+        singleStickerCount % 6 === 0
+      ) {
+
+        b5g1Message.textContent =
+          `${freeStickerCount} FREE ${
+            freeStickerCount === 1
+              ? "STICKER"
+              : "STICKERS"
+          } UNLOCKED. LOOK AT YOU SAVING MONEY.`;
+
+      } else {
+
+        b5g1Message.textContent =
+          `${freeStickerCount} FREE ${
+            freeStickerCount === 1
+              ? "STICKER"
+              : "STICKERS"
+          } UNLOCKED · ${stickersUntilNextFree} MORE TO THE NEXT FREE ONE.`;
+
+      }
+
+    }
 
 
     cartBar.hidden =
@@ -1306,6 +1526,10 @@ function initializeUncleMikeCart() {
 
   }
 
+
+  /* =======================================================
+     OPEN / CLOSE CART
+     ======================================================= */
 
   function openCart() {
 
@@ -1385,7 +1609,8 @@ function initializeUncleMikeCart() {
     }
   );
 
-     /* =======================================================
+
+  /* =======================================================
      STOP-MOTION STRIPPER
      ======================================================= */
 
@@ -1400,14 +1625,17 @@ function initializeUncleMikeCart() {
 
   uncleCheckoutFrames.forEach(src => {
 
-    const image = new Image();
+    const image =
+      new Image();
 
-    image.src = src;
+    image.src =
+      src;
 
   });
 
 
-  let uncleCheckoutDanceTimer = null;
+  let uncleCheckoutDanceTimer =
+    null;
 
 
   function getCheckoutArt() {
@@ -1421,13 +1649,16 @@ function initializeUncleMikeCart() {
 
   function showCheckoutFrame(index) {
 
-    const art = getCheckoutArt();
+    const art =
+      getCheckoutArt();
 
     if (!art) {
       return;
     }
 
-    art.src = uncleCheckoutFrames[index];
+
+    art.src =
+      uncleCheckoutFrames[index];
 
   }
 
@@ -1451,7 +1682,9 @@ function initializeUncleMikeCart() {
       0
     ];
 
-    let step = 0;
+
+    let step =
+      0;
 
 
     function advanceFrame() {
@@ -1474,7 +1707,9 @@ function initializeUncleMikeCart() {
         sequence[step]
       );
 
-      step += 1;
+
+      step +=
+        1;
 
 
       window.setTimeout(
@@ -1521,6 +1756,11 @@ function initializeUncleMikeCart() {
 
   scheduleCheckoutDance();
 
+
+  /* =======================================================
+     SQUARE CHECKOUT
+     ======================================================= */
+
   checkoutButton.addEventListener(
     "click",
     async () => {
@@ -1546,7 +1786,7 @@ function initializeUncleMikeCart() {
       }
 
 
-            const originalHTML =
+      const originalHTML =
         checkoutButton.innerHTML;
 
 
@@ -1601,7 +1841,8 @@ function initializeUncleMikeCart() {
           );
 
 
-        let data = {};
+        let data =
+          {};
 
 
         try {
@@ -1648,6 +1889,7 @@ function initializeUncleMikeCart() {
           error?.message ||
           "Checkout couldn't start. Try again.";
 
+
         checkoutError.hidden =
           false;
 
@@ -1655,11 +1897,13 @@ function initializeUncleMikeCart() {
         checkoutButton.innerHTML =
           originalHTML;
 
+
         checkoutButton.classList.remove(
           "is-waiting"
         );
 
-               checkoutButton.disabled =
+
+        checkoutButton.disabled =
           false;
 
 
@@ -1676,7 +1920,6 @@ function initializeUncleMikeCart() {
   renderCart();
 
 }
-
 
 /* =========================================================
    STYLES
@@ -1716,7 +1959,9 @@ function injectStickerStoreStyles() {
     .sticker-store-title {
       max-width: 900px;
       margin: 0;
-      color: var(--paper);
+
+      color:
+        var(--paper);
 
       font-family:
         Georgia,
@@ -1745,7 +1990,8 @@ function injectStickerStoreStyles() {
 
       margin-top: 26px;
 
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-family:
         Arial,
@@ -1782,7 +2028,8 @@ function injectStickerStoreStyles() {
       max-width: 900px;
       margin: 0;
 
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Georgia,
@@ -1834,14 +2081,18 @@ function injectStickerStoreStyles() {
       padding:
         clamp(8px, 1.5vw, 16px);
 
-      background: #0d1014;
+      background:
+        #0d1014;
+
       overflow: hidden;
     }
 
     .sticker-card-image img {
       display: block;
+
       width: 100%;
       height: 100%;
+
       object-fit: contain;
     }
 
@@ -1864,7 +2115,8 @@ function injectStickerStoreStyles() {
     }
 
     .sticker-number {
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -1901,11 +2153,15 @@ function injectStickerStoreStyles() {
 
       width: 34px;
       height: 34px;
+
       padding: 0;
       border: 0;
 
-      background: transparent;
-      color: var(--paper);
+      background:
+        transparent;
+
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -1914,6 +2170,7 @@ function injectStickerStoreStyles() {
 
       font-size: 1.2rem;
       line-height: 1;
+
       cursor: pointer;
     }
 
@@ -1924,7 +2181,9 @@ function injectStickerStoreStyles() {
 
     .sticker-quantity-value {
       text-align: center;
-      color: var(--paper);
+
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -1963,12 +2222,15 @@ function injectStickerStoreStyles() {
     }
 
     .flash-pack-image {
-      background: #0d1014;
+      background:
+        #0d1014;
+
       overflow: hidden;
     }
 
     .flash-pack-image img {
       display: block;
+
       width: 100%;
       height: auto;
     }
@@ -1976,11 +2238,13 @@ function injectStickerStoreStyles() {
     .flash-pack-info {
       display: flex;
       flex-direction: column;
+
       gap: 4px;
     }
 
     .flash-pack-info strong {
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -1993,7 +2257,8 @@ function injectStickerStoreStyles() {
     }
 
     .flash-pack-info span {
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-family:
         Arial,
@@ -2034,7 +2299,10 @@ function injectStickerStoreStyles() {
       gap: 18px;
 
       max-width: 760px;
-      margin: 0 auto;
+
+      margin:
+        0 auto;
+
       padding: 12px;
 
       border:
@@ -2054,12 +2322,15 @@ function injectStickerStoreStyles() {
     .uncle-cart-bar-summary {
       display: flex;
       flex-direction: column;
+
       gap: 3px;
+
       padding-left: 6px;
     }
 
     .uncle-cart-bar-summary strong {
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -2072,7 +2343,8 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-cart-bar-summary span {
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-family:
         Arial,
@@ -2109,6 +2381,7 @@ function injectStickerStoreStyles() {
       font-weight: 900;
       letter-spacing: 0.08em;
       text-transform: uppercase;
+
       cursor: pointer;
     }
 
@@ -2144,6 +2417,7 @@ function injectStickerStoreStyles() {
     .uncle-cart-overlay {
       position: fixed;
       z-index: 1090;
+
       inset: 0;
 
       background:
@@ -2261,6 +2535,7 @@ function injectStickerStoreStyles() {
     .uncle-cart-close {
       width: 42px;
       height: 42px;
+
       padding: 0;
 
       border:
@@ -2275,6 +2550,7 @@ function injectStickerStoreStyles() {
 
       font-size: 1.7rem;
       line-height: 1;
+
       cursor: pointer;
     }
 
@@ -2340,13 +2616,17 @@ function injectStickerStoreStyles() {
       justify-content: center;
 
       overflow: hidden;
-      background: #0d1014;
+
+      background:
+        #0d1014;
     }
 
     .uncle-cart-item-image img {
       display: block;
+
       width: 100%;
       height: 100%;
+
       object-fit: contain;
     }
 
@@ -2359,7 +2639,8 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-cart-item-info strong {
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -2372,7 +2653,8 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-cart-item-info span {
-      color: var(--muted);
+      color:
+        var(--muted);
 
       font-family:
         Arial,
@@ -2392,7 +2674,8 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-cart-line-total {
-      color: var(--paper);
+      color:
+        var(--paper);
 
       font-family:
         Arial,
@@ -2401,6 +2684,127 @@ function injectStickerStoreStyles() {
 
       font-size: 0.76rem;
       font-weight: 900;
+    }
+
+
+    /* =====================================================
+       BUY 5 GET 1 FREE
+       ===================================================== */
+
+    .uncle-b5g1-hero {
+      color:
+        #72ff72;
+
+      text-shadow:
+        0 0 2px #ffffff,
+        0 0 6px #72ff72,
+        0 0 16px rgba(0, 255, 102, 0.72);
+    }
+
+    .uncle-b5g1-status {
+      margin:
+        0
+        0
+        14px;
+
+      padding:
+        12px
+        14px;
+
+      border:
+        1px solid
+        #72ff72;
+
+      background:
+        rgba(114, 255, 114, 0.06);
+
+      box-shadow:
+        0 0 6px rgba(114, 255, 114, 0.34),
+        0 0 18px rgba(0, 255, 102, 0.12);
+    }
+
+    .uncle-b5g1-status strong,
+    .uncle-b5g1-status span {
+      display: block;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      text-transform:
+        uppercase;
+    }
+
+    .uncle-b5g1-status strong {
+      color:
+        #72ff72;
+
+      font-size:
+        0.82rem;
+
+      font-weight:
+        1000;
+
+      letter-spacing:
+        0.08em;
+
+      text-shadow:
+        0 0 2px #ffffff,
+        0 0 5px #72ff72,
+        0 0 12px rgba(0, 255, 102, 0.65);
+    }
+
+    .uncle-b5g1-status span {
+      margin-top:
+        5px;
+
+      color:
+        var(--paper);
+
+      font-size:
+        0.65rem;
+
+      font-weight:
+        850;
+
+      line-height:
+        1.4;
+
+      letter-spacing:
+        0.055em;
+    }
+
+    .uncle-b5g1-status.is-unlocked {
+      border-color:
+        #ffd84d;
+
+      background:
+        rgba(255, 216, 77, 0.07);
+
+      box-shadow:
+        0 0 7px rgba(255, 216, 77, 0.38),
+        0 0 20px rgba(255, 170, 0, 0.14);
+    }
+
+    .uncle-b5g1-status.is-unlocked strong {
+      color:
+        #ffd84d;
+
+      text-shadow:
+        0 0 2px #ffffff,
+        0 0 5px #ffd84d,
+        0 0 13px rgba(255, 170, 0, 0.7);
+    }
+
+    .uncle-b5g1-discount-row {
+      color:
+        #72ff72;
+    }
+
+    .uncle-b5g1-discount-row[hidden] {
+      display:
+        none;
     }
 
 
@@ -2426,7 +2830,8 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-cart-totals {
-      margin-bottom: 10px;
+      margin-bottom:
+        10px;
     }
 
     .uncle-cart-total-row {
@@ -2554,11 +2959,11 @@ function injectStickerStoreStyles() {
     }
 
     .uncle-checkout-error[hidden] {
-      display: none;
+      display:
+        none;
     }
 
-
-    /* =====================================================
+        /* =====================================================
        EXACT APPROVED CHECKOUT ART
        ===================================================== */
 
@@ -2868,8 +3273,7 @@ function injectStickerStoreStyles() {
         "Times New Roman",
         serif;
 
-      font-size:
-        2rem;
+      font-size: 2rem;
     }
 
     .uncle-order-breakdown-row span {
@@ -3028,6 +3432,7 @@ function injectStickerStoreStyles() {
       .sticker-quantity-button {
         width: 30px;
         height: 32px;
+
         font-size: 1.05rem;
       }
 
@@ -3113,6 +3518,7 @@ function injectStickerStoreStyles() {
 
       .uncle-shipping-note {
         margin-bottom: 12px;
+
         font-size: 0.56rem;
       }
 
@@ -3185,6 +3591,7 @@ function injectStickerStoreStyles() {
       }
 
     }
+
 
     /* =====================================================
        ARCADE PITCH
@@ -3523,8 +3930,7 @@ function injectStickerStoreStyles() {
         rotate(1deg);
     }
 
-
-    /* -------------------------
+        /* -------------------------
        QUIT BEING CHEAP
        ------------------------- */
 
@@ -3803,6 +4209,7 @@ function injectStickerStoreStyles() {
 
     }
 
+
     /* =====================================================
        ARCADE PITCH — RUBBER BAND PASS
        ===================================================== */
@@ -3816,7 +4223,8 @@ function injectStickerStoreStyles() {
 
 
     .uncle-arcade-line-one {
-      line-height: 0.84;
+      line-height:
+        0.84;
     }
 
 
@@ -3834,7 +4242,6 @@ function injectStickerStoreStyles() {
       font-size:
         clamp(4.5rem, 12vw, 9rem);
 
-      /* SHARP CORE + OUTER GLOW */
       -webkit-text-stroke:
         1px
         #ffe87c;
@@ -3954,7 +4361,8 @@ function injectStickerStoreStyles() {
 
 
       .uncle-arcade-line-two {
-        gap: 16px;
+        gap:
+          16px;
       }
 
 
@@ -3967,7 +4375,8 @@ function injectStickerStoreStyles() {
 
 
       .uncle-neon-arrow {
-        margin-top: 14px;
+        margin-top:
+          14px;
       }
 
     }
@@ -3976,7 +4385,9 @@ function injectStickerStoreStyles() {
   `;
 
 
-  document.head.appendChild(style);
+  document.head.appendChild(
+    style
+  );
 
 }
 
@@ -3985,6 +4396,10 @@ function injectStickerStoreStyles() {
    INITIAL PAGE LOAD
    ========================================================= */
 
-if (!window.UNCLE_MIKE_ROUTER_ACTIVE) {
+if (
+  !window.UNCLE_MIKE_ROUTER_ACTIVE
+) {
+
   renderStickersPage();
+
 }
