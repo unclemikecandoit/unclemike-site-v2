@@ -171,6 +171,11 @@ function renderUncleMikeOrderSuccess(page) {
 
   clearUncleMikeCart();
 
+  document.body.classList.remove(
+    "uncle-cart-open",
+    "uncle-cart-has-items"
+  );
+
 
   page.innerHTML = `
 
@@ -275,6 +280,12 @@ function renderStickersPage() {
     );
 
   if (!page) return;
+
+
+  document.body.classList.remove(
+    "uncle-cart-open",
+    "uncle-cart-has-items"
+  );
 
 
   /* =======================================================
@@ -577,7 +588,7 @@ function renderStickersPage() {
           id="uncle-cart-open-button"
           type="button"
         >
-          Support My Habits →
+          Checkout — Support My Habits →
         </button>
 
       </div>
@@ -1202,6 +1213,24 @@ function initializeUncleMikeCart() {
 
     checkoutButton.disabled =
       totalItems === 0;
+
+
+    document.body.classList.toggle(
+      "uncle-cart-has-items",
+      totalItems > 0
+    );
+
+
+    if (
+      totalItems === 0 &&
+      drawer.classList.contains(
+        "is-open"
+      )
+    ) {
+
+      closeCart();
+
+    }
 
   }
 
@@ -1873,6 +1902,30 @@ function injectStickerStoreStyles() {
       letter-spacing: 0.08em;
       text-transform: uppercase;
       cursor: pointer;
+    }
+
+
+    /* =====================================================
+       SHOP RADIO + CART COORDINATION
+       ===================================================== */
+
+    #shop-radio {
+      transition:
+        bottom 180ms ease,
+        opacity 140ms ease,
+        visibility 140ms ease;
+    }
+
+    body.uncle-cart-has-items:not(.uncle-cart-open)
+    #shop-radio {
+      bottom: 148px;
+    }
+
+    body.uncle-cart-open
+    #shop-radio {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
     }
 
 
@@ -2613,9 +2666,10 @@ function injectStickerStoreStyles() {
 
         padding:
           0
-          14px;
+          12px;
 
-        font-size: 0.64rem;
+        font-size: 0.61rem;
+        line-height: 1.2;
       }
 
       .uncle-cart-drawer {
@@ -2685,6 +2739,20 @@ function injectStickerStoreStyles() {
 
 
     /* =====================================================
+       DESKTOP RADIO CLEARANCE
+       ===================================================== */
+
+    @media (min-width: 601px) {
+
+      body.uncle-cart-has-items:not(.uncle-cart-open)
+      #shop-radio {
+        bottom: 152px;
+      }
+
+    }
+
+
+    /* =====================================================
        REDUCED MOTION
        ===================================================== */
 
@@ -2693,7 +2761,8 @@ function injectStickerStoreStyles() {
       reduce
     ) {
 
-      .uncle-cart-drawer {
+      .uncle-cart-drawer,
+      #shop-radio {
         transition: none;
       }
 
