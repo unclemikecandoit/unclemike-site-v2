@@ -245,7 +245,16 @@ function jsonResponse(
 
 
 /* =========================================================
-   VALIDATE CART
+   VALIDATE CART + BUY 5 GET 1 FREE
+
+   RULE:
+   Every 6 individual stickers = 1 free.
+
+   6 singles  = pay for 5
+   12 singles = pay for 10
+   18 singles = pay for 15
+
+   Flash packs do NOT qualify.
    ========================================================= */
 
 function buildSquareLineItems(cart) {
@@ -255,12 +264,22 @@ function buildSquareLineItems(cart) {
     typeof cart !== "object" ||
     Array.isArray(cart)
   ) {
+
     throw new Error(
       "Invalid cart."
     );
+
   }
 
-  const lineItems = [];
+
+  const validCartItems = [];
+
+  let totalSingleStickers = 0;
+
+
+  /* =====================================================
+     VALIDATE CART
+     ===================================================== */
 
   for (
     const [key, rawQuantity]
@@ -270,14 +289,17 @@ function buildSquareLineItems(cart) {
     const product =
       PRODUCTS[key];
 
-    /* Ignore anything not sold by us */
+
+    /* Ignore unknown products */
 
     if (!product) {
       continue;
     }
 
+
     const quantity =
       Number(rawQuantity);
+
 
     if (
       !Number.isInteger(quantity) ||
@@ -287,33 +309,173 @@ function buildSquareLineItems(cart) {
       continue;
     }
 
-    lineItems.push({
 
-      name:
-        product.name,
-
-      quantity:
-        String(quantity),
-
-      base_price_money: {
-        amount:
-          product.price,
-
-        currency:
-          "USD"
-      }
-
+    validCartItems.push({
+      key,
+      product,
+      quantity
     });
+
+
+    /* Count individual stickers only */
+
+    if (
+      key.startsWith("sticker:")
+    ) {
+
+      totalSingleStickers +=
+        quantity;
+
+    }
 
   }
 
-  if (!lineItems.length) {
+
+  if (!validCartItems.length) {
 
     throw new Error(
       "Your cart is empty."
     );
 
   }
+
+
+  /* =====================================================
+     CALCULATE FREE STICKERS
+     ===================================================== */
+
+  let freeStickersRemaining =
+    Math.floor(
+      totalSingleStickers / 6
+    );
+
+
+  /* =====================================================
+     BUILD SQUARE LINE ITEMS
+     ===================================================== */
+
+  const lineItems = [];
+
+
+  for (
+    const item
+    of validCartItems
+  ) {
+
+    const {
+      key,
+      product,
+      quantity
+    } = item;
+
+
+    /* ===================================================
+       FLASH PACKS / NON-SINGLE PRODUCTS
+       =================================================== */
+
+    if (
+      !key.startsWith("sticker:")
+    ) {
+
+      lineItems.push({
+
+        name:
+          product.name,
+
+        quantity:
+          String(quantity),
+
+        base_price_money: {
+          amount:
+            product.price,
+
+          currency:
+            "USD"
+        }
+
+      });
+
+
+      continue;
+
+    }
+
+
+    /* ===================================================
+       INDIVIDUAL STICKERS
+       =================================================== */
+
+    const freeQuantity =
+      Math.min(
+        quantity,
+        freeStickersRemaining
+      );
+
+
+    const paidQuantity =
+      quantity -
+      freeQuantity;
+
+
+    freeStickersRemaining -=
+      freeQuantity;
+
+
+    /* Paid stickers */
+
+    if (
+      paidQuantity > 0
+    ) {
+
+      lineItems.push({
+
+        name:
+          product.name,
+
+        quantity:
+          String(paidQuantity),
+
+        base_price_money: {
+          amount:
+            product.price,
+
+          currency:
+            "USD"
+        }
+
+      });
+
+    }
+
+
+    /* Free stickers */
+
+    if (
+      freeQuantity > 0
+    ) {
+
+      lineItems.push({
+
+        name:
+          `${product.name} — BUY 5 GET 1 FREE`,
+
+        quantity:
+          String(freeQuantity),
+
+        base_price_money: {
+          amount:
+            0,
+
+          currency:
+            "USD"
+        }
+
+      });
+
+    }
+
+  }
+
 
   return lineItems;
 
@@ -337,6 +499,7 @@ async function createSquareCheckout(
 
   }
 
+
   if (!env.SQUARE_LOCATION_ID) {
 
     throw new Error(
@@ -345,8 +508,10 @@ async function createSquareCheckout(
 
   }
 
+
   const idempotencyKey =
     crypto.randomUUID();
+
 
   const squareBody = {
 
@@ -508,6 +673,7 @@ export default {
         null,
         {
           status: 204,
+
           headers:
             corsHeaders(request)
         }
@@ -529,6 +695,7 @@ export default {
         request,
         {
           ok: true,
+
           service:
             "Uncle Mike Checkout"
         }
@@ -569,6 +736,7 @@ export default {
           request,
           {
             ok: true,
+
             url:
               checkoutUrl
           }
@@ -608,6 +776,7 @@ export default {
       request,
       {
         ok: false,
+
         error:
           "Not found."
       },
