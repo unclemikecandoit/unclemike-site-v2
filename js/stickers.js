@@ -347,6 +347,69 @@ function renderStickersPage() {
 
       </div>
 
+       </section>
+
+
+    <section class="uncle-arcade-pitch">
+
+      <div class="uncle-arcade-chaos">
+
+        <div
+          class="uncle-neon-star uncle-neon-star-one"
+          aria-hidden="true"
+        >
+          ★
+        </div>
+
+        <div
+          class="uncle-neon-star uncle-neon-star-two"
+          aria-hidden="true"
+        >
+          ★
+        </div>
+
+
+        <div class="uncle-arcade-line uncle-arcade-line-one">
+          THE
+          <span class="uncle-neon-arcade">
+            ARCADE
+          </span>
+          CHARGES
+        </div>
+
+
+        <div class="uncle-arcade-line uncle-arcade-line-two">
+
+          <span class="uncle-neon-price">
+            $2
+          </span>
+
+          <span class="uncle-random-sticker">
+            FOR A RANDOM STICKER.
+          </span>
+
+        </div>
+
+
+        <div class="uncle-you-pick">
+          You get to pick this one.
+        </div>
+
+
+        <div class="uncle-cheap-sign">
+          QUIT BEING CHEAP.
+        </div>
+
+
+        <div
+          class="uncle-neon-arrow"
+          aria-hidden="true"
+        >
+          ↓
+        </div>
+
+      </div>
+
     </section>
 
 
@@ -3122,6 +3185,624 @@ function injectStickerStoreStyles() {
       }
 
     }
+
+    /* =====================================================
+       ARCADE PITCH
+       ===================================================== */
+
+    .uncle-arcade-pitch {
+      position: relative;
+      overflow: hidden;
+
+      padding:
+        clamp(70px, 10vw, 130px)
+        20px
+        clamp(85px, 11vw, 145px);
+
+      border-top:
+        1px solid
+        rgba(234, 215, 173, 0.18);
+
+      border-bottom:
+        1px solid
+        rgba(234, 215, 173, 0.18);
+
+      background:
+        radial-gradient(
+          circle at 18% 30%,
+          rgba(0, 238, 255, 0.12),
+          transparent 24rem
+        ),
+        radial-gradient(
+          circle at 82% 65%,
+          rgba(255, 0, 153, 0.14),
+          transparent 25rem
+        ),
+        radial-gradient(
+          circle at 52% 110%,
+          rgba(255, 170, 0, 0.09),
+          transparent 25rem
+        ),
+        #090908;
+    }
+
+
+    .uncle-arcade-pitch::before {
+      content: "";
+
+      position: absolute;
+      inset: 0;
+
+      pointer-events: none;
+
+      opacity: 0.18;
+
+      background-image:
+        linear-gradient(
+          rgba(255,255,255,0.035) 1px,
+          transparent 1px
+        ),
+        linear-gradient(
+          90deg,
+          rgba(255,255,255,0.025) 1px,
+          transparent 1px
+        );
+
+      background-size:
+        38px 38px;
+    }
+
+
+    .uncle-arcade-chaos {
+      position: relative;
+      z-index: 1;
+
+      width:
+        min(1050px, 100%);
+
+      margin:
+        0 auto;
+
+      text-align:
+        center;
+    }
+
+
+    .uncle-arcade-line {
+      position: relative;
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-weight: 1000;
+      text-transform: uppercase;
+
+      line-height: 0.92;
+    }
+
+
+    .uncle-arcade-line-one {
+      color: #f4e7c7;
+
+      font-size:
+        clamp(
+          2.3rem,
+          6.7vw,
+          6.4rem
+        );
+
+      letter-spacing:
+        -0.055em;
+
+      transform:
+        rotate(-1deg);
+    }
+
+
+    /* -------------------------
+       ARCADE NEON
+       ------------------------- */
+
+    .uncle-neon-arcade {
+      display: inline-block;
+
+      margin:
+        0 0.08em;
+
+      color:
+        #77f9ff;
+
+      font-family:
+        "Trebuchet MS",
+        Arial,
+        sans-serif;
+
+      font-style:
+        italic;
+
+      letter-spacing:
+        -0.06em;
+
+      text-shadow:
+        0 0 3px #ffffff,
+        0 0 7px #65f8ff,
+        0 0 14px #00eaff,
+        0 0 28px #00bfff,
+        0 0 48px rgba(0,191,255,0.75);
+
+      animation:
+        uncleArcadeFlicker
+        5s
+        infinite;
+    }
+
+
+    /* -------------------------
+       $2
+       ------------------------- */
+
+    .uncle-arcade-line-two {
+      display: flex;
+
+      justify-content:
+        center;
+
+      align-items:
+        center;
+
+      flex-wrap:
+        wrap;
+
+      gap:
+        12px
+        clamp(16px, 3vw, 38px);
+
+      margin-top:
+        clamp(20px, 4vw, 40px);
+    }
+
+
+    .uncle-neon-price {
+      display:
+        inline-block;
+
+      color:
+        #ffd84d;
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(
+          5.2rem,
+          15vw,
+          12rem
+        );
+
+      font-style:
+        italic;
+
+      line-height:
+        0.72;
+
+      transform:
+        rotate(-6deg);
+
+      text-shadow:
+        0 0 4px #fff6b0,
+        0 0 10px #ffd84d,
+        0 0 20px #ffad00,
+        0 0 42px rgba(255,140,0,0.9),
+        5px 8px 0 rgba(0,0,0,0.7);
+    }
+
+
+    /* -------------------------
+       RANDOM STICKER
+       ------------------------- */
+
+    .uncle-random-sticker {
+      display:
+        inline-block;
+
+      padding:
+        12px 18px;
+
+      color:
+        #0b0b09;
+
+      background:
+        #f5eee0;
+
+      box-shadow:
+        7px 8px 0 #ff3f9f;
+
+      font-family:
+        "Arial Black",
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(
+          1.35rem,
+          4.2vw,
+          3.6rem
+        );
+
+      letter-spacing:
+        -0.045em;
+
+      transform:
+        rotate(2deg);
+    }
+
+
+    /* -------------------------
+       HANDWRITTEN BREAK
+       ------------------------- */
+
+    .uncle-you-pick {
+      position:
+        relative;
+
+      width:
+        max-content;
+
+      max-width:
+        90%;
+
+      margin:
+        clamp(55px, 8vw, 90px)
+        auto
+        clamp(35px, 5vw, 55px);
+
+      color:
+        #ff76bd;
+
+      font-family:
+        "Comic Sans MS",
+        "Bradley Hand",
+        cursive;
+
+      font-size:
+        clamp(
+          1.8rem,
+          5vw,
+          4.3rem
+        );
+
+      font-weight:
+        700;
+
+      line-height:
+        1;
+
+      transform:
+        rotate(-3deg);
+
+      text-shadow:
+        0 0 6px #ff3f9f,
+        0 0 14px rgba(255,63,159,0.9),
+        0 0 30px rgba(255,0,128,0.55);
+    }
+
+
+    .uncle-you-pick::after {
+      content: "";
+
+      position:
+        absolute;
+
+      left:
+        4%;
+
+      right:
+        -3%;
+
+      bottom:
+        -14px;
+
+      height:
+        5px;
+
+      border-radius:
+        50%;
+
+      background:
+        #ff76bd;
+
+      box-shadow:
+        0 0 8px #ff3f9f,
+        0 0 20px #ff0088;
+
+      transform:
+        rotate(1deg);
+    }
+
+
+    /* -------------------------
+       QUIT BEING CHEAP
+       ------------------------- */
+
+    .uncle-cheap-sign {
+      display:
+        inline-block;
+
+      position:
+        relative;
+
+      padding:
+        0.17em
+        0.28em
+        0.13em;
+
+      color:
+        #ff4fa7;
+
+      border:
+        4px solid
+        #ff4fa7;
+
+      border-radius:
+        10px;
+
+      font-family:
+        "Arial Black",
+        Impact,
+        sans-serif;
+
+      font-size:
+        clamp(
+          2.6rem,
+          9vw,
+          8rem
+        );
+
+      font-weight:
+        1000;
+
+      letter-spacing:
+        -0.055em;
+
+      line-height:
+        0.88;
+
+      transform:
+        rotate(1deg);
+
+      text-shadow:
+        0 0 3px #ffffff,
+        0 0 7px #ff75ba,
+        0 0 15px #ff1493,
+        0 0 35px #ff006f,
+        0 0 60px rgba(255,0,100,0.75);
+
+      box-shadow:
+        inset 0 0 8px rgba(255,255,255,0.35),
+        0 0 7px #ff4fa7,
+        0 0 20px #ff0077,
+        0 0 48px rgba(255,0,119,0.65);
+
+      animation:
+        uncleCheapBuzz
+        3.7s
+        infinite;
+    }
+
+
+    /* -------------------------
+       STARS + ARROW
+       ------------------------- */
+
+    .uncle-neon-star {
+      position:
+        absolute;
+
+      color:
+        #72ff72;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      text-shadow:
+        0 0 6px #72ff72,
+        0 0 15px #00ff55,
+        0 0 30px #00dd44;
+
+      pointer-events:
+        none;
+    }
+
+
+    .uncle-neon-star-one {
+      top:
+        -25px;
+
+      left:
+        2%;
+
+      font-size:
+        clamp(2rem, 5vw, 4rem);
+
+      transform:
+        rotate(-18deg);
+    }
+
+
+    .uncle-neon-star-two {
+      right:
+        1%;
+
+      top:
+        38%;
+
+      color:
+        #a77cff;
+
+      font-size:
+        clamp(1.8rem, 4vw, 3.5rem);
+
+      transform:
+        rotate(17deg);
+
+      text-shadow:
+        0 0 6px #a77cff,
+        0 0 16px #7c42ff,
+        0 0 30px #642cff;
+    }
+
+
+    .uncle-neon-arrow {
+      margin-top:
+        35px;
+
+      color:
+        #72ff72;
+
+      font-family:
+        Arial,
+        sans-serif;
+
+      font-size:
+        clamp(3rem, 7vw, 6rem);
+
+      font-weight:
+        900;
+
+      line-height:
+        1;
+
+      text-shadow:
+        0 0 5px #72ff72,
+        0 0 15px #00ff66,
+        0 0 30px rgba(0,255,102,0.8);
+
+      animation:
+        uncleArrowBounce
+        1.15s
+        ease-in-out
+        infinite;
+    }
+
+
+    /* -------------------------
+       NEON MOVEMENT
+       ------------------------- */
+
+    @keyframes uncleArcadeFlicker {
+
+      0%,
+      18%,
+      22%,
+      24%,
+      53%,
+      55%,
+      100% {
+        opacity: 1;
+      }
+
+      20%,
+      23%,
+      54% {
+        opacity: 0.55;
+      }
+
+    }
+
+
+    @keyframes uncleCheapBuzz {
+
+      0%,
+      92%,
+      94%,
+      96%,
+      100% {
+        opacity: 1;
+      }
+
+      93%,
+      95% {
+        opacity: 0.62;
+      }
+
+    }
+
+
+    @keyframes uncleArrowBounce {
+
+      0%,
+      100% {
+        transform:
+          translateY(0);
+      }
+
+      50% {
+        transform:
+          translateY(12px);
+      }
+
+    }
+
+
+    @media (
+      prefers-reduced-motion:
+      reduce
+    ) {
+
+      .uncle-neon-arcade,
+      .uncle-cheap-sign,
+      .uncle-neon-arrow {
+        animation:
+          none;
+      }
+
+    }
+
+
+    @media (
+      max-width:
+      600px
+    ) {
+
+      .uncle-arcade-line-two {
+        flex-direction:
+          column;
+
+        gap:
+          30px;
+      }
+
+
+      .uncle-random-sticker {
+        max-width:
+          92%;
+
+        box-shadow:
+          5px
+          6px
+          0
+          #ff3f9f;
+      }
+
+
+      .uncle-cheap-sign {
+        border-width:
+          3px;
+      }
+
+
+      .uncle-neon-star-two {
+        top:
+          45%;
+      }
+
+    }
+
 
   `;
 
