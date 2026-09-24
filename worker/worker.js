@@ -5,7 +5,7 @@
    File:
    /worker/worker.js
 
-   Required Cloudflare secrets:
+   Required Cloudflare runtime variables:
    SQUARE_ACCESS_TOKEN
    SQUARE_LOCATION_ID
 
@@ -27,6 +27,9 @@ const SUCCESS_URL =
 const SQUARE_API_VERSION =
   "2026-01-22";
 
+const SHIPPING_FEE =
+  1000; // $10.00
+
 
 /* =========================================================
    SERVER-SIDE PRODUCT CATALOG
@@ -42,47 +45,47 @@ const PRODUCTS = {
 
   /* INDIVIDUAL STICKERS */
 
-  "sticker:1":  {
+  "sticker:1": {
     name: "Sticker #01",
     price: 199
   },
 
-  "sticker:2":  {
+  "sticker:2": {
     name: "Sticker #02",
     price: 199
   },
 
-  "sticker:3":  {
+  "sticker:3": {
     name: "Sticker #03",
     price: 199
   },
 
-  "sticker:4":  {
+  "sticker:4": {
     name: "Sticker #04",
     price: 199
   },
 
-  "sticker:5":  {
+  "sticker:5": {
     name: "Sticker #05",
     price: 199
   },
 
-  "sticker:6":  {
+  "sticker:6": {
     name: "Sticker #06",
     price: 199
   },
 
-  "sticker:7":  {
+  "sticker:7": {
     name: "Sticker #07",
     price: 199
   },
 
-  "sticker:8":  {
+  "sticker:8": {
     name: "Sticker #08",
     price: 199
   },
 
-  "sticker:9":  {
+  "sticker:9": {
     name: "Sticker #09",
     price: 199
   },
@@ -192,12 +195,10 @@ function corsHeaders(request) {
     "https://www.unclemikecandoit.com"
   ];
 
-
   const allowOrigin =
     allowedOrigins.includes(origin)
       ? origin
       : SITE_ORIGIN;
-
 
   return {
     "Access-Control-Allow-Origin":
@@ -259,9 +260,7 @@ function buildSquareLineItems(cart) {
     );
   }
 
-
   const lineItems = [];
-
 
   for (
     const [key, rawQuantity]
@@ -271,17 +270,14 @@ function buildSquareLineItems(cart) {
     const product =
       PRODUCTS[key];
 
-
     /* Ignore anything not sold by us */
 
     if (!product) {
       continue;
     }
 
-
     const quantity =
       Number(rawQuantity);
-
 
     if (
       !Number.isInteger(quantity) ||
@@ -290,7 +286,6 @@ function buildSquareLineItems(cart) {
     ) {
       continue;
     }
-
 
     lineItems.push({
 
@@ -312,7 +307,6 @@ function buildSquareLineItems(cart) {
 
   }
 
-
   if (!lineItems.length) {
 
     throw new Error(
@@ -320,7 +314,6 @@ function buildSquareLineItems(cart) {
     );
 
   }
-
 
   return lineItems;
 
@@ -344,7 +337,6 @@ async function createSquareCheckout(
 
   }
 
-
   if (!env.SQUARE_LOCATION_ID) {
 
     throw new Error(
@@ -353,10 +345,8 @@ async function createSquareCheckout(
 
   }
 
-
   const idempotencyKey =
     crypto.randomUUID();
-
 
   const squareBody = {
 
@@ -370,7 +360,12 @@ async function createSquareCheckout(
         env.SQUARE_LOCATION_ID,
 
       line_items:
-        lineItems
+        lineItems,
+
+      pricing_options: {
+        auto_apply_taxes:
+          true
+      }
 
     },
 
@@ -384,7 +379,23 @@ async function createSquareCheckout(
         true,
 
       allow_tipping:
-        false
+        false,
+
+      shipping_fee: {
+
+        name:
+          "Flat Rate Shipping",
+
+        charge: {
+
+          amount:
+            SHIPPING_FEE,
+
+          currency:
+            "USD"
+        }
+
+      }
 
     }
 
@@ -606,7 +617,3 @@ export default {
   }
 
 };
-
-
-
-
