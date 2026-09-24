@@ -1,6 +1,6 @@
 /* =========================================================
    UNCLE MIKE — STICKERS
-   Storefront + Cart
+   Storefront + Cart + Square Checkout
 
    Product inventory lives in:
    /js/sticker-products.js
@@ -8,6 +8,9 @@
 
 const UNCLE_MIKE_CART_KEY =
   "uncleMikeCartV1";
+
+const UNCLE_MIKE_CHECKOUT_URL =
+  "https://uncle-mike-checkout.mgruttemeyer.workers.dev/checkout";
 
 
 /* =========================================================
@@ -53,6 +56,19 @@ function saveUncleMikeCart(cart) {
     localStorage.setItem(
       UNCLE_MIKE_CART_KEY,
       JSON.stringify(cart)
+    );
+
+  } catch (error) {}
+
+}
+
+
+function clearUncleMikeCart() {
+
+  try {
+
+    localStorage.removeItem(
+      UNCLE_MIKE_CART_KEY
     );
 
   } catch (error) {}
@@ -133,6 +149,121 @@ function getUncleMikeProducts() {
 
 
 /* =========================================================
+   SUCCESS RETURN
+   ========================================================= */
+
+function isUncleMikeOrderComplete() {
+
+  const params =
+    new URLSearchParams(
+      window.location.search
+    );
+
+  return (
+    params.get("order") ===
+    "complete"
+  );
+
+}
+
+
+function renderUncleMikeOrderSuccess(page) {
+
+  clearUncleMikeCart();
+
+
+  page.innerHTML = `
+
+    <section class="uncle-order-success">
+
+      <div class="wrap">
+
+        <p class="eyebrow">
+          Order Confirmed
+        </p>
+
+
+        <h1>
+          Thanks For Helping Me<br>
+          Pay My Child Support.
+        </h1>
+
+
+        <div class="uncle-order-breakdown">
+
+          <p class="uncle-order-breakdown-intro">
+            A completely legitimate breakdown
+            of your contribution:
+          </p>
+
+
+          <div class="uncle-order-breakdown-row">
+
+            <strong>
+              60%
+            </strong>
+
+            <span>
+              Went to the state.
+            </span>
+
+          </div>
+
+
+          <div class="uncle-order-breakdown-row">
+
+            <strong>
+              30%
+            </strong>
+
+            <span>
+              Went to supplies.
+            </span>
+
+          </div>
+
+
+          <div class="uncle-order-breakdown-row">
+
+            <strong>
+              10%
+            </strong>
+
+            <span>
+              Went to Top Ramen and booger sugar.
+            </span>
+
+          </div>
+
+        </div>
+
+
+        <p class="uncle-order-confirmed">
+          Your order is confirmed.
+        </p>
+
+
+        <a
+          class="button uncle-order-back"
+          href="/stickers/"
+        >
+          Back To Stickers →
+        </a>
+
+      </div>
+
+    </section>
+
+  `;
+
+
+  injectStickerStoreStyles();
+
+}
+
+
+
+/* =========================================================
    PAGE
    ========================================================= */
 
@@ -144,6 +275,23 @@ function renderStickersPage() {
     );
 
   if (!page) return;
+
+
+  /* =======================================================
+     SUCCESS SCREEN
+     ======================================================= */
+
+  if (
+    isUncleMikeOrderComplete()
+  ) {
+
+    renderUncleMikeOrderSuccess(
+      page
+    );
+
+    return;
+
+  }
 
 
   /* =======================================================
@@ -503,6 +651,13 @@ function renderStickersPage() {
         </div>
 
 
+        <div
+          class="uncle-checkout-error"
+          id="uncle-checkout-error"
+          hidden
+        ></div>
+
+
         <button
           class="uncle-checkout-button"
           id="uncle-checkout-button"
@@ -653,6 +808,11 @@ function initializeUncleMikeCart() {
   const checkoutButton =
     document.getElementById(
       "uncle-checkout-button"
+    );
+
+  const checkoutError =
+    document.getElementById(
+      "uncle-checkout-error"
     );
 
 
@@ -1130,50 +1290,146 @@ function initializeUncleMikeCart() {
 
 
   /* =======================================================
-     CHECKOUT
-     Square connection comes next.
+     LIVE SQUARE CHECKOUT
      ======================================================= */
 
   checkoutButton.addEventListener(
     "click",
-    () => {
+    async () => {
 
       if (
-        checkoutButton.disabled
+        checkoutButton.disabled ||
+        checkoutButton.classList.contains(
+          "is-waiting"
+        )
       ) {
         return;
       }
 
 
-      checkoutButton.classList.add(
-        "is-waiting"
-      );
+      const {
+        totalItems
+      } =
+        getCartTotals();
+
+
+      if (!totalItems) {
+        return;
+      }
 
 
       const originalHTML =
         checkoutButton.innerHTML;
 
 
+      checkoutError.hidden =
+        true;
+
+      checkoutError.textContent =
+        "";
+
+
+      checkoutButton.classList.add(
+        "is-waiting"
+      );
+
+      checkoutButton.disabled =
+        true;
+
+
       checkoutButton.innerHTML = `
         <span>
-          Square Checkout Coming Next
+          Getting Square Ready...
         </span>
       `;
 
 
-      window.setTimeout(
-        () => {
+      try {
 
-          checkoutButton.innerHTML =
-            originalHTML;
+        const response =
+          await fetch(
+            UNCLE_MIKE_CHECKOUT_URL,
+            {
 
-          checkoutButton.classList.remove(
-            "is-waiting"
+              method:
+                "POST",
+
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+
+              body:
+                JSON.stringify({
+                  cart
+                })
+
+            }
           );
 
-        },
-        1200
-      );
+
+        let data = {};
+
+
+        try {
+
+          data =
+            await response.json();
+
+        } catch (error) {
+
+          throw new Error(
+            "Checkout returned an invalid response."
+          );
+
+        }
+
+
+        if (
+          !response.ok ||
+          !data.ok ||
+          !data.url
+        ) {
+
+          throw new Error(
+            data.error ||
+            "Square checkout could not be created."
+          );
+
+        }
+
+
+        window.location.href =
+          data.url;
+
+
+      } catch (error) {
+
+        console.error(
+          "Uncle Mike checkout failed:",
+          error
+        );
+
+
+        checkoutError.textContent =
+          error?.message ||
+          "Checkout couldn't start. Try again.";
+
+        checkoutError.hidden =
+          false;
+
+
+        checkoutButton.innerHTML =
+          originalHTML;
+
+        checkoutButton.classList.remove(
+          "is-waiting"
+        );
+
+        checkoutButton.disabled =
+          false;
+
+      }
 
     }
   );
@@ -1947,6 +2203,37 @@ function injectStickerStoreStyles() {
        CHECKOUT
        ===================================================== */
 
+    .uncle-checkout-error {
+      margin:
+        0
+        0
+        14px;
+
+      padding:
+        12px
+        14px;
+
+      border:
+        1px solid
+        rgba(234, 215, 173, 0.3);
+
+      color:
+        var(--paper);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.72rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .uncle-checkout-error[hidden] {
+      display: none;
+    }
+
     .uncle-checkout-button {
       width: 100%;
       min-height: 68px;
@@ -2019,6 +2306,184 @@ function injectStickerStoreStyles() {
 
     .uncle-checkout-button.is-waiting {
       cursor: wait;
+    }
+
+
+    /* =====================================================
+       ORDER SUCCESS
+       ===================================================== */
+
+    .uncle-order-success {
+      min-height:
+        calc(100svh - 100px);
+
+      display: flex;
+      align-items: center;
+
+      padding:
+        clamp(70px, 10vw, 130px)
+        0;
+    }
+
+    .uncle-order-success h1 {
+      max-width: 1000px;
+
+      margin:
+        10px
+        0
+        42px;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        clamp(3.2rem, 8vw, 7rem);
+
+      line-height: 0.88;
+      letter-spacing: -0.05em;
+      text-transform: uppercase;
+    }
+
+    .uncle-order-breakdown {
+      max-width: 720px;
+
+      margin-bottom: 34px;
+
+      border-top:
+        1px solid
+        rgba(234, 215, 173, 0.28);
+    }
+
+    .uncle-order-breakdown-intro {
+      margin:
+        0;
+
+      padding:
+        22px
+        0;
+
+      color:
+        var(--muted);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.72rem;
+      font-weight: 900;
+      line-height: 1.5;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+
+      border-bottom:
+        1px solid
+        rgba(234, 215, 173, 0.18);
+    }
+
+    .uncle-order-breakdown-row {
+      display: grid;
+
+      grid-template-columns:
+        100px
+        minmax(0, 1fr);
+
+      align-items: center;
+
+      gap: 22px;
+
+      padding:
+        20px
+        0;
+
+      border-bottom:
+        1px solid
+        rgba(234, 215, 173, 0.18);
+    }
+
+    .uncle-order-breakdown-row strong {
+      color:
+        var(--paper);
+
+      font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+      font-size:
+        2rem;
+    }
+
+    .uncle-order-breakdown-row span {
+      color:
+        var(--copy);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.84rem;
+      font-weight: 800;
+      line-height: 1.45;
+    }
+
+    .uncle-order-confirmed {
+      margin:
+        0
+        0
+        24px;
+
+      color:
+        var(--paper);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .uncle-order-back {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+
+      min-height: 48px;
+
+      padding:
+        0
+        22px;
+
+      border:
+        1px solid
+        var(--paper);
+
+      background:
+        var(--paper);
+
+      color:
+        var(--ink);
+
+      font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-decoration: none;
+      text-transform: uppercase;
     }
 
 
@@ -2182,6 +2647,38 @@ function injectStickerStoreStyles() {
       .uncle-checkout-button {
         min-height: 64px;
         font-size: 0.7rem;
+      }
+
+
+      /* SUCCESS */
+
+      .uncle-order-success {
+        align-items:
+          flex-start;
+
+        padding:
+          58px
+          0
+          80px;
+      }
+
+      .uncle-order-success h1 {
+        margin-bottom: 34px;
+
+        font-size:
+          clamp(3rem, 14vw, 4.5rem);
+      }
+
+      .uncle-order-breakdown-row {
+        grid-template-columns:
+          72px
+          minmax(0, 1fr);
+
+        gap: 16px;
+      }
+
+      .uncle-order-breakdown-row strong {
+        font-size: 1.65rem;
       }
 
     }
