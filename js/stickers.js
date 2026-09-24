@@ -706,9 +706,10 @@ function renderStickersPage() {
           aria-label="Checkout and help me support single moms"
         >
 
-          <img
+<img
             class="uncle-checkout-art"
-            src="/stickers/checkout-single-moms.png"
+            id="uncle-checkout-art"
+            src="/stickers/checkout-dancer-1.png"
             alt=""
           >
 
@@ -1321,6 +1322,141 @@ function initializeUncleMikeCart() {
     }
   );
 
+     /* =======================================================
+     STOP-MOTION STRIPPER
+     ======================================================= */
+
+  const uncleCheckoutFrames = [
+    "/stickers/checkout-dancer-1.png",
+    "/stickers/checkout-dancer-2.png",
+    "/stickers/checkout-dancer-3.png",
+    "/stickers/checkout-dancer-4.png",
+    "/stickers/checkout-dancer-5.png"
+  ];
+
+
+  uncleCheckoutFrames.forEach(src => {
+
+    const image = new Image();
+
+    image.src = src;
+
+  });
+
+
+  let uncleCheckoutDanceTimer = null;
+
+
+  function getCheckoutArt() {
+
+    return document.getElementById(
+      "uncle-checkout-art"
+    );
+
+  }
+
+
+  function showCheckoutFrame(index) {
+
+    const art = getCheckoutArt();
+
+    if (!art) {
+      return;
+    }
+
+    art.src = uncleCheckoutFrames[index];
+
+  }
+
+
+  function runCheckoutDance() {
+
+    if (
+      checkoutButton.classList.contains(
+        "is-waiting"
+      )
+    ) {
+      return;
+    }
+
+
+    const sequence = [
+      1,
+      2,
+      3,
+      4,
+      0
+    ];
+
+    let step = 0;
+
+
+    function advanceFrame() {
+
+      if (
+        step >= sequence.length ||
+        checkoutButton.classList.contains(
+          "is-waiting"
+        )
+      ) {
+
+        showCheckoutFrame(0);
+
+        return;
+
+      }
+
+
+      showCheckoutFrame(
+        sequence[step]
+      );
+
+      step += 1;
+
+
+      window.setTimeout(
+        advanceFrame,
+        125
+      );
+
+    }
+
+
+    advanceFrame();
+
+  }
+
+
+  function scheduleCheckoutDance() {
+
+    window.clearTimeout(
+      uncleCheckoutDanceTimer
+    );
+
+
+    uncleCheckoutDanceTimer =
+      window.setTimeout(
+        function danceLoop() {
+
+          runCheckoutDance();
+
+
+          uncleCheckoutDanceTimer =
+            window.setTimeout(
+              danceLoop,
+              2625
+            );
+
+        },
+        2000
+      );
+
+  }
+
+
+  showCheckoutFrame(0);
+
+  scheduleCheckoutDance();
 
   checkoutButton.addEventListener(
     "click",
@@ -1347,8 +1483,13 @@ function initializeUncleMikeCart() {
       }
 
 
-      const originalHTML =
+            const originalHTML =
         checkoutButton.innerHTML;
+
+
+      window.clearTimeout(
+        uncleCheckoutDanceTimer
+      );
 
 
       checkoutError.hidden =
@@ -1455,8 +1596,13 @@ function initializeUncleMikeCart() {
           "is-waiting"
         );
 
-        checkoutButton.disabled =
+               checkoutButton.disabled =
           false;
+
+
+        showCheckoutFrame(0);
+
+        scheduleCheckoutDance();
 
       }
 
