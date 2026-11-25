@@ -18,8 +18,22 @@ export async function getCatalog(env) {
 
 export const isLive = (p) => p.status === 'live';
 
+/** Units sold per product (real paid orders only); drives "best sellers first". */
+// Real sales and test (sandbox) sales are counted separately.
+const salesKey = (env) => (env.SQUARE_ENV === 'production' ? 'stats:sales' : 'stats:sales-test');
+export async function getSales(env) {
+  return (env.DATA && (await env.DATA.get(salesKey(env), 'json'))) || {};
+}
+async function recordSale(env, rec) {
+  if (!env.DATA) return;
+  const key = salesKey(env);
+  const s = (await env.DATA.get(key, 'json')) || {};
+  for (const l of rec.lines || []) s[l.id] = (s[l.id] || 0) + l.qty;
+  await env.DATA.put(key, JSON.stringify(s));
+}
+
 /** Public view of a product: never exposes owner notes or source paths. */
-export const publicProduct = ({ id, type, title, collection, description, price, images }) => ({ id, type, title, collection, description, price, images });
+export const publicProduct = ({ id, type, title, collection, description, price, images, featured }) => ({ id, type, title, collection, description, price, images, ...(Number.isFinite(featured) ? { featured } : {}) });
 
 export class CartError extends Error {}
 
@@ -145,6 +159,7 @@ export async function verifyOrder(env, ref) {
     rec.total = order.total_money?.amount;
     const ship = await shippingInfo(env, order);
     if (ship?.address?.country) rec.country = ship.address.country;
+    await recordSale(env, rec);
     await env.DATA.put(`order:${ref}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
   }
   return { found: true, paid: rec.status === 'paid', rec };
@@ -172,6 +187,7 @@ export async function handleSquareEvent(env, event) {
   if (rec && rec.status !== 'paid') {
     Object.assign(rec, { status: 'paid', paidAt: new Date().toISOString(), paymentId: payment.id, total: payment.total_money?.amount });
     if (payment.shipping_address?.country) rec.country = payment.shipping_address.country;
+    await recordSale(env, rec);
     await env.DATA.put(`order:${ref}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
   }
 }

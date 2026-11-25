@@ -1,6 +1,6 @@
 export const STUDIO_HTML = `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="robots" content="noindex,nofollow"><title>Studio — Uncle Mike</title><meta name="theme-color" content="#16130f">
-<link rel="stylesheet" href="/s/studio.css?v=6"><script src="/s/studio.js?v=6" defer></script></head>
+<link rel="stylesheet" href="/s/studio.css?v=7"><script src="/s/studio.js?v=7" defer></script></head>
 <body>
 <section id="login" class="login" hidden><form id="login-form"><h1>UNCLE MIKE<span>STUDIO</span></h1>
 <label>Password<input type="password" name="password" autocomplete="current-password" required></label>

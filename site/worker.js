@@ -1,5 +1,5 @@
 // Uncle Mike Can Do It — storefront, checkout, inquiries (and the private studio).
-import { getCatalog, isLive, priceCart, CartError, createCheckout, verifyOrder, verifySquareSignature, handleSquareEvent } from './shop.js';
+import { getCatalog, getSales, isLive, priceCart, CartError, createCheckout, verifyOrder, verifySquareSignature, handleSquareEvent } from './shop.js';
 import { homePage, productPage, thanksPage, notFoundPage, catalogJson } from './render.js';
 import { handleStudio } from './studio.js';
 
@@ -73,13 +73,13 @@ async function route(request, env, ctx) {
     try {
       if (path === '/studio' || path.startsWith('/studio/') || path.startsWith('/api/studio/') || path.startsWith('/m/')) return await handleStudio(request, env, ctx, url);
 
-      if (path === '/' && request.method === 'GET') return html(homePage(await getCatalog(env), url.origin));
+      if (path === '/' && request.method === 'GET') return html(homePage(await getCatalog(env), url.origin, await getSales(env)));
       if (path.startsWith('/p/') && request.method === 'GET') {
         const id = path.slice(3).replace(/\/$/, '');
         if (!path.endsWith('/')) return Response.redirect(url.origin + path + '/', 301);
         const catalog = await getCatalog(env);
         const p = catalog.products.find((x) => x.id === id && isLive(x));
-        return p ? html(productPage(catalog, p, url.origin)) : html(notFoundPage(), 404);
+        return p ? html(productPage(catalog, p, url.origin, await getSales(env))) : html(notFoundPage(), 404);
       }
       if (path === '/thanks/' && request.method === 'GET') return html(thanksPage(await getCatalog(env)), 200, 'no-store');
       if (path === '/stickers' || path.startsWith('/stickers/') && !/\.(png|jpe?g|webp|gif)$/i.test(path)) return Response.redirect(url.origin + '/#shop', 301);

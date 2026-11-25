@@ -75,7 +75,7 @@ async function saveDraft(env, draft, prev) {
 }
 const needsReview = (p) => p.status !== 'hidden' && p.approvedRev !== p.rev;
 const gateHold = (p) => brandGate(p.gate).decision === 'HOLD';
-const publicFields = ({ id, type, title, collection, description, price, images }) => ({ id, type, title, collection, description, price, images, status: 'live' });
+const publicFields = ({ id, type, title, collection, description, price, images, featured }) => ({ id, type, title, collection, description, price, images, status: 'live', ...(Number.isFinite(featured) ? { featured } : {}) });
 
 /** Builds the public snapshot: approved current revisions, else the last published revision. */
 export function buildPublished(draft, prevPublished) {
@@ -84,7 +84,7 @@ export function buildPublished(draft, prevPublished) {
   for (const p of draft.products) {
     if (p.status !== 'live' || gateHold(p)) continue;
     if (p.approvedRev === p.rev) products.push(publicFields(p));
-    else if (prev.has(p.id)) products.push(prev.get(p.id));
+    else if (prev.has(p.id)) { const { featured, ...old } = prev.get(p.id); products.push(Number.isFinite(p.featured) ? { ...old, featured: p.featured } : old); } // featuring follows the studio without re-approval
   }
   return { version: new Date().toISOString(), prices: draft.prices, shipping: draft.shipping, content: draft.content, products };
 }
@@ -126,6 +126,12 @@ function runOps(draft, ops) {
       if (!keep || !rest.length) throw new Error('Pick at least two products to merge.');
       keep.images = [...new Set([...keep.images, ...rest.flatMap((r) => r.images)])].slice(0, 12); keep.rev++;
       draft.products = draft.products.filter((x) => !rest.includes(x));
+    } else if (op.op === 'feature') {
+      // Featured order only changes where a product appears, so it doesn't need re-approval.
+      const p = byId(op.id);
+      const ranks = draft.products.map((x) => x.featured).filter(Number.isFinite);
+      if (op.on === false) delete p.featured;
+      else p.featured = op.top ? (ranks.length ? Math.min(...ranks) - 1 : 1) : Number.isFinite(p.featured) ? p.featured : (ranks.length ? Math.max(...ranks) + 1 : 1);
     } else if (op.op === 'notdup') { byId(op.id).similar = []; }
     else if (op.op === 'hash') { byId(op.id).hash = String(op.hash || '').slice(0, 32); }
     else throw new Error('Unknown action.');

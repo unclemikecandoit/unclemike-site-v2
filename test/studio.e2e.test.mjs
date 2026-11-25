@@ -172,6 +172,33 @@ test('orders shipping outside the US are flagged and kept out of the Pirate Ship
   assert.match(csv, /1 Test St/);
 });
 
+test('best product first: featured picks lead, then best sellers', async () => {
+  const order = async () => [...(await home()).matchAll(/class="card"[^>]*data-add="([^"]+)"|data-add="([^"]+)" aria-label="Add/g)].map((m) => m[1] || m[2]);
+  const ids = async () => [...(await home()).matchAll(/<article class="card"[\s\S]*?data-add="([^"]+)"/g)].map((m) => m[1]);
+  // Feature two products; the second one "shown first".
+  await ops([{ op: 'feature', id: 'plan-b' }]);
+  await ops([{ op: 'feature', id: 'walk-it-off', top: true }]);
+  const s = await state();
+  const pb = s.draft.products.find((p) => p.id === 'plan-b');
+  assert.equal(pb.approvedRev, pb.rev, 'featuring does not require re-approval');
+  await call('/api/studio/publish', { body: {} });
+  let list = await ids();
+  assert.deepEqual(list.slice(0, 2), ['walk-it-off', 'plan-b']);
+  // A real (test-mode) sale moves an unfeatured product ahead of other unfeatured ones.
+  const before = list.indexOf('fah-q');
+  const r = await (await fetch(SITE + '/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ id: 'fah-q', qty: 3 }] }) })).json();
+  assert.equal(r.ok, true);
+  const ref = (await (await fetch('http://127.0.0.1:4199/__last')).json()).order.reference_id;
+  await fetch(`http://127.0.0.1:4199/__payref/${ref}`);
+  await fetch(`${SITE}/api/order/${ref}`);
+  list = await ids();
+  assert.equal(list.indexOf('fah-q'), 2, `best seller right after featured (was ${before})`);
+  assert.ok(order);
+  // Unfeature works.
+  await ops([{ op: 'feature', id: 'walk-it-off', on: false }]);
+  assert.ok(!Number.isFinite((await state()).draft.products.find((p) => p.id === 'walk-it-off').featured));
+});
+
 test('notes save with Brand Gate', async () => {
   const r = await call('/api/studio/notes', { body: { notes: [{ text: 'Sticker idea', gate: { message: 'Work humor', scores: { 'Brand Fit': 2, 'Audience Value': 2, Authenticity: 2, 'Content Quality': 1, 'Long-Term Brand Purpose': 1 } } }] } });
   assert.equal(r.json.notes[0].result.decision, 'POST');

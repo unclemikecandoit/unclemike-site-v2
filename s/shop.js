@@ -89,12 +89,15 @@
     const q = ($('#q')?.value || '').trim().toLowerCase();
     let shown = 0;
     for (const c of $$('#grid .card')) {
-      const ok = (filter === 'all' || c.dataset.c === filter) && (!q || c.dataset.q.includes(q));
+      const ok = (filter === 'all' || (filter === 'stickers' ? c.dataset.t === 'sticker' : c.dataset.c === filter)) && (!q || c.dataset.q.includes(q));
       c.hidden = !ok; if (ok) shown++;
     }
     const none = $('#none'); if (none) none.hidden = shown > 0;
   }
-  function setFilter(f) { filter = f; $$('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === f))); applyFilter(); }
+  function setFilter(f) {
+    if (!$$('[data-filter]').some((b) => b.dataset.filter === f)) f = 'all'; // unknown quick link → show everything
+    filter = f; $$('[data-filter]').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.filter === f))); applyFilter();
+  }
   $('#q')?.addEventListener('input', applyFilter);
 
   // Checkout: server prices the cart and returns a Square-hosted payment page.

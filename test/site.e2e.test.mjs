@@ -22,6 +22,15 @@ test('home page lists live products only, with no private data', async () => {
   assert.equal((h.match(/class="card"/g) || []).length, 49);
 });
 
+test('collection filters really hide other products', async () => {
+  const h = await (await get('/')).text();
+  assert.match(h, /data-filter="stickers"/, 'All stickers filter');
+  assert.match(h, /data-filter-link="stickers"/, 'price quick link goes to stickers');
+  assert.match(h, /data-t="sticker"/);
+  const css = await (await get('/s/site.css')).text();
+  assert.match(css, /\[hidden\]\{display:none!important\}/, 'hidden cards cannot be overridden by card layout');
+});
+
 test('public catalog API omits owner notes and sources', async () => {
   const d = await (await get('/api/catalog')).json();
   assert.equal(d.products.length, 49);

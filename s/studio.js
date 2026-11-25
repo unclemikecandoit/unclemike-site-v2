@@ -84,11 +84,12 @@
   // ── Products ───────────────────────────────────────────────────────
   const needsReview = (p) => p.status !== 'hidden' && p.approvedRev !== p.rev;
   const isHold = (p) => p.gate && p.gate.holds && Object.values(p.gate.holds).some(Boolean);
-  const FILTERS = [['review', 'Needs review', needsReview], ['live', 'Approved', (p) => p.status === 'live' && !needsReview(p)], ['hidden', 'Hidden / held', (p) => p.status === 'hidden' || isHold(p)], ['all', 'All', () => true]];
+  const FILTERS = [['review', 'Needs review', needsReview], ['live', 'Approved', (p) => p.status === 'live' && !needsReview(p)], ['featured', '★ Featured', (p) => Number.isFinite(p.featured)], ['hidden', 'Hidden / held', (p) => p.status === 'hidden' || isHold(p)], ['all', 'All', () => true]];
 
   function badges(p) {
     const pub = S.publishedIds.includes(p.id) || (!S.publishedAt && p.approvedRev > 0 && p.source === 'catalog');
     const out = [];
+    if (Number.isFinite(p.featured)) out.push('<span class="b info">★ Featured</span>');
     if (isHold(p)) out.push('<span class="b bad">Brand Gate HOLD</span>');
     if (p.status === 'hidden') out.push('<span class="b">Hidden</span>');
     else if (needsReview(p)) out.push(`<span class="b review">${p.approvedRev ? 'Edited — re-approve' : 'Needs review'}</span>`);
@@ -103,14 +104,15 @@
     const ps = S.draft.products;
     const f = FILTERS.find((x) => x[0] === filter) || FILTERS[0];
     const q = query.toLowerCase();
-    const shown = ps.filter(f[2]).filter((p) => !q || (p.title + ' ' + p.collection + ' ' + p.description).toLowerCase().includes(q));
+    let shown = ps.filter(f[2]).filter((p) => !q || (p.title + ' ' + p.collection + ' ' + p.description).toLowerCase().includes(q));
+    if (filter === 'featured') shown = shown.sort((a, b) => a.featured - b.featured);
     for (const id of [...selected]) if (!ps.some((p) => p.id === id)) selected.delete(id);
     $('#view').innerHTML = `
       <div class="chips" role="group" aria-label="Show">${FILTERS.map(([k, l, fn]) => `<button data-filter="${k}" aria-pressed="${k === filter}">${l} <b>${ps.filter(fn).length}</b></button>`).join('')}</div>
       <input id="search" type="search" placeholder="Search products…" value="${esc(query)}">
       ${selected.size ? bulkBar() : ''}
       <div class="row" style="justify-content:space-between;margin:8px 0"><label class="row" style="flex-direction:row;gap:6px;color:var(--ink)"><input type="checkbox" id="selall" style="width:auto" ${shown.length && shown.every((p) => selected.has(p.id)) ? 'checked' : ''}> Select all ${shown.length}</label>
-      ${filter === 'review' && shown.length ? `<span class="meta" style="font-size:12px;color:var(--mute)">Tap an item to check it, then Approve.</span>` : ''}</div>
+      ${filter === 'review' && shown.length ? `<span class="meta" style="font-size:12px;color:var(--mute)">Tap an item to check it, then Approve.</span>` : ''}${filter === 'featured' ? `<span class="meta" style="font-size:12px;color:var(--mute)">Shown first on the shop, in this order. Then best sellers, then the rest.</span>` : ''}</div>
       <div class="list">${shown.map(itemHtml).join('') || `<p class="empty">${filter === 'review' ? 'Nothing waiting for review. 🎉' : 'No products here.'}</p>`}</div>`;
     $('#search').addEventListener('input', (e) => { query = e.target.value; const pos = e.target.selectionStart; renderProducts(); const s = $('#search'); s.focus(); s.setSelectionRange(pos, pos); });
   }
@@ -121,6 +123,8 @@
       <button class="btn" data-bulk="price">Set price</button>
       <button class="btn" data-bulk="collection">Set collection</button>
       <button class="btn" data-bulk="type">Set type</button>
+      <button class="btn" data-bulk="feature">★ Feature</button>
+      <button class="btn" data-bulk="unfeature">☆ Unfeature</button>
       <button class="btn" data-bulk="hide">Hide</button>
       <button class="btn" data-bulk="show">Show</button>
       ${selected.size > 1 ? '<button class="btn" data-bulk="merge">Merge photos into one</button>' : ''}
@@ -161,6 +165,8 @@
         <button class="btn" type="submit">Save changes</button>
         ${needsReview(p) && !isHold(p) ? `<button class="btn ok" type="button" data-approve="${esc(p.id)}" data-rev="${p.rev}">Approve as shown</button>` : ''}
         ${!needsReview(p) && p.status === 'live' ? `<button class="btn" type="button" data-unapprove="${esc(p.id)}">Un-approve</button>` : ''}
+        <button class="btn" type="button" data-feature="${Number.isFinite(p.featured) ? 'off' : 'on'}">${Number.isFinite(p.featured) ? '☆ Unfeature' : '★ Feature'}</button>
+        <button class="btn" type="button" data-featuretop="1">⤒ Show first</button>
         <button class="btn" type="button" data-status="${p.status === 'hidden' ? 'live' : 'hidden'}">${p.status === 'hidden' ? 'Show on site' : 'Hide from site'}</button>
         <button class="btn danger" type="button" data-delete="${esc(p.id)}">Delete</button>
         <a class="ghost" href="/p/${esc(p.id)}/" target="_blank" rel="noopener">Preview ↗</a></div>
@@ -220,6 +226,8 @@
     if (!p) return;
     if (t.dataset.approve) { if (await ops([{ op: 'approve', id, rev: Number(t.dataset.rev) }], 'Approved. Press Publish when you’re ready.')) open = nextReview(id); renderProducts(); }
     else if (t.dataset.unapprove) ops([{ op: 'unapprove', id }], 'Approval removed.');
+    else if (t.dataset.feature) ops([{ op: 'feature', id, on: t.dataset.feature === 'on' }], t.dataset.feature === 'on' ? 'Featured. Publish to update the shop order.' : 'No longer featured.');
+    else if (t.dataset.featuretop) ops([{ op: 'feature', id, top: true }], 'Will show first on the shop after you Publish.');
     else if (t.dataset.status) ops([{ op: 'update', id, fields: { status: t.dataset.status } }], t.dataset.status === 'hidden' ? 'Hidden from the site.' : 'Will show on the site after approval.');
     else if (t.dataset.delete) { if (await ask(`Delete “${p.title}”? This can’t be undone (published backups keep old versions).`)) { open = null; ops([{ op: 'delete', id }], 'Deleted.'); } }
     else if (t.dataset.rmimg) ops([{ op: 'update', id, fields: { images: p.images.filter((_, i) => i !== Number(t.dataset.rmimg)) } }], 'Photo removed.');
@@ -266,7 +274,8 @@
       const t = v.trim().toLowerCase().replace(/[^a-z]/g, ''); if (!TYPE_NAMES[t]) return toast('Unknown type.');
       const setPrice = await ask(`Also set their price to the ${TYPE_NAMES[t]} price (${money(S.draft.prices[t])})?`);
       list = ids.map((id) => ({ op: 'update', id, fields: setPrice ? { type: t, price: S.draft.prices[t] } : { type: t } }));
-    } else if (kind === 'hide' || kind === 'show') list = ids.map((id) => ({ op: 'update', id, fields: { status: kind === 'hide' ? 'hidden' : 'live' } }));
+    } else if (kind === 'feature' || kind === 'unfeature') list = ids.map((id) => ({ op: 'feature', id, on: kind === 'feature' }));
+    else if (kind === 'hide' || kind === 'show') list = ids.map((id) => ({ op: 'update', id, fields: { status: kind === 'hide' ? 'hidden' : 'live' } }));
     else if (kind === 'merge') {
       if (!await ask(`Combine the photos of these ${ids.length} items into ONE product (“${ps[0].title}”)? The other entries are removed.`)) return;
       list = [{ op: 'merge', ids }];

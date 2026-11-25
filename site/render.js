@@ -6,14 +6,33 @@ const words = (catalog) => ({ ...DEFAULT_CONTENT, ...(catalog && catalog.content
 
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 export const money = (c) => (c % 100 === 0 ? '$' + c / 100 : c < 100 ? c + '¢' : '$' + (c / 100).toFixed(2));
-const ASSET_V = '10'; // bump when s/site.css or s/shop.js change
+const ASSET_V = '11'; // bump when s/site.css or s/shop.js change
 const small = (src) => src.replace(/\.jpg$/, '-sm.jpg');
 
 const ORDER = ['GFY Collection', 'Hard Hat Stickers', 'Autism Performance Brands', 'Leather-Patch Hats', 'Sticker Sheets'];
-const FILTERS = [
-  ['all', 'Everything'], ['GFY Collection', 'GFY'], ['Hard Hat Stickers', 'Hard Hat'], ['Autism Performance Brands', 'Autism Performance'],
-  ['Leather-Patch Hats', 'Hats'], ['Sticker Sheets', 'Sheets'],
-];
+const SHORT = { 'GFY Collection': 'GFY', 'Hard Hat Stickers': 'Hard Hat', 'Autism Performance Brands': 'Autism Performance', 'Leather-Patch Hats': 'Hats', 'Sticker Sheets': 'Sheets' };
+const colRank = (c) => { const i = ORDER.indexOf(c); return i < 0 ? -1 : i; }; // new collections first
+
+/**
+ * Best product first: Mike's featured picks (in his order), then best sellers,
+ * then everything else grouped by collection.
+ */
+export function bestFirst(products, sales = {}) {
+  return [...products].sort((a, b) => {
+    const fa = Number.isFinite(a.featured) ? a.featured : Infinity, fb = Number.isFinite(b.featured) ? b.featured : Infinity;
+    if (fa !== fb) return fa - fb;
+    const sa = sales[a.id] || 0, sb = sales[b.id] || 0;
+    if (sa !== sb) return sb - sa;
+    return colRank(a.collection) - colRank(b.collection);
+  });
+}
+function filterChips(live) {
+  const cols = [...new Set(live.map((p) => p.collection))].sort((a, b) => colRank(a) - colRank(b));
+  const chips = [['all', 'Everything']];
+  if (live.some((p) => p.type === 'sticker') && cols.length > 1) chips.push(['stickers', 'All stickers']);
+  for (const c of cols) chips.push([c, SHORT[c] || c]);
+  return chips;
+}
 
 function layout({ title, description, body, canonical, extraHead = '', content = DEFAULT_CONTENT }) {
   return `<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
@@ -37,7 +56,7 @@ ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}<meta name=
 
 function card(p, eager) {
   const img = p.images[0];
-  return `<article class="card" data-c="${esc(p.collection)}" data-q="${esc((p.title + ' ' + p.description).toLowerCase())}">
+  return `<article class="card" data-c="${esc(p.collection)}" data-t="${esc(p.type)}" data-q="${esc((p.title + ' ' + p.description).toLowerCase())}">
 <a class="pic" href="/p/${esc(p.id)}/"><img src="${esc(small(img))}" alt="${esc(p.title)}" width="420" height="420" ${eager ? 'fetchpriority="high"' : 'loading="lazy"'} decoding="async"></a>
 <div class="meta"><h3><a href="/p/${esc(p.id)}/">${esc(p.title)}</a></h3><span class="price">${money(p.price)}</span></div>
 <button class="add" type="button" data-add="${esc(p.id)}" aria-label="Add ${esc(p.title)} to bag">Add to bag</button></article>`;
@@ -57,22 +76,22 @@ export function shipLine(s) {
   return parts.join(' · ') + '.';
 }
 
-export function homePage(catalog, origin) {
+export function homePage(catalog, origin, sales = {}) {
   const live = catalog.products.filter(isLive);
-  const sorted = [...live].sort((a, b) => ORDER.indexOf(a.collection) - ORDER.indexOf(b.collection));
+  const sorted = bestFirst(live, sales);
   const prices = catalog.prices;
   const hats = live.filter((p) => p.type === 'hat');
   const w = words(catalog);
   const body = `
 <section class="hero"><div><p class="kicker">${esc(w.kicker)}</p><h1>${esc(w.headline)}<br><em>${esc(w.headline2)}</em></h1>
 <p class="lede">${esc(w.lede)}</p></div>
-<ul class="pricebar" aria-label="Prices"><li><a href="#shop" data-filter-link="all"><b>${money(prices.sticker)}</b>stickers</a></li><li><a href="#shop" data-filter-link="Sticker Sheets"><b>${money(prices.sheet)}</b>sheets of ~10</a></li>
+<ul class="pricebar" aria-label="Prices"><li><a href="#shop" data-filter-link="stickers"><b>${money(prices.sticker)}</b>stickers</a></li><li><a href="#shop" data-filter-link="Sticker Sheets"><b>${money(prices.sheet)}</b>sheets of ~10</a></li>
 <li><a href="#shop" data-filter-link="Leather-Patch Hats"><b>${money(prices.hat)}</b>leather-patch hats</a></li><li><a href="#shirts"><b>${money(prices.tshirt)}</b>T-shirts</a></li><li><a href="#shirts"><b>${money(prices.sweatshirt)}</b>sweatshirts</a></li></ul></section>
 ${hats.length ? `<section class="hats" aria-label="Leather-patch hats">${hats.map((h) => `<a class="hat" href="/p/${esc(h.id)}/"><img src="${esc(small(h.images[0]))}" alt="${esc(h.title)}" width="420" height="560" loading="eager"><span><b>${esc(h.title)}</b>Engraved leather patch · ${money(h.price)}</span></a>`).join('')}
 <div class="hat-copy"><h2>${esc(w.hatsTitle)}</h2><p>${esc(w.hatsText)} Want your own design on a patch? <a href="#custom" data-kind="Hat">Ask Mike</a>.</p></div></section>` : ''}
 <section id="shop" class="shop"><div class="shop-head"><h2>Pick your favorites</h2>
 <label class="search"><span class="sr">Search designs</span><input id="q" type="search" placeholder="Search ${live.length} designs…" autocomplete="off"></label></div>
-<div class="chips" role="group" aria-label="Filter">${FILTERS.filter(([k]) => k === 'all' || live.some((p) => p.collection === k)).map(([k, l], i) => `<button type="button" data-filter="${esc(k)}" aria-pressed="${i === 0}">${esc(l)}</button>`).join('')}</div>
+<div class="chips" role="group" aria-label="Filter">${filterChips(live).map(([k, l], i) => `<button type="button" data-filter="${esc(k)}" aria-pressed="${i === 0}">${esc(l)}</button>`).join('')}</div>
 <div class="grid" id="grid">${sorted.map((p, i) => card(p, i < 4)).join('')}</div><p class="none" id="none" hidden>No designs match that. Try another word — or <a href="#custom">ask for a custom one</a>.</p>
 <p class="fine">${shipLine(catalog.shipping)}</p></section>
 <section id="shirts" class="band"><div><h2>Any design on a shirt.</h2><p>Pick a sticker you love and Mike will put it on a T-shirt (<b>${money(prices.tshirt)}</b>) or sweatshirt (<b>${money(prices.sweatshirt)}</b>). Tell us the design, size and color — Mike confirms and sends a secure payment link.</p></div>
@@ -91,9 +110,9 @@ ${catalogData(catalog)}`;
   return layout({ title: 'Uncle Mike Can Do It — stickers, leather-patch hats & shirts', description: `Original stickers from ${money(prices.sticker)}, engraved leather-patch hats, and custom shirts — handmade by Uncle Mike.`, canonical: origin + '/', body, content: w });
 }
 
-export function productPage(catalog, p, origin) {
+export function productPage(catalog, p, origin, sales = {}) {
   const live = catalog.products.filter(isLive);
-  const more = live.filter((x) => x.collection === p.collection && x.id !== p.id).slice(0, 8);
+  const more = bestFirst(live.filter((x) => x.collection === p.collection && x.id !== p.id), sales).slice(0, 8);
   const ld = { '@context': 'https://schema.org', '@type': 'Product', name: p.title, description: p.description, image: p.images.map((i) => origin + i), offers: { '@type': 'Offer', price: (p.price / 100).toFixed(2), priceCurrency: 'USD', availability: 'https://schema.org/InStock' } };
   const shirt = p.type === 'sticker' ? `<p class="also">Want this on a shirt? <a href="/#custom" data-kind="T-shirt" data-design="${esc(p.title)}">T-shirt ${money(catalog.prices.tshirt)} · sweatshirt ${money(catalog.prices.sweatshirt)}</a></p>` : '';
   const body = `<nav class="crumbs"><a href="/#shop">← All products</a></nav>
