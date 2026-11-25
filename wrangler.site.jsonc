@@ -27,6 +27,15 @@
       // Workers AI: account is on the free plan (no paid subscriptions) → hard daily cap, no charges.
       "ai": { "binding": "AI" },
       "vars": { "SQUARE_ENV": "sandbox", "NOINDEX": "1" }
+    },
+    // The real site. Shares storage with the preview so approvals and published products carry over.
+    // Deploy: npx wrangler deploy -c wrangler.site.jsonc -e production
+    "production": {
+      "name": "unclemike-site",
+      "workers_dev": true,
+      "kv_namespaces": [{ "binding": "DATA", "id": "3af52f4aadc54527b8fe46edc457a9b5" }],
+      "ai": { "binding": "AI" },
+      "vars": { "SQUARE_ENV": "production" }
     }
   }
 }

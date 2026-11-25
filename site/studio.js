@@ -7,7 +7,7 @@
 //   img:<file>          uploaded images, public at /m/<file>
 //   inq:* inqfile:* order:* oid:*  inquiries and orders (written by the public site)
 //   notes               creative notes with Brand Gate reviews
-import { BUNDLED, TYPE_LABEL } from './shop.js';
+import { BUNDLED, TYPE_LABEL, verifyOrder } from './shop.js';
 import { STUDIO_HTML } from './studio-page.js';
 
 const SECURITY = { 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'X-Robots-Tag': 'noindex, nofollow', 'Cache-Control': 'no-store',
@@ -333,7 +333,12 @@ export async function handleStudio(request, env, ctx, url) {
     }
 
     if (route === 'inbox' && method === 'GET') {
-      const [inquiries, orders] = await Promise.all([listJson(env, 'inq:'), listJson(env, 'order:')]);
+      const here = env.SQUARE_ENV === 'production' ? 'production' : 'sandbox';
+      const [inquiries, allOrders] = await Promise.all([listJson(env, 'inq:'), listJson(env, 'order:')]);
+      const orders = allOrders.filter((o) => (o.squareEnv || 'sandbox') === here);
+      // Re-check recent unpaid orders with Square (covers customers who closed the tab after paying).
+      const recent = orders.filter((o) => o.status !== 'paid' && Date.now() - Date.parse(o.created) < 14 * DAY * 1000).slice(0, 15);
+      await Promise.all(recent.map(async (o) => { try { const r = await verifyOrder(env, o.ref); if (r.paid) Object.assign(o, r.rec); } catch {} }));
       inquiries.sort((a, b) => b.created.localeCompare(a.created)); orders.sort((a, b) => b.created.localeCompare(a.created));
       return json({ ok: true, inquiries, orders });
     }
@@ -353,7 +358,8 @@ export async function handleStudio(request, env, ctx, url) {
     }
     if (route === 'pirateship.csv' && method === 'GET') {
       // Paid orders with shipping addresses from Square, for Pirate Ship's spreadsheet import.
-      const orders = (await listJson(env, 'order:')).filter((o) => o.status === 'paid' && !o.shippedAt);
+      const here = env.SQUARE_ENV === 'production' ? 'production' : 'sandbox';
+      const orders = (await listJson(env, 'order:')).filter((o) => o.status === 'paid' && !o.shippedAt && (o.squareEnv || 'sandbox') === here);
       const rows = [['Order ID', 'Name', 'Company', 'Address 1', 'Address 2', 'City', 'State', 'Zip', 'Country', 'Email', 'Phone', 'Items', 'Order Total']];
       for (const o of orders) {
         const sq = await squareOrder(env, o.orderId).catch(() => null);

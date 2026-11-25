@@ -104,7 +104,7 @@ export async function createCheckout(env, origin, priced) {
   const data = await square(env, 'POST', '/v2/online-checkout/payment-links', body);
   const link = data.payment_link;
   if (!link?.url || !link.order_id) throw new Error('Square did not return a checkout link');
-  const record = { ref, orderId: link.order_id, linkId: link.id, lines: priced.lines, subtotal: priced.subtotal, shipping, status: 'pending', created: new Date().toISOString() };
+  const record = { ref, squareEnv: env.SQUARE_ENV === 'production' ? 'production' : 'sandbox', orderId: link.order_id, linkId: link.id, lines: priced.lines, subtotal: priced.subtotal, shipping, status: 'pending', created: new Date().toISOString() };
   if (env.DATA) {
     const ttl = { expirationTtl: 60 * 60 * 24 * 365 };
     await env.DATA.put(`order:${ref}`, JSON.stringify(record), ttl);
@@ -121,6 +121,8 @@ export async function verifyOrder(env, ref) {
   if (!/^[a-f0-9]{20}$/.test(ref || '') || !env.DATA) return { found: false };
   const rec = await env.DATA.get(`order:${ref}`, 'json');
   if (!rec) return { found: false };
+  const here = env.SQUARE_ENV === 'production' ? 'production' : 'sandbox';
+  if ((rec.squareEnv || 'sandbox') !== here) return { found: false }; // test orders never mix with real ones
   if (rec.status === 'paid') return { found: true, paid: true, rec };
   const { order } = await square(env, 'GET', `/v2/orders/${encodeURIComponent(rec.orderId)}`);
   if (orderIsPaid(order)) {
