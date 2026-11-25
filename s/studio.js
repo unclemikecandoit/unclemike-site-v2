@@ -112,7 +112,7 @@
       <input id="search" type="search" placeholder="Search products…" value="${esc(query)}">
       ${selected.size ? bulkBar() : ''}
       <div class="row" style="justify-content:space-between;margin:8px 0"><label class="row" style="flex-direction:row;gap:6px;color:var(--ink)"><input type="checkbox" id="selall" style="width:auto" ${shown.length && shown.every((p) => selected.has(p.id)) ? 'checked' : ''}> Select all ${shown.length}</label>
-      ${filter === 'review' && shown.length ? `<span class="meta" style="font-size:12px;color:var(--mute)">Tap an item to check it, then Approve.</span>` : ''}${filter === 'featured' ? `<span class="meta" style="font-size:12px;color:var(--mute)">Shown first on the shop, in this order. Then best sellers, then the rest.</span>` : ''}</div>
+      ${filter === 'review' && shown.length ? `<span class="meta" style="font-size:12px;color:var(--mute)">Tap an item to check it, then Approve.</span>` : ''}${filter === 'featured' ? `<span class="meta" style="font-size:12px;color:var(--mute)">Shown first within their section of the shop (Hats, Hard Hat Stickers, Autism Performance…), in this order. Then best sellers.</span>` : ''}</div>
       <div class="list">${shown.map(itemHtml).join('') || `<p class="empty">${filter === 'review' ? 'Nothing waiting for review. 🎉' : 'No products here.'}</p>`}</div>`;
     $('#search').addEventListener('input', (e) => { query = e.target.value; const pos = e.target.selectionStart; renderProducts(); const s = $('#search'); s.focus(); s.setSelectionRange(pos, pos); });
   }
@@ -227,7 +227,7 @@
     if (t.dataset.approve) { if (await ops([{ op: 'approve', id, rev: Number(t.dataset.rev) }], 'Approved. Press Publish when you’re ready.')) open = nextReview(id); renderProducts(); }
     else if (t.dataset.unapprove) ops([{ op: 'unapprove', id }], 'Approval removed.');
     else if (t.dataset.feature) ops([{ op: 'feature', id, on: t.dataset.feature === 'on' }], t.dataset.feature === 'on' ? 'Featured. Publish to update the shop order.' : 'No longer featured.');
-    else if (t.dataset.featuretop) ops([{ op: 'feature', id, top: true }], 'Will show first on the shop after you Publish.');
+    else if (t.dataset.featuretop) ops([{ op: 'feature', id, top: true }], 'Will show first in its section after you Publish.');
     else if (t.dataset.status) ops([{ op: 'update', id, fields: { status: t.dataset.status } }], t.dataset.status === 'hidden' ? 'Hidden from the site.' : 'Will show on the site after approval.');
     else if (t.dataset.delete) { if (await ask(`Delete “${p.title}”? This can’t be undone (published backups keep old versions).`)) { open = null; ops([{ op: 'delete', id }], 'Deleted.'); } }
     else if (t.dataset.rmimg) ops([{ op: 'update', id, fields: { images: p.images.filter((_, i) => i !== Number(t.dataset.rmimg)) } }], 'Photo removed.');

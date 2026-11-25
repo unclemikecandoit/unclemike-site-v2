@@ -173,8 +173,8 @@ test('orders shipping outside the US are flagged and kept out of the Pirate Ship
 });
 
 test('best product first: featured picks lead, then best sellers', async () => {
-  const order = async () => [...(await home()).matchAll(/class="card"[^>]*data-add="([^"]+)"|data-add="([^"]+)" aria-label="Add/g)].map((m) => m[1] || m[2]);
-  const ids = async () => [...(await home()).matchAll(/<article class="card"[\s\S]*?data-add="([^"]+)"/g)].map((m) => m[1]);
+  // Order inside the Hard Hat Stickers section (the old GFY designs live there now).
+  const ids = async () => [...(await home()).matchAll(/<article class="card" data-c="Hard Hat Stickers"[\s\S]*?data-add="([^"]+)"/g)].map((m) => m[1]);
   // Feature two products; the second one "shown first".
   await ops([{ op: 'feature', id: 'plan-b' }]);
   await ops([{ op: 'feature', id: 'walk-it-off', top: true }]);
@@ -192,8 +192,16 @@ test('best product first: featured picks lead, then best sellers', async () => {
   await fetch(`http://127.0.0.1:4199/__payref/${ref}`);
   await fetch(`${SITE}/api/order/${ref}`);
   list = await ids();
-  assert.equal(list.indexOf('fah-q'), 2, `best seller right after featured (was ${before})`);
-  assert.ok(order);
+  assert.equal(list.indexOf('fah-q'), 2, `best seller right after the ★ picks in its section (was ${before})`);
+  // Sections run hats → Hard Hat Stickers → Autism Performance, each with a heading; no GFY.
+  const h = await home();
+  const heads = [...h.matchAll(/class="group-head" data-c="([^"]+)"/g)].map((m) => m[1]);
+  const want = ['Leather-Patch Hats', 'Hard Hat Stickers', 'Autism Performance Brands', 'Sticker Sheets'];
+  const known = heads.filter((x) => want.includes(x));
+  assert.deepEqual(known, want.filter((x) => known.includes(x)), 'sections appear in shop order');
+  assert.ok(known.includes('Hard Hat Stickers') && known.includes('Autism Performance Brands'));
+  assert.equal(new Set(heads).size, heads.length, 'each section heading appears once');
+  assert.doesNotMatch(h, /GFY Collection/);
   // Unfeature works.
   await ops([{ op: 'feature', id: 'walk-it-off', on: false }]);
   assert.ok(!Number.isFinite((await state()).draft.products.find((p) => p.id === 'walk-it-off').featured));

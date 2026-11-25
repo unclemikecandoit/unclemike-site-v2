@@ -88,10 +88,15 @@
   function applyFilter() {
     const q = ($('#q')?.value || '').trim().toLowerCase();
     let shown = 0;
+    const heroHats = !!$('.hats');
     for (const c of $$('#grid .card')) {
-      const ok = (filter === 'all' || (filter === 'stickers' ? c.dataset.t === 'sticker' : c.dataset.c === filter)) && (!q || c.dataset.q.includes(q));
+      let ok = (filter === 'all' || (filter === 'stickers' ? c.dataset.t === 'sticker' : c.dataset.c === filter)) && (!q || c.dataset.q.includes(q));
+      // Hats already have their own showcase at the top; don't repeat them in the "Everything" grid.
+      if (ok && filter === 'all' && !q && heroHats && c.dataset.t === 'hat') ok = false;
       c.hidden = !ok; if (ok) shown++;
     }
+    // Section headings show only when their section has visible products.
+    for (const h of $$('#grid .group-head')) h.hidden = !$$('#grid .card').some((c) => !c.hidden && c.dataset.c === h.dataset.c);
     const none = $('#none'); if (none) none.hidden = shown > 0;
   }
   function setFilter(f) {
@@ -180,4 +185,5 @@
   }
 
   render();
+  if ($("#grid")) applyFilter();
 })();

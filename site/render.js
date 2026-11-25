@@ -6,25 +6,37 @@ const words = (catalog) => ({ ...DEFAULT_CONTENT, ...(catalog && catalog.content
 
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 export const money = (c) => (c % 100 === 0 ? '$' + c / 100 : c < 100 ? c + '¢' : '$' + (c / 100).toFixed(2));
-const ASSET_V = '11'; // bump when s/site.css or s/shop.js change
+const ASSET_V = '12'; // bump when s/site.css or s/shop.js change
 const small = (src) => src.replace(/\.jpg$/, '-sm.jpg');
 
-const ORDER = ['GFY Collection', 'Hard Hat Stickers', 'Autism Performance Brands', 'Leather-Patch Hats', 'Sticker Sheets'];
-const SHORT = { 'GFY Collection': 'GFY', 'Hard Hat Stickers': 'Hard Hat', 'Autism Performance Brands': 'Autism Performance', 'Leather-Patch Hats': 'Hats', 'Sticker Sheets': 'Sheets' };
-const colRank = (c) => { const i = ORDER.indexOf(c); return i < 0 ? -1 : i; }; // new collections first
+// Shop sections, in order. Collections created later in the studio appear right after the hats.
+const ORDER = ['Leather-Patch Hats', '*', 'Hard Hat Stickers', 'Autism Performance Brands', 'Sticker Sheets'];
+const SHORT = { 'Hard Hat Stickers': 'Hard Hat', 'Autism Performance Brands': 'Autism Performance', 'Leather-Patch Hats': 'Hats', 'Sticker Sheets': 'Sheets' };
+const colRank = (c) => { const i = ORDER.indexOf(c); return i < 0 ? ORDER.indexOf('*') : i; };
 
 /**
- * Best product first: Mike's featured picks (in his order), then best sellers,
- * then everything else grouped by collection.
+ * Shop order: grouped by collection (hats, Hard Hat Stickers, Autism Performance…);
+ * within each group Mike's ★ picks first (in his order), then best sellers.
  */
 export function bestFirst(products, sales = {}) {
   return [...products].sort((a, b) => {
+    const ca = colRank(a.collection), cb = colRank(b.collection);
+    if (ca !== cb) return ca - cb;
+    if (a.collection !== b.collection) return a.collection.localeCompare(b.collection);
     const fa = Number.isFinite(a.featured) ? a.featured : Infinity, fb = Number.isFinite(b.featured) ? b.featured : Infinity;
     if (fa !== fb) return fa - fb;
     const sa = sales[a.id] || 0, sb = sales[b.id] || 0;
-    if (sa !== sb) return sb - sa;
-    return colRank(a.collection) - colRank(b.collection);
+    return sb - sa;
   });
+}
+/** Cards with a section heading before each collection. */
+function groupedCards(sorted) {
+  let last = null;
+  return sorted.map((p, i) => {
+    const head = p.collection !== last ? `<h3 class="group-head" data-c="${esc(p.collection)}">${esc(p.collection)}</h3>` : '';
+    last = p.collection;
+    return head + card(p, i < 4);
+  }).join('');
 }
 function filterChips(live) {
   const cols = [...new Set(live.map((p) => p.collection))].sort((a, b) => colRank(a) - colRank(b));
@@ -92,7 +104,7 @@ ${hats.length ? `<section class="hats" aria-label="Leather-patch hats">${hats.ma
 <section id="shop" class="shop"><div class="shop-head"><h2>Pick your favorites</h2>
 <label class="search"><span class="sr">Search designs</span><input id="q" type="search" placeholder="Search ${live.length} designs…" autocomplete="off"></label></div>
 <div class="chips" role="group" aria-label="Filter">${filterChips(live).map(([k, l], i) => `<button type="button" data-filter="${esc(k)}" aria-pressed="${i === 0}">${esc(l)}</button>`).join('')}</div>
-<div class="grid" id="grid">${sorted.map((p, i) => card(p, i < 4)).join('')}</div><p class="none" id="none" hidden>No designs match that. Try another word — or <a href="#custom">ask for a custom one</a>.</p>
+<div class="grid" id="grid">${groupedCards(sorted)}</div><p class="none" id="none" hidden>No designs match that. Try another word — or <a href="#custom">ask for a custom one</a>.</p>
 <p class="fine">${shipLine(catalog.shipping)}</p></section>
 <section id="shirts" class="band"><div><h2>Any design on a shirt.</h2><p>Pick a sticker you love and Mike will put it on a T-shirt (<b>${money(prices.tshirt)}</b>) or sweatshirt (<b>${money(prices.sweatshirt)}</b>). Tell us the design, size and color — Mike confirms and sends a secure payment link.</p></div>
 <a class="btn" href="#custom" data-kind="T-shirt">Request a shirt</a></section>
