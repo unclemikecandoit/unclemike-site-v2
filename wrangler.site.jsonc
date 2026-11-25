@@ -35,8 +35,11 @@
       "workers_dev": true,
       "kv_namespaces": [{ "binding": "DATA", "id": "3af52f4aadc54527b8fe46edc457a9b5" }],
       "ai": { "binding": "AI" },
-      // NOINDEX stays on until unclemikecandoit.com points here, then it is removed.
-      "vars": { "SQUARE_ENV": "production", "NOINDEX": "1" }
+      "routes": [
+        { "pattern": "unclemikecandoit.com", "custom_domain": true },
+        { "pattern": "www.unclemikecandoit.com", "custom_domain": true }
+      ],
+      "vars": { "SQUARE_ENV": "production" }
     }
   }
 }
