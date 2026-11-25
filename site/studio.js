@@ -230,7 +230,11 @@ export async function handleStudio(request, env, ctx, url) {
       const pubIds = new Set((published?.products || []).map((p) => p.id));
       const preview = buildPublished(draft, published);
       const changes = published ? JSON.stringify(preview.products) !== JSON.stringify(published.products) || JSON.stringify([draft.prices, draft.shipping, draft.content]) !== JSON.stringify([published.prices, published.shipping, published.content]) : true;
-      return json({ ok: true, draft, publishedAt: published?.version || null, publishedIds: [...pubIds], willPublish: preview.products.length, changes, ai: !!env.AI, square: env.SQUARE_ENV || 'sandbox', criteria: CRITERIA, holds: HOLDS, types: TYPE_LABEL });
+      // Badge count for the Inbox tab: paid orders still to ship + new customer messages.
+      const here = env.SQUARE_ENV === 'production' ? 'production' : 'sandbox';
+      const [inqs, ords] = await Promise.all([listJson(env, 'inq:'), listJson(env, 'order:')]);
+      const inbox = inqs.filter((q) => q.status !== 'done').length + ords.filter((o) => (o.squareEnv || 'sandbox') === here && o.status === 'paid' && !o.shippedAt).length;
+      return json({ ok: true, inbox, draft, publishedAt: published?.version || null, publishedIds: [...pubIds], willPublish: preview.products.length, changes, ai: !!env.AI, square: env.SQUARE_ENV || 'sandbox', criteria: CRITERIA, holds: HOLDS, types: TYPE_LABEL });
     }
 
     if (route === 'products' && method === 'POST') {

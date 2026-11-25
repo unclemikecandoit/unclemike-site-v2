@@ -5,12 +5,11 @@ import { spawn, spawnSync } from 'node:child_process';
 import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
-import { start as startSquare } from './fake-square.mjs';
-
 const root = path.resolve(import.meta.dirname, '..');
 const PORT = 8790;
 const persist = fs.mkdtempSync(path.join(os.tmpdir(), 'um-test-'));
-const square = await startSquare(4199).catch(() => null); // reuse if already running
+// Fake Square runs in its own process: the test run below blocks this one.
+const square = spawn(process.execPath, ['test/fake-square.mjs'], { cwd: root, stdio: 'ignore' });
 const wr = spawn(process.platform === 'win32' ? 'npx.cmd' : 'npx', ['wrangler', 'dev', '-c', 'wrangler.site.jsonc', '--port', String(PORT), '--ip', '127.0.0.1', '--persist-to', persist, '--log-level', 'error'], { cwd: root, shell: process.platform === 'win32', stdio: 'ignore' });
 let code = 1;
 try {
@@ -19,7 +18,7 @@ try {
   code = spawnSync(process.execPath, ['--test', '--test-concurrency=1', '--test-reporter=spec', 'test/shop.unit.test.mjs', 'test/site.e2e.test.mjs', 'test/studio.e2e.test.mjs'], { cwd: root, env, stdio: 'inherit' }).status;
 } finally {
   if (process.platform === 'win32') spawnSync('taskkill', ['/pid', String(wr.pid), '/T', '/F'], { stdio: 'ignore' }); else wr.kill();
-  square?.close();
+  square.kill();
   fs.rmSync(persist, { recursive: true, force: true });
 }
 process.exit(code);

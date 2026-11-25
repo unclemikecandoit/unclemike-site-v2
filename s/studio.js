@@ -60,6 +60,12 @@
   // ── Header / publish ───────────────────────────────────────────────
   function renderHeader() {
     const review = S.draft.products.filter(needsReview).length;
+    const ib = $('[data-tab=inbox]');
+    let badge = $('.count', ib);
+    if (!badge) { badge = document.createElement('b'); badge.className = 'count'; ib.append(badge); }
+    badge.textContent = S.inbox > 99 ? '99+' : String(S.inbox || '');
+    badge.hidden = !S.inbox;
+    ib.setAttribute('aria-label', S.inbox ? `Inbox, ${S.inbox} waiting` : 'Inbox');
     $('#publish').disabled = !S.changes;
     $('#publish').textContent = S.changes ? 'Publish changes' : 'Published ✓';
     $('#pubinfo').textContent = (S.publishedAt ? `Live site last published ${new Date(S.publishedAt).toLocaleString()}.` : 'Nothing published from the studio yet — the site shows the starting catalog.') + ` ${S.willPublish} products will be public. ${review} need${review === 1 ? 's' : ''} review.` + (S.square !== 'production' ? ' Checkout: Square sandbox (test mode).' : '');
@@ -385,8 +391,8 @@
   }
   document.addEventListener('click', async (e) => {
     if (tab !== 'inbox') return;
-    const s = e.target.closest('[data-ship]'); if (s) { try { await api('shipped', { body: { ref: s.dataset.ship } }); renderInbox(); } catch (x) { toast(x.message); } }
-    const q = e.target.closest('[data-inq]'); if (q) { try { await api('inquiry', { body: { key: q.dataset.inq, status: q.dataset.st } }); renderInbox(); } catch (x) { toast(x.message); } }
+    const s = e.target.closest('[data-ship]'); if (s) { try { await api('shipped', { body: { ref: s.dataset.ship } }); await refreshState(); } catch (x) { toast(x.message); } }
+    const q = e.target.closest('[data-inq]'); if (q) { try { await api('inquiry', { body: { key: q.dataset.inq, status: q.dataset.st } }); await refreshState(); } catch (x) { toast(x.message); } }
   });
 
   // ── Notes (creative notes + Brand Gate) ────────────────────────────

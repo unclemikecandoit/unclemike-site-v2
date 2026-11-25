@@ -151,6 +151,7 @@ test('inbox shows customer inquiries', async () => {
   assert.equal((await fetch(SITE + '/api/inquiry', { method: 'POST', body: f })).status, 200);
   const inbox = (await call('/api/studio/inbox')).json;
   assert.ok(inbox.inquiries.some((q) => q.message === 'Custom patch please'));
+  assert.ok((await state()).inbox >= 1, 'Inbox tab shows a waiting count');
 });
 
 test('notes save with Brand Gate', async () => {
