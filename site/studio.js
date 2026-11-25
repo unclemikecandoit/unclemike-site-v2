@@ -7,7 +7,7 @@
 //   img:<file>          uploaded images, public at /m/<file>
 //   inq:* inqfile:* order:* oid:*  inquiries and orders (written by the public site)
 //   notes               creative notes with Brand Gate reviews
-import { BUNDLED, TYPE_LABEL, verifyOrder } from './shop.js';
+import { BUNDLED, TYPE_LABEL, verifyOrder, shippingInfo } from './shop.js';
 import { STUDIO_HTML } from './studio-page.js';
 
 const SECURITY = { 'X-Content-Type-Options': 'nosniff', 'Referrer-Policy': 'no-referrer', 'X-Robots-Tag': 'noindex, nofollow', 'Cache-Control': 'no-store',
@@ -343,6 +343,13 @@ export async function handleStudio(request, env, ctx, url) {
       // Re-check recent unpaid orders with Square (covers customers who closed the tab after paying).
       const recent = orders.filter((o) => o.status !== 'paid' && Date.now() - Date.parse(o.created) < 14 * DAY * 1000).slice(0, 15);
       await Promise.all(recent.map(async (o) => { try { const r = await verifyOrder(env, o.ref); if (r.paid) Object.assign(o, r.rec); } catch {} }));
+      // Fill in the shipping country for paid orders that don't have it yet (US-only shop).
+      await Promise.all(orders.filter((o) => o.status === 'paid' && !o.shippedAt && !o.country).slice(0, 15).map(async (o) => {
+        try {
+          const ship = await shippingInfo(env, await squareOrder(env, o.orderId));
+          if (ship?.address?.country) { o.country = ship.address.country; await env.DATA.put(`order:${o.ref}`, JSON.stringify(Object.fromEntries(Object.entries(o).filter(([k]) => k !== 'key'))), { expirationTtl: 365 * DAY }); }
+        } catch {}
+      }));
       inquiries.sort((a, b) => b.created.localeCompare(a.created)); orders.sort((a, b) => b.created.localeCompare(a.created));
       return json({ ok: true, inquiries, orders });
     }
@@ -366,10 +373,11 @@ export async function handleStudio(request, env, ctx, url) {
       const orders = (await listJson(env, 'order:')).filter((o) => o.status === 'paid' && !o.shippedAt && (o.squareEnv || 'sandbox') === here);
       const rows = [['Order ID', 'Name', 'Company', 'Address 1', 'Address 2', 'City', 'State', 'Zip', 'Country', 'Email', 'Phone', 'Items', 'Order Total']];
       for (const o of orders) {
+        if (o.country && o.country !== 'US') continue; // outside the US: refund or quote first
         const sq = await squareOrder(env, o.orderId).catch(() => null);
-        const f = sq?.fulfillments?.find((x) => x.shipment_details)?.shipment_details?.recipient || {};
+        const f = (await shippingInfo(env, sq).catch(() => null)) || {};
         const a = f.address || {};
-        rows.push([o.ref, f.display_name, '', a.address_line_1, a.address_line_2, a.locality, a.administrative_district_level_1, a.postal_code, a.country || 'US', f.email_address, f.phone_number, o.lines.map((l) => `${l.qty}x ${l.title}`).join('; '), ((o.total ?? o.subtotal + o.shipping) / 100).toFixed(2)]);
+        rows.push([o.ref, f.name, '', a.address_line_1, a.address_line_2, a.locality, a.administrative_district_level_1, a.postal_code, a.country || 'US', f.email, f.phone, o.lines.map((l) => `${l.qty}x ${l.title}`).join('; '), ((o.total ?? o.subtotal + o.shipping) / 100).toFixed(2)]);
       }
       return new Response(rows.map((r) => r.map(csvCell).join(',')).join('\r\n'), { headers: { 'Content-Type': 'text/csv; charset=utf-8', 'Content-Disposition': `attachment; filename="pirate-ship-${new Date().toISOString().slice(0, 10)}.csv"`, ...SECURITY } });
     }

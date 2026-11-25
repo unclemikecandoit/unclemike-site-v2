@@ -113,6 +113,20 @@ export async function createCheckout(env, origin, priced) {
   return { url: link.url, ref };
 }
 
+/** Shipping recipient for a Square order: from its shipment fulfillment, else from the payment. */
+export async function shippingInfo(env, order) {
+  const f = order?.fulfillments?.find((x) => x.shipment_details)?.shipment_details?.recipient;
+  if (f?.address?.country) return { name: f.display_name, email: f.email_address, phone: f.phone_number, address: f.address };
+  const pid = order?.tenders?.[0]?.payment_id || order?.tenders?.[0]?.id;
+  if (!pid) return null;
+  try {
+    const { payment } = await square(env, 'GET', `/v2/payments/${encodeURIComponent(pid)}`);
+    const a = payment?.shipping_address;
+    if (!a) return null;
+    return { name: [a.first_name, a.last_name].filter(Boolean).join(' ') || f?.display_name, email: payment.buyer_email_address || f?.email_address, phone: f?.phone_number, address: a };
+  } catch { return null; }
+}
+
 /** True only when Square reports the order as fully paid. */
 export const orderIsPaid = (o) => !!o && o.state !== 'CANCELED' && ((o.tenders?.length > 0 && o.net_amount_due_money?.amount === 0) || o.state === 'COMPLETED');
 
@@ -129,6 +143,8 @@ export async function verifyOrder(env, ref) {
     rec.status = 'paid';
     rec.paidAt = new Date().toISOString();
     rec.total = order.total_money?.amount;
+    const ship = await shippingInfo(env, order);
+    if (ship?.address?.country) rec.country = ship.address.country;
     await env.DATA.put(`order:${ref}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
   }
   return { found: true, paid: rec.status === 'paid', rec };
@@ -155,6 +171,7 @@ export async function handleSquareEvent(env, event) {
   const rec = await env.DATA.get(`order:${ref}`, 'json');
   if (rec && rec.status !== 'paid') {
     Object.assign(rec, { status: 'paid', paidAt: new Date().toISOString(), paymentId: payment.id, total: payment.total_money?.amount });
+    if (payment.shipping_address?.country) rec.country = payment.shipping_address.country;
     await env.DATA.put(`order:${ref}`, JSON.stringify(rec), { expirationTtl: 60 * 60 * 24 * 365 });
   }
 }

@@ -40,6 +40,8 @@ export function start(port = 4199) {
       const o = [...orders.values()].find((x) => x.reference_id === url.pathname.slice(10));
       if (!o) return send(res, 404, {});
       o.tenders = [{ id: 't1', type: 'CARD' }]; o.net_amount_due_money = { amount: 0, currency: 'USD' };
+      const country = url.searchParams.get('country') || 'US';
+      o.fulfillments = [{ type: 'SHIPMENT', shipment_details: { recipient: { display_name: 'Test Buyer', email_address: 'buyer@example.com', address: { address_line_1: '1 Test St', locality: 'Testville', administrative_district_level_1: 'TX', postal_code: '75001', country } } } }];
       return send(res, 200, { ok: true });
     }
     if (url.pathname === '/__last') return send(res, 200, last || {});

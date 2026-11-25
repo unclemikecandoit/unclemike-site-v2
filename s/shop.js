@@ -68,10 +68,17 @@
     else if (t.dataset.dec) { const id = t.dataset.dec; if (--bag[id] <= 0) delete bag[id]; render(); }
     else if (t.dataset.filter) setFilter(t.dataset.filter);
     else if (t.dataset.filterLink) setFilter(t.dataset.filterLink);
+    if (t.hasAttribute('data-close-bag')) {
+      dlg.close();
+      // Pre-fill the request with what's in the bag so Mike can quote it.
+      const f = $('#inquiry'), ids = Object.keys(bag).filter((id) => CAT[id]);
+      if (f && ids.length && !f.message.value) f.message.value = 'Country: \nItems: ' + ids.map((id) => `${bag[id]} x ${CAT[id].t}`).join(', ');
+      if (!f && ids.length) sessionStorage.setItem('um-inq-items', ids.map((id) => `${bag[id]} x ${CAT[id].t}`).join(', '));
+    }
     if (t.dataset.kind) {
       const f = $('#inquiry');
       if (f) { f.kind.value = t.dataset.kind; if (t.dataset.design) f.design.value = t.dataset.design; }
-      else if (t.dataset.design) sessionStorage.setItem('um-inq', JSON.stringify({ kind: t.dataset.kind, design: t.dataset.design }));
+      else sessionStorage.setItem('um-inq', JSON.stringify({ kind: t.dataset.kind, design: t.dataset.design || '' }));
     }
   });
   dlg.addEventListener('click', (e) => { if (e.target === dlg) dlg.close(); });
@@ -108,7 +115,8 @@
   // Inquiry form (pictures are shrunk on the phone before upload).
   const form = $('#inquiry');
   if (form) {
-    try { const pre = JSON.parse(sessionStorage.getItem('um-inq')); if (pre) { form.kind.value = pre.kind; form.design.value = pre.design; sessionStorage.removeItem('um-inq'); } } catch {}
+    try { const pre = JSON.parse(sessionStorage.getItem('um-inq')); if (pre) { form.kind.value = pre.kind; if (pre.design) form.design.value = pre.design; sessionStorage.removeItem('um-inq'); } } catch {}
+    try { const items = sessionStorage.getItem('um-inq-items'); if (items) { form.message.value = 'Country: \nItems: ' + items; sessionStorage.removeItem('um-inq-items'); } } catch {}
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const st = $('#inq-status'), btn = form.querySelector('button[type=submit]');

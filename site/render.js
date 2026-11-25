@@ -6,7 +6,7 @@ const words = (catalog) => ({ ...DEFAULT_CONTENT, ...(catalog && catalog.content
 
 export const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
 export const money = (c) => (c % 100 === 0 ? '$' + c / 100 : c < 100 ? c + '¢' : '$' + (c / 100).toFixed(2));
-const ASSET_V = '9'; // bump when s/site.css or s/shop.js change
+const ASSET_V = '10'; // bump when s/site.css or s/shop.js change
 const small = (src) => src.replace(/\.jpg$/, '-sm.jpg');
 
 const ORDER = ['GFY Collection', 'Hard Hat Stickers', 'Autism Performance Brands', 'Leather-Patch Hats', 'Sticker Sheets'];
@@ -27,10 +27,10 @@ ${canonical ? `<link rel="canonical" href="${esc(canonical)}">` : ''}<meta name=
 <main id="main">${body}</main>
 <footer class="foot"><div><strong>Uncle Mike Can Do It.</strong> And you can too.<br>${esc(content.footer)}</div>
 <nav aria-label="More"><a href="/#custom">Custom orders &amp; questions</a><a href="/make/">Projects &amp; stories</a><a href="/about/">About Mike</a></nav>
-<p class="fine">Secure checkout by Square. Prices in USD. Shipping and any sales tax are shown before you pay.</p></footer>
+<p class="fine">Ships within the United States. Outside the US? <a href="/#custom" data-kind="International shipping quote">Ask for a shipping quote</a>. Secure checkout by Square. Prices in USD. Shipping and any sales tax are shown before you pay.</p></footer>
 <dialog id="bag" aria-labelledby="bag-title"><form method="dialog" class="bag-head"><h2 id="bag-title">Your bag</h2><button aria-label="Close bag">✕</button></form>
 <div id="bag-lines"><p class="empty">Your bag is empty. Go grab something funny.</p></div>
-<div class="bag-foot"><p class="row">Subtotal <span id="bag-subtotal">$0</span></p><p class="row">Shipping <span id="bag-ship">—</span></p><p class="sub">Total <b id="bag-total">$0</b></p><p class="fine" id="bag-note">Any sales tax is added at secure Square checkout.</p>
+<div class="bag-foot"><p class="row">Subtotal <span id="bag-subtotal">$0</span></p><p class="row">Shipping <span id="bag-ship">—</span></p><p class="sub">Total <b id="bag-total">$0</b></p><p class="fine" id="bag-note">Any sales tax is added at secure Square checkout.</p><p class="fine">Ships within the US only. Outside the US? <a href="/#custom" data-kind="International shipping quote" data-close-bag>Ask for a shipping quote</a>.</p>
 <p id="bag-error" class="err" role="alert" hidden></p><button id="checkout" class="btn big" type="button" disabled>Checkout</button></div></dialog>
 </body></html>`;
 }
@@ -79,7 +79,7 @@ ${hats.length ? `<section class="hats" aria-label="Leather-patch hats">${hats.ma
 <a class="btn" href="#custom" data-kind="T-shirt">Request a shirt</a></section>
 <section id="custom" class="custom"><div><h2>Custom work &amp; questions</h2><p>Your own sticker, a design on a shirt, a one-off engraved patch — or just a question. Attach a picture if you have one. Mike replies with a price before anything is made.</p></div>
 <form id="inquiry" class="form" action="/api/inquiry" method="post" enctype="multipart/form-data">
-<label>What do you want?<select name="kind" required><option>Custom stickers</option><option>T-shirt</option><option>Sweatshirt</option><option>Hat</option><option>Question</option><option>Something else</option></select></label>
+<label>What do you want?<select name="kind" required><option>Custom stickers</option><option>T-shirt</option><option>Sweatshirt</option><option>Hat</option><option>International shipping quote</option><option>Question</option><option>Something else</option></select></label>
 <label>Design (if any)<input name="design" maxlength="120" placeholder="e.g. Plan B"></label>
 <label>Your name<input name="name" required maxlength="80" autocomplete="name"></label>
 <label>Email<input name="email" type="email" required maxlength="120" autocomplete="email"></label>

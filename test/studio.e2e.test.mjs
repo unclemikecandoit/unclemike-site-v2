@@ -154,6 +154,24 @@ test('inbox shows customer inquiries', async () => {
   assert.ok((await state()).inbox >= 1, 'Inbox tab shows a waiting count');
 });
 
+test('orders shipping outside the US are flagged and kept out of the Pirate Ship file', async () => {
+  const buy = async (country) => {
+    const r = await (await fetch(SITE + '/api/checkout', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ items: [{ id: 'nope', qty: 1 }] }) })).json();
+    assert.equal(r.ok, true);
+    const ref = (await (await fetch('http://127.0.0.1:4199/__last')).json()).order.reference_id;
+    await fetch(`http://127.0.0.1:4199/__payref/${ref}?country=${country}`);
+    assert.equal((await (await fetch(`${SITE}/api/order/${ref}`)).json()).paid, true);
+    return ref;
+  };
+  const us = await buy('US'), ca = await buy('CA');
+  const inbox = (await call('/api/studio/inbox')).json;
+  assert.equal(inbox.orders.find((o) => o.ref === ca).country, 'CA');
+  assert.equal(inbox.orders.find((o) => o.ref === us).country, 'US');
+  const csv = (await call('/api/studio/pirateship.csv')).text;
+  assert.match(csv, new RegExp(us)); assert.doesNotMatch(csv, new RegExp(ca));
+  assert.match(csv, /1 Test St/);
+});
+
 test('notes save with Brand Gate', async () => {
   const r = await call('/api/studio/notes', { body: { notes: [{ text: 'Sticker idea', gate: { message: 'Work humor', scores: { 'Brand Fit': 2, 'Audience Value': 2, Authenticity: 2, 'Content Quality': 1, 'Long-Term Brand Purpose': 1 } } }] } });
   assert.equal(r.json.notes[0].result.decision, 'POST');
