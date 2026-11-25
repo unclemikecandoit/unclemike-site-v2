@@ -1,0 +1,17 @@
+.local/
+node_modules/
+.env*
+!.env.example
+coverage/
+*.log
+
+
+.wrangler/
+.dev.vars
+
+
+# private owner data (never published)
+catalog/owner-notes.json
+catalog/inventory-source.mjs
+catalog/inventory.html
+

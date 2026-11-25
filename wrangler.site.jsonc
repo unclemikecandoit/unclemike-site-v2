@@ -1,0 +1,32 @@
+// New all-in-one site Worker (storefront + checkout + studio).
+// The existing live checkout Worker (wrangler.jsonc, "uncle-mike-checkout") is NOT touched by this file.
+{
+  "name": "unclemike-site",
+  "main": "site/worker.js",
+  "compatibility_date": "2026-09-23",
+  "assets": {
+    "directory": "./",
+    "binding": "ASSETS",
+    "run_worker_first": ["/", "/p/*", "/thanks/*", "/stickers", "/stickers/*", "/index.html", "/api/*", "/studio", "/studio/*", "/m/*"]
+  },
+  "kv_namespaces": [
+    // Replaced with the real namespace id at deployment (after approval).
+    { "binding": "DATA", "id": "local-dev-data" }
+  ],
+  "vars": {
+    "SQUARE_ENV": "sandbox"
+  },
+  "observability": { "enabled": true },
+  "env": {
+    // Private preview on workers.dev — does not touch the live domain or live checkout.
+    // Deploy: npx wrangler deploy -c wrangler.site.jsonc -e preview
+    "preview": {
+      "name": "unclemike-site-preview",
+      "workers_dev": true,
+      "kv_namespaces": [{ "binding": "DATA", "id": "3af52f4aadc54527b8fe46edc457a9b5" }],
+      // Workers AI: account is on the free plan (no paid subscriptions) → hard daily cap, no charges.
+      "ai": { "binding": "AI" },
+      "vars": { "SQUARE_ENV": "sandbox", "NOINDEX": "1" }
+    }
+  }
+}

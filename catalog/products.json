@@ -1,0 +1,731 @@
+{
+  "version": "2026-11-25T07:37:01.187Z",
+  "prices": {
+    "sticker": 50,
+    "sheet": 500,
+    "hat": 3000,
+    "tshirt": 2000,
+    "sweatshirt": 4000
+  },
+  "shipping": {
+    "envelope": 1000,
+    "package": 1000,
+    "freeOver": 0
+  },
+  "products": [
+    {
+      "id": "jr-enemy-of-the-state",
+      "type": "sticker",
+      "title": "JR. Enemy of the State",
+      "collection": "GFY Collection",
+      "description": "Gold eagle badge with an anarchy symbol.",
+      "price": 50,
+      "images": [
+        "/img/p/jr-enemy-of-the-state.jpg"
+      ],
+      "legacyId": 1,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "not-today-satan",
+      "type": "sticker",
+      "title": "Not Today Satan",
+      "collection": "GFY Collection",
+      "description": "Smiling teddy bear with a pentagram belly in a sunny flower field.",
+      "price": 50,
+      "images": [
+        "/img/p/not-today-satan.jpg"
+      ],
+      "legacyId": 2,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "this-again",
+      "type": "sticker",
+      "title": "This Again?",
+      "collection": "GFY Collection",
+      "description": "Hooded ghost mask with big cream lettering.",
+      "price": 50,
+      "images": [
+        "/img/p/this-again.jpg"
+      ],
+      "legacyId": 3,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "try-me",
+      "type": "sticker",
+      "title": "Try Me",
+      "collection": "GFY Collection",
+      "description": "Machete with “Try Me” brush lettering.",
+      "price": 50,
+      "images": [
+        "/img/p/try-me.jpg"
+      ],
+      "legacyId": 4,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "the-persuader",
+      "type": "sticker",
+      "title": "The Persuader",
+      "collection": "GFY Collection",
+      "description": "Sledgehammer with red splatter.",
+      "price": 50,
+      "images": [
+        "/img/p/the-persuader.jpg"
+      ],
+      "legacyId": 5,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "catch-me-never",
+      "type": "sticker",
+      "title": "Catch Me Never",
+      "collection": "GFY Collection",
+      "description": "Orange chainsaw with “Catch Me Never.”",
+      "price": 50,
+      "images": [
+        "/img/p/catch-me-never.jpg"
+      ],
+      "legacyId": 6,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "plan-b",
+      "type": "sticker",
+      "title": "Plan B",
+      "collection": "GFY Collection",
+      "description": "Yellow wood chipper with red splatter.",
+      "price": 50,
+      "images": [
+        "/img/p/plan-b.jpg"
+      ],
+      "legacyId": 7,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "fah-q",
+      "type": "sticker",
+      "title": "FAH-Q",
+      "collection": "GFY Collection",
+      "description": "Olive-drab cartoon bomb with shark teeth.",
+      "price": 50,
+      "images": [
+        "/img/p/fah-q.jpg"
+      ],
+      "legacyId": 8,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "lol-k",
+      "type": "sticker",
+      "title": "LOL, K",
+      "collection": "GFY Collection",
+      "description": "Cracked gravestone with a skull reading “LOL, K.”",
+      "price": 50,
+      "images": [
+        "/img/p/lol-k.jpg"
+      ],
+      "legacyId": 9,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "nope",
+      "type": "sticker",
+      "title": "Nope.",
+      "collection": "GFY Collection",
+      "description": "Bold black serif “Nope.”",
+      "price": 50,
+      "images": [
+        "/img/p/nope.jpg"
+      ],
+      "legacyId": 10,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "walk-it-off",
+      "type": "sticker",
+      "title": "Walk It Off",
+      "collection": "GFY Collection",
+      "description": "Vintage wheelchair framed by “Walk It Off.”",
+      "price": 50,
+      "images": [
+        "/img/p/walk-it-off.jpg"
+      ],
+      "legacyId": 11,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "well-fck",
+      "type": "sticker",
+      "title": "Well F*ck",
+      "collection": "GFY Collection",
+      "description": "Battered hockey mask with distressed lettering. Uncensored wording on the sticker.",
+      "price": 50,
+      "images": [
+        "/img/p/well-fck.jpg"
+      ],
+      "legacyId": 12,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "powered-by-autism-high-octane-minds",
+      "type": "sticker",
+      "title": "Powered by Autism — High Octane Minds",
+      "collection": "Autism Performance Brands",
+      "description": "Oval badge with crossed checkered flags.",
+      "price": 50,
+      "images": [
+        "/img/p/powered-by-autism-high-octane-minds.jpg"
+      ],
+      "legacyId": 13,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "powered-by-autism-different-fuels-progress",
+      "type": "sticker",
+      "title": "Powered by Autism — Different Fuels Progress",
+      "collection": "Autism Performance Brands",
+      "description": "Red speed-stripe script lettering.",
+      "price": 50,
+      "images": [
+        "/img/p/powered-by-autism-different-fuels-progress.jpg"
+      ],
+      "legacyId": 14,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-mental-lubrication-keeps-things-moving",
+      "type": "sticker",
+      "title": "Autism — Mental Lubrication Keeps Things Moving",
+      "collection": "Autism Performance Brands",
+      "description": "Red and blue V emblem.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-mental-lubrication-keeps-things-moving.jpg"
+      ],
+      "legacyId": 15,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-spark-a-brighter-tomorrow",
+      "type": "sticker",
+      "title": "Autism — Spark a Brighter Tomorrow",
+      "collection": "Autism Performance Brands",
+      "description": "Red, black and white bow-tie panel.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-spark-a-brighter-tomorrow.jpg"
+      ],
+      "legacyId": 16,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-champions-think-different",
+      "type": "sticker",
+      "title": "Autism — Champions Think Different",
+      "collection": "Autism Performance Brands",
+      "description": "Red and blue oval reading “Racing Division.”",
+      "price": 50,
+      "images": [
+        "/img/p/autism-champions-think-different.jpg"
+      ],
+      "legacyId": 17,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-cams-more-ideas-per-rev",
+      "type": "sticker",
+      "title": "Autism Cams — More Ideas per Rev",
+      "collection": "Autism Performance Brands",
+      "description": "Italic red lettering with a checkered flag.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-cams-more-ideas-per-rev.jpg"
+      ],
+      "legacyId": 18,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-look-further",
+      "type": "sticker",
+      "title": "Autism — Look Further",
+      "collection": "Autism Performance Brands",
+      "description": "Yellow panel with big cartoon eyes.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-look-further.jpg"
+      ],
+      "legacyId": 19,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "powered-by-autism-racing-stripes",
+      "type": "sticker",
+      "title": "Powered by Autism — Racing Stripes",
+      "collection": "Autism Performance Brands",
+      "description": "Cream panel with red and blue stripes.",
+      "price": 50,
+      "images": [
+        "/img/p/powered-by-autism-racing-stripes.jpg"
+      ],
+      "legacyId": 20,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-fueling-ideas",
+      "type": "sticker",
+      "title": "Autism — Fueling Ideas",
+      "collection": "Autism Performance Brands",
+      "description": "Red, black and white bar panel.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-fueling-ideas.jpg"
+      ],
+      "legacyId": 21,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-high-performance-minds",
+      "type": "sticker",
+      "title": "Autism — High Performance Minds",
+      "collection": "Autism Performance Brands",
+      "description": "Yellow oval with a red air-cleaner graphic.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-high-performance-minds.jpg"
+      ],
+      "legacyId": 22,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-shift-different",
+      "type": "sticker",
+      "title": "Autism — Shift Different",
+      "collection": "Autism Performance Brands",
+      "description": "Big red and black H shape.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-shift-different.jpg"
+      ],
+      "legacyId": 23,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "autism-fueled-differently",
+      "type": "sticker",
+      "title": "Autism — Fueled Differently",
+      "collection": "Autism Performance Brands",
+      "description": "Orange and navy roundel.",
+      "price": 50,
+      "images": [
+        "/img/p/autism-fueled-differently.jpg"
+      ],
+      "legacyId": 24,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "powered-by-autism-exceptional-performance-always",
+      "type": "sticker",
+      "title": "Powered by Autism — Exceptional Performance Always",
+      "collection": "Autism Performance Brands",
+      "description": "Blue, white and red shield.",
+      "price": 50,
+      "images": [
+        "/img/p/powered-by-autism-exceptional-performance-always.jpg"
+      ],
+      "legacyId": 25,
+      "status": "live",
+      "approved": true
+    },
+    {
+      "id": "i-survived-another-6-with-bpd",
+      "type": "sticker",
+      "title": "I Survived Another 6 with BPD",
+      "collection": "Hard Hat Stickers",
+      "description": "White oval with a US flag.",
+      "price": 50,
+      "images": [
+        "/img/p/i-survived-another-6-with-bpd.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "soiled-my-britches",
+      "type": "sticker",
+      "title": "Soiled My Britches",
+      "collection": "Hard Hat Stickers",
+      "description": "Ornate gold saloon-style lettering.",
+      "price": 50,
+      "images": [
+        "/img/p/soiled-my-britches.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "booger-sugar-career-development-program",
+      "type": "sticker",
+      "title": "Booger Sugar — Career Development Program",
+      "collection": "Hard Hat Stickers",
+      "description": "Sugar-cube mascot with a briefcase climbing a ladder. “Climb That Ladder Quickly.”",
+      "price": 50,
+      "images": [
+        "/img/p/booger-sugar-career-development-program.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "who-needs-cocaine-when-you-have-cold-brew",
+      "type": "sticker",
+      "title": "Who Needs Cocaine When You Have Cold Brew?",
+      "collection": "Hard Hat Stickers",
+      "description": "Retro lettering with an iced coffee.",
+      "price": 50,
+      "images": [
+        "/img/p/who-needs-cocaine-when-you-have-cold-brew.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "the-diddler",
+      "type": "sticker",
+      "title": "The Diddler",
+      "collection": "Hard Hat Stickers",
+      "description": "Grumpy old man in a hard hat, sunglasses and trench coat.",
+      "price": 50,
+      "images": [
+        "/img/p/the-diddler.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "burning-red-monster-no-wording",
+      "type": "sticker",
+      "title": "Burning Red Monster (no wording)",
+      "collection": "Hard Hat Stickers",
+      "description": "Red furry character with arms raised in front of flames.",
+      "price": 50,
+      "images": [
+        "/img/p/burning-red-monster-no-wording.jpg"
+      ],
+      "legacyId": null,
+      "status": "hold",
+      "approved": false
+    },
+    {
+      "id": "booger-sugar-employee-of-the-month",
+      "type": "sticker",
+      "title": "Booger Sugar — Employee of the Month",
+      "collection": "Hard Hat Stickers",
+      "description": "Retro trophy badge. “#1 … Every Month.”",
+      "price": 50,
+      "images": [
+        "/img/p/booger-sugar-employee-of-the-month.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "morale-suppression-expert",
+      "type": "sticker",
+      "title": "Morale Suppression Expert",
+      "collection": "Hard Hat Stickers",
+      "description": "Tattooed worker in a hard hat and hi-vis shirt, arms crossed.",
+      "price": 50,
+      "images": [
+        "/img/p/morale-suppression-expert.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "f-bomb",
+      "type": "sticker",
+      "title": "F-Bomb",
+      "collection": "Hard Hat Stickers",
+      "description": "Black bomb silhouette with a white F.",
+      "price": 50,
+      "images": [
+        "/img/p/f-bomb.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "functioning-alcoholic",
+      "type": "sticker",
+      "title": "Functioning Alcoholic",
+      "collection": "Hard Hat Stickers",
+      "description": "Retro mechanic giving a thumbs-up with a cooler of drinks.",
+      "price": 50,
+      "images": [
+        "/img/p/functioning-alcoholic.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "work-gorilla-with-hammer-no-wording",
+      "type": "sticker",
+      "title": "Work Gorilla with Hammer (no wording)",
+      "collection": "Hard Hat Stickers",
+      "description": "Gorilla in work pants, suspenders and boots holding a sledgehammer.",
+      "price": 50,
+      "images": [
+        "/img/p/work-gorilla-with-hammer-no-wording.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "i-pay-dues-for-this",
+      "type": "sticker",
+      "title": "I Pay Dues for This?",
+      "collection": "Hard Hat Stickers",
+      "description": "Gear emblem with calipers and a ruler.",
+      "price": 50,
+      "images": [
+        "/img/p/i-pay-dues-for-this.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "i-sht-my-pants",
+      "type": "sticker",
+      "title": "I Sh*t My Pants",
+      "collection": "Hard Hat Stickers",
+      "description": "Bold black block lettering. Uncensored wording on the sticker.",
+      "price": 50,
+      "images": [
+        "/img/p/i-sht-my-pants.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "morally-bankrupt",
+      "type": "sticker",
+      "title": "Morally Bankrupt",
+      "collection": "Hard Hat Stickers",
+      "description": "Green and gold lettering, money and a running top-hat tycoon. “Because ethics don’t pay my child support.”",
+      "price": 50,
+      "images": [
+        "/img/p/morally-bankrupt.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "change-your-oil-the-best-engines-dont-run-on-luck",
+      "type": "sticker",
+      "title": "Change Your Oil — The Best Engines Don’t Run on Luck",
+      "collection": "Hard Hat Stickers",
+      "description": "Pin-up mechanic with an oil can and a four-leaf clover, with a blank “Change your oil at ___ miles” line.",
+      "price": 50,
+      "images": [
+        "/img/p/change-your-oil-the-best-engines-dont-run-on-luck.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "electricians",
+      "type": "sticker",
+      "title": "Electricians",
+      "collection": "Hard Hat Stickers",
+      "description": "Wild-eyed green rat in a hard hat working a sparking panel.",
+      "price": 50,
+      "images": [
+        "/img/p/electricians.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "laborers",
+      "type": "sticker",
+      "title": "Laborers",
+      "collection": "Hard Hat Stickers",
+      "description": "Wild-eyed green rat shoveling rubble.",
+      "price": 50,
+      "images": [
+        "/img/p/laborers.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "machinists",
+      "type": "sticker",
+      "title": "Machinists",
+      "collection": "Hard Hat Stickers",
+      "description": "Wild-eyed green rat hammering on an engine block.",
+      "price": 50,
+      "images": [
+        "/img/p/machinists.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "sophisticated-gorilla",
+      "type": "sticker",
+      "title": "Sophisticated Gorilla",
+      "collection": "Hard Hat Stickers",
+      "description": "Gorilla in a three-piece suit with a sledgehammer.",
+      "price": 50,
+      "images": [
+        "/img/p/sophisticated-gorilla.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "will-do-something-strange-for-some-change",
+      "type": "sticker",
+      "title": "Will Do Something Strange for Some Change",
+      "collection": "Hard Hat Stickers",
+      "description": "Ornate lettering over a pile of coins.",
+      "price": 50,
+      "images": [
+        "/img/p/will-do-something-strange-for-some-change.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "booger-sugar-performance-enhancer",
+      "type": "sticker",
+      "title": "Booger Sugar — Performance Enhancer",
+      "collection": "Hard Hat Stickers",
+      "description": "Winking sugar-cube mascot in sneakers. “Feel your teeth!”",
+      "price": 50,
+      "images": [
+        "/img/p/booger-sugar-performance-enhancer.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "pooped-my-trousers",
+      "type": "sticker",
+      "title": "Pooped My Trousers",
+      "collection": "Hard Hat Stickers",
+      "description": "Graffiti-style lettering.",
+      "price": 50,
+      "images": [
+        "/img/p/pooped-my-trousers.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "rabbit-leather-patch-hat-camo",
+      "type": "hat",
+      "title": "Rabbit Leather-Patch Hat — Camo",
+      "collection": "Leather-Patch Hats",
+      "description": "Camo front, black mesh back, flat brim. Brown leather patch with four rivets, engraved with a skull-faced rabbit.",
+      "price": 3000,
+      "images": [
+        "/img/p/rabbit-leather-patch-hat-camo.jpg",
+        "/img/p/rabbit-leather-patch-hat-camo-2.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "bowtie-leather-patch-hat-gray",
+      "type": "hat",
+      "title": "Bowtie Leather-Patch Hat — Gray",
+      "collection": "Leather-Patch Hats",
+      "description": "Gray front, white mesh back. Brown leather patch with four rivets, engraved with a bowtie outline.",
+      "price": 3000,
+      "images": [
+        "/img/p/bowtie-leather-patch-hat-gray.jpg",
+        "/img/p/bowtie-leather-patch-hat-gray-2.jpg"
+      ],
+      "legacyId": null,
+      "status": "live",
+      "approved": false
+    },
+    {
+      "id": "gfy-sticker-sheet-10-designs",
+      "type": "sheet",
+      "title": "GFY Sticker Sheet (10 designs)",
+      "collection": "Sticker Sheets",
+      "description": "Well F*ck, Walk It Off, This Again?, Not Today Satan, Plan B, JR. Enemy of the State, Nope., Try Me, FAH-Q and The Persuader.",
+      "price": 500,
+      "images": [
+        "/img/p/gfy-sticker-sheet-10-designs.jpg"
+      ],
+      "legacyId": "sheet-gfy",
+      "status": "live",
+      "approved": true
+    }
+  ],
+  "apparel": [
+    {
+      "type": "tshirt",
+      "title": "T-Shirt — your pick of design",
+      "price": 2000
+    },
+    {
+      "type": "sweatshirt",
+      "title": "Sweatshirt — your pick of design",
+      "price": 4000
+    }
+  ]
+}

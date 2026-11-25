@@ -1,0 +1,15 @@
+{
+  "name": "uncle-mike-workshop",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node app/server.mjs",
+    "test": "node test/run-all.mjs", "test:codex-prototype": "node --test app/*.test.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "devDependencies": {
+    "wrangler": "^4.168.0"
+  }
+}
